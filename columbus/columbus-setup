@@ -1,0 +1,26 @@
+    1  curl
+    3  curl -sSL https://get.docker.com | sh 
+    4  docker run --rm -d -p 9200:9200 -p 9300:9300 elasticsearch
+    5  docker ps
+    6  curl localhost:9200
+   10  tar -xvf MI-UBX-TS-changesets.tar 
+   11  ls
+   12  mkdir test
+   13  cp yaml/testing/mosh.101289.mi.ubx.ts.yaml ./test/
+   14  cp yaml/testing/lighttpd.99234.mi.ubx.ts.yaml ./test/
+   15  cp yaml/testing/trac.102580.mi.ubx.ts.yaml ./test/
+   16  cp yaml/testing/django.102585.mi.ubx.ts.yaml ./test/
+   17  ls test/
+   18  cd columbus/
+   19  ls
+   21  apt-get install python2.7
+   25  apt install python-pip
+   27  pip install elasticsearch
+   29  pip install elasticsearch_dsl
+   31  pip install yaml
+   32  pip install pyyaml
+   34  pip install psutil
+   35  python2.7 columbus.py 
+   36  ls
+   37  vi config.cfg 
+   38  python2.7 columbus.py -f ./systags/ubuntu-1404 --discover --route file_paths ../test/

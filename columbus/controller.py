@@ -37,10 +37,11 @@ def index_files(fname, esstore):
         for cfile in chfiles:
             # pdb.set_trace()
             filemd = cfile.split()
-            if filemd[0] == '000':
-                continue
-            else:
-              fsmd = {}
+            # if filemd[0] == '000':
+            #     continue
+            # else:
+            #   fsmd = {}
+            fsmd = {}
             fsmd['path'] =  filemd[1]
             fsmd['_type'] = 'file'
             fsmd['_index'] = "eureka"

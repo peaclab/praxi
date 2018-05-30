@@ -6,6 +6,8 @@ import yaml
 
 from tqdm import tqdm
 
+from columbus.columbus import columbus
+
 PROJECT_ROOT = Path('~/hybrid-method').expanduser()
 CHANGESET_ROOT = Path('~/yaml/testing/').expanduser()
 
@@ -33,6 +35,7 @@ class Hybrid:
         pass
 
     def fit(self, X, y):
+        labels = columbus(X)
         pass
 
     def predict(self, X):

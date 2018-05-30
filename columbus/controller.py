@@ -22,66 +22,56 @@ ES_BATCH_SIZE = 1000
 FILTER_PATH_TOKENS = ['usr', 'bin', 'proc', 'sys', 'etc', 'local', 'src','dev','home', 'root', 'lib', 'pkg', 'sbin', 'share','cache']
 
 def index_files(fname, esstore):
-    layerid = "1"
     with open(fname, "r") as cStream:
         changeset = yaml.load(cStream)
-        chfiles = changeset['changes']
-        try:
-           # modifiedfile = changeset['modifications']
-           pkgLabel = changeset['label']
-        except KeyError:
-           pkgLabel = "Not found: %s"%(fname)
 
-        #print "Pkg {} Created files {} Modified files {}".format(pkgLabel, len(createfiles), len(modifiedfile))
-        flist = []
-        for cfile in chfiles:
-            # pdb.set_trace()
-            filemd = cfile.split()
-            # if filemd[0] == '000':
-            #     continue
-            # else:
-            #   fsmd = {}
-            fsmd = {}
-            fsmd['path'] =  filemd[1]
-            fsmd['_type'] = 'file'
-            fsmd['_index'] = "eureka"
-            fsmd['layer'] = layerid
-            flist.append(fsmd)   
+    chfiles = changeset['changes']
+    try:
+       # modifiedfile = changeset['modifications']
+       pkgLabel = changeset['label']
+    except KeyError:
+       pkgLabel = "Not found: %s"%(fname)
 
-        # for cFile in createfiles:
-        #     fsmd = {}
-        #     fsmd['path'] =  cFile
-        #     fsmd['_type'] = 'file'
-        #     fsmd['_index'] = "eureka"
-        #     fsmd['layer'] = layerid
-        #     flist.append(fsmd) 
-        # for mFile in modifiedfile:
-        #     fsmd = {}
-        #     fsmd['path'] =  mFile
-        #     fsmd['_type'] = 'file'
-        #     fsmd['_index'] = "eureka"
-        #     fsmd['layer'] = layerid
-        #     flist.append(fsmd) 
+    index_file_from_list(chfiles, esstore)
+    return pkgLabel
 
-        esstore.__insert_fs_metdata__("eureka",layerid, flist)
-        return pkgLabel
-  
-def discover_software_container(containerid, changesetDirpath, route, systagfile):
+
+def index_file_from_list(chfiles, esstore):
+    layerid = "1"
+    flist = []
+    for cfile in chfiles:
+        # pdb.set_trace()
+        filemd = cfile.split()
+        # if filemd[0] == '000':
+        #     continue
+        # else:
+        #   fsmd = {}
+        fsmd = {}
+        fsmd['path'] = filemd[1]
+        fsmd['_type'] = 'file'
+        fsmd['_index'] = "eureka"
+        fsmd['layer'] = layerid
+        flist.append(fsmd)
+
+    esstore.__insert_fs_metdata__("eureka", layerid, flist)
+
+
+def discover_software_container(changesetDirpath, systagfile):
     esstore = ESClient('localhost', '9200')
     systags = {}
     with open(systagfile, 'rb') as sysfp:
-         systags = pickle.load(sysfp)
+        systags = pickle.load(sysfp)
 
     progress = 1
     testrepo = glob.glob(changesetDirpath+"/*")
     skip = 0
     for fname in testrepo:
         t1 = datetime.now()
-        print("[INFO]Filepath = %s"%(fname))
-        print("[INFO]Processing package %d/%d"%(progress,len(testrepo)))
-        progress+=1
+        print("[INFO]Filepath = %s" % (fname))
+        print("[INFO]Processing package %d/%d" % (progress, len(testrepo)))
+        progress += 1
         if skip > 0:
-            skip-=1
+            skip -= 1
             continue
         # pkgName = index_files(os.path.join(changesetDirpath, fname), esstore)
         pkgName = index_files(fname, esstore)
@@ -94,13 +84,12 @@ def discover_software_container(containerid, changesetDirpath, route, systagfile
 def run_file_paths_discovery2(pkgName, filtertags, esstore):
     layerid = "1"
 
-    files =  esstore.__get_all_files__("eureka", layerid) 
-    #pdb.set_trace()        
+    files = esstore.__get_all_files__("eureka", layerid)
     ftrie = Trie()
     for filepath in files:
         pathtokens = filepath.split('/')
         for token in pathtokens:
-            if token != '' and not token in FILTER_PATH_TOKENS:
+            if token != '' and token not in FILTER_PATH_TOKENS:
                 ftrie.insert(token)
 
     softtags = []
@@ -110,14 +99,16 @@ def run_file_paths_discovery2(pkgName, filtertags, esstore):
         if tag in filtertags:
             continue
         # if res[tag] < 2:
-        #     break		
+        #     break
         softtags.append(tag)
-        k-=1
+        k -= 1
         if k == 0:
-            break		
+            break
 
-    print("%s\t%s"%(pkgName, softtags))   
-    saveToFile(pkgName, softtags)
+    if pkgName != "":
+        saveToFile(pkgName, softtags)
+        print("%s\t%s" % (pkgName, softtags))
+    return softtags
 
 
 def saveToFile(pkgName, softtags):

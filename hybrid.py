@@ -32,13 +32,12 @@ def main():
 
 class Hybrid:
     """ scikit style class for hybrid method """
-    def __init__(self):
+    def __init__(self, vw_args=''):
         pass
 
     def fit(self, X, y):
-        for changeset in X:
-            labels = columbus(changeset)
-            print(y, labels)
+        labels = [columbus(x) for x in X]
+        # vw input is stg like "idx label | ' '.join(tags)"
         pass
 
     def predict(self, X):

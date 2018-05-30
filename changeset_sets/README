@@ -1,0 +1,10 @@
+This directory should contain these 4 python pickle files:
+
+threek_dirty_csids.p  = a list of 3,000 ChangesetWrapper IDs for dirty single-app changesets
+tenk_clean_csids.p    = same as above, but with 10,000 clean single-app changesets
+threek_dirty_chunks.p = a list of 3 lists, each containing 1,000 dirty single-app ChangesetWrapper ID's (i.e. partition of threek_dirty_csids.p)
+tenk_clean_chunks.p   = same as above, but with 4 lists each containing 2,500 clean single-app changesets
+
+All of the changesets referenced by these lists have been confirmed to exist within RP-MI-UBX-changesets.tar.gz or MI-UBX-changesets.tar.gz.
+These can be found at http://mirror.v-m.tech/changesets/
+

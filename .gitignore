@@ -99,3 +99,6 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+#2to3 backups
+*.bak

@@ -13,6 +13,7 @@ CHANGESET_ROOT = Path('~/yaml/testing/').expanduser()
 
 
 def main():
+    get_scores([], [101289, 102580, 102585, 99234])
     with (PROJECT_ROOT / 'changeset_sets' /
           'threek_dirty_chunks.p').open('rb') as f:
         threeks = pickle.load(f)
@@ -35,7 +36,9 @@ class Hybrid:
         pass
 
     def fit(self, X, y):
-        labels = columbus(X)
+        for changeset in X:
+            labels = columbus(changeset)
+            print(y, labels)
         pass
 
     def predict(self, X):
@@ -46,11 +49,14 @@ class Hybrid:
 
 
 def get_changeset(csid):
-    for idx, csfile in enumerate(CHANGESET_ROOT.glob('*{}*'.format(csid))):
-        if idx > 0:
+    changeset = None
+    for csfile in CHANGESET_ROOT.glob('*{}*'.format(csid)):
+        if changeset is not None:
             raise IOError("Too many changesets match the csid {}".format(csid))
         with csfile.open('r') as f:
             changeset = yaml.load(f)
+    if changeset is None:
+        raise IOError("No changesets match the csid {}".format(csid))
     return changeset
 
 

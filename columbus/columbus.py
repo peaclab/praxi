@@ -3,10 +3,10 @@ import os
 import optparse
 import pickle
 import logging
-from controller import discover_software_container, \
-    index_files_from_list, \
-    run_file_paths_discovery2
-from store.esclient import ESClient
+from .controller import discover_software_container
+from .controller import index_files_from_list
+from .controller import run_file_paths_discovery2
+from .store.esclient import ESClient
 
 IMG_WORKSPACE = "/Users/nagowda/Documents/columbus/imgworkspace"
 DISCOVERY_OPTIONS = ['bin_names', 'file_paths', 'func-names',
@@ -46,7 +46,7 @@ def main():
     # print "Memory Used %0.2f"%(float(process.get_memory_info().rss)/1000000)
 
 
-def columbus(changeset, systagfile='$HOME/columbus/systags/ubuntu-1404'):
+def columbus(changeset, systagfile='/home/ubuntu/columbus/systags/ubuntu-1404'):
     """ Get labels from single changeset """
     esstore = ESClient('localhost', '9200')
     systags = {}

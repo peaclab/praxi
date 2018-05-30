@@ -9,8 +9,8 @@ import sys
 import logging
 import tempfile
 import stat
-from store.esclient import ESClient
-from pytrie.trie import Trie
+from .store.esclient import ESClient
+from .pytrie.trie import Trie
 import re
 from datetime import datetime
 import glob
@@ -32,11 +32,11 @@ def index_files(fname, esstore):
     except KeyError:
        pkgLabel = "Not found: %s"%(fname)
 
-    index_file_from_list(chfiles, esstore)
+    index_files_from_list(chfiles, esstore)
     return pkgLabel
 
 
-def index_file_from_list(chfiles, esstore):
+def index_files_from_list(chfiles, esstore):
     layerid = "1"
     flist = []
     for cfile in chfiles:

@@ -77,8 +77,8 @@ def discover_software_container(containerid, changesetDirpath, route, systagfile
     skip = 0
     for fname in testrepo:
         t1 = datetime.now()
-        print "[INFO]Filepath = %s"%(fname)
-        print "[INFO]Processing package %d/%d"%(progress,len(testrepo))
+        print("[INFO]Filepath = %s"%(fname))
+        print("[INFO]Processing package %d/%d"%(progress,len(testrepo)))
         progress+=1
         if skip > 0:
             skip-=1
@@ -88,7 +88,7 @@ def discover_software_container(containerid, changesetDirpath, route, systagfile
         run_file_paths_discovery2(pkgName, systags['paths'], esstore)
         esstore.__del_index__("eureka")
         t2 = datetime.now()
-        print "Time taken: ", (t2-t1)
+        print("Time taken: ", (t2-t1))
 
 
 def run_file_paths_discovery2(pkgName, filtertags, esstore):
@@ -116,7 +116,7 @@ def run_file_paths_discovery2(pkgName, filtertags, esstore):
         if k == 0:
             break		
 
-    print "%s\t%s"%(pkgName, softtags)   
+    print("%s\t%s"%(pkgName, softtags))   
     saveToFile(pkgName, softtags)
 
 

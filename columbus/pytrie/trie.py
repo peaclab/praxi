@@ -1,7 +1,7 @@
 import sys
 import pdb
-from trieNode import Node
-from tagrepo import Tagrepo
+from .trieNode import Node
+from .tagrepo import Tagrepo
 
 class Trie():
 	def __init__(self):
@@ -13,7 +13,7 @@ class Trie():
 		tagfound = False
 
 		childs = self.root.__get_childs__()
-		for idx in xrange(len(word)):	
+		for idx in range(len(word)):	
 			currChar = word[idx]
 			if currChar in childs:
 				childs[currChar].__inc_frequency__()

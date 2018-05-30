@@ -1,4 +1,4 @@
-from trie import *
+from .trie import *
 import pdb
 
 
@@ -9,7 +9,7 @@ def main():
 	for biname in bins:
 		t.insert(biname.rstrip())
 
-	print t.get_topK(3)
+	print(t.get_topK(3))
 
 
 if __name__=="__main__":

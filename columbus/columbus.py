@@ -2,7 +2,7 @@ import sys
 import os
 import optparse
 import pdb
-import ConfigParser
+import configparser
 import logging
 from controller import *
 import psutil
@@ -52,7 +52,7 @@ def main():
         os.makedirs(IMG_WORKSPACE)
 
     if not os.path.exists(imgpath):
-        print "Invalid image\n"
+        print("Invalid image\n")
         sys.exit(1)
  
 

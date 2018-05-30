@@ -74,16 +74,16 @@ class Tagrepo():
 			self.tags[tag]+=1		
 
 	def __print_all_tags__(self):
-		sorted_dict =  OrderedDict(reversed(sorted(self.tags.items(), key=lambda x: x[1])))
-		print sorted_dict
+		sorted_dict =  OrderedDict(reversed(sorted(list(self.tags.items()), key=lambda x: x[1])))
+		print(sorted_dict)
 
 	def __get_all_tags__(self):
-		sorted_dict =  OrderedDict(reversed(sorted(self.tags.items(), key=lambda x: x[1]))) 
+		sorted_dict =  OrderedDict(reversed(sorted(list(self.tags.items()), key=lambda x: x[1]))) 
 
 		return sorted_dict
 
 	def __get_topK_tags__(self, k, fthreshold):
-		sorted_dict =  OrderedDict(reversed(sorted(self.tags.items(), key=lambda x: x[1])))	
+		sorted_dict =  OrderedDict(reversed(sorted(list(self.tags.items()), key=lambda x: x[1])))	
 		res = dict()
 		for key in sorted_dict:
 			if sorted_dict[key] < fthreshold:
@@ -92,5 +92,5 @@ class Tagrepo():
 			k-=1
 			if k == 0:
 				break	
-		return OrderedDict(reversed(sorted(res.items(), key=lambda x: x[1])))	
+		return OrderedDict(reversed(sorted(list(res.items()), key=lambda x: x[1])))	
 		

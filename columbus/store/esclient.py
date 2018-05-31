@@ -7,7 +7,10 @@ ES_TYPE = 'fsmeta'
 class ESClient():
     def __init__(self, server, port):
                 #FIXME add try/catch
-                self.client = Elasticsearch(["%s:%s"%(server,port)])
+                self.client = Elasticsearch(
+                    ["%s:%s"%(server,port)],
+                    timeout=30, max_retries=10, retry_on_timeout=True
+                )
                 self.tracer = logging.getLogger('elasticsearch.trace')
                 self.tracer.setLevel(logging.INFO)
                 self.tracer.addHandler(logging.FileHandler('/tmp/es_trace.log'))

@@ -6,6 +6,7 @@ import pickle
 from pathlib import Path
 import tempfile
 import yaml
+from time import sleep
 
 from tqdm import tqdm
 
@@ -35,7 +36,7 @@ def main():
 
 class Hybrid:
     """ scikit style class for hybrid method """
-    def __init__(self, k=5, vw_args=''):
+    def __init__(self, k=15, vw_args=''):
         self.k = k
 
     def fit(self, X, y):
@@ -45,17 +46,12 @@ class Hybrid:
             indexed_labels[label] = counter
             counter += 1
         tags = [columbus(x, k=self.k) for x in X]
-        with tempfile.NamedTemporaryFile('w') as f:
-            for tag, label in zip(tags, y):
-                f.write('{} {} | {}\n'.format(
-                    indexed_labels[label],
-                    label, ' '.join(tag)))
-                print('{} {} | {}\n'.format(
-                    indexed_labels[label],
-                    label, ' '.join(tag)))
-            print(f.name)
-            os.system('cat {} > ~/test.out'.format(f.name))
-        sys.exit(0)
+        f = tempfile.NamedTemporaryFile('w', delete=False)
+        for tag, label in zip(tags, y):
+            f.write('{} {} | {}\n'.format(
+                indexed_labels[label],
+                label, ' '.join(tag)))
+        f.close()
 
     def predict(self, X):
         pass

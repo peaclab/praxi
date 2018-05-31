@@ -11,7 +11,8 @@ import yaml
 
 import envoy
 from tqdm import tqdm
-from numpy import savetxt, metrics
+from numpy import savetxt
+from sklearn import metrics
 
 from columbus.columbus import columbus
 
@@ -52,6 +53,7 @@ def main():
     with (PROJECT_ROOT / 'changeset_sets' /
           'tenk_clean_chunks.p').open('rb') as f:
         tenks = pickle.load(f)
+    resfile = open('./results.pkl', 'wb')
     results = []
     for idx, test_set in tqdm(enumerate(threeks)):
         logging.info('Test set is %d', idx)
@@ -59,10 +61,15 @@ def main():
         train_idx.remove(idx)
         train_set = threeks[train_idx[0]] + threeks[train_idx[1]]
         results.append(get_scores(test_set, train_set))
+        pickle.dump(results, resfile)
+        resfile.seek(0)
         for inner_idx, extra_cleans in tqdm(enumerate(tenks)):
             logging.info('Extra clean count: %d', inner_idx + 1)
             train_set += extra_cleans
             results.append(get_scores(test_set, train_set))
+            pickle.dump(results, resfile)
+            resfile.seek(0)
+    resfile.close()
     # # Now do the evaluation!
     # #results = [
     # #    0 => ([x, y, z], <-- true

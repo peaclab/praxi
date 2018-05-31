@@ -3,12 +3,10 @@
 import logging
 import logging.config
 import os
-import sys
 import pickle
 from pathlib import Path
 import tempfile
 import yaml
-from time import sleep
 
 import envoy
 from tqdm import tqdm
@@ -43,19 +41,20 @@ def main():
             },
         }
     })
-    get_scores([101289, 102580, 102585, 99234], [101289, 102580, 102585, 99234])
+    # get_scores([101289, 102580, 102585, 99234],
+    #            [101289, 102580, 102585, 99234])
     with (PROJECT_ROOT / 'changeset_sets' /
           'threek_dirty_chunks.p').open('rb') as f:
         threeks = pickle.load(f)
     with (PROJECT_ROOT / 'changeset_sets' /
           'tenk_clean_chunks.p').open('rb') as f:
         tenks = pickle.load(f)
-    for idx, test_set in enumerate(threeks):
+    for idx, test_set in tqdm(enumerate(threeks)):
         train_idx = [0, 1, 2]
         train_idx.remove(idx)
         train_set = threeks[train_idx[0]] + threeks[train_idx[1]]
         get_scores(test_set, train_set)
-        for idx, extra_cleans in enumerate(tenks):
+        for idx, extra_cleans in tqdm(enumerate(tenks)):
             train_set += extra_cleans
             get_scores(test_set, train_set)
 
@@ -104,11 +103,6 @@ class Hybrid:
                 c.std_out, c.std_err)
         os.unlink(f.name)
 
-        # # For testing
-        # cd /home/ubuntu/vw/results
-        # vw -t -i ../chosen_dirty.model ../rp_ts_vw_new.in -p rp_ts_vw_new.out.11
-        # python2.7 score.py rp_ts_vw_new.out.11
-
     def predict(self, X):
         tags = self._columbize(X)
         f = tempfile.NamedTemporaryFile('w', delete=False)
@@ -142,6 +136,17 @@ class Hybrid:
 
     def score(self, X, y):
         predictions = self.predict(X)
+        logging.info('Getting scores')
+        hits = misses = preds = 0
+        for pred, label in zip(predictions, y):
+            if int(self.indexed_labels[label]) == int(pred):
+                hits += 1
+            else:
+                misses += 1
+            preds += 1
+        print("Preds:" + str(preds))
+        print("Hits:" + str(hits))
+        print("Misses:" + str(misses))
 
 
 def get_changeset(csid):

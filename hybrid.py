@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 
+import os
+import sys
 import pickle
 from pathlib import Path
+import tempfile
 import yaml
 
 from tqdm import tqdm
@@ -32,13 +35,27 @@ def main():
 
 class Hybrid:
     """ scikit style class for hybrid method """
-    def __init__(self, vw_args=''):
-        pass
+    def __init__(self, k=5, vw_args=''):
+        self.k = k
 
     def fit(self, X, y):
-        labels = [columbus(x) for x in X]
-        # vw input is stg like "idx label | ' '.join(tags)"
-        pass
+        counter = 1
+        indexed_labels = {}
+        for label in set(y):
+            indexed_labels[label] = counter
+            counter += 1
+        tags = [columbus(x, k=self.k) for x in X]
+        with tempfile.NamedTemporaryFile('w') as f:
+            for tag, label in zip(tags, y):
+                f.write('{} {} | {}\n'.format(
+                    indexed_labels[label],
+                    label, ' '.join(tag)))
+                print('{} {} | {}\n'.format(
+                    indexed_labels[label],
+                    label, ' '.join(tag)))
+            print(f.name)
+            os.system('cat {} > ~/test.out'.format(f.name))
+        sys.exit(0)
 
     def predict(self, X):
         pass

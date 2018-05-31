@@ -56,7 +56,7 @@ def index_files_from_list(chfiles, esstore):
     esstore.__insert_fs_metdata__("eureka", layerid, flist)
 
 
-def discover_software_container(changesetDirpath, systagfile):
+def discover_software_container(changesetDirpath, systagfile, k=5):
     esstore = ESClient('localhost', '9200')
     systags = {}
     with open(systagfile, 'rb') as sysfp:
@@ -81,7 +81,7 @@ def discover_software_container(changesetDirpath, systagfile):
         print("Time taken: ", (t2-t1))
 
 
-def run_file_paths_discovery2(pkgName, filtertags, esstore):
+def run_file_paths_discovery2(pkgName, filtertags, esstore, k=5):
     layerid = "1"
 
     files = esstore.__get_all_files__("eureka", layerid)
@@ -93,7 +93,6 @@ def run_file_paths_discovery2(pkgName, filtertags, esstore):
                 ftrie.insert(token)
 
     softtags = []
-    k = 15 * 5  # Emre: changed this to output more tags for multi-app runs
     res = ftrie.get_all_tags()
     for tag in res:
         if tag in filtertags:

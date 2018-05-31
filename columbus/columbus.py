@@ -46,7 +46,7 @@ def main():
     # print "Memory Used %0.2f"%(float(process.get_memory_info().rss)/1000000)
 
 
-def columbus(changeset, systagfile='/home/ubuntu/columbus/systags/ubuntu-1404'):
+def columbus(changeset, systagfile='/home/ubuntu/columbus/systags/ubuntu-1404', k=5):
     """ Get labels from single changeset """
     esstore = ESClient('localhost', '9200')
     systags = {}
@@ -54,7 +54,7 @@ def columbus(changeset, systagfile='/home/ubuntu/columbus/systags/ubuntu-1404'):
         systags = pickle.load(sysfp)
 
     index_files_from_list(changeset, esstore)
-    result = run_file_paths_discovery2("", systags['paths'], esstore)
+    result = run_file_paths_discovery2("", systags['paths'], esstore, k=k)
     esstore.__del_index__("eureka")
     return result
 

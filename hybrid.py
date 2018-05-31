@@ -84,13 +84,13 @@ class Hybrid:
         logging.info('Started hybrid model, vw_modelfile: %s',
                      self.vw_modelfile.name)
 
-    def fit(self, X, y):
+    def fit(self, X, y, csids=None):
         logging.info('Training started')
         counter = 1
         for label in set(y):
             self.indexed_labels[label] = counter
             counter += 1
-        tags = self._columbize(X)
+        tags = self._columbize(X, csids=csids)
         f = tempfile.NamedTemporaryFile('w', delete=False)
         for tag, label in zip(tags, y):
             f.write('{} 1.0 {} | {}\n'.format(
@@ -114,8 +114,8 @@ class Hybrid:
                 c.std_out, c.std_err)
         os.unlink(f.name)
 
-    def predict(self, X):
-        tags = self._columbize(X)
+    def predict(self, X, csids=None):
+        tags = self._columbize(X, csids=csids)
         f = tempfile.NamedTemporaryFile('w', delete=False)
         for tag in tags:
             f.write('| {}\n'.format(' '.join(tag)))
@@ -138,15 +138,28 @@ class Hybrid:
         os.unlink(f.name)
         return c.std_out.split()
 
-    def _columbize(self, X):
+    def _columbize(self, X, csids=None):
         logging.info('Getting columbus output for %d changesets', len(X))
+        if csids is None:
+            csids = [-1 for _ in X]
         tags = []
-        for changeset in X:
-            tags.append(columbus(changeset, k=self.k))
+        for changeset, csid in zip(X, csids):
+            if csid != -1:
+                cache_file = COLUMBUS_CACHE / '{}.yaml'.format(csid)
+                if cache_file.exists():
+                    with cache_file.open('r') as f:
+                        tags.append(yaml.load(f))
+                else:
+                    tag = columbus(changeset, k=self.k)
+                    with cache_file.open('w') as f:
+                        yaml.dump(tag, f)
+                    tags.append(tag)
+            else:
+                tags.append(columbus(changeset, k=self.k))
         return tags
 
-    def score(self, X, y):
-        predictions = self.predict(X)
+    def score(self, X, y, csids=None):
+        predictions = self.predict(X, csids=csids)
         logging.info('Getting scores')
         hits = misses = preds = 0
         for pred, label in zip(predictions, y):
@@ -189,9 +202,9 @@ def get_scores(test_set, train_set):
     """ Gets two lists of changeset ids, does training+testing """
     clf = Hybrid()
     X, y = parse_csids(train_set)
-    clf.fit(X, y)
+    clf.fit(X, y, csids=train_set)
     X, y = parse_csids(test_set)
-    return clf.score(X, y)
+    return clf.score(X, y, csids=test_set)
 
 
 if __name__ == '__main__':

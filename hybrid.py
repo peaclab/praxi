@@ -206,7 +206,7 @@ class Hybrid:
         if csids is None:
             csids = [-1 for _ in X]
         tags = []
-        for changeset, csid in zip(X, csids):
+        for changeset, csid in tqdm(zip(X, csids)):
             if csid != -1:
                 cache_file = COLUMBUS_CACHE / '{}.yaml'.format(csid)
                 if cache_file.exists():
@@ -258,7 +258,7 @@ def parse_csids(csids):
     file sets: list of string of format '644 /usr/.../file' """
     features = []
     labels = []
-    for csid in csids:
+    for csid in tqdm(csids):
         changeset = get_changeset(csid)
         labels.append(changeset['label'])
         features.append(changeset['changes'])

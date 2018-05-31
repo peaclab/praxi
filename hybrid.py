@@ -6,10 +6,12 @@ import os
 import pickle
 from pathlib import Path
 import tempfile
+import time
 import yaml
 
 import envoy
 from tqdm import tqdm
+from numpy import savetxt, metrics
 
 from columbus.columbus import columbus
 
@@ -50,24 +52,78 @@ def main():
     with (PROJECT_ROOT / 'changeset_sets' /
           'tenk_clean_chunks.p').open('rb') as f:
         tenks = pickle.load(f)
-    f = open('result.csv', 'w')
-    f.write('test_idx,clean_count,preds,hits,misses\n')
+    results = []
     for idx, test_set in tqdm(enumerate(threeks)):
         logging.info('Test set is %d', idx)
         train_idx = [0, 1, 2]
         train_idx.remove(idx)
         train_set = threeks[train_idx[0]] + threeks[train_idx[1]]
-        scores = get_scores(test_set, train_set)
-        f.write('{},{},{},{},{}\n'.format(idx, 0, scores['preds'],
-                                          scores['hits'], scores['misses']))
+        results.append(get_scores(test_set, train_set))
         for inner_idx, extra_cleans in tqdm(enumerate(tenks)):
             logging.info('Extra clean count: %d', inner_idx + 1)
             train_set += extra_cleans
-            scores = get_scores(test_set, train_set)
-            f.write('{},{},{},{},{}\n'.format(
-                idx, inner_idx + 1, scores['preds'],
-                scores['hits'], scores['misses']))
-    f.close()
+            results.append(get_scores(test_set, train_set))
+    # # Now do the evaluation!
+    # #results = [
+    # #    0 => ([x, y, z], <-- true
+    # #          [x, y, k]) <-- pred
+    # #]
+    y_true = [[], [], [], [], []]
+    y_pred = [[], [], [], [], []]
+    for idx, result in enumerate(results):
+        y_true[idx % 5] += result[0]
+        y_pred[idx % 5] += result[1]
+
+    labels = sorted(set(y_true[0] + y_true[1] + y_true[2] +
+                        y_true[3] + y_true[4]))
+    classifications = []
+    f1_weighted = []
+    f1_micro = []
+    f1_macro = []
+    p_weighted = []
+    p_micro = []
+    p_macro = []
+    r_weighted = []
+    r_micro = []
+    r_macro = []
+    confusions = []
+    for x, y in zip(y_true, y_pred):
+        classifications.append(metrics.classification_report(x, y, labels))
+        f1_weighted.append(metrics.f1_score(x, y, labels, average='weighted'))
+        f1_micro.append(metrics.f1_score(x, y, labels, average='micro'))
+        f1_macro.append(metrics.f1_score(x, y, labels, average='macro'))
+        p_weighted.append(
+            metrics.precision_score(x, y, labels, average='weighted'))
+        p_micro.append(metrics.precision_score(x, y, labels, average='micro'))
+        p_macro.append(metrics.precision_score(x, y, labels, average='macro'))
+        r_weighted.append(
+            metrics.recall_score(x, y, labels, average='weighted'))
+        r_micro.append(metrics.recall_score(x, y, labels, average='micro'))
+        r_macro.append(metrics.recall_score(x, y, labels, average='macro'))
+        confusions.append(metrics.confusion_matrix(x, y, labels))
+
+    for strat, report, f1w, f1i, f1a, pw, pi, pa, rw, ri, ra, confuse in zip(
+            range(5), classifications, f1_weighted, f1_micro, f1_macro,
+            p_weighted, p_micro, p_macro, r_weighted, r_micro, r_macro,
+            confusions):
+        clean_tr_str = (
+            "nil = 1000 total" if strat == 0 else
+            ','.join(str(x) for x in range(strat)) + " ({}) = {} total".format(
+                strat * 2500, strat * 2500 + 1000))
+        file_header = (
+            "# 1K DIRTY EXPERIMENTAL REPORT: STRATUM {}\n".format(strat) +
+            time.strftime("# Generated %c\n#\n") +
+            "# TRAIN: Dirty (1000, avg'ed over #0,1,2) + Clean #{}\n".format(clean_tr_str) +
+            "# TEST : Dirty (2000, avg'ed over #0,1,2) + Clean #nil = 2000 total\n" +
+            "# F1 SCORE : {:.3f} weighted, {:.3f} micro-avg'd, {:.3f} macro-avg'd\n".format(f1w, f1i, f1a) +
+            "# PRECISION: {:.3f} weighted, {:.3f} micro-avg'd, {:.3f} macro-avg'd\n".format(pw, pi, pa) +
+            "# RECALL   : {:.3f} weighted, {:.3f} micro-avg'd, {:.3f} macro-avg'd\n#\n".format(rw, ri, ra) +
+            "# {:-^55}\n#".format("CLASSIFICATION REPORT") + report.replace('\n', "\n#") +
+            " {:-^55}\n".format("CONFUSION MATRIX")
+        )
+        savetxt("/home/ubuntu/hybrid-results/{}.txt".format(strat),
+                confuse, fmt='%d', header=file_header, delimiter=',',
+                comments='')
 
 
 class Hybrid:
@@ -208,7 +264,8 @@ def get_scores(test_set, train_set):
     X, y = parse_csids(train_set)
     clf.fit(X, y, csids=train_set)
     X, y = parse_csids(test_set)
-    return clf.score(X, y, csids=test_set)
+    preds = clf.predict(X, csids=test_set)
+    return y, preds
 
 
 if __name__ == '__main__':

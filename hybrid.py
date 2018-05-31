@@ -92,7 +92,7 @@ class Hybrid:
         c = envoy.run(
             '{vw_binary} {vw_input} {vw_args} -f {vw_modelfile}'.format(
                 vw_binary=self.vw_binary, vw_input=f.name,
-                vw_args=self.vw_args, vw_modelfile=self.vw_modelfile)
+                vw_args=self.vw_args, vw_modelfile=self.vw_modelfile.name)
         )
         if c.status_code:
             logging.error(

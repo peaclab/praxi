@@ -183,6 +183,10 @@ def get_changeset(csid):
             changeset = yaml.load(f)
     if changeset is None:
         raise IOError("No changesets match the csid {}".format(csid))
+    if 'label' not in changeset or 'changes' not in changeset:
+        logging.error("Malformed changeset, id: %d, changeset: %s",
+                      csid, csfile)
+        raise IOError("Couldn't read changeset")
     return changeset
 
 

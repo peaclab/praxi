@@ -43,7 +43,7 @@ def main():
             },
         }
     })
-    get_scores([], [101289, 102580, 102585, 99234])
+    get_scores([101289, 102580, 102585, 99234], [101289, 102580, 102585, 99234])
     with (PROJECT_ROOT / 'changeset_sets' /
           'threek_dirty_chunks.p').open('rb') as f:
         threeks = pickle.load(f)
@@ -80,8 +80,7 @@ class Hybrid:
         for label in set(y):
             self.indexed_labels[label] = counter
             counter += 1
-        logging.info('Getting columbus output for %d changesets', len(X))
-        tags = [columbus(x, k=self.k) for x in X]
+        tags = self._columbize(X)
         f = tempfile.NamedTemporaryFile('w', delete=False)
         for tag, label in zip(tags, y):
             f.write('{} 1.0 {} | {}\n'.format(
@@ -100,22 +99,49 @@ class Hybrid:
                 c.status_code, c.std_out, c.std_err)
             raise IOError('Something happened to vw')
         else:
-            logging.error(
+            logging.info(
                 'vw ran sucessfully. out: %s, err: %s',
                 c.std_out, c.std_err)
+        os.unlink(f.name)
 
-        # # For training the model
-        # vw chosen_dirty.in -c --loss_function hinge --redefine :=ctags -q cc -b 25 --passes 50 --oaa 78 -l 0.4 -f chosen_dirty.model
         # # For testing
         # cd /home/ubuntu/vw/results
         # vw -t -i ../chosen_dirty.model ../rp_ts_vw_new.in -p rp_ts_vw_new.out.11
         # python2.7 score.py rp_ts_vw_new.out.11
 
     def predict(self, X):
-        pass
+        tags = self._columbize(X)
+        f = tempfile.NamedTemporaryFile('w', delete=False)
+        for tag in tags:
+            f.write('| {}\n'.format(' '.join(tag)))
+        f.close()
+        logging.info('vw input written to %s, starting testing', f.name)
+        c = envoy.run(
+            '{vw_binary} {vw_input} -p /dev/stdout -i {vw_modelfile}'.format(
+                vw_binary=self.vw_binary, vw_input=f.name,
+                vw_modelfile=self.vw_modelfile.name)
+        )
+        if c.status_code:
+            logging.error(
+                'something happened to vw, code: %d, out: %s, err: %s',
+                c.status_code, c.std_out, c.std_err)
+            raise IOError('Something happened to vw')
+        else:
+            logging.info(
+                'vw ran sucessfully. out: %s, err: %s',
+                c.std_out, c.std_err)
+        os.unlink(f.name)
+        return c.std_out.split()
+
+    def _columbize(self, X):
+        logging.info('Getting columbus output for %d changesets', len(X))
+        tags = []
+        for changeset in X:
+            tags.append(columbus(changeset, k=self.k))
+        return tags
 
     def score(self, X, y):
-        pass
+        predictions = self.predict(X)
 
 
 def get_changeset(csid):

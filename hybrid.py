@@ -14,7 +14,8 @@ from tqdm import tqdm
 from columbus.columbus import columbus
 
 PROJECT_ROOT = Path('~/hybrid-method').expanduser()
-CHANGESET_ROOT = Path('~/yaml/testing/').expanduser()
+CHANGESET_ROOT = Path('~/yaml/').expanduser()
+COLUMBUS_CACHE = Path('~/columbus-cache').expanduser()
 
 
 def main():
@@ -49,14 +50,24 @@ def main():
     with (PROJECT_ROOT / 'changeset_sets' /
           'tenk_clean_chunks.p').open('rb') as f:
         tenks = pickle.load(f)
+    f = open('result.csv', 'w')
+    f.write('test_idx,clean_count,preds,hits,misses\n')
     for idx, test_set in tqdm(enumerate(threeks)):
+        logging.info('Test set is %d', idx)
         train_idx = [0, 1, 2]
         train_idx.remove(idx)
         train_set = threeks[train_idx[0]] + threeks[train_idx[1]]
-        get_scores(test_set, train_set)
-        for idx, extra_cleans in tqdm(enumerate(tenks)):
+        scores = get_scores(test_set, train_set)
+        f.write('{},{},{},{},{}\n'.format(idx, 0, scores['preds'],
+                                          scores['hits'], scores['misses']))
+        for inner_idx, extra_cleans in tqdm(enumerate(tenks)):
+            logging.info('Extra clean count: %d', inner_idx + 1)
             train_set += extra_cleans
-            get_scores(test_set, train_set)
+            scores = get_scores(test_set, train_set)
+            f.write('{},{},{},{},{}\n'.format(
+                idx, inner_idx + 1, scores['preds'],
+                scores['hits'], scores['misses']))
+    f.close()
 
 
 class Hybrid:
@@ -147,6 +158,7 @@ class Hybrid:
         print("Preds:" + str(preds))
         print("Hits:" + str(hits))
         print("Misses:" + str(misses))
+        return {'preds': preds, 'hits': hits, 'misses': misses}
 
 
 def get_changeset(csid):
@@ -179,7 +191,7 @@ def get_scores(test_set, train_set):
     X, y = parse_csids(train_set)
     clf.fit(X, y)
     X, y = parse_csids(test_set)
-    clf.score(X, y)
+    return clf.score(X, y)
 
 
 if __name__ == '__main__':

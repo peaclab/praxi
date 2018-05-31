@@ -11,6 +11,7 @@ from .store.esclient import ESClient
 IMG_WORKSPACE = "/Users/nagowda/Documents/columbus/imgworkspace"
 DISCOVERY_OPTIONS = ['bin_names', 'file_paths', 'func-names',
                      'docker_history', 'pack_manager']
+ESSTORE = ESClient('localhost', '9200')
 
 
 def main():
@@ -46,16 +47,17 @@ def main():
     # print "Memory Used %0.2f"%(float(process.get_memory_info().rss)/1000000)
 
 
-def columbus(changeset, systagfile='/home/ubuntu/columbus/systags/ubuntu-1404', k=5):
+def columbus(changeset, systagfile='/home/ubuntu/columbus/systags/ubuntu-1404',
+             k=5):
     """ Get labels from single changeset """
-    esstore = ESClient('localhost', '9200')
     systags = {}
     with open(systagfile, 'rb') as sysfp:
         systags = pickle.load(sysfp)
 
-    index_files_from_list(changeset, esstore)
-    result = run_file_paths_discovery2("", systags['paths'], esstore, k=k)
-    esstore.__del_index__("eureka")
+    index_files_from_list(changeset, ESSTORE)
+    result = run_file_paths_discovery2("", systags['paths'],
+                                       ESSTORE, k=k)
+    ESSTORE.__del_index__("eureka")
     return result
 
 

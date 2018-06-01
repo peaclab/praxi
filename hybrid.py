@@ -13,12 +13,14 @@ import envoy
 from tqdm import tqdm
 from numpy import savetxt
 from sklearn import metrics
+from joblib import Memory
 
 from columbus.columbus import columbus
 
 PROJECT_ROOT = Path('~/hybrid-method').expanduser()
 CHANGESET_ROOT = Path('~/yaml/').expanduser()
 COLUMBUS_CACHE = Path('~/columbus-cache').expanduser()
+memory = Memory(cachedir='/home/ubuntu/joblib-cache', verbose=0)
 
 
 def main():
@@ -254,6 +256,7 @@ def get_changeset(csid):
     return changeset
 
 
+@memory.cache
 def parse_csids(csids):
     """ Returns labels and features from csids, features are file sets
     file sets: list of string of format '644 /usr/.../file' """

@@ -2,6 +2,7 @@
 
 import logging
 import logging.config
+import multiprocessing
 import os
 import pickle
 from pathlib import Path
@@ -144,6 +145,7 @@ class Hybrid:
         self.vw_args = vw_args
         self.vw_binary = vw_binary
         self.indexed_labels = {}
+        self.reverse_labels = {}
         # TODO: delete this file at __del__? after debugging
         self.vw_modelfile = tempfile.NamedTemporaryFile('w', delete=False)
         logging.info('Started hybrid model, vw_modelfile: %s',
@@ -154,6 +156,7 @@ class Hybrid:
         counter = 1
         for label in set(y):
             self.indexed_labels[label] = counter
+            self.reverse_labels[counter] = label
             counter += 1
         tags = self._columbize(X, csids=csids)
         f = tempfile.NamedTemporaryFile('w', delete=False)
@@ -202,7 +205,7 @@ class Hybrid:
                 'vw ran sucessfully. out: %s, err: %s',
                 c.std_out, c.std_err)
         os.unlink(f.name)
-        return c.std_out.split()
+        return [self.reverse_labels[int(x)] for x in c.std_out.split()]
 
     def _columbize(self, X, csids=None):
         logging.info('Getting columbus output for %d changesets', len(X))
@@ -276,6 +279,16 @@ def get_scores(test_set, train_set):
     clf.fit(X, y, csids=train_set)
     X, y = parse_csids(test_set)
     preds = clf.predict(X, csids=test_set)
+    hits = misses = preds = 0
+    for pred, label in zip(preds, y):
+        if pred == label:
+            hits += 1
+        else:
+            misses += 1
+        preds += 1
+    logging.info("Preds:" + str(preds))
+    logging.info("Hits:" + str(hits))
+    logging.info("Misses:" + str(misses))
     return y, preds
 
 

@@ -279,14 +279,14 @@ def get_scores(test_set, train_set):
     clf.fit(X, y, csids=train_set)
     X, y = parse_csids(test_set)
     preds = clf.predict(X, csids=test_set)
-    hits = misses = preds = 0
+    hits = misses = predictions = 0
     for pred, label in zip(preds, y):
         if pred == label:
             hits += 1
         else:
             misses += 1
-        preds += 1
-    logging.info("Preds:" + str(preds))
+        predictions += 1
+    logging.info("Preds:" + str(predictions))
     logging.info("Hits:" + str(hits))
     logging.info("Misses:" + str(misses))
     return y, preds

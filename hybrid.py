@@ -56,34 +56,34 @@ def main():
     with (PROJECT_ROOT / 'changeset_sets' /
           'tenk_clean_chunks.p').open('rb') as f:
         tenks = pickle.load(f)
-    resfile = open('./results.pkl', 'wb')
+    # resfile = open('./results.pkl', 'wb')
     results = []
     for idx, test_csids in tqdm(enumerate(threeks)):
         logging.info('Test set is %d', idx)
         train_idx = [0, 1, 2]
         train_idx.remove(idx)
-        # Split calls to parse_csids for more efficient memoization
-        X_train, y_train = parse_csids(threeks[train_idx[0]])
-        features, labels = parse_csids(threeks[train_idx[1]])
-        X_train += features
-        y_train += labels
-        X_test, y_test = parse_csids(threeks[idx])
-        train_csids = threeks[train_idx[0]] + threeks[train_idx[1]]
-        results.append(get_scores(X_train, y_train, train_csids,
-                                  X_test, y_test, test_csids))
-        pickle.dump(results, resfile)
-        resfile.seek(0)
+        # # Split calls to parse_csids for more efficient memoization
+        # X_train, y_train = parse_csids(threeks[train_idx[0]])
+        # features, labels = parse_csids(threeks[train_idx[1]])
+        # X_train += features
+        # y_train += labels
+        # X_test, y_test = parse_csids(threeks[idx])
+        # train_csids = threeks[train_idx[0]] + threeks[train_idx[1]]
+        # results.append(get_scores(X_train, y_train, train_csids,
+        #                           X_test, y_test, test_csids))
+        # pickle.dump(results, resfile)
+        # resfile.seek(0)
         for inner_idx, extra_cleans in tqdm(enumerate(tenks)):
             logging.info('Extra clean count: %d', inner_idx + 1)
             features, labels = parse_csids(extra_cleans)
-            X_train += features
-            y_train += labels
-            train_csids += extra_cleans
-            results.append(get_scores(X_train, y_train, train_csids,
-                                      X_test, y_test, test_csids))
-            pickle.dump(results, resfile)
-            resfile.seek(0)
-    resfile.close()
+            # X_train += features
+            # y_train += labels
+            # train_csids += extra_cleans
+            # results.append(get_scores(X_train, y_train, train_csids,
+            #                           X_test, y_test, test_csids))
+            # pickle.dump(results, resfile)
+            # resfile.seek(0)
+    # resfile.close()
     # # Now do the evaluation!
     # #results = [
     # #    0 => ([x, y, z], <-- true
@@ -256,9 +256,16 @@ class Hybrid:
 
 def get_changeset(csid):
     changeset = None
-    for csfile in CHANGESET_ROOT.glob('*.{}.*'.format(csid)):
+    if str(csid) in {'5', '6', '7'}:
+        # Dirty fix for finger, autotrace
+        globstr = '*[!16].5.*'
+    else:
+        globstr = '*.{}.*'.format(csid)
+    for csfile in CHANGESET_ROOT.glob(globstr):
         if changeset is not None:
-            raise IOError("Too many changesets match the csid {}".format(csid))
+            raise IOError(
+                "Too many changesets match the csid {}, globstr {}".format(
+                    csid, globstr))
         with csfile.open('r') as f:
             changeset = yaml.load(f)
     if changeset is None:

@@ -58,18 +58,29 @@ def main():
         tenks = pickle.load(f)
     resfile = open('./results.pkl', 'wb')
     results = []
-    for idx, test_set in tqdm(enumerate(threeks)):
+    for idx, test_csids in tqdm(enumerate(threeks)):
         logging.info('Test set is %d', idx)
         train_idx = [0, 1, 2]
         train_idx.remove(idx)
-        train_set = threeks[train_idx[0]] + threeks[train_idx[1]]
-        results.append(get_scores(test_set, train_set))
+        # Split calls to parse_csids for more efficient memoization
+        X_train, y_train = parse_csids(threeks[train_idx[0]])
+        features, labels = parse_csids(threeks[train_idx[1]])
+        X_train += features
+        y_train += labels
+        X_test, y_test = parse_csids(threeks[idx])
+        train_csids = threeks[train_idx[0]] + threeks[train_idx[1]]
+        results.append(get_scores(X_train, y_train, train_csids,
+                                  X_test, y_test, test_csids))
         pickle.dump(results, resfile)
         resfile.seek(0)
         for inner_idx, extra_cleans in tqdm(enumerate(tenks)):
             logging.info('Extra clean count: %d', inner_idx + 1)
-            train_set += extra_cleans
-            results.append(get_scores(test_set, train_set))
+            features, labels = parse_csids(extra_cleans)
+            X_train += features
+            y_train += labels
+            train_csids += extra_cleans
+            results.append(get_scores(X_train, y_train, train_csids,
+                                      X_test, y_test, test_csids))
             pickle.dump(results, resfile)
             resfile.seek(0)
     resfile.close()
@@ -272,15 +283,13 @@ def parse_csids(csids):
     return features, labels
 
 
-def get_scores(test_set, train_set):
+def get_scores(X_train, y_train, csids_train, X_test, y_test, csids_test):
     """ Gets two lists of changeset ids, does training+testing """
     clf = Hybrid()
-    X, y = parse_csids(train_set)
-    clf.fit(X, y, csids=train_set)
-    X, y = parse_csids(test_set)
-    preds = clf.predict(X, csids=test_set)
+    clf.fit(X_train, y_train, csids=csids_train)
+    preds = clf.predict(X_test, csids=csids_test)
     hits = misses = predictions = 0
-    for pred, label in zip(preds, y):
+    for pred, label in zip(preds, y_test):
         if pred == label:
             hits += 1
         else:
@@ -289,7 +298,7 @@ def get_scores(test_set, train_set):
     logging.info("Preds:" + str(predictions))
     logging.info("Hits:" + str(hits))
     logging.info("Misses:" + str(misses))
-    return y, preds
+    return y_test, preds
 
 
 if __name__ == '__main__':

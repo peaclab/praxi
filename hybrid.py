@@ -136,8 +136,8 @@ def main():
 class Hybrid:
     """ scikit style class for hybrid method """
     def __init__(self, k=15, vw_binary='/home/ubuntu/bin/vw',
-                 vw_args='-c --loss_function hinge --redefine :=ctags -q cc '
-                         '-b 25 --passes 50 --oaa 78 -l 0.4'):
+                 vw_args='-c --loss_function hinge -q cc '
+                         '-b 25 --passes 50 -l 0.4'):
         self.k = k
         self.vw_args = vw_args
         self.vw_binary = vw_binary
@@ -156,14 +156,15 @@ class Hybrid:
         tags = self._columbize(X, csids=csids)
         f = tempfile.NamedTemporaryFile('w', delete=False)
         for tag, label in zip(tags, y):
-            f.write('{} 1.0 {} | {}\n'.format(
+            f.write('{} | {}\n'.format(
                 self.indexed_labels[label],
-                label, ' '.join(tag)))
+                ' '.join(tag)))
         f.close()
         logging.info('vw input written to %s, starting training', f.name)
         c = envoy.run(
-            '{vw_binary} {vw_input} {vw_args} -f {vw_modelfile}'.format(
-                vw_binary=self.vw_binary, vw_input=f.name,
+            '{vw_binary} {vw_input} {vw_args} '
+            '--oaa {ntags} -f {vw_modelfile}'.format(
+                vw_binary=self.vw_binary, vw_input=f.name, ntags=len(set(y)),
                 vw_args=self.vw_args, vw_modelfile=self.vw_modelfile.name)
         )
         if c.status_code:
@@ -239,7 +240,7 @@ class Hybrid:
 
 def get_changeset(csid):
     changeset = None
-    for csfile in CHANGESET_ROOT.glob('*{}*'.format(csid)):
+    for csfile in CHANGESET_ROOT.glob('*.{}.*'.format(csid)):
         if changeset is not None:
             raise IOError("Too many changesets match the csid {}".format(csid))
         with csfile.open('r') as f:

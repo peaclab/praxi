@@ -58,7 +58,7 @@ def columbus(changeset, systagfile='/home/ubuntu/columbus/systags/ubuntu-1404',
     result = run_file_paths_discovery2("", systags['paths'],
                                        ESSTORE, k=k)
     ESSTORE.__del_index__("eureka")
-    return result
+    return [x.replace(':', '').replace('|', '') for x in result]
 
 
 if __name__ == "__main__":

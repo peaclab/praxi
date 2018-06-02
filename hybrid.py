@@ -19,9 +19,9 @@ from joblib import Memory
 from columbus.columbus import columbus
 
 PROJECT_ROOT = Path('~/hybrid-method').expanduser()
-CHANGESET_ROOT = Path('~/yaml/').expanduser()
-COLUMBUS_CACHE = Path('~/columbus-cache').expanduser()
-memory = Memory(cachedir='/home/ubuntu/joblib-cache', verbose=0)
+CHANGESET_ROOT = Path('~/caches/changesets/').expanduser()
+COLUMBUS_CACHE = Path('~/caches/columbus-cache').expanduser()
+memory = Memory(cachedir='/home/ubuntu/caches/joblib-cache', verbose=0)
 
 
 def main():

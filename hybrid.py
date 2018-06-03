@@ -150,7 +150,7 @@ def main():
 class Hybrid:
     """ scikit style class for hybrid method """
     def __init__(self, k=15, vw_binary='/home/ubuntu/bin/vw',
-                 vw_args='-c --loss_function hinge -q cc '
+                 vw_args='-c --loss_function hinge -q :: '
                          '-b 25 --passes 50 -l 0.4'):
         self.k = k
         self.vw_args = vw_args

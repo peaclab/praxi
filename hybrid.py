@@ -170,7 +170,6 @@ class Hybrid:
             self.reverse_labels[counter] = label
             counter += 1
         tags = self._columbize(X, csids=csids)
-        return
         f = tempfile.NamedTemporaryFile('w', delete=False)
         for tag, label in zip(tags, y):
             f.write('{} | {}\n'.format(
@@ -197,7 +196,6 @@ class Hybrid:
 
     def predict(self, X, csids=None):
         tags = self._columbize(X, csids=csids)
-        return [1 for _ in X]
         f = tempfile.NamedTemporaryFile('w', delete=False)
         for tag in tags:
             f.write('| {}\n'.format(' '.join(tag)))

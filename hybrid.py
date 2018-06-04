@@ -18,8 +18,9 @@ COLUMBUS_CACHE = Path('~/caches/columbus-cache').expanduser()
 class Hybrid:
     """ scikit style class for hybrid method """
     def __init__(self, k=15, vw_binary='/home/ubuntu/bin/vw',
-                 vw_args='-c --loss_function hinge -q :: '
-                         '-b 25 --passes 300 --learning_rate 0.04'):
+                 vw_args='-c --loss_function hinge -q :: --l2 0.005 '
+                 '-b 25 --passes 300 --learning_rate 1.25 '
+                 '--decay_learning_rate 0.95 --ftrl'):
         self.k = k
         self.vw_args = vw_args
         self.vw_binary = vw_binary
@@ -49,7 +50,7 @@ class Hybrid:
         logging.info('vw input written to %s, starting training', f.name)
         c = envoy.run(
             '{vw_binary} {vw_input} {vw_args} '
-            '--oaa {ntags} -f {vw_modelfile}'.format(
+            '--ect {ntags} -f {vw_modelfile}'.format(
                 vw_binary=self.vw_binary, vw_input=f.name, ntags=len(set(y)),
                 vw_args=self.vw_args, vw_modelfile=self.vw_modelfile.name)
         )

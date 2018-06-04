@@ -12,7 +12,7 @@ from numpy import savetxt
 from sklearn import metrics
 from joblib import Memory
 
-from .hybrid import Hybrid
+from hybrid import Hybrid
 
 PROJECT_ROOT = Path('~/hybrid-method').expanduser()
 CHANGESET_ROOT = Path('~/caches/changesets/').expanduser()

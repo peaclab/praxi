@@ -19,7 +19,7 @@ class Hybrid:
     """ scikit style class for hybrid method """
     def __init__(self, k=15, vw_binary='/home/ubuntu/bin/vw',
                  vw_args='-c --loss_function hinge -q :: '
-                         '-b 25 --passes 50 --learning_rate 0.004'):
+                         '-b 25 --passes 300 --learning_rate 0.04'):
         self.k = k
         self.vw_args = vw_args
         self.vw_binary = vw_binary
@@ -41,7 +41,7 @@ class Hybrid:
         train_set = list(zip(tags, y))
         random.shuffle(train_set)
         f = tempfile.NamedTemporaryFile('w', delete=False)
-        for tag, label in zip(*train_set):
+        for tag, label in train_set:
             f.write('{} | {}\n'.format(
                 self.indexed_labels[label],
                 ' '.join(tag)))

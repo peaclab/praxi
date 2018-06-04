@@ -84,8 +84,7 @@ class Hybrid:
             raise IOError('Something happened to vw')
         else:
             logging.info(
-                'vw ran sucessfully. out: %s, err: %s',
-                c.std_out, c.std_err)
+                'vw ran sucessfully. err: %s', c.std_err)
         os.unlink(f.name)
         return [self.reverse_labels[int(x)] for x in c.std_out.split()]
 

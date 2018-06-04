@@ -84,6 +84,12 @@ def main():
             pickle.dump(results, resfile)
             resfile.seek(0)
     resfile.close()
+    print_results(resfile)
+
+
+def print_results(resfile):
+    with open(resfile, 'rb') as f:
+        results = pickle.load(f)
     # # Now do the evaluation!
     # #results = [
     # #    0 => ([x, y, z], <-- true

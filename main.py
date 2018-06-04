@@ -66,7 +66,6 @@ def main():
         train_csids = threeks[train_idx[0]] + threeks[train_idx[1]]
         results.append(get_scores(X_train, y_train, train_csids,
                                   X_test, y_test, test_csids))
-        return
         pickle.dump(results, resfile)
         resfile.seek(0)
         for inner_idx, extra_cleans in tqdm(enumerate(tenks)):

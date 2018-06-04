@@ -79,7 +79,7 @@ def main():
             pickle.dump(results, resfile)
             resfile.seek(0)
     resfile.close()
-    print_results(resfile)
+    print_results('./results.pkl')
 
 
 def print_results(resfile):

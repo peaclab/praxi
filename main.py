@@ -13,6 +13,7 @@ from sklearn import metrics
 from joblib import Memory
 
 from hybrid import Hybrid
+from rule_based import RuleBased as Hybrid
 
 PROJECT_ROOT = Path('~/hybrid-method').expanduser()
 CHANGESET_ROOT = Path('~/caches/changesets/').expanduser()
@@ -51,7 +52,7 @@ def main():
     with (PROJECT_ROOT / 'changeset_sets' /
           'tenk_clean_chunks.p').open('rb') as f:
         tenks = pickle.load(f)
-    resfile = open('./results.pkl', 'wb')
+    resfile = open('./results-rule.pkl', 'wb')
     results = []
     for idx, test_csids in tqdm(enumerate(threeks)):
         logging.info('Test set is %d', idx)
@@ -79,7 +80,7 @@ def main():
             pickle.dump(results, resfile)
             resfile.seek(0)
     resfile.close()
-    print_results('./results.pkl')
+    print_results('./results-rule.pkl')
 
 
 def print_results(resfile):
@@ -143,7 +144,7 @@ def print_results(resfile):
             "# {:-^55}\n#".format("CLASSIFICATION REPORT") + report.replace('\n', "\n#") +
             " {:-^55}\n".format("CONFUSION MATRIX")
         )
-        savetxt("/home/ubuntu/hybrid-results/{}.txt".format(strat),
+        savetxt("/home/ubuntu/rule-results/{}.txt".format(strat),
                 confuse, fmt='%d', header=file_header, delimiter=',',
                 comments='')
 

@@ -44,8 +44,6 @@ def main():
             },
         }
     })
-    # get_scores([101289, 102580, 102585, 99234],
-    #            [101289, 102580, 102585, 99234])
     with (PROJECT_ROOT / 'changeset_sets' /
           'threek_dirty_chunks.p').open('rb') as f:
         threeks = pickle.load(f)

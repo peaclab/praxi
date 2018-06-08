@@ -52,17 +52,17 @@ def main():
         tenks = pickle.load(f)
     resfile = open('./results-rule.pkl', 'wb')
     results = []
-    for idx, test_csids in tqdm(enumerate(threeks)):
-        logging.info('Test set is %d', idx)
-        train_idx = [0, 1, 2]
-        train_idx.remove(idx)
+    for idx, train_csids in tqdm(enumerate(threeks)):
+        logging.info('Train set is %d', idx)
+        test_idx = [0, 1, 2]
+        test_idx.remove(idx)
         # Split calls to parse_csids for more efficient memoization
-        X_train, y_train = parse_csids(threeks[train_idx[0]])
-        features, labels = parse_csids(threeks[train_idx[1]])
-        X_train += features
-        y_train += labels
-        X_test, y_test = parse_csids(threeks[idx])
-        train_csids = threeks[train_idx[0]] + threeks[train_idx[1]]
+        X_test, y_test = parse_csids(threeks[test_idx[0]])
+        features, labels = parse_csids(threeks[test_idx[1]])
+        X_test += features
+        y_test += labels
+        X_train, y_train = parse_csids(threeks[idx])
+        test_csids = threeks[test_idx[0]] + threeks[test_idx[1]]
         results.append(get_scores(X_train, y_train, train_csids,
                                   X_test, y_test, test_csids))
         pickle.dump(results, resfile)

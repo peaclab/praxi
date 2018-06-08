@@ -50,7 +50,8 @@ def main():
     with (PROJECT_ROOT / 'changeset_sets' /
           'tenk_clean_chunks.p').open('rb') as f:
         tenks = pickle.load(f)
-    resfile = open('./results-rule.pkl', 'wb')
+    resfile_name = './results-rule.pkl'
+    resfile = open(resfile_name, 'wb')
     results = []
     for idx, train_csids in tqdm(enumerate(threeks)):
         logging.info('Train set is %d', idx)
@@ -78,7 +79,7 @@ def main():
             pickle.dump(results, resfile)
             resfile.seek(0)
     resfile.close()
-    print_results('./results-rule.pkl')
+    print_results(resfile_name)
 
 
 def clean_test():
@@ -193,7 +194,7 @@ def print_results(resfile):
             "# {:-^55}\n#".format("CLASSIFICATION REPORT") + report.replace('\n', "\n#") +
             " {:-^55}\n".format("CONFUSION MATRIX")
         )
-        savetxt("/home/ubuntu/rule-results-clean/{}.txt".format(strat),
+        savetxt("/home/ubuntu/rule-results/{}.txt".format(strat),
                 confuse, fmt='%d', header=file_header, delimiter=',',
                 comments='')
 

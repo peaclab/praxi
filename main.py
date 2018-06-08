@@ -81,6 +81,57 @@ def main():
     print_results('./results-rule.pkl')
 
 
+def clean_test():
+    logging.config.dictConfig({
+        'version': 1,
+        'disable_existing_loggers': True,
+        'formatters': {
+            'standard': {
+                'format': '%(asctime)s %(levelname)-7s %(message)s'
+            },
+        },
+        'handlers': {
+            'default': {
+                'level': 'DEBUG',
+                'formatter': 'standard',
+                'class': 'logging.StreamHandler',
+            },
+        },
+        'loggers': {
+            '': {
+                'handlers': ['default'],
+                'level': 'DEBUG',
+                'propagate': True
+            },
+        }
+    })
+    with (PROJECT_ROOT / 'changeset_sets' /
+          'tenk_clean_chunks.p').open('rb') as f:
+        tenks = pickle.load(f)
+    resfile = open('./results-rule-clean.pkl', 'wb')
+    results = []
+    for idx, test_csids in tqdm(enumerate(tenks)):
+        logging.info('Test set is %d', idx)
+        train_idx = list(range(len(tenks)))
+        train_idx.remove(idx)
+        # Split calls to parse_csids for more efficient memoization
+        X_train = []
+        y_train = []
+        train_csids = []
+        for train_i in train_idx:
+            features, labels = parse_csids(tenks[train_i])
+            X_train += features
+            y_train += labels
+            train_csids += tenks[train_i]
+        X_test, y_test = parse_csids(tenks[idx])
+        results.append(get_scores(X_train, y_train, train_csids,
+                                  X_test, y_test, test_csids))
+        pickle.dump(results, resfile)
+        resfile.seek(0)
+    resfile.close()
+    print_results('./results-rule-clean.pkl')
+
+
 def print_results(resfile):
     with open(resfile, 'rb') as f:
         results = pickle.load(f)
@@ -142,7 +193,7 @@ def print_results(resfile):
             "# {:-^55}\n#".format("CLASSIFICATION REPORT") + report.replace('\n', "\n#") +
             " {:-^55}\n".format("CONFUSION MATRIX")
         )
-        savetxt("/home/ubuntu/rule-results/{}.txt".format(strat),
+        savetxt("/home/ubuntu/rule-results-clean/{}.txt".format(strat),
                 confuse, fmt='%d', header=file_header, delimiter=',',
                 comments='')
 
@@ -202,4 +253,5 @@ def get_scores(X_train, y_train, csids_train, X_test, y_test, csids_test):
 
 
 if __name__ == '__main__':
-    main()
+    clean_test()
+    # main()

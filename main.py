@@ -140,14 +140,14 @@ def print_results(resfile):
     # #    0 => ([x, y, z], <-- true
     # #          [x, y, k]) <-- pred
     # #]
-    y_true = [[], [], [], [], []]
-    y_pred = [[], [], [], [], []]
+    n_folds = len(results)
+    y_true = [[] for _ in range(n_folds)]
+    y_pred = [[] for _ in range(n_folds)]
     for idx, result in enumerate(results):
-        y_true[idx % 5] += result[0]
-        y_pred[idx % 5] += result[1]
+        y_true[idx % n_folds] += result[0]
+        y_pred[idx % n_folds] += result[1]
 
-    labels = sorted(set(y_true[0] + y_true[1] + y_true[2] +
-                        y_true[3] + y_true[4]))
+    labels = sorted(set(j for i in range(n_folds) for j in y_true[i]))
     classifications = []
     f1_weighted = []
     f1_micro = []
@@ -253,5 +253,4 @@ def get_scores(X_train, y_train, csids_train, X_test, y_test, csids_test):
 
 
 if __name__ == '__main__':
-    clean_test()
-    # main()
+    main()

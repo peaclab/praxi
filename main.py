@@ -23,6 +23,7 @@ memory = Memory(cachedir='/home/ubuntu/caches/joblib-cache', verbose=0)
 
 def main():
     resfile_name = './results-rule.pkl'
+    outdir = 'rule-results'
     clf = RuleBased()
     logging.config.dictConfig({
         'version': 1,
@@ -82,10 +83,11 @@ def main():
             pickle.dump(results, resfile)
             resfile.seek(0)
     resfile.close()
-    print_results(resfile_name)
+    print_results(resfile_name, outdir)
 
 
 def clean_test():
+    outdir = 'result-rule-clean'
     logging.config.dictConfig({
         'version': 1,
         'disable_existing_loggers': True,
@@ -133,10 +135,10 @@ def clean_test():
         pickle.dump(results, resfile)
         resfile.seek(0)
     resfile.close()
-    print_results('./results-rule-clean.pkl')
+    print_results('./results-rule-clean.pkl', outdir)
 
 
-def print_results(resfile):
+def print_results(resfile, outdir):
     with open(resfile, 'rb') as f:
         results = pickle.load(f)
     # # Now do the evaluation!
@@ -197,7 +199,7 @@ def print_results(resfile):
             "# {:-^55}\n#".format("CLASSIFICATION REPORT") + report.replace('\n', "\n#") +
             " {:-^55}\n".format("CONFUSION MATRIX")
         )
-        savetxt("/home/ubuntu/rule-results/{}.txt".format(strat),
+        savetxt("/home/ubuntu/{}/{}.txt".format(outdir, strat),
                 confuse, fmt='%d', header=file_header, delimiter=',',
                 comments='')
 

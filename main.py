@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import copy
 import logging
 import logging.config
 import pickle
@@ -13,7 +14,7 @@ from sklearn import metrics
 from joblib import Memory
 
 from hybrid import Hybrid
-from rule_based import RuleBased as Hybrid
+from rule_based import RuleBased
 
 PROJECT_ROOT = Path('~/hybrid-method').expanduser()
 CHANGESET_ROOT = Path('~/caches/changesets/').expanduser()
@@ -21,6 +22,8 @@ memory = Memory(cachedir='/home/ubuntu/caches/joblib-cache', verbose=0)
 
 
 def main():
+    resfile_name = './results-rule.pkl'
+    clf = RuleBased()
     logging.config.dictConfig({
         'version': 1,
         'disable_existing_loggers': True,
@@ -50,10 +53,10 @@ def main():
     with (PROJECT_ROOT / 'changeset_sets' /
           'tenk_clean_chunks.p').open('rb') as f:
         tenks = pickle.load(f)
-    resfile_name = './results-rule.pkl'
     resfile = open(resfile_name, 'wb')
     results = []
-    for idx, train_csids in tqdm(enumerate(threeks)):
+    for idx, chunk in tqdm(enumerate(threeks)):
+        train_csids = copy.deepcopy(chunk)
         logging.info('Train set is %d', idx)
         test_idx = [0, 1, 2]
         test_idx.remove(idx)
@@ -62,9 +65,9 @@ def main():
         features, labels = parse_csids(threeks[test_idx[1]])
         X_test += features
         y_test += labels
-        X_train, y_train = parse_csids(threeks[idx])
+        X_train, y_train = parse_csids(train_csids)
         test_csids = threeks[test_idx[0]] + threeks[test_idx[1]]
-        results.append(get_scores(X_train, y_train, train_csids,
+        results.append(get_scores(clf, X_train, y_train, train_csids,
                                   X_test, y_test, test_csids))
         pickle.dump(results, resfile)
         resfile.seek(0)
@@ -74,7 +77,7 @@ def main():
             X_train += features
             y_train += labels
             train_csids += extra_cleans
-            results.append(get_scores(X_train, y_train, train_csids,
+            results.append(get_scores(clf, X_train, y_train, train_csids,
                                       X_test, y_test, test_csids))
             pickle.dump(results, resfile)
             resfile.seek(0)
@@ -235,9 +238,8 @@ def parse_csids(csids):
     return features, labels
 
 
-def get_scores(X_train, y_train, csids_train, X_test, y_test, csids_test):
+def get_scores(clf, X_train, y_train, csids_train, X_test, y_test, csids_test):
     """ Gets two lists of changeset ids, does training+testing """
-    clf = Hybrid()
     clf.fit(X_train, y_train, csids=csids_train)
     preds = clf.predict(X_test, csids=csids_test)
     hits = misses = predictions = 0

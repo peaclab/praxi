@@ -22,9 +22,9 @@ memory = Memory(cachedir='/home/ubuntu/caches/joblib-cache', verbose=0)
 
 
 def main():
-    resfile_name = './results-rule.pkl'
-    outdir = 'rule-results'
-    clf = RuleBased()
+    resfile_name = './results-hybrid.pkl'
+    outdir = 'hybrid-results'
+    clf = Hybrid()
     logging.config.dictConfig({
         'version': 1,
         'disable_existing_loggers': True,
@@ -138,7 +138,7 @@ def clean_test():
     print_results('./results-rule-clean.pkl', outdir)
 
 
-def print_results(resfile, outdir):
+def print_results(resfile, outdir, n_strats=5):
     with open(resfile, 'rb') as f:
         results = pickle.load(f)
     # # Now do the evaluation!
@@ -146,14 +146,13 @@ def print_results(resfile, outdir):
     # #    0 => ([x, y, z], <-- true
     # #          [x, y, k]) <-- pred
     # #]
-    n_folds = len(results)
-    y_true = [[] for _ in range(n_folds)]
-    y_pred = [[] for _ in range(n_folds)]
+    y_true = [[] for _ in range(n_strats)]
+    y_pred = [[] for _ in range(n_strats)]
     for idx, result in enumerate(results):
-        y_true[idx % n_folds] += result[0]
-        y_pred[idx % n_folds] += result[1]
+        y_true[idx % n_strats] += result[0]
+        y_pred[idx % n_strats] += result[1]
 
-    labels = sorted(set(j for i in range(n_folds) for j in y_true[i]))
+    labels = sorted(set(j for i in range(n_strats) for j in y_true[i]))
     classifications = []
     f1_weighted = []
     f1_micro = []
@@ -181,7 +180,7 @@ def print_results(resfile, outdir):
         confusions.append(metrics.confusion_matrix(x, y, labels))
 
     for strat, report, f1w, f1i, f1a, pw, pi, pa, rw, ri, ra, confuse in zip(
-            range(5), classifications, f1_weighted, f1_micro, f1_macro,
+            range(n_strats), classifications, f1_weighted, f1_micro, f1_macro,
             p_weighted, p_micro, p_macro, r_weighted, r_micro, r_macro,
             confusions):
         clean_tr_str = (

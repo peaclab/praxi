@@ -11,17 +11,67 @@ import yaml
 from tqdm import tqdm
 from numpy import savetxt
 from sklearn import metrics
+from sklearn.multiclass import OneVsRestClassifier
 from joblib import Memory
 
 from hybrid import Hybrid
 from rule_based import RuleBased
 
 PROJECT_ROOT = Path('~/hybrid-method').expanduser()
-CHANGESET_ROOT = Path('~/caches/changesets/').expanduser()
+CHANGESET_ROOT = Path('~/caches/multiapp/').expanduser()
 memory = Memory(cachedir='/home/ubuntu/caches/joblib-cache', verbose=0)
 
 
-def main():
+def multiapp():
+    resfile_name = './results-multiapp-hybrid.pkl'
+    outdir = 'hybrid-results-multiapp'
+    clf = OneVsRestClassifier(Hybrid())
+    logging.config.dictConfig({
+        'version': 1,
+        'disable_existing_loggers': True,
+        'formatters': {
+            'standard': {
+                'format': '%(asctime)s %(levelname)-7s %(message)s'
+            },
+        },
+        'handlers': {
+            'default': {
+                'level': 'DEBUG',
+                'formatter': 'standard',
+                'class': 'logging.StreamHandler',
+            },
+        },
+        'loggers': {
+            '': {
+                'handlers': ['default'],
+                'level': 'DEBUG',
+                'propagate': True
+            },
+        }
+    })
+    resfile = open(resfile_name, 'wb')
+    results = []
+    for idx, chunk in tqdm(enumerate(threeks)):
+        test_csids = copy.deepcopy(chunk)
+        logging.info('Test set is %d', idx)
+        test_idx = [0, 1, 2]
+        test_idx.remove(idx)
+        # Split calls to parse_csids for more efficient memoization
+        X_test, y_test = parse_csids(threeks[test_idx[0]])
+        features, labels = parse_csids(threeks[test_idx[1]])
+        X_test += features
+        y_test += labels
+        X_train, y_train = parse_csids(train_csids)
+        test_csids = threeks[test_idx[0]] + threeks[test_idx[1]]
+        results.append(get_scores(clf, X_train, y_train, train_csids,
+                                  X_test, y_test, test_csids))
+        pickle.dump(results, resfile)
+        resfile.seek(0)
+    resfile.close()
+    print_results(resfile_name, outdir)
+
+
+def onekdirty():
     resfile_name = './results-hybrid.pkl'
     outdir = 'hybrid-results'
     clf = Hybrid()
@@ -257,4 +307,4 @@ def get_scores(clf, X_train, y_train, csids_train, X_test, y_test, csids_test):
 
 
 if __name__ == '__main__':
-    main()
+    multiapp()

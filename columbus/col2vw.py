@@ -8,7 +8,8 @@ with open("ks_tr_vw.in", "a") as outf:
         for ln in f:
             if '+' in ln:
                 ln = ln.strip()
-                if not ln: continue
+                if not ln:
+                    continue
                 split_str = ln.split('\t', 1)
                 labels = split_str[0].split('+')
                 raw_tags = ast.literal_eval(split_str[1].strip())
@@ -20,6 +21,7 @@ with open("ks_tr_vw.in", "a") as outf:
                         label_ids[label] = next_id
                         next_id += 1
                     outf.write(str(label_ids[label]) + ":1.0 ")
-                outf.write("{name}| {tags}\n".format(name=split_str[0].strip(), tags=" ".join(tags)))
+                outf.write("{name}| {tags}\n".format(name=split_str[0].strip(),
+                                                     tags=" ".join(tags)))
 with open("multi_label_ids.p", "w") as f:
     pickle.dump(label_ids, f)

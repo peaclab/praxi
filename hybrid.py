@@ -32,14 +32,14 @@ class Hybrid(BaseEstimator):
         logging.info('Started hybrid model, vw_modelfile: %s',
                      self.vw_modelfile.name)
 
-    def fit(self, X, y, csids=None):
+    def fit(self, X, y):
         logging.info('Training started')
         counter = 1
         for label in set(y):
             self.indexed_labels[label] = counter
             self.reverse_labels[counter] = label
             counter += 1
-        tags = self._columbize(X, csids=csids)
+        tags = self._columbize(X)
         train_set = list(zip(tags, y))
         random.shuffle(train_set)
         f = tempfile.NamedTemporaryFile('w', delete=False)
@@ -66,8 +66,8 @@ class Hybrid(BaseEstimator):
                 c.std_out, c.std_err)
         os.unlink(f.name)
 
-    def predict(self, X, csids=None):
-        tags = self._columbize(X, csids=csids)
+    def predict(self, X):
+        tags = self._columbize(X)
         f = tempfile.NamedTemporaryFile('w', delete=False)
         for tag in tags:
             f.write('| {}\n'.format(' '.join(tag)))
@@ -89,28 +89,24 @@ class Hybrid(BaseEstimator):
         os.unlink(f.name)
         return [self.reverse_labels[int(x)] for x in c.std_out.split()]
 
-    def _columbize(self, X, csids=None):
+    def _columbize(self, X):
         logging.info('Getting columbus output for %d changesets', len(X))
-        if csids is None:
-            csids = [-1 for _ in X]
         tags = []
-        for changeset, csid in tqdm(zip(X, csids)):
-            if csid != -1:
-                cache_file = COLUMBUS_CACHE / '{}.yaml'.format(csid)
-                if cache_file.exists():
-                    with cache_file.open('r') as f:
-                        tags.append(yaml.load(f))
-                else:
-                    tag = columbus(changeset, k=self.k)
-                    with cache_file.open('w') as f:
-                        yaml.dump(tag, f)
-                    tags.append(tag)
+        for changeset in tqdm(X):
+            cshash = hash(tuple(sorted(changeset)))
+            cache_file = COLUMBUS_CACHE / '{}.yaml'.format(cshash)
+            if cache_file.exists():
+                with cache_file.open('r') as f:
+                    tags.append(yaml.load(f))
             else:
-                tags.append(columbus(changeset, k=self.k))
+                tag = columbus(changeset, k=self.k)
+                with cache_file.open('w') as f:
+                    yaml.dump(tag, f)
+                tags.append(tag)
         return tags
 
-    def score(self, X, y, csids=None):
-        predictions = self.predict(X, csids=csids)
+    def score(self, X, y):
+        predictions = self.predict(X)
         logging.info('Getting scores')
         hits = misses = preds = 0
         for pred, label in zip(predictions, y):

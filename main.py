@@ -13,7 +13,8 @@ from tqdm import tqdm
 from numpy import savetxt
 from sklearn import metrics
 from sklearn.multiclass import OneVsRestClassifier
-from sklearn.model_selection import KFold
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import MultiLabelBinarizer
 from joblib import Memory
 
 from hybrid import Hybrid
@@ -308,8 +309,9 @@ def parse_csids(csids, multilabel=False):
 
 def get_scores(clf, X_train, y_train, csids_train, X_test, y_test, csids_test):
     """ Gets two lists of changeset ids, does training+testing """
-    clf.fit(X_train, y_train)  # , csids=csids_train)
-    preds = clf.predict(X_test)  # , csids=csids_test)
+    binarizer = MultiLabelBinarizer()
+    clf.fit(X_train, binarizer.fit_transform(y_train))
+    preds = binarizer.inverse_transform(clf.predict(X_test))
     hits = misses = predictions = 0
     for pred, label in zip(preds, y_test):
         if pred == label:

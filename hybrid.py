@@ -7,6 +7,7 @@ import tempfile
 import yaml
 
 import envoy
+from sklearn.base import BaseEstimator
 from tqdm import tqdm
 
 from columbus.columbus import columbus
@@ -15,7 +16,7 @@ from columbus.columbus import columbus
 COLUMBUS_CACHE = Path('~/caches/columbus-cache').expanduser()
 
 
-class Hybrid:
+class Hybrid(BaseEstimator):
     """ scikit style class for hybrid method """
     def __init__(self, k=15, vw_binary='/home/ubuntu/bin/vw',
                  vw_args='-c --loss_function hinge -q :: --l2 0.005 '

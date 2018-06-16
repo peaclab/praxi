@@ -5,6 +5,7 @@ import logging
 import logging.config
 import pickle
 from pathlib import Path
+import random
 import time
 import yaml
 
@@ -12,6 +13,7 @@ from tqdm import tqdm
 from numpy import savetxt
 from sklearn import metrics
 from sklearn.multiclass import OneVsRestClassifier
+from sklearn.model_selection import KFold
 from joblib import Memory
 
 from hybrid import Hybrid
@@ -49,20 +51,32 @@ def multiapp():
             },
         }
     })
+    csids = []
+    with open('/home/ubuntu/multi_app/changesets.txt', 'r') as f:
+        for line in f:
+            csids.append(int(line.strip()))
+    random.seed(51)
+    random.shuffle(csids)
+    nfolds = 3
+    fold_size = len(csids) // nfolds
+    chunks = []
+    for i in range(nfolds):
+        chunks.append(csids[fold_size * i:fold_size * (i+1)])
+
     resfile = open(resfile_name, 'wb')
     results = []
-    for idx, chunk in tqdm(enumerate(threeks)):
+    for idx, chunk in tqdm(enumerate(chunks)):
         test_csids = copy.deepcopy(chunk)
         logging.info('Test set is %d', idx)
-        test_idx = [0, 1, 2]
-        test_idx.remove(idx)
+        train_idx = list(range(nfolds))
+        train_idx.remove(idx)
         # Split calls to parse_csids for more efficient memoization
-        X_test, y_test = parse_csids(threeks[test_idx[0]])
-        features, labels = parse_csids(threeks[test_idx[1]])
-        X_test += features
-        y_test += labels
-        X_train, y_train = parse_csids(train_csids)
-        test_csids = threeks[test_idx[0]] + threeks[test_idx[1]]
+        X_train, y_train = parse_csids(chunks[train_idx[0]], multilabel=True)
+        features, labels = parse_csids(chunks[train_idx[1]], multilabel=True)
+        X_train += features
+        y_train += labels
+        X_test, y_test = parse_csids(test_csids, multilabel=True)
+        train_csids = chunks[train_idx[0]] + chunks[train_idx[1]]
         results.append(get_scores(clf, X_train, y_train, train_csids,
                                   X_test, y_test, test_csids))
         pickle.dump(results, resfile)
@@ -277,22 +291,25 @@ def get_changeset(csid):
 
 
 @memory.cache
-def parse_csids(csids):
+def parse_csids(csids, multilabel=False):
     """ Returns labels and features from csids, features are file sets
     file sets: list of string of format '644 /usr/.../file' """
     features = []
     labels = []
     for csid in tqdm(csids):
         changeset = get_changeset(csid)
-        labels.append(changeset['label'])
+        if multilabel:
+            labels.append(changeset['labels'])
+        else:
+            labels.append(changeset['label'])
         features.append(changeset['changes'])
     return features, labels
 
 
 def get_scores(clf, X_train, y_train, csids_train, X_test, y_test, csids_test):
     """ Gets two lists of changeset ids, does training+testing """
-    clf.fit(X_train, y_train, csids=csids_train)
-    preds = clf.predict(X_test, csids=csids_test)
+    clf.fit(X_train, y_train)  # , csids=csids_train)
+    preds = clf.predict(X_test)  # , csids=csids_test)
     hits = misses = predictions = 0
     for pred, label in zip(preds, y_test):
         if pred == label:

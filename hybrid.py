@@ -94,7 +94,7 @@ class Hybrid(BaseEstimator):
         logging.info('Getting columbus output for %d changesets', len(X))
         tags = []
         for changeset in tqdm(X):
-            cshash = md5(tuple(sorted(changeset)))
+            cshash = md5(str(sorted(changeset)).encode())
             cache_file = COLUMBUS_CACHE / '{}.yaml'.format(cshash)
             if cache_file.exists():
                 with cache_file.open('r') as f:

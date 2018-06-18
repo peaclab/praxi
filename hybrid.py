@@ -20,11 +20,16 @@ COLUMBUS_CACHE = Path('~/caches/columbus-cache').expanduser()
 class Hybrid(BaseEstimator):
     """ scikit style class for hybrid method """
     def __init__(self, k=15, vw_binary='/home/ubuntu/bin/vw',
-                 vw_args='-c --loss_function hinge -q :: --l2 0.005 '
-                 '-b 25 --passes 300 --learning_rate 1.25 '
-                 '--decay_learning_rate 0.95 --ftrl'):
+                 vw_args='-c -q :: --l2 0.005 -b 25 --passes 300 '
+                 '--learning_rate 1.25 --decay_learning_rate 0.95 --ftrl',
+                 probability=False,
+                 probability_args=' --link=logistic',
+                 loss_function='hinge'):
         self.k = k
         self.vw_args = vw_args
+        self.probability = probability
+        self.probability_args = probability_args
+        self.loss_function = loss_function
         self.vw_binary = vw_binary
         self.indexed_labels = {}
         self.reverse_labels = {}
@@ -35,6 +40,11 @@ class Hybrid(BaseEstimator):
 
     def fit(self, X, y):
         logging.info('Training started')
+        self.vw_args_ = self.vw_args
+        if self.probability:
+            self.loss_function = 'logistic'
+            self.vw_args_ += self.probability_args
+        self.vw_args_ += ' --loss_function={}'.format(self.loss_function)
         counter = 1
         for label in set(y):
             self.indexed_labels[label] = counter
@@ -54,7 +64,7 @@ class Hybrid(BaseEstimator):
             '{vw_binary} {vw_input} {vw_args} '
             '--ect {ntags} -f {vw_modelfile}'.format(
                 vw_binary=self.vw_binary, vw_input=f.name, ntags=len(set(y)),
-                vw_args=self.vw_args, vw_modelfile=self.vw_modelfile.name)
+                vw_args=self.vw_args_, vw_modelfile=self.vw_modelfile.name)
         )
         if c.status_code:
             logging.error(
@@ -66,6 +76,30 @@ class Hybrid(BaseEstimator):
                 'vw ran sucessfully. out: %s, err: %s',
                 c.std_out, c.std_err)
         os.unlink(f.name)
+
+    def predict_proba(self, X):
+        tags = self._columbize(X)
+        f = tempfile.NamedTemporaryFile('w', delete=False)
+        for tag in tags:
+            f.write('| {}\n'.format(' '.join(tag)))
+        f.close()
+        logging.info('vw input written to %s, starting testing', f.name)
+        c = envoy.run(
+            '{vw_binary} {vw_input} -p /dev/stdout -i {vw_modelfile}'.format(
+                vw_binary=self.vw_binary, vw_input=f.name,
+                vw_modelfile=self.vw_modelfile.name)
+        )
+        if c.status_code:
+            logging.error(
+                'something happened to vw, code: %d, out: %s, err: %s',
+                c.status_code, c.std_out, c.std_err)
+            raise IOError('Something happened to vw')
+        else:
+            logging.info(
+                'vw ran sucessfully. out: %s, err: %s', c.std_out, c.std_err)
+        os.unlink(f.name)
+        sys.exit(0)
+        return [self.reverse_labels[int(x)] for x in c.std_out.split()]
 
     def predict(self, X):
         tags = self._columbize(X)

@@ -28,7 +28,7 @@ memory = Memory(cachedir='/home/ubuntu/caches/joblib-cache', verbose=0)
 def multiapp():
     resfile_name = './results-multiapp-hybrid.pkl'
     outdir = 'hybrid-results-multiapp'
-    clf = OneVsRestClassifier(Hybrid())
+    clf = OneVsRestClassifier(Hybrid(probability=True))
     logging.config.dictConfig({
         'version': 1,
         'disable_existing_loggers': True,

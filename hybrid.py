@@ -44,6 +44,8 @@ class Hybrid(BaseEstimator):
         if self.probability:
             self.loss_function = 'logistic'
             self.vw_args_ += self.probability_args
+        else:
+            self.vw_args_ += ' --ect {}'.format(len(set(y)))
         self.vw_args_ += ' --loss_function={}'.format(self.loss_function)
         counter = 1
         for label in set(y):
@@ -61,9 +63,8 @@ class Hybrid(BaseEstimator):
         f.close()
         logging.info('vw input written to %s, starting training', f.name)
         c = envoy.run(
-            '{vw_binary} {vw_input} {vw_args} '
-            '--ect {ntags} -f {vw_modelfile}'.format(
-                vw_binary=self.vw_binary, vw_input=f.name, ntags=len(set(y)),
+            '{vw_binary} {vw_input} {vw_args} -f {vw_modelfile}'.format(
+                vw_binary=self.vw_binary, vw_input=f.name,
                 vw_args=self.vw_args_, vw_modelfile=self.vw_modelfile.name)
         )
         if c.status_code:
@@ -84,9 +85,14 @@ class Hybrid(BaseEstimator):
             f.write('| {}\n'.format(' '.join(tag)))
         f.close()
         logging.info('vw input written to %s, starting testing', f.name)
+        args = f.name
+        if self.probability:
+            self.loss_function = 'logistic'
+            args += self.probability_args
+            args += ' --loss_function={}'.format(self.loss_function)
         c = envoy.run(
-            '{vw_binary} {vw_input} -p /dev/stdout -i {vw_modelfile}'.format(
-                vw_binary=self.vw_binary, vw_input=f.name,
+            '{vw_binary} {args} -p /dev/stdout -i {vw_modelfile}'.format(
+                vw_binary=self.vw_binary, args=args,
                 vw_modelfile=self.vw_modelfile.name)
         )
         if c.status_code:

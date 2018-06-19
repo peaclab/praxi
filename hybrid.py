@@ -108,7 +108,8 @@ class Hybrid(BaseEstimator):
             raise IOError('Something happened to vw')
         else:
             logging.info(
-                'vw ran sucessfully. out: %s, err: %s', c.std_out, c.std_err)
+                'vw ran sucessfully. one prediction: %s, err: %s',
+                c.std_out.split()[0], c.std_err)
         os.unlink(f.name)
         return np.array([[1 - float(x), float(x)] for x in c.std_out.split()])
 

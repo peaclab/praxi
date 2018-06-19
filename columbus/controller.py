@@ -73,7 +73,7 @@ def discover_software_container(changesetDirpath, systagfile, k=5):
         print("Time taken: ", (t2-t1))
 
 
-def run_file_paths_discovery2(pkgName, filtertags, esstore, k=5):
+def run_file_paths_discovery2(pkgName, filtertags, esstore):
     layerid = "1"
 
     files = esstore.__get_all_files__("eureka", layerid)
@@ -84,17 +84,12 @@ def run_file_paths_discovery2(pkgName, filtertags, esstore, k=5):
             if token != '' and token not in FILTER_PATH_TOKENS:
                 ftrie.insert(token)
 
-    softtags = []
+    softtags = {}
     res = ftrie.get_all_tags()
     for tag in res:
         if tag in filtertags:
             continue
-        # if res[tag] < 2:
-        #     break
-        softtags.append(tag)
-        k -= 1
-        if k == 0:
-            break
+        softtags[tag] = res[tag]
 
     if pkgName != "":
         saveToFile(pkgName, softtags)

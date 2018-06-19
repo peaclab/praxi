@@ -42,16 +42,21 @@ class Hybrid(BaseEstimator):
         logging.info('Training started')
         self.vw_args_ = self.vw_args
         if self.probability:
+            if len(set(y)) > 2:
+                raise NotImplementedError(
+                    "Proba not implemented for multi class")
             self.loss_function = 'logistic'
             self.vw_args_ += self.probability_args
+            self.indexed_labels = {1: 1, 0: -1}
+            self.reverse_labels = {1: 1, -1: 0}
         else:
             self.vw_args_ += ' --ect {}'.format(len(set(y)))
+            counter = 1
+            for label in set(y):
+                self.indexed_labels[label] = counter
+                self.reverse_labels[counter] = label
+                counter += 1
         self.vw_args_ += ' --loss_function={}'.format(self.loss_function)
-        counter = 1
-        for label in set(y):
-            self.indexed_labels[label] = counter
-            self.reverse_labels[counter] = label
-            counter += 1
         tags = self._columbize(X)
         train_set = list(zip(tags, y))
         random.shuffle(train_set)
@@ -104,8 +109,7 @@ class Hybrid(BaseEstimator):
             logging.info(
                 'vw ran sucessfully. out: %s, err: %s', c.std_out, c.std_err)
         os.unlink(f.name)
-        sys.exit(0)
-        return [self.reverse_labels[int(x)] for x in c.std_out.split()]
+        return [[1 - float(x), float(x)] for x in c.std_out.split()]
 
     def predict(self, X):
         tags = self._columbize(X)

@@ -8,6 +8,7 @@ import tempfile
 import yaml
 
 import envoy
+import numpy as np
 from sklearn.base import BaseEstimator
 from tqdm import tqdm
 
@@ -109,7 +110,7 @@ class Hybrid(BaseEstimator):
             logging.info(
                 'vw ran sucessfully. out: %s, err: %s', c.std_out, c.std_err)
         os.unlink(f.name)
-        return [[1 - float(x), float(x)] for x in c.std_out.split()]
+        return np.array([[1 - float(x), float(x)] for x in c.std_out.split()])
 
     def predict(self, X):
         tags = self._columbize(X)

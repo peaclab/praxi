@@ -10,10 +10,10 @@ import time
 import yaml
 
 from tqdm import tqdm
+import numpy as np
 from numpy import savetxt
 from sklearn import metrics
 from sklearn.multiclass import OneVsRestClassifier
-from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import MultiLabelBinarizer
 from joblib import Memory
 
@@ -83,7 +83,7 @@ def multiapp():
         pickle.dump(results, resfile)
         resfile.seek(0)
     resfile.close()
-    print_results(resfile_name, outdir)
+    print_multilabel_results(resfile_name, outdir)
 
 
 def onekdirty():
@@ -201,6 +201,49 @@ def clean_test():
         resfile.seek(0)
     resfile.close()
     print_results('./results-rule-clean.pkl', outdir)
+
+
+def print_multilabel_results(resfile, outdir):
+    with open(resfile, 'rb') as f:
+        results = pickle.load(f)
+    # # Now do the evaluation!
+    # #results = [
+    # #    0 => ([x, y, z], <-- true
+    # #          [x, y, k]) <-- pred
+    # #]
+    y_true = []
+    y_pred = []
+    for idx, result in enumerate(results):
+        y_true += result[0]
+        y_pred += result[1]
+    bnz = MultiLabelBinarizer()
+    y_true = bnz.fit_transform(y_true)
+    y_pred = bnz.transform(y_pred)
+
+    labels = bnz.classes_
+    report = metrics.classification_report(y_true, y_pred, target_names=labels)
+    f1w = metrics.f1_score(y_true, y_pred, average='weighted')
+    f1i = metrics.f1_score(y_true, y_pred, average='micro')
+    f1a = metrics.f1_score(y_true, y_pred, average='macro')
+    pw = metrics.precision_score(y_true, y_pred, average='weighted')
+    pi = metrics.precision_score(y_true, y_pred, average='micro')
+    pa = metrics.precision_score(y_true, y_pred, average='macro')
+    rw = metrics.recall_score(y_true, y_pred, average='weighted')
+    ri = metrics.recall_score(y_true, y_pred, average='micro')
+    ra = metrics.recall_score(y_true, y_pred, average='macro')
+
+    file_header = (
+        "# MULTILABEL EXPERIMENT REPORT\n" +
+        time.strftime("# Generated %c\n#\n") +
+        "# 3 FOLD CROSS VALIDATION WITH {} CHANGESETS\n".format(len(y_true)) +
+        "# F1 SCORE : {:.3f} weighted, {:.3f} micro-avg'd, {:.3f} macro-avg'd\n".format(f1w, f1i, f1a) +
+        "# PRECISION: {:.3f} weighted, {:.3f} micro-avg'd, {:.3f} macro-avg'd\n".format(pw, pi, pa) +
+        "# RECALL   : {:.3f} weighted, {:.3f} micro-avg'd, {:.3f} macro-avg'd\n#\n".format(rw, ri, ra) +
+        "# {:-^55}\n#".format("CLASSIFICATION REPORT") + report.replace('\n', "\n#")
+    )
+    savetxt("/home/ubuntu/{}/result.txt".format(outdir),
+            np.array([]), fmt='%d', header=file_header, delimiter=',',
+            comments='')
 
 
 def print_results(resfile, outdir, n_strats=5):

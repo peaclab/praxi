@@ -21,13 +21,18 @@ COLUMBUS_CACHE = Path('~/caches/columbus-cache').expanduser()
 class Hybrid(BaseEstimator):
     """ scikit style class for hybrid method """
     def __init__(self, freq_threshold=1, vw_binary='/home/ubuntu/bin/vw',
+                 pass_freq_to_vw=False,
                  vw_args='-c -q :: --l2 0.005 -b 25 --passes 300 '
                  '--learning_rate 1.25 --decay_learning_rate 0.95 --ftrl',
                  probability=False,
                  probability_args=' --link=logistic',
                  loss_function='hinge'):
+        """ Initializer for Hybrid method. Do not use multiple instances
+        simultaneously.
+        """
         self.freq_threshold = freq_threshold
         self.vw_args = vw_args
+        self.pass_freq_to_vw = pass_freq_to_vw
         self.probability = probability
         self.probability_args = probability_args
         self.loss_function = loss_function
@@ -149,8 +154,13 @@ class Hybrid(BaseEstimator):
                 tag_dict = columbus(changeset)
                 with cache_file.open('w') as f:
                     yaml.dump(tag_dict, f)
-            tags.append([tag for tag, freq in tag_dict.items()
-                         if freq > self.freq_threshold])
+            if self.pass_freq_to_vw:
+                tags.append(['{}:{}'.format(tag, freq) for tag, freq
+                             in tag_dict.items()
+                             if freq > self.freq_threshold])
+            else:
+                tags.append([tag for tag, freq in tag_dict.items()
+                             if freq > self.freq_threshold])
         return tags
 
     def score(self, X, y):

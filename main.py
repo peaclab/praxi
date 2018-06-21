@@ -30,7 +30,9 @@ def multiapp():
     outdir = 'hybrid-results-multiapp'
     clf = OneVsRestClassifier(Hybrid(freq_threshold=10,
                                      pass_freq_to_vw=True,
-                                     probability=True))
+                                     probability=True,
+                                     tqdm=False),
+                              n_jobs=12)
     logging.config.dictConfig({
         'version': 1,
         'disable_existing_loggers': True,

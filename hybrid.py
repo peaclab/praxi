@@ -1,6 +1,7 @@
 import logging
 import logging.config
 from hashlib import md5
+from multiprocessing import Lock
 import os
 from pathlib import Path
 import random
@@ -15,6 +16,7 @@ from tqdm import tqdm
 from columbus.columbus import columbus
 
 
+LOCK = Lock()
 COLUMBUS_CACHE = Path('~/caches/columbus-cache').expanduser()
 
 
@@ -24,7 +26,7 @@ class Hybrid(BaseEstimator):
                  pass_freq_to_vw=False,
                  vw_args='-c -q :: --l2 0.005 -b 25 --passes 300 '
                  '--learning_rate 1.25 --decay_learning_rate 0.95 --ftrl',
-                 probability=False,
+                 probability=False, tqdm=True,
                  probability_args=' --link=logistic',
                  loss_function='hinge'):
         """ Initializer for Hybrid method. Do not use multiple instances
@@ -37,16 +39,15 @@ class Hybrid(BaseEstimator):
         self.probability_args = probability_args
         self.loss_function = loss_function
         self.vw_binary = vw_binary
-        self.indexed_labels = {}
-        self.reverse_labels = {}
+
+    def fit(self, X, y):
         # TODO: delete this file at __del__? after debugging
         self.vw_modelfile = tempfile.NamedTemporaryFile('w', delete=False)
         logging.info('Started hybrid model, vw_modelfile: %s',
                      self.vw_modelfile.name)
-
-    def fit(self, X, y):
-        logging.info('Training started')
         self.vw_args_ = self.vw_args
+        self.indexed_labels = {}
+        self.reverse_labels = {}
         if self.probability:
             if len(set(y)) > 2:
                 raise NotImplementedError(
@@ -144,14 +145,15 @@ class Hybrid(BaseEstimator):
     def _columbize(self, X):
         logging.info('Getting columbus output for %d changesets', len(X))
         tags = []
-        for changeset in tqdm(X):
+        for changeset in tqdm(X, disable=(not self.tqdm)):
             cshash = md5(str(sorted(changeset)).encode()).hexdigest()
             cache_file = COLUMBUS_CACHE / '{}.yaml'.format(cshash)
             if cache_file.exists():
                 with cache_file.open('r') as f:
                     tag_dict = yaml.load(f)
             else:
-                tag_dict = columbus(changeset)
+                with LOCK:
+                    tag_dict = columbus(changeset)
                 with cache_file.open('w') as f:
                     yaml.dump(tag_dict, f)
             if self.pass_freq_to_vw:

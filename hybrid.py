@@ -39,12 +39,14 @@ class Hybrid(BaseEstimator):
         self.probability_args = probability_args
         self.loss_function = loss_function
         self.vw_binary = vw_binary
+        self.tqdm = tqdm
 
     def fit(self, X, y):
-        # TODO: delete this file at __del__? after debugging
-        self.vw_modelfile = tempfile.NamedTemporaryFile('w', delete=False)
+        modelfileobj = tempfile.NamedTemporaryFile('w', delete=False)
+        self.vw_modelfile = modelfileobj.name
+        modelfileobj.close()
         logging.info('Started hybrid model, vw_modelfile: %s',
-                     self.vw_modelfile.name)
+                     self.vw_modelfile)
         self.vw_args_ = self.vw_args
         self.indexed_labels = {}
         self.reverse_labels = {}
@@ -77,7 +79,7 @@ class Hybrid(BaseEstimator):
         c = envoy.run(
             '{vw_binary} {vw_input} {vw_args} -f {vw_modelfile}'.format(
                 vw_binary=self.vw_binary, vw_input=f.name,
-                vw_args=self.vw_args_, vw_modelfile=self.vw_modelfile.name)
+                vw_args=self.vw_args_, vw_modelfile=self.vw_modelfile)
         )
         if c.status_code:
             logging.error(
@@ -105,7 +107,7 @@ class Hybrid(BaseEstimator):
         c = envoy.run(
             '{vw_binary} {args} -p /dev/stdout -i {vw_modelfile}'.format(
                 vw_binary=self.vw_binary, args=args,
-                vw_modelfile=self.vw_modelfile.name)
+                vw_modelfile=self.vw_modelfile)
         )
         if c.status_code:
             logging.error(
@@ -117,6 +119,7 @@ class Hybrid(BaseEstimator):
                 'vw ran sucessfully. one prediction: %s, err: %s',
                 c.std_out.split()[0], c.std_err)
         os.unlink(f.name)
+        os.unlink(self.vw_modelfile)
         return np.array([[1 - float(x), float(x)] for x in c.std_out.split()])
 
     def predict(self, X):
@@ -129,7 +132,7 @@ class Hybrid(BaseEstimator):
         c = envoy.run(
             '{vw_binary} {vw_input} -p /dev/stdout -i {vw_modelfile}'.format(
                 vw_binary=self.vw_binary, vw_input=f.name,
-                vw_modelfile=self.vw_modelfile.name)
+                vw_modelfile=self.vw_modelfile)
         )
         if c.status_code:
             logging.error(
@@ -140,6 +143,7 @@ class Hybrid(BaseEstimator):
             logging.info(
                 'vw ran sucessfully. err: %s', c.std_err)
         os.unlink(f.name)
+        os.unlink(self.vw_modelfile)
         return [self.reverse_labels[int(x)] for x in c.std_out.split()]
 
     def _columbize(self, X):

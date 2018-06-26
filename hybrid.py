@@ -51,15 +51,21 @@ class Hybrid(BaseEstimator):
         self.indexed_labels = {}
         self.reverse_labels = {}
         if self.probability:
-            if len(set(y)) > 2:
-                raise NotImplementedError(
-                    "Proba not implemented for multi class")
             self.loss_function = 'logistic'
-            self.vw_args_ += self.probability_args
-            self.indexed_labels = {1: 1, 0: -1}
-            self.reverse_labels = {1: 1, -1: 0}
+            if len(set(y)) > 2:
+                self.vw_args_ += ' --oaa {}'.format(len(set(y)))
+                self.vw_args_ += ' --probabilities'
+                counter = 1
+                for label in set(y):
+                    self.indexed_labels[label] = counter
+                    self.reverse_labels[counter] = label
+                    counter += 1
+            else:
+                self.vw_args_ += self.probability_args
+                self.indexed_labels = {1: 1, 0: -1}
+                self.reverse_labels = {1: 1, -1: 0}
         else:
-            self.vw_args_ += ' --ect {}'.format(len(set(y)))
+            self.vw_args_ += ' --oaa {}'.format(len(set(y)))
             counter = 1
             for label in set(y):
                 self.indexed_labels[label] = counter

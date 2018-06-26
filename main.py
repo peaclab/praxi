@@ -25,6 +25,68 @@ CHANGESET_ROOT = Path('~/caches/multiapp/').expanduser()
 memory = Memory(cachedir='/home/ubuntu/caches/joblib-cache', verbose=0)
 
 
+def multiapp_trainw_dirty():
+    resfile_name = './results-multiapp-hybrid.pkl'
+    outdir = 'hybrid-results-multiapp'
+    clf = Hybrid(freq_threshold=10, pass_freq_to_vw=True,
+                 probability=True, tqdm=True)
+    logging.config.dictConfig({
+        'version': 1,
+        'disable_existing_loggers': True,
+        'formatters': {
+            'standard': {
+                'format': '%(asctime)s %(levelname)-7s %(message)s'
+            },
+        },
+        'handlers': {
+            'default': {
+                'level': 'DEBUG',
+                'formatter': 'standard',
+                'class': 'logging.StreamHandler',
+            },
+        },
+        'loggers': {
+            '': {
+                'handlers': ['default'],
+                'level': 'DEBUG',
+                'propagate': True
+            },
+        }
+    })
+    csids = []
+    with open('/home/ubuntu/multi_app/changesets.txt', 'r') as f:
+        for line in f:
+            csids.append(int(line.strip()))
+    random.seed(51)
+    random.shuffle(csids)
+    nfolds = 3
+    fold_size = len(csids) // nfolds
+    chunks = []
+    for i in range(nfolds):
+        chunks.append(csids[fold_size * i:fold_size * (i+1)])
+
+    resfile = open(resfile_name, 'wb')
+    results = []
+    for idx, chunk in tqdm(enumerate(chunks)):
+        test_csids = copy.deepcopy(chunk)
+        logging.info('Test set is %d', idx)
+        train_idx = list(range(nfolds))
+        train_idx.remove(idx)
+        # Split calls to parse_csids for more efficient memoization
+        X_train, y_train = parse_csids(chunks[train_idx[0]], multilabel=True)
+        features, labels = parse_csids(chunks[train_idx[1]], multilabel=True)
+        X_train += features
+        y_train += labels
+        X_test, y_test = parse_csids(test_csids, multilabel=True)
+        train_csids = chunks[train_idx[0]] + chunks[train_idx[1]]
+        results.append(get_scores(clf, X_train, y_train, train_csids,
+                                  X_test, y_test, test_csids))
+        pickle.dump(results, resfile)
+        resfile.seek(0)
+    resfile.close()
+    print_multilabel_results(resfile_name, outdir)
+
+
 def multiapp():
     resfile_name = './results-multiapp-hybrid.pkl'
     outdir = 'hybrid-results-multiapp'
@@ -83,7 +145,7 @@ def multiapp():
         X_test, y_test = parse_csids(test_csids, multilabel=True)
         train_csids = chunks[train_idx[0]] + chunks[train_idx[1]]
         results.append(get_scores(clf, X_train, y_train, train_csids,
-                                  X_test, y_test, test_csids))
+                                  X_test, y_test, test_csids, binarize=True))
         pickle.dump(results, resfile)
         resfile.seek(0)
     resfile.close()
@@ -354,11 +416,16 @@ def parse_csids(csids, multilabel=False):
     return features, labels
 
 
-def get_scores(clf, X_train, y_train, csids_train, X_test, y_test, csids_test):
+def get_scores(clf, X_train, y_train, csids_train, X_test, y_test, csids_test,
+               binarize=False):
     """ Gets two lists of changeset ids, does training+testing """
-    binarizer = MultiLabelBinarizer()
-    clf.fit(X_train, binarizer.fit_transform(y_train))
-    preds = binarizer.inverse_transform(clf.predict(X_test))
+    if binarize:
+        binarizer = MultiLabelBinarizer()
+        clf.fit(X_train, binarizer.fit_transform(y_train))
+        preds = binarizer.inverse_transform(clf.predict(X_test))
+    else:
+        clf.fit(X_train, y_train)
+        preds = clf.predict(X_test)
     hits = misses = predictions = 0
     for pred, label in zip(preds, y_test):
         if pred == label:
@@ -373,4 +440,4 @@ def get_scores(clf, X_train, y_train, csids_train, X_test, y_test, csids_test):
 
 
 if __name__ == '__main__':
-    multiapp()
+    multiapp_trainw_dirty()

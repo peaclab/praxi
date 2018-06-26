@@ -147,7 +147,8 @@ class Hybrid(BaseEstimator):
             raise IOError('Something happened to vw')
         else:
             logging.info(
-                'vw ran sucessfully. err: %s', c.std_err)
+                'vw ran sucessfully. one prediction: %s, err: %s',
+                c.std_out.split()[0], c.std_err)
         os.unlink(f.name)
         os.unlink(self.vw_modelfile)
         return [self.reverse_labels[int(x)] for x in c.std_out.split()]

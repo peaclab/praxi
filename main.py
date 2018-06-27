@@ -21,7 +21,7 @@ from hybrid import Hybrid
 from rule_based import RuleBased
 
 PROJECT_ROOT = Path('~/hybrid-method').expanduser()
-CHANGESET_ROOT = Path('~/caches/multiapp/').expanduser()
+CHANGESET_ROOT = Path('~/caches/changesets/').expanduser()
 memory = Memory(cachedir='/home/ubuntu/caches/joblib-cache', verbose=0)
 
 

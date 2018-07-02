@@ -22,7 +22,7 @@ from rule_based import RuleBased
 
 PROJECT_ROOT = Path('~/hybrid-method').expanduser()
 CHANGESET_ROOT = Path('~/caches/changesets/').expanduser()
-memory = Memory(cachedir='/home/ubuntu/caches/joblib-cache', verbose=0)
+memory = Memory(cachedir='/home/centos/caches/joblib-cache', verbose=0)
 
 
 def multiapp_trainw_dirty():
@@ -32,7 +32,7 @@ def multiapp_trainw_dirty():
                  probability=True, tqdm=True)
     # Get multiapp changesets
     multilabel_csids = []
-    with open('/home/ubuntu/multi_app/changesets.txt', 'r') as f:
+    with open('/home/centos/multi_app/changesets.txt', 'r') as f:
         for line in f:
             multilabel_csids.append(int(line.strip()))
     random.seed(51)
@@ -73,9 +73,12 @@ def multiapp():
                                      tqdm=False),
                               n_jobs=12)
     csids = []
-    with open('/home/ubuntu/multi_app/changesets.txt', 'r') as f:
+    with open('/home/centos/multi_app/changesets.txt', 'r') as f:
         for line in f:
             csids.append(int(line.strip()))
+    with (PROJECT_ROOT / 'changeset_sets' /
+          'threek_dirty_chunks.p').open('rb') as f:
+        threeks = pickle.load(f)
     random.seed(51)
     random.shuffle(csids)
     nfolds = 3
@@ -102,6 +105,18 @@ def multiapp():
                                   X_test, y_test, test_csids, binarize=True))
         pickle.dump(results, resfile)
         resfile.seek(0)
+        for inner_idx, extra_singles in tqdm(enumerate(threeks)):
+            logging.info('Extra single app count: %d', inner_idx + 1)
+            features, labels = parse_csids(extra_singles)
+            X_train += features
+            y_train += labels
+            train_csids += extra_singles
+            results.append(get_scores(clf, X_train, y_train, train_csids,
+                                      X_test, y_test, test_csids,
+                                      binarize=True))
+            pickle.dump(results, resfile)
+            resfile.seek(0)
+            sys.exit(0)
     resfile.close()
     print_multilabel_results(resfile_name, outdir)
 
@@ -215,7 +230,7 @@ def print_multilabel_results(resfile, outdir):
         "# RECALL   : {:.3f} weighted, {:.3f} micro-avg'd, {:.3f} macro-avg'd\n#\n".format(rw, ri, ra) +
         "# {:-^55}\n#".format("CLASSIFICATION REPORT") + report.replace('\n', "\n#")
     )
-    savetxt("/home/ubuntu/{}/result.txt".format(outdir),
+    savetxt("/home/centos/{}/result.txt".format(outdir),
             np.array([]), fmt='%d', header=file_header, delimiter=',',
             comments='')
 
@@ -280,7 +295,7 @@ def print_results(resfile, outdir, n_strats=5):
             "# {:-^55}\n#".format("CLASSIFICATION REPORT") + report.replace('\n', "\n#") +
             " {:-^55}\n".format("CONFUSION MATRIX")
         )
-        savetxt("/home/ubuntu/{}/{}.txt".format(outdir, strat),
+        savetxt("/home/centos/{}/{}.txt".format(outdir, strat),
                 confuse, fmt='%d', header=file_header, delimiter=',',
                 comments='')
 
@@ -375,4 +390,4 @@ def setup_logging():
 
 if __name__ == '__main__':
     setup_logging()
-    multiapp_trainw_dirty()
+    multiapp()

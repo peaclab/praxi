@@ -22,7 +22,7 @@ COLUMBUS_CACHE = Path('~/caches/columbus-cache').expanduser()
 
 class Hybrid(BaseEstimator):
     """ scikit style class for hybrid method """
-    def __init__(self, freq_threshold=1, vw_binary='/home/ubuntu/bin/vw',
+    def __init__(self, freq_threshold=1, vw_binary='/home/centos/bin/vw',
                  pass_freq_to_vw=False,
                  vw_args='-c -q :: --l2 0.005 -b 25 --passes 300 '
                  '--learning_rate 1.25 --decay_learning_rate 0.95 --ftrl',

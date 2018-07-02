@@ -390,4 +390,4 @@ def setup_logging():
 
 if __name__ == '__main__':
     setup_logging()
-    multiapp()
+    multiapp_trainw_dirty()

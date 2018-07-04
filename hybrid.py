@@ -110,8 +110,11 @@ class Hybrid(BaseEstimator):
             self.loss_function = 'logistic'
             args += self.probability_args
             args += ' --loss_function={}'.format(self.loss_function)
+            args += ' -r /dev/stdout'
+        else:
+            args += ' -p /dev/stdout'
         c = envoy.run(
-            '{vw_binary} {args} -p /dev/stdout -i {vw_modelfile}'.format(
+            '{vw_binary} {args} -i {vw_modelfile}'.format(
                 vw_binary=self.vw_binary, args=args,
                 vw_modelfile=self.vw_modelfile)
         )
@@ -126,7 +129,12 @@ class Hybrid(BaseEstimator):
                 c.std_out.split()[0], c.std_err)
         os.unlink(f.name)
         os.unlink(self.vw_modelfile)
+        import pdb; pdb.set_trace()
         return np.array([[1 - float(x), float(x)] for x in c.std_out.split()])
+
+    def top_k_tags(self, X, ntags):
+        probas = self.predict_proba(X)
+        return probas
 
     def predict(self, X):
         tags = self._columbize(X)

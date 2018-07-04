@@ -56,8 +56,9 @@ def multiapp_trainw_dirty():
         y_train += labels
         train_csids = threeks[train_idx[0]] + threeks[train_idx[1]]
         X_test, y_test = parse_csids(multilabel_csids, multilabel=True)
-        results.append(get_scores(clf, X_train, y_train, train_csids,
-                                  X_test, y_test, multilabel_csids))
+        results.append(get_multilabel_scores(
+            clf, X_train, y_train, train_csids, X_test, y_test,
+            multilabel_csids))
         pickle.dump(results, resfile)
         resfile.seek(0)
     resfile.close()
@@ -337,6 +338,25 @@ def parse_csids(csids, multilabel=False):
             labels.append(changeset['label'])
         features.append(changeset['changes'])
     return features, labels
+
+
+def get_multilabel_scores(clf, X_train, y_train, csids_train,
+                          X_test, y_test, csids_test):
+    """Gets scores while providing the ntags to clf"""
+    clf.fit(X_train, y_train)
+    ntags = [len(y) for y in y_test]
+    preds = clf.top_k_tags(X_test, ntags)
+    hits = misses = predictions = 0
+    for pred, label in zip(preds, y_test):
+        if pred == label:
+            hits += 1
+        else:
+            misses += 1
+        predictions += 1
+    logging.info("Preds:" + str(predictions))
+    logging.info("Hits:" + str(hits))
+    logging.info("Misses:" + str(misses))
+    return y_test, preds
 
 
 def get_scores(clf, X_train, y_train, csids_train, X_test, y_test, csids_test,

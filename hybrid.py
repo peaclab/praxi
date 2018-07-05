@@ -107,9 +107,9 @@ class Hybrid(BaseEstimator):
         logging.info('vw input written to %s, starting testing', f.name)
         args = f.name
         if self.probability:
-            self.loss_function = 'logistic'
-            args += self.probability_args
-            args += ' --loss_function={}'.format(self.loss_function)
+            # self.loss_function = 'logistic'
+            # args += self.probability_args
+            # args += ' --loss_function={}'.format(self.loss_function)
             args += ' -r /dev/stdout'
         else:
             args += ' -p /dev/stdout'
@@ -129,12 +129,26 @@ class Hybrid(BaseEstimator):
                 c.std_out.split()[0], c.std_err)
         os.unlink(f.name)
         os.unlink(self.vw_modelfile)
-        import pdb; pdb.set_trace()
-        return np.array([[1 - float(x), float(x)] for x in c.std_out.split()])
+        all_probas = []
+        for line in c.std_out.split('\n'):
+            probas = {}
+            for word in line.split(' '):
+                tag, p = word.split(':')
+                probas[tag] = float(p)
+            all_probas.append(probas)
+        return all_probas
 
     def top_k_tags(self, X, ntags):
         probas = self.predict_proba(X)
-        return probas
+        result = []
+        for ntag, proba in zip(ntags, probas):
+            cur_top_k = []
+            for i in range(ntag):
+                tag = max(proba.keys(), key=lambda key: proba[key])
+                cur_top_k.append(tag)
+                proba.pop(tag)
+            result.append(cur_top_k)
+        return result
 
     def predict(self, X):
         tags = self._columbize(X)

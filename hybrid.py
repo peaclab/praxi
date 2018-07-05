@@ -133,8 +133,9 @@ class Hybrid(BaseEstimator):
         for line in c.std_out.split('\n'):
             probas = {}
             for word in line.split(' '):
-                tag, p = word.split(':')
-                probas[tag] = float(p)
+                if word:
+                    tag, p = word.split(':')
+                    probas[tag] = float(p)
             all_probas.append(probas)
         return all_probas
 
@@ -145,8 +146,8 @@ class Hybrid(BaseEstimator):
             cur_top_k = []
             for i in range(ntag):
                 tag = max(proba.keys(), key=lambda key: proba[key])
-                cur_top_k.append(tag)
                 proba.pop(tag)
+                cur_top_k.append(self.reverse_labels[int(tag)])
             result.append(cur_top_k)
         return result
 

@@ -174,29 +174,10 @@ class Hybrid(BaseEstimator):
         os.unlink(self.vw_modelfile)
         return [self.reverse_labels[int(x)] for x in c.std_out.split()]
 
-    @memory.cache
     def _columbize(self, X):
-        logging.info('Getting columbus output for %d changesets', len(X))
-        tags = []
-        for changeset in tqdm(X, disable=(not self.tqdm)):
-            cshash = md5(str(sorted(changeset)).encode()).hexdigest()
-            cache_file = COLUMBUS_CACHE / '{}.yaml'.format(cshash)
-            if cache_file.exists():
-                with cache_file.open('r') as f:
-                    tag_dict = yaml.load(f)
-            else:
-                with LOCK:
-                    tag_dict = columbus(changeset)
-                with cache_file.open('w') as f:
-                    yaml.dump(tag_dict, f)
-            if self.pass_freq_to_vw:
-                tags.append(['{}:{}'.format(tag, freq) for tag, freq
-                             in tag_dict.items()
-                             if freq > self.freq_threshold])
-            else:
-                tags.append([tag for tag, freq in tag_dict.items()
-                             if freq > self.freq_threshold])
-        return tags
+        return _get_columbus_tags(X, disable_tqdm=(not self.tqdm),
+                                  freq_threshold=self.freq_threshold,
+                                  return_freq=self.pass_freq_to_vw)
 
     def score(self, X, y):
         predictions = self.predict(X)
@@ -212,3 +193,30 @@ class Hybrid(BaseEstimator):
         print("Hits:" + str(hits))
         print("Misses:" + str(misses))
         return {'preds': preds, 'hits': hits, 'misses': misses}
+
+
+@memory.cache
+def _get_columbus_tags(X, disable_tqdm=False,
+                       return_freq=True,
+                       freq_threshold=2):
+    logging.info('Getting columbus output for %d changesets', len(X))
+    tags = []
+    for changeset in tqdm(X, disable=disable_tqdm):
+        cshash = md5(str(sorted(changeset)).encode()).hexdigest()
+        cache_file = COLUMBUS_CACHE / '{}.yaml'.format(cshash)
+        if cache_file.exists():
+            with cache_file.open('r') as f:
+                tag_dict = yaml.load(f)
+        else:
+            with LOCK:
+                tag_dict = columbus(changeset)
+            with cache_file.open('w') as f:
+                yaml.dump(tag_dict, f)
+        if return_freq:
+            tags.append(['{}:{}'.format(tag, freq) for tag, freq
+                         in tag_dict.items()
+                         if freq > freq_threshold])
+        else:
+            tags.append([tag for tag, freq in tag_dict.items()
+                         if freq > freq_threshold])
+    return tags

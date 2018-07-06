@@ -28,7 +28,7 @@ memory = Memory(cachedir='/home/centos/caches/joblib-cache', verbose=0)
 def multiapp_trainw_dirty():
     resfile_name = './results-multiapp-hybrid.pkl'
     outdir = 'hybrid-results-multiapp'
-    clf = Hybrid(freq_threshold=10, pass_freq_to_vw=True,
+    clf = Hybrid(freq_threshold=2, pass_freq_to_vw=True,
                  probability=True, tqdm=True)
     # Get multiapp changesets
     multilabel_csids = []
@@ -37,6 +37,12 @@ def multiapp_trainw_dirty():
             multilabel_csids.append(int(line.strip()))
     random.seed(51)
     random.shuffle(multilabel_csids)
+    nfolds = 3
+    fold_size = len(multilabel_csids) // nfolds
+    multilabel_chunks = []
+    for i in range(nfolds):
+        multilabel_chunks.append(
+            multilabel_csids[fold_size * i:fold_size * (i+1)])
 
     # Get single app dirty changesets
     with (PROJECT_ROOT / 'changeset_sets' /
@@ -55,69 +61,29 @@ def multiapp_trainw_dirty():
         X_train += features
         y_train += labels
         train_csids = threeks[train_idx[0]] + threeks[train_idx[1]]
-        X_test, y_test = parse_csids(multilabel_csids, multilabel=True)
-        results.append(get_multilabel_scores(
-            clf, X_train, y_train, train_csids, X_test, y_test,
-            multilabel_csids))
-        pickle.dump(results, resfile)
-        resfile.seek(0)
-    resfile.close()
-    print_multilabel_results(resfile_name, outdir)
-
-
-def multiapp():
-    resfile_name = './results-multiapp-hybrid.pkl'
-    outdir = 'hybrid-results-multiapp'
-    clf = OneVsRestClassifier(Hybrid(freq_threshold=10,
-                                     pass_freq_to_vw=True,
-                                     probability=True,
-                                     tqdm=False),
-                              n_jobs=12)
-    csids = []
-    with open('/home/centos/multi_app/changesets.txt', 'r') as f:
-        for line in f:
-            csids.append(int(line.strip()))
-    with (PROJECT_ROOT / 'changeset_sets' /
-          'threek_dirty_chunks.p').open('rb') as f:
-        threeks = pickle.load(f)
-    random.seed(51)
-    random.shuffle(csids)
-    nfolds = 3
-    fold_size = len(csids) // nfolds
-    chunks = []
-    for i in range(nfolds):
-        chunks.append(csids[fold_size * i:fold_size * (i+1)])
-
-    resfile = open(resfile_name, 'wb')
-    results = []
-    for idx, chunk in tqdm(enumerate(chunks)):
-        test_csids = copy.deepcopy(chunk)
-        logging.info('Test set is %d', idx)
-        train_idx = list(range(nfolds))
-        train_idx.remove(idx)
-        # Split calls to parse_csids for more efficient memoization
-        X_train, y_train = parse_csids(chunks[train_idx[0]], multilabel=True)
-        features, labels = parse_csids(chunks[train_idx[1]], multilabel=True)
-        X_train += features
-        y_train += labels
-        X_test, y_test = parse_csids(test_csids, multilabel=True)
-        train_csids = chunks[train_idx[0]] + chunks[train_idx[1]]
-        results.append(get_scores(clf, X_train, y_train, train_csids,
-                                  X_test, y_test, test_csids, binarize=True))
-        pickle.dump(results, resfile)
-        resfile.seek(0)
-        for inner_idx, extra_singles in tqdm(enumerate(threeks)):
-            logging.info('Extra single app count: %d', inner_idx + 1)
-            features, labels = parse_csids(extra_singles)
-            X_train += features
-            y_train += labels
-            train_csids += extra_singles
-            results.append(get_scores(clf, X_train, y_train, train_csids,
-                                      X_test, y_test, test_csids,
-                                      binarize=True))
+        for ml_idx, ml_chunk in enumerate(multilabel_chunks):
+            logging.info('Test set is %d', ml_idx)
+            ml_train_idx = [0, 1, 2]
+            ml_train_idx.remove(ml_idx)
+            ml_features, ml_labels = \
+                parse_csids(multilabel_chunks[ml_train_idx[0]],
+                            multilabel=True)
+            features, labels = parse_csids(multilabel_chunks[ml_train_idx[1]],
+                                           multilabel=True)
+            ml_features += features
+            ml_labels += labels
+            ml_features += X_train
+            ml_labels += y_train
+            ml_csids = train_csids + multilabel_chunks[ml_train_idx[0]] +\
+                multilabel_chunks[ml_train_idx[1]]
+            X_test, y_test = parse_csids(ml_chunk, multilabel=True)
+            results.append(get_multilabel_scores(
+                clf, ml_features, ml_labels, train_csids, X_test, y_test,
+                ml_csids))
             pickle.dump(results, resfile)
             resfile.seek(0)
-            sys.exit(0)
+            break
+        break
     resfile.close()
     print_multilabel_results(resfile_name, outdir)
 
@@ -410,4 +376,7 @@ def setup_logging():
 
 if __name__ == '__main__':
     setup_logging()
+    # resfile_name = './results-multiapp-hybrid.pkl'
+    # outdir = 'hybrid-results-multiapp'
+    # print_multilabel_results(resfile_name, outdir)
     multiapp_trainw_dirty()

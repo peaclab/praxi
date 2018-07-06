@@ -9,7 +9,7 @@ import tempfile
 import yaml
 
 import envoy
-import numpy as np
+from joblib import Memory
 from sklearn.base import BaseEstimator
 from tqdm import tqdm
 
@@ -18,6 +18,7 @@ from columbus.columbus import columbus
 
 LOCK = Lock()
 COLUMBUS_CACHE = Path('~/caches/columbus-cache').expanduser()
+memory = Memory(cachedir='/home/centos/caches/joblib-cache', verbose=0)
 
 
 class Hybrid(BaseEstimator):
@@ -25,9 +26,8 @@ class Hybrid(BaseEstimator):
     def __init__(self, freq_threshold=1, vw_binary='/home/centos/bin/vw',
                  pass_freq_to_vw=False,
                  vw_args='-c -q :: --l2 0.005 -b 25 --passes 300 '
-                 '--learning_rate 1.25 --decay_learning_rate 0.95 --ftrl',
+                 '--learning_rate 1.25 --decay_learning_rate 0.9995',
                  probability=False, tqdm=True,
-                 probability_args=' --link=logistic',
                  loss_function='hinge'):
         """ Initializer for Hybrid method. Do not use multiple instances
         simultaneously.
@@ -36,7 +36,6 @@ class Hybrid(BaseEstimator):
         self.vw_args = vw_args
         self.pass_freq_to_vw = pass_freq_to_vw
         self.probability = probability
-        self.probability_args = probability_args
         self.loss_function = loss_function
         self.vw_binary = vw_binary
         self.tqdm = tqdm
@@ -50,36 +49,37 @@ class Hybrid(BaseEstimator):
         self.vw_args_ = self.vw_args
         self.indexed_labels = {}
         self.reverse_labels = {}
+        counter = 1
+        all_labels = set()
+        for labels in y:
+            if isinstance(labels, list):
+                for l in labels:
+                    all_labels.add(l)
+            else:
+                all_labels.add(labels)
+        for label in sorted(list(all_labels)):
+            self.indexed_labels[label] = counter
+            self.reverse_labels[counter] = label
+            counter += 1
+        self.vw_args_ += ' --oaa {}'.format(len(all_labels))
         if self.probability:
             self.loss_function = 'logistic'
-            if len(set(y)) > 2:
-                self.vw_args_ += ' --oaa {}'.format(len(set(y)))
-                self.vw_args_ += ' --probabilities'
-                counter = 1
-                for label in set(y):
-                    self.indexed_labels[label] = counter
-                    self.reverse_labels[counter] = label
-                    counter += 1
-            else:
-                self.vw_args_ += self.probability_args
-                self.indexed_labels = {1: 1, 0: -1}
-                self.reverse_labels = {1: 1, -1: 0}
-        else:
-            self.vw_args_ += ' --oaa {}'.format(len(set(y)))
-            counter = 1
-            for label in set(y):
-                self.indexed_labels[label] = counter
-                self.reverse_labels[counter] = label
-                counter += 1
+            self.vw_args_ += ' --probabilities'
         self.vw_args_ += ' --loss_function={}'.format(self.loss_function)
         tags = self._columbize(X)
         train_set = list(zip(tags, y))
         random.shuffle(train_set)
         f = tempfile.NamedTemporaryFile('w', delete=False)
+        # f = open('./fit_input.txt', 'w')
         for tag, label in train_set:
-            f.write('{} | {}\n'.format(
-                self.indexed_labels[label],
-                ' '.join(tag)))
+            labels = ''
+            if isinstance(label, list):
+                for l in label:
+                    labels += '{}:1.0 '.format(self.indexed_labels[l])
+            else:
+                labels += '{}:1.0 '.format(self.indexed_labels[label])
+            f.write('{}| {}\n'.format(
+                labels, ' '.join(tag)))
         f.close()
         logging.info('vw input written to %s, starting training', f.name)
         c = envoy.run(
@@ -101,15 +101,13 @@ class Hybrid(BaseEstimator):
     def predict_proba(self, X):
         tags = self._columbize(X)
         f = tempfile.NamedTemporaryFile('w', delete=False)
+        # f = open('./pred_input.txt', 'w')
         for tag in tags:
             f.write('| {}\n'.format(' '.join(tag)))
         f.close()
         logging.info('vw input written to %s, starting testing', f.name)
         args = f.name
         if self.probability:
-            # self.loss_function = 'logistic'
-            # args += self.probability_args
-            # args += ' --loss_function={}'.format(self.loss_function)
             args += ' -r /dev/stdout'
         else:
             args += ' -p /dev/stdout'
@@ -176,6 +174,7 @@ class Hybrid(BaseEstimator):
         os.unlink(self.vw_modelfile)
         return [self.reverse_labels[int(x)] for x in c.std_out.split()]
 
+    @memory.cache
     def _columbize(self, X):
         logging.info('Getting columbus output for %d changesets', len(X))
         tags = []

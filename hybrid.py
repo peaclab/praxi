@@ -61,25 +61,29 @@ class Hybrid(BaseEstimator):
             self.indexed_labels[label] = counter
             self.reverse_labels[counter] = label
             counter += 1
-        self.vw_args_ += ' --oaa {}'.format(len(all_labels))
         if self.probability:
             self.loss_function = 'logistic'
             self.vw_args_ += ' --probabilities'
+            self.vw_args_ += ' --csoaa_ldf=mc'  # .format(len(all_labels))
+        else:
+            self.vw_args_ += ' --oaa {}'.format(len(all_labels))
         self.vw_args_ += ' --loss_function={}'.format(self.loss_function)
         tags = self._columbize(X)
         train_set = list(zip(tags, y))
         random.shuffle(train_set)
-        f = tempfile.NamedTemporaryFile('w', delete=False)
-        # f = open('./fit_input.txt', 'w')
+        # f = tempfile.NamedTemporaryFile('w', delete=False)
+        f = open('./fit_input.txt', 'w')
         for tag, label in train_set:
             labels = ''
             if isinstance(label, list):
                 for l in label:
-                    labels += '{}:1.0 '.format(self.indexed_labels[l])
+                    f.write('{} | {}\n'.format(
+                        self.indexed_labels[l],
+                        ' '.join(tag)))
             else:
-                labels += '{}:1.0 '.format(self.indexed_labels[label])
-            f.write('{}| {}\n'.format(
-                labels, ' '.join(tag)))
+                f.write('{} | {}\n'.format(
+                    self.indexed_labels[label],
+                    ' '.join(tag)))
         f.close()
         logging.info('vw input written to %s, starting training', f.name)
         c = envoy.run(
@@ -96,19 +100,21 @@ class Hybrid(BaseEstimator):
             logging.info(
                 'vw ran sucessfully. out: %s, err: %s',
                 c.std_out, c.std_err)
-        os.unlink(f.name)
+        # os.unlink(f.name)
 
     def predict_proba(self, X):
         tags = self._columbize(X)
-        f = tempfile.NamedTemporaryFile('w', delete=False)
-        # f = open('./pred_input.txt', 'w')
+        # f = tempfile.NamedTemporaryFile('w', delete=False)
+        f = open('./pred_input.txt', 'w')
         for tag in tags:
-            f.write('| {}\n'.format(' '.join(tag)))
+            f.write('{} | {}\n'.format(
+                ' '.join([str(x) for x in self.reverse_labels.keys()]),
+                ' '.join(tag)))
         f.close()
         logging.info('vw input written to %s, starting testing', f.name)
         args = f.name
         if self.probability:
-            args += ' -r /dev/stdout'
+            args += ' --loss_function=logistic --probabilities -r /dev/stdout'
         else:
             args += ' -p /dev/stdout'
         c = envoy.run(
@@ -125,12 +131,14 @@ class Hybrid(BaseEstimator):
             logging.info(
                 'vw ran sucessfully. one prediction: %s, err: %s',
                 c.std_out.split()[0], c.std_err)
-        os.unlink(f.name)
+        # os.unlink(f.name)
         os.unlink(self.vw_modelfile)
         all_probas = []
         for line in c.std_out.split('\n'):
             probas = {}
             for word in line.split(' '):
+                if word == 'args':
+                    break
                 if word:
                     tag, p = word.split(':')
                     probas[tag] = float(p)

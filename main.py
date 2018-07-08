@@ -173,7 +173,14 @@ def print_multilabel_results(resfile, outdir):
         y_true += result[0]
         y_pred += result[1]
     bnz = MultiLabelBinarizer()
-    y_true = bnz.fit_transform(y_true)
+    bnz.fit(y_true)
+    all_tags = y_true
+    for preds in y_pred:
+        for label in preds:
+            if label not in bnz.classes_:
+                all_tags.append([label])
+                bnz.fit(all_tags)
+    y_true = bnz.transform(y_true)
     y_pred = bnz.transform(y_pred)
 
     labels = bnz.classes_

@@ -25,7 +25,7 @@ class Hybrid(BaseEstimator):
     """ scikit style class for hybrid method """
     def __init__(self, freq_threshold=1, vw_binary='/home/centos/bin/vw',
                  pass_freq_to_vw=False,
-                 vw_args='-c -q :: --l2 0.005 -b 25 --passes 300 '
+                 vw_args='-c -q :: --l2 0.005 -b 25 --passes 300 --ftrl '
                  '--learning_rate 1.25 --decay_learning_rate 0.9995',
                  probability=False, tqdm=True,
                  loss_function='hinge'):
@@ -64,7 +64,7 @@ class Hybrid(BaseEstimator):
         if self.probability:
             self.loss_function = 'logistic'
             self.vw_args_ += ' --probabilities'
-            self.vw_args_ += ' --csoaa_ldf=mc'  # .format(len(all_labels))
+            self.vw_args_ += ' --oaa {}'.format(len(all_labels))
         else:
             self.vw_args_ += ' --oaa {}'.format(len(all_labels))
         self.vw_args_ += ' --loss_function={}'.format(self.loss_function)
@@ -73,16 +73,12 @@ class Hybrid(BaseEstimator):
         random.shuffle(train_set)
         # f = tempfile.NamedTemporaryFile('w', delete=False)
         f = open('./fit_input.txt', 'w')
-        for tag, label in train_set:
-            labels = ''
-            if isinstance(label, list):
-                for l in label:
-                    f.write('{} | {}\n'.format(
-                        self.indexed_labels[l],
-                        ' '.join(tag)))
-            else:
+        for tag, labels in train_set:
+            if isinstance(labels, str):
+                labels = [labels]
+            for name in labels:
                 f.write('{} | {}\n'.format(
-                    self.indexed_labels[label],
+                    self.indexed_labels[name],
                     ' '.join(tag)))
         f.close()
         logging.info('vw input written to %s, starting training', f.name)
@@ -114,7 +110,7 @@ class Hybrid(BaseEstimator):
         logging.info('vw input written to %s, starting testing', f.name)
         args = f.name
         if self.probability:
-            args += ' --loss_function=logistic --probabilities -r /dev/stdout'
+            args += ' -r /dev/stdout'
         else:
             args += ' -p /dev/stdout'
         c = envoy.run(

@@ -63,8 +63,7 @@ class Hybrid(BaseEstimator):
             counter += 1
         if self.probability:
             self.loss_function = 'logistic'
-            self.vw_args_ += ' --probabilities'
-            self.vw_args_ += ' --oaa {}'.format(len(all_labels))
+            self.vw_args_ += ' --csoaa {}'.format(len(all_labels))
         else:
             self.vw_args_ += ' --oaa {}'.format(len(all_labels))
         self.vw_args_ += ' --loss_function={}'.format(self.loss_function)
@@ -76,10 +75,8 @@ class Hybrid(BaseEstimator):
         for tag, labels in train_set:
             if isinstance(labels, str):
                 labels = [labels]
-            for name in labels:
-                f.write('{} | {}\n'.format(
-                    self.indexed_labels[name],
-                    ' '.join(tag)))
+            labels = ['{}:0.0'.format(self.indexed_labels[x]) for x in labels]
+            f.write('{} | {}\n'.format(' '.join(labels), ' '.join(tag)))
         f.close()
         logging.info('vw input written to %s, starting training', f.name)
         c = envoy.run(

@@ -3,6 +3,7 @@
 import copy
 import logging
 import logging.config
+import os
 import pickle
 from pathlib import Path
 import random
@@ -174,7 +175,7 @@ def print_multilabel_results(resfile, outdir):
         y_pred += result[1]
     bnz = MultiLabelBinarizer()
     bnz.fit(y_true)
-    all_tags = y_true
+    all_tags = copy.deepcopy(y_true)
     for preds in y_pred:
         for label in preds:
             if label not in bnz.classes_:
@@ -204,6 +205,7 @@ def print_multilabel_results(resfile, outdir):
         "# RECALL   : {:.3f} weighted, {:.3f} micro-avg'd, {:.3f} macro-avg'd\n#\n".format(rw, ri, ra) +
         "# {:-^55}\n#".format("CLASSIFICATION REPORT") + report.replace('\n', "\n#")
     )
+    os.makedirs("/home/centos/{}".format(outdir), exist_ok=True)
     savetxt("/home/centos/{}/result.txt".format(outdir),
             np.array([]), fmt='%d', header=file_header, delimiter=',',
             comments='')
@@ -269,6 +271,7 @@ def print_results(resfile, outdir, n_strats=5):
             "# {:-^55}\n#".format("CLASSIFICATION REPORT") + report.replace('\n', "\n#") +
             " {:-^55}\n".format("CONFUSION MATRIX")
         )
+        os.makedirs("/home/centos/{}".format(outdir), exist_ok=True)
         savetxt("/home/centos/{}/{}.txt".format(outdir, strat),
                 confuse, fmt='%d', header=file_header, delimiter=',',
                 comments='')

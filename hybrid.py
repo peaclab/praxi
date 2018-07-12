@@ -62,16 +62,15 @@ class Hybrid(BaseEstimator):
             self.reverse_labels[counter] = label
             counter += 1
         if self.probability:
-            self.loss_function = 'logistic'
             self.vw_args_ += ' --csoaa {}'.format(len(all_labels))
         else:
             self.vw_args_ += ' --oaa {}'.format(len(all_labels))
-        self.vw_args_ += ' --loss_function={}'.format(self.loss_function)
+            self.vw_args_ += ' --loss_function={}'.format(self.loss_function)
         tags = self._columbize(X)
         train_set = list(zip(tags, y))
         random.shuffle(train_set)
-        # f = tempfile.NamedTemporaryFile('w', delete=False)
-        f = open('./fit_input.txt', 'w')
+        f = tempfile.NamedTemporaryFile('w', delete=False)
+        # f = open('./fit_input.txt', 'w')
         for tag, labels in train_set:
             if isinstance(labels, str):
                 labels = [labels]
@@ -97,8 +96,8 @@ class Hybrid(BaseEstimator):
 
     def predict_proba(self, X):
         tags = self._columbize(X)
-        # f = tempfile.NamedTemporaryFile('w', delete=False)
-        f = open('./pred_input.txt', 'w')
+        f = tempfile.NamedTemporaryFile('w', delete=False)
+        # f = open('./pred_input.txt', 'w')
         for tag in tags:
             f.write('{} | {}\n'.format(
                 ' '.join([str(x) for x in self.reverse_labels.keys()]),
@@ -144,7 +143,7 @@ class Hybrid(BaseEstimator):
         for ntag, proba in zip(ntags, probas):
             cur_top_k = []
             for i in range(ntag):
-                tag = max(proba.keys(), key=lambda key: proba[key])
+                tag = min(proba.keys(), key=lambda key: proba[key])
                 proba.pop(tag)
                 cur_top_k.append(self.reverse_labels[int(tag)])
             result.append(cur_top_k)

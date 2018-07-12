@@ -48,7 +48,7 @@ def main():
 
 
 def columbus(changeset,
-             systagfile='/home/ubuntu/columbus/systags/ubuntu-1404'):
+             systagfile='/home/centos/hybrid-method/columbus/systags/ubuntu-1404'):
     """ Get labels from single changeset """
     systags = {}
     with open(systagfile, 'rb') as sysfp:

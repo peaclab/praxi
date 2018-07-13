@@ -27,8 +27,8 @@ memory = Memory(cachedir='/home/centos/caches/joblib-cache', verbose=0)
 
 
 def multiapp_trainw_dirty():
-    resfile_name = './results-multiapp-hybrid.pkl'
-    outdir = 'hybrid-results-multiapp'
+    resfile_name = './results-multiapp-hybrid-5.pkl'
+    outdir = 'hybrid-results-multiapp-new_changesets'
     clf = Hybrid(freq_threshold=2, pass_freq_to_vw=True,
                  probability=True, tqdm=True)
     # Get multiapp changesets

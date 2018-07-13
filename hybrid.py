@@ -25,7 +25,7 @@ class Hybrid(BaseEstimator):
     """ scikit style class for hybrid method """
     def __init__(self, freq_threshold=1, vw_binary='/home/centos/bin/vw',
                  pass_freq_to_vw=False,
-                 vw_args='-c -q :: --l2 0.005 -b 25 --passes 300 --ftrl '
+                 vw_args='-c -q :: --l2 0.005 -b 25 --passes 50 --ftrl '
                  '--learning_rate 1.25 --decay_learning_rate 0.9995',
                  probability=False, tqdm=True,
                  loss_function='hinge'):
@@ -69,8 +69,8 @@ class Hybrid(BaseEstimator):
         tags = self._columbize(X)
         train_set = list(zip(tags, y))
         random.shuffle(train_set)
-        # f = tempfile.NamedTemporaryFile('w', delete=False)
-        f = open('./fit_input.txt', 'w')
+        f = tempfile.NamedTemporaryFile('w', delete=False)
+        # f = open('./fit_input.txt', 'w')
         for tag, labels in train_set:
             if isinstance(labels, str):
                 labels = [labels]
@@ -97,12 +97,12 @@ class Hybrid(BaseEstimator):
             logging.info(
                 'vw ran sucessfully. out: %s, err: %s',
                 c.std_out, c.std_err)
-        # os.unlink(f.name)
+        os.unlink(f.name)
 
     def predict_proba(self, X):
         tags = self._columbize(X)
-        # f = tempfile.NamedTemporaryFile('w', delete=False)
-        f = open('./pred_input.txt', 'w')
+        f = tempfile.NamedTemporaryFile('w', delete=False)
+        # f = open('./pred_input.txt', 'w')
         for tag in tags:
             f.write('{} | {}\n'.format(
                 ' '.join([str(x) for x in self.reverse_labels.keys()]),
@@ -128,7 +128,7 @@ class Hybrid(BaseEstimator):
             logging.info(
                 'vw ran sucessfully. one prediction: %s, err: %s',
                 c.std_out.split()[0], c.std_err)
-        # os.unlink(f.name)
+        os.unlink(f.name)
         os.unlink(self.vw_modelfile)
         all_probas = []
         for line in c.std_out.split('\n'):

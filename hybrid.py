@@ -69,13 +69,18 @@ class Hybrid(BaseEstimator):
         tags = self._columbize(X)
         train_set = list(zip(tags, y))
         random.shuffle(train_set)
-        f = tempfile.NamedTemporaryFile('w', delete=False)
-        # f = open('./fit_input.txt', 'w')
+        # f = tempfile.NamedTemporaryFile('w', delete=False)
+        f = open('./fit_input.txt', 'w')
         for tag, labels in train_set:
             if isinstance(labels, str):
                 labels = [labels]
-            labels = ['{}:0.0'.format(self.indexed_labels[x]) for x in labels]
-            f.write('{} | {}\n'.format(' '.join(labels), ' '.join(tag)))
+            input_string = ''
+            for label, number in self.indexed_labels.items():
+                if label in labels:
+                    input_string += '{}:0.0 '.format(number)
+                else:
+                    input_string += '{}:1.0 '.format(number)
+            f.write('{}| {}\n'.format(input_string, ' '.join(tag)))
         f.close()
         logging.info('vw input written to %s, starting training', f.name)
         c = envoy.run(
@@ -96,8 +101,8 @@ class Hybrid(BaseEstimator):
 
     def predict_proba(self, X):
         tags = self._columbize(X)
-        f = tempfile.NamedTemporaryFile('w', delete=False)
-        # f = open('./pred_input.txt', 'w')
+        # f = tempfile.NamedTemporaryFile('w', delete=False)
+        f = open('./pred_input.txt', 'w')
         for tag in tags:
             f.write('{} | {}\n'.format(
                 ' '.join([str(x) for x in self.reverse_labels.keys()]),

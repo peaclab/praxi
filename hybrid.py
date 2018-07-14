@@ -225,8 +225,11 @@ class Columbus(BaseEstimator):
                                      return_freq=True)
         result = []
         for tagset in mytags:
-            result.append({key: value for x in tagset
-                           for key, value in x.split(':')})
+            tagdict = {}
+            for x in tagset:
+                key, value = x.split(':')
+                tagdict[key] = value
+            result.append(tagdict)
         return result
 
 @memory.cache

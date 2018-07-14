@@ -7,7 +7,6 @@ import os
 import pickle
 from pathlib import Path
 import random
-import sys
 import time
 import yaml
 
@@ -353,11 +352,11 @@ def get_scores(clf, X_train, y_train, csids_train, X_test, y_test, csids_test,
     for pred, label in zip(preds, y_test):
         if human_check:
             while (pred, label) not in pred_label_dict:
-                print("Does {} match the label {}? [Y/n]".format(pred, label))
-                answer = sys.raw_input().lower()
+                print("Does '{}' match the label '{}'? [Y/n]".format(pred, label))
+                answer = input().lower()
                 if answer == 'y':
                     pred_label_dict[(pred, label)] = True
-                if answer == 'n':
+                elif answer == 'n':
                     pred_label_dict[(pred, label)] = False
                 else:
                     print("Please try again")

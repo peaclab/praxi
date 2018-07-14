@@ -25,6 +25,7 @@ from rule_based import RuleBased
 PROJECT_ROOT = Path('~/hybrid-method').expanduser()
 CHANGESET_ROOT = Path('~/caches/changesets/').expanduser()
 memory = Memory(cachedir='/home/centos/caches/joblib-cache', verbose=0)
+LABEL_DICT = Path('./pred_label_dict.pkl')
 
 
 def multiapp_trainw_dirty():
@@ -348,7 +349,11 @@ def get_scores(clf, X_train, y_train, csids_train, X_test, y_test, csids_test,
         clf.fit(X_train, y_train)
         preds = clf.predict(X_test)
     hits = misses = predictions = 0
-    pred_label_dict = {}
+    if LABEL_DICT.exists():
+        with LABEL_DICT.open('rb') as f:
+            pred_label_dict = pickle.load(f)
+    else:
+        pred_label_dict = {}
     for pred, label in zip(preds, y_test):
         if human_check:
             while (pred, label) not in pred_label_dict:
@@ -360,6 +365,8 @@ def get_scores(clf, X_train, y_train, csids_train, X_test, y_test, csids_test,
                     pred_label_dict[(pred, label)] = False
                 else:
                     print("Please try again")
+            with LABEL_DICT.open('wb') as f:
+                pickle.dump(f, pred_label_dict)
             if pred_label_dict[(pred, label)]:
                 hits += 1
             else:

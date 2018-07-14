@@ -215,15 +215,19 @@ class Columbus(BaseEstimator):
     def predict(self, X):
         tags = self._columbize(X)
         result = []
-        for tagset in X:
+        for tagset in tags:
             result.append(max(tagset.keys(), key=lambda key: tagset[key]))
         return result
 
     def _columbize(self, X):
-        return _get_columbus_tags(X, disable_tqdm=(not self.tqdm),
-                                  freq_threshold=self.freq_threshold,
-                                  return_freq=True)
-
+        mytags =  _get_columbus_tags(X, disable_tqdm=(not self.tqdm),
+                                     freq_threshold=self.freq_threshold,
+                                     return_freq=True)
+        result = []
+        for tagset in mytags:
+            result.append({key: value for x in tagset
+                           for key, value in x.split(':')})
+        return result
 
 @memory.cache
 def _get_columbus_tags(X, disable_tqdm=False,

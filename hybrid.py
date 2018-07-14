@@ -200,6 +200,31 @@ class Hybrid(BaseEstimator):
         return {'preds': preds, 'hits': hits, 'misses': misses}
 
 
+class Columbus(BaseEstimator):
+    """ scikit style class for columbus """
+    def __init__(self, freq_threshold=2, tqdm=True):
+        """ Initializer for columbus. Do not use multiple instances
+        simultaneously.
+        """
+        self.freq_threshold = freq_threshold
+        self.tqdm = tqdm
+
+    def fit(self, X, y):
+        pass
+
+    def predict(self, X):
+        tags = self._columbize(X)
+        result = []
+        for tagset in X:
+            result.append(max(tagset.keys(), key=lambda key: tagset[key]))
+        return result
+
+    def _columbize(self, X):
+        return _get_columbus_tags(X, disable_tqdm=(not self.tqdm),
+                                  freq_threshold=self.freq_threshold,
+                                  return_freq=True)
+
+
 @memory.cache
 def _get_columbus_tags(X, disable_tqdm=False,
                        return_freq=True,

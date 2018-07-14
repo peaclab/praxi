@@ -7,6 +7,7 @@ import os
 import pickle
 from pathlib import Path
 import random
+import sys
 import time
 import yaml
 
@@ -19,6 +20,7 @@ from sklearn.preprocessing import MultiLabelBinarizer
 from joblib import Memory
 
 from hybrid import Hybrid
+from hybrid import Columbus
 from rule_based import RuleBased
 
 PROJECT_ROOT = Path('~/hybrid-method').expanduser()
@@ -90,9 +92,9 @@ def multiapp_trainw_dirty():
 
 
 def onekdirty():
-    resfile_name = './results-hybrid.pkl'
-    outdir = 'hybrid-results'
-    clf = Hybrid()
+    resfile_name = './results-columbus.pkl'
+    outdir = 'columbus-results'
+    clf = Columbus()
     with (PROJECT_ROOT / 'changeset_sets' /
           'threek_dirty_chunks.p').open('rb') as f:
         threeks = pickle.load(f)
@@ -114,7 +116,7 @@ def onekdirty():
         X_train, y_train = parse_csids(train_csids)
         test_csids = threeks[test_idx[0]] + threeks[test_idx[1]]
         results.append(get_scores(clf, X_train, y_train, train_csids,
-                                  X_test, y_test, test_csids))
+                                  X_test, y_test, test_csids, human_check=True))
         pickle.dump(results, resfile)
         resfile.seek(0)
         for inner_idx, extra_cleans in tqdm(enumerate(tenks)):
@@ -124,7 +126,7 @@ def onekdirty():
             y_train += labels
             train_csids += extra_cleans
             results.append(get_scores(clf, X_train, y_train, train_csids,
-                                      X_test, y_test, test_csids))
+                                      X_test, y_test, test_csids, human_check=True))
             pickle.dump(results, resfile)
             resfile.seek(0)
     resfile.close()
@@ -337,7 +339,7 @@ def get_multilabel_scores(clf, X_train, y_train, csids_train,
 
 
 def get_scores(clf, X_train, y_train, csids_train, X_test, y_test, csids_test,
-               binarize=False):
+               binarize=False, human_check=False):
     """ Gets two lists of changeset ids, does training+testing """
     if binarize:
         binarizer = MultiLabelBinarizer()
@@ -347,11 +349,27 @@ def get_scores(clf, X_train, y_train, csids_train, X_test, y_test, csids_test,
         clf.fit(X_train, y_train)
         preds = clf.predict(X_test)
     hits = misses = predictions = 0
+    pred_label_dict = {}
     for pred, label in zip(preds, y_test):
-        if pred == label:
-            hits += 1
+        if human_check:
+            while (pred, label) not in pred_label_dict:
+                print("Does {} match the label {}? [Y/n]".format(pred, label))
+                answer = sys.raw_input().lower()
+                if answer == 'y':
+                    pred_label_dict[(pred, label)] = True
+                if answer == 'n':
+                    pred_label_dict[(pred, label)] = False
+                else:
+                    print("Please try again")
+            if pred_label_dict[(pred, label)]:
+                hits += 1
+            else:
+                misses += 1
         else:
-            misses += 1
+            if pred == label:
+                hits += 1
+            else:
+                misses += 1
         predictions += 1
     logging.info("Preds:" + str(predictions))
     logging.info("Hits:" + str(hits))
@@ -390,4 +408,5 @@ if __name__ == '__main__':
     # resfile_name = './results-multiapp-hybrid.pkl'
     # outdir = 'hybrid-results-multiapp'
     # print_multilabel_results(resfile_name, outdir)
-    multiapp_trainw_dirty()
+    # multiapp_trainw_dirty()
+    onekdirty()

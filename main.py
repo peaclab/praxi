@@ -366,7 +366,7 @@ def get_scores(clf, X_train, y_train, csids_train, X_test, y_test, csids_test,
                 else:
                     print("Please try again")
             with LABEL_DICT.open('wb') as f:
-                pickle.dump(f, pred_label_dict)
+                pickle.dump(pred_label_dict, f)
             if pred_label_dict[(pred, label)]:
                 hits += 1
             else:

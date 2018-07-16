@@ -26,7 +26,7 @@ class Hybrid(BaseEstimator):
     def __init__(self, freq_threshold=1, vw_binary='/home/centos/bin/vw',
                  pass_freq_to_vw=False,
                  vw_args='-c -q :: --l2 1e-6 -b 25 --passes 50 --ftrl '
-                 '--learning_rate 1.5 --decay_learning_rate 0.9995 --autolink=2',
+                 '--learning_rate 2 --decay_learning_rate 0.9995',
                  probability=False, tqdm=True,
                  loss_function='hinge'):
         """ Initializer for Hybrid method. Do not use multiple instances
@@ -115,7 +115,7 @@ class Hybrid(BaseEstimator):
         else:
             args += ' -p /dev/stdout'
         c = envoy.run(
-            '{vw_binary} {args} -i {vw_modelfile}'.format(
+            '{vw_binary} {args} -t -i {vw_modelfile}'.format(
                 vw_binary=self.vw_binary, args=args,
                 vw_modelfile=self.vw_modelfile)
         )
@@ -162,7 +162,7 @@ class Hybrid(BaseEstimator):
         f.close()
         logging.info('vw input written to %s, starting testing', f.name)
         c = envoy.run(
-            '{vw_binary} {vw_input} -p /dev/stdout -i {vw_modelfile}'.format(
+            '{vw_binary} {vw_input} -t -p /dev/stdout -i {vw_modelfile}'.format(
                 vw_binary=self.vw_binary, vw_input=f.name,
                 vw_modelfile=self.vw_modelfile)
         )

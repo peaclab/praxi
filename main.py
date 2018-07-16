@@ -28,9 +28,22 @@ memory = Memory(cachedir='/home/centos/caches/joblib-cache', verbose=0)
 LABEL_DICT = Path('./pred_label_dict.pkl')
 
 
+def get_free_filename(stub, directory, suffix=''):
+    counter = 0
+    while True:
+        file_candidate = '{}/{}-{}{}'.format(
+            str(directory), stub, counter, suffix)
+        for filename in Path(directory).glob('*'):
+            if str(filename) == file_candidate:
+                counter += 1
+                break
+        else:  # No match found
+            return file_candidate
+
+
 def multiapp_trainw_dirty():
-    resfile_name = './results-multiapp-hybrid.pkl'
-    outdir = 'hybrid-results-multiapp'
+    resfile_name = get_free_filename('results-multiapp-hybrid', '.', suffix='.pkl')
+    outdir = get_free_filename('hybrid-results-multiapp', '/home/centos/results')
     clf = Hybrid(freq_threshold=2, pass_freq_to_vw=True,
                  probability=True, tqdm=True)
     # Get multiapp changesets
@@ -201,15 +214,15 @@ def print_multilabel_results(resfile, outdir, args=None):
     file_header = (
         "# MULTILABEL EXPERIMENT REPORT\n" +
         time.strftime("# Generated %c\n#\n") +
-        if args '#\n# Args: {}\n#\n'.format(args) else '' +
+        ('#\n# Args: {}\n#\n'.format(args) if args else '') +
         "# 3 FOLD CROSS VALIDATION WITH {} CHANGESETS\n".format(len(y_true)) +
         "# F1 SCORE : {:.3f} weighted, {:.3f} micro-avg'd, {:.3f} macro-avg'd\n".format(f1w, f1i, f1a) +
         "# PRECISION: {:.3f} weighted, {:.3f} micro-avg'd, {:.3f} macro-avg'd\n".format(pw, pi, pa) +
         "# RECALL   : {:.3f} weighted, {:.3f} micro-avg'd, {:.3f} macro-avg'd\n#\n".format(rw, ri, ra) +
         "# {:-^55}\n#".format("CLASSIFICATION REPORT") + report.replace('\n', "\n#")
     )
-    os.makedirs("/home/centos/{}".format(outdir), exist_ok=True)
-    savetxt("/home/centos/{}/result.txt".format(outdir),
+    os.makedirs(str(outdir), exist_ok=True)
+    savetxt("{}/result.txt".format(outdir),
             np.array([]), fmt='%d', header=file_header, delimiter=',',
             comments='')
 
@@ -412,8 +425,8 @@ def setup_logging():
 
 if __name__ == '__main__':
     setup_logging()
-    # resfile_name = './results-multiapp-hybrid.pkl'
-    # outdir = 'hybrid-results-multiapp'
+    # resfile_name = './results-multiapp-hybrid-1.pkl'
+    # outdir = get_free_filename('hybrid-results-multiapp', '/home/centos/results')
     # print_multilabel_results(resfile_name, outdir)
     multiapp_trainw_dirty()
     # onekdirty()

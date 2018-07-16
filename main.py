@@ -29,8 +29,8 @@ LABEL_DICT = Path('./pred_label_dict.pkl')
 
 
 def multiapp_trainw_dirty():
-    resfile_name = './results-multiapp-hybrid-5.pkl'
-    outdir = 'hybrid-results-multiapp-new_changesets'
+    resfile_name = './results-multiapp-hybrid.pkl'
+    outdir = 'hybrid-results-multiapp'
     clf = Hybrid(freq_threshold=2, pass_freq_to_vw=True,
                  probability=True, tqdm=True)
     # Get multiapp changesets
@@ -88,7 +88,7 @@ def multiapp_trainw_dirty():
             break
         break
     resfile.close()
-    print_multilabel_results(resfile_name, outdir)
+    print_multilabel_results(resfile_name, outdir, args=clf.vw_args)
 
 
 def onekdirty():
@@ -162,7 +162,7 @@ def clean_test():
     print_results('./results-rule-clean.pkl', outdir)
 
 
-def print_multilabel_results(resfile, outdir):
+def print_multilabel_results(resfile, outdir, args=None):
     with open(resfile, 'rb') as f:
         results = pickle.load(f)
     # # Now do the evaluation!
@@ -201,6 +201,7 @@ def print_multilabel_results(resfile, outdir):
     file_header = (
         "# MULTILABEL EXPERIMENT REPORT\n" +
         time.strftime("# Generated %c\n#\n") +
+        if args '#\n# Args: {}\n#\n'.format(args) else '' +
         "# 3 FOLD CROSS VALIDATION WITH {} CHANGESETS\n".format(len(y_true)) +
         "# F1 SCORE : {:.3f} weighted, {:.3f} micro-avg'd, {:.3f} macro-avg'd\n".format(f1w, f1i, f1a) +
         "# PRECISION: {:.3f} weighted, {:.3f} micro-avg'd, {:.3f} macro-avg'd\n".format(pw, pi, pa) +
@@ -414,5 +415,5 @@ if __name__ == '__main__':
     # resfile_name = './results-multiapp-hybrid.pkl'
     # outdir = 'hybrid-results-multiapp'
     # print_multilabel_results(resfile_name, outdir)
-    # multiapp_trainw_dirty()
-    onekdirty()
+    multiapp_trainw_dirty()
+    # onekdirty()

@@ -38,6 +38,10 @@ def get_free_filename(stub, directory, suffix=''):
                 counter += 1
                 break
         else:  # No match found
+            if suffix:
+                Path(file_candidate).touch()
+            else:
+                Path(file_candidate).mkdir()
             return file_candidate
 
 

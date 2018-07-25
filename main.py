@@ -102,6 +102,8 @@ def multiapp_trainw_dirty():
                 ml_csids))
             pickle.dump(results, resfile)
             resfile.seek(0)
+            break
+        break
     resfile.close()
     print_multilabel_results(resfile_name, outdir, args=clf.vw_args)
 

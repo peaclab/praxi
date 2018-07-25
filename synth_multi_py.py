@@ -70,7 +70,8 @@ def gen_pairings(source_dir, num_apps=2, qty=100):
                os.listdir(source_dir) if os.path.isfile(os.path.join(source_dir, x))
                and len(x.split('.')) == 6 and x.split('.')[5] == 'yaml']
     dirty = [x for x in listing
-             if x.split('.')[4] == 'ts' and '.vd.' not in x and 'apache2' not in x]
+             if x.split('.')[4] == 'ts' and '.vd.' not in x and 'apache2' not in x
+             and 'multiapp' not in x]
     print("Discovered {} usable changeset files, {} of which are dirty".format(len(listing), len(dirty)))
 
     # Seed the RNG
@@ -98,7 +99,7 @@ SOURCE_DIR = "/home/centos/caches/changesets"
 OUTPUT_DIR = "/home/centos/caches/multi-app-changesets"
 NUM_APPS_MIN = 2
 NUM_APPS_MAX = 5
-QTY = 200
+QTY = 1000
 
 for n in range(NUM_APPS_MIN, NUM_APPS_MAX):
     # Generate pairings

@@ -24,12 +24,13 @@ memory = Memory(cachedir='/home/centos/caches/joblib-cache', verbose=0)
 class Hybrid(BaseEstimator):
     """ scikit style class for hybrid method """
     def __init__(self, freq_threshold=1, vw_binary='/home/centos/bin/vw',
-                 pass_freq_to_vw=False,
+                 pass_freq_to_vw=False, pass_files_to_vw=False,
                  vw_args='-c --stage_poly -b 26 --passes 1000 '
                  '--l1 1e-6 --l2 1e-6 --decay_learning_rate 0.995 '
                  '--ftrl',
                  probability=False, tqdm=True,
-                 loss_function='hinge'):
+                 loss_function='hinge',
+                 use_temp_files=False):
         """ Initializer for Hybrid method. Do not use multiple instances
         simultaneously.
         """
@@ -40,11 +41,20 @@ class Hybrid(BaseEstimator):
         self.loss_function = loss_function
         self.vw_binary = vw_binary
         self.tqdm = tqdm
+        self.use_temp_files = use_temp_files
+        self.pass_files_to_vw = pass_files_to_vw
+
+    def get_args(self):
+        return self.vw_args_
 
     def fit(self, X, y):
-        modelfileobj = tempfile.NamedTemporaryFile('w', delete=False)
-        self.vw_modelfile = modelfileobj.name
-        modelfileobj.close()
+        if self.use_temp_files:
+            modelfileobj = tempfile.NamedTemporaryFile('w', delete=False)
+            self.vw_modelfile = modelfileobj.name
+            modelfileobj.close()
+        else:
+            self.vw_modelfile = 'trained_model.vw'
+            os.unlink(self.vw_modelfile)
         logging.info('Started hybrid model, vw_modelfile: %s',
                      self.vw_modelfile)
         self.vw_args_ = self.vw_args
@@ -67,11 +77,15 @@ class Hybrid(BaseEstimator):
         else:
             self.vw_args_ += ' --oaa {}'.format(len(all_labels))
             self.vw_args_ += ' --loss_function={}'.format(self.loss_function)
-        tags = self._columbize(X)
+        tags = self._get_tags(X)
         train_set = list(zip(tags, y))
         random.shuffle(train_set)
-        f = tempfile.NamedTemporaryFile('w', delete=False)
-        # f = open('./fit_input.txt', 'w')
+        if self.use_temp_files:
+            f = tempfile.NamedTemporaryFile('w', delete=False)
+        else:
+            f = open('./fit_input.txt', 'w')
+            with open('./label_table.yaml', 'w') as f:
+                yaml.dump(self.reverse_labels, f)
         for tag, labels in train_set:
             if isinstance(labels, str):
                 labels = [labels]
@@ -98,12 +112,15 @@ class Hybrid(BaseEstimator):
             logging.info(
                 'vw ran sucessfully. out: %s, err: %s',
                 c.std_out, c.std_err)
-        os.unlink(f.name)
+        if self.use_temp_files:
+            os.unlink(f.name)
 
     def predict_proba(self, X):
-        tags = self._columbize(X)
-        f = tempfile.NamedTemporaryFile('w', delete=False)
-        # f = open('./pred_input.txt', 'w')
+        tags = self._get_tags(X)
+        if self.use_temp_files:
+            f = tempfile.NamedTemporaryFile('w', delete=False)
+        else:
+            f = open('./pred_input.txt', 'w')
         for tag in tags:
             f.write('{} | {}\n'.format(
                 ' '.join([str(x) for x in self.reverse_labels.keys()]),
@@ -129,8 +146,9 @@ class Hybrid(BaseEstimator):
             logging.info(
                 'vw ran sucessfully. one prediction: %s, err: %s',
                 c.std_out.split()[0], c.std_err)
-        os.unlink(f.name)
-        os.unlink(self.vw_modelfile)
+        if self.use_temp_files:
+            os.unlink(f.name)
+            os.unlink(self.vw_modelfile)
         all_probas = []
         for line in c.std_out.split('\n'):
             probas = {}
@@ -156,8 +174,11 @@ class Hybrid(BaseEstimator):
         return result
 
     def predict(self, X):
-        tags = self._columbize(X)
-        f = tempfile.NamedTemporaryFile('w', delete=False)
+        tags = self._get_tags(X)
+        if self.use_temp_files:
+            f = tempfile.NamedTemporaryFile('w', delete=False)
+        else:
+            f = open('./pred_input.txt', 'w')
         for tag in tags:
             f.write('| {}\n'.format(' '.join(tag)))
         f.close()
@@ -176,11 +197,14 @@ class Hybrid(BaseEstimator):
             logging.info(
                 'vw ran sucessfully. one prediction: %s, err: %s',
                 c.std_out.split()[0], c.std_err)
-        os.unlink(f.name)
-        os.unlink(self.vw_modelfile)
+        if self.use_temp_files:
+            os.unlink(f.name)
+            os.unlink(self.vw_modelfile)
         return [self.reverse_labels[int(x)] for x in c.std_out.split()]
 
-    def _columbize(self, X):
+    def _get_tags(self, X):
+        if self.pass_files_to_vw:
+            raise NotImplementedError("Not implemented yet")
         return _get_columbus_tags(X, disable_tqdm=(not self.tqdm),
                                   freq_threshold=self.freq_threshold,
                                   return_freq=self.pass_freq_to_vw)

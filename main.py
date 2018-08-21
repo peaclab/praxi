@@ -48,7 +48,10 @@ def get_free_filename(stub, directory, suffix=''):
 def multiapp_trainw_dirty():
     resfile_name = get_free_filename('results-multiapp-hybrid', '.', suffix='.pkl')
     outdir = get_free_filename('hybrid-results-multiapp', '/home/centos/results')
+    suffix = 2
     clf = Hybrid(freq_threshold=2, pass_freq_to_vw=True,
+                 # pass_files_to_vw=True,
+                 suffix=suffix,
                  probability=True, tqdm=True)
     # Get multiapp changesets
     multilabel_csids = []
@@ -97,15 +100,14 @@ def multiapp_trainw_dirty():
             ml_csids = train_csids + multilabel_chunks[ml_train_idx[0]] +\
                 multilabel_chunks[ml_train_idx[1]]
             X_test, y_test = parse_csids(ml_chunk, multilabel=True)
-            with open('./true_labels.txt', 'w') as f:
+            with open('./true_labels-%d.txt' % suffix, 'w') as f:
                 for label in y_test:
                     if isinstance(label, list):
                         f.write(' '.join(label) + '\n')
                     else:
                         f.write(label + '\n')
             results.append(get_multilabel_scores(
-                clf, ml_features, ml_labels, train_csids, ml_features, ml_labels,
-                ml_csids))
+                clf, ml_features, ml_labels, X_test, y_test))
             pickle.dump(results, resfile)
             resfile.seek(0)
             break
@@ -148,8 +150,8 @@ def onekdirty():
             X_train += features
             y_train += labels
             train_csids += extra_cleans
-            results.append(get_scores(clf, X_train, y_train, train_csids,
-                                      X_test, y_test, test_csids, human_check=True))
+            results.append(get_scores(clf, X_train, y_train,
+                                      X_test, y_test, human_check=True))
             pickle.dump(results, resfile)
             resfile.seek(0)
     resfile.close()
@@ -177,8 +179,8 @@ def clean_test():
             y_train += labels
             train_csids += tenks[train_i]
         X_test, y_test = parse_csids(tenks[idx])
-        results.append(get_scores(X_train, y_train, train_csids,
-                                  X_test, y_test, test_csids))
+        results.append(get_scores(X_train, y_train,
+                                  X_test, y_test))
         pickle.dump(results, resfile)
         resfile.seek(0)
     resfile.close()
@@ -186,6 +188,7 @@ def clean_test():
 
 
 def print_multilabel_results(resfile, outdir, args=None):
+    logging.info('Writing scores to %s', str(outdir))
     with open(resfile, 'rb') as f:
         results = pickle.load(f)
     # # Now do the evaluation!
@@ -346,8 +349,7 @@ def parse_csids(csids, multilabel=False):
     return features, labels
 
 
-def get_multilabel_scores(clf, X_train, y_train, csids_train,
-                          X_test, y_test, csids_test):
+def get_multilabel_scores(clf, X_train, y_train, X_test, y_test):
     """Gets scores while providing the ntags to clf"""
     clf.fit(X_train, y_train)
     ntags = [len(y) if isinstance(y, list) else 1 for y in y_test]
@@ -365,7 +367,7 @@ def get_multilabel_scores(clf, X_train, y_train, csids_train,
     return y_test, preds
 
 
-def get_scores(clf, X_train, y_train, csids_train, X_test, y_test, csids_test,
+def get_scores(clf, X_train, y_train, X_test, y_test,
                binarize=False, human_check=False):
     """ Gets two lists of changeset ids, does training+testing """
     if binarize:

@@ -1,3 +1,4 @@
+from collections import Counter
 import logging
 import logging.config
 from hashlib import md5
@@ -29,6 +30,7 @@ class Hybrid(BaseEstimator):
                  '--l1 1e-6 --l2 1e-6 --decay_learning_rate 0.995 '
                  '--ftrl',
                  probability=False, tqdm=True,
+                 suffix='',
                  loss_function='hinge',
                  use_temp_files=False):
         """ Initializer for Hybrid method. Do not use multiple instances
@@ -43,6 +45,7 @@ class Hybrid(BaseEstimator):
         self.tqdm = tqdm
         self.use_temp_files = use_temp_files
         self.pass_files_to_vw = pass_files_to_vw
+        self.suffix = suffix
 
     def get_args(self):
         return self.vw_args_
@@ -53,7 +56,7 @@ class Hybrid(BaseEstimator):
             self.vw_modelfile = modelfileobj.name
             modelfileobj.close()
         else:
-            self.vw_modelfile = 'trained_model.vw'
+            self.vw_modelfile = 'trained_model-%s.vw' % self.suffix
             try:
                 os.unlink(self.vw_modelfile)
             except FileNotFoundError:
@@ -86,9 +89,9 @@ class Hybrid(BaseEstimator):
         if self.use_temp_files:
             f = tempfile.NamedTemporaryFile('w', delete=False)
         else:
-            with open('./label_table.yaml', 'w') as f:
+            with open('./label_table-%s.yaml' % self.suffix, 'w') as f:
                 yaml.dump(self.reverse_labels, f)
-            f = open('./fit_input.txt', 'w')
+            f = open('./fit_input-%s.txt' % self.suffix, 'w')
         for tag, labels in train_set:
             if isinstance(labels, str):
                 labels = [labels]
@@ -123,7 +126,7 @@ class Hybrid(BaseEstimator):
         if self.use_temp_files:
             f = tempfile.NamedTemporaryFile('w', delete=False)
         else:
-            f = open('./pred_input.txt', 'w')
+            f = open('./pred_input-%s.txt' % self.suffix, 'w')
         for tag in tags:
             f.write('{} | {}\n'.format(
                 ' '.join([str(x) for x in self.reverse_labels.keys()]),
@@ -181,7 +184,7 @@ class Hybrid(BaseEstimator):
         if self.use_temp_files:
             f = tempfile.NamedTemporaryFile('w', delete=False)
         else:
-            f = open('./pred_input.txt', 'w')
+            f = open('./pred_input-%s.txt' % self.suffix, 'w')
         for tag in tags:
             f.write('| {}\n'.format(' '.join(tag)))
         f.close()
@@ -207,7 +210,8 @@ class Hybrid(BaseEstimator):
 
     def _get_tags(self, X):
         if self.pass_files_to_vw:
-            raise NotImplementedError("Not implemented yet")
+            return _get_filename_frequencies(X, disable_tqdm=(not self.tqdm),
+                                             freq_threshold=self.freq_threshold)
         return _get_columbus_tags(X, disable_tqdm=(not self.tqdm),
                                   freq_threshold=self.freq_threshold,
                                   return_freq=self.pass_freq_to_vw)
@@ -259,6 +263,19 @@ class Columbus(BaseEstimator):
                 tagdict[key] = value
             result.append(tagdict)
         return result
+
+@memory.cache
+def _get_filename_frequencies(X, disable_tqdm=False, freq_threshold=2):
+    logging.info("Getting filename frequencies for %d changesets", len(X))
+    tags = []
+    for changeset in tqdm(X, disable=disable_tqdm):
+        c = Counter()
+        for filename in changeset:
+            c.update(filename.split(' ')[1].split('/'))
+        del c['']
+        tags.append(['{}:{}'.format(tag.replace(':', '').replace('|', ''), freq)
+                     for tag, freq in dict(c).items() if freq > freq_threshold])
+    return tags
 
 @memory.cache
 def _get_columbus_tags(X, disable_tqdm=False,

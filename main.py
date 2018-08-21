@@ -76,8 +76,8 @@ def multiapp_trainw_dirty():
         train_idx = [0, 1, 2]
         train_idx.remove(idx)
         # Split calls to parse_csids for more efficient memoization
-        X_train, y_train = parse_csids(threeks[train_idx[0]])
-        features, labels = parse_csids(threeks[train_idx[1]])
+        X_train, y_train = parse_csids(threeks[train_idx[0]], multilabel=True)
+        features, labels = parse_csids(threeks[train_idx[1]], multilabel=True)
         X_train += features
         y_train += labels
         train_csids = threeks[train_idx[0]] + threeks[train_idx[1]]
@@ -97,15 +97,21 @@ def multiapp_trainw_dirty():
             ml_csids = train_csids + multilabel_chunks[ml_train_idx[0]] +\
                 multilabel_chunks[ml_train_idx[1]]
             X_test, y_test = parse_csids(ml_chunk, multilabel=True)
+            with open('./true_labels.txt', 'w') as f:
+                for label in y_test:
+                    if isinstance(label, list):
+                        f.write(' '.join(label) + '\n')
+                    else:
+                        f.write(label + '\n')
             results.append(get_multilabel_scores(
-                clf, ml_features, ml_labels, train_csids, X_test, y_test,
+                clf, ml_features, ml_labels, train_csids, ml_features, ml_labels,
                 ml_csids))
             pickle.dump(results, resfile)
             resfile.seek(0)
             break
         break
     resfile.close()
-    print_multilabel_results(resfile_name, outdir, args=clf.vw_args)
+    print_multilabel_results(resfile_name, outdir, args=clf.get_args())
 
 
 def onekdirty():
@@ -330,7 +336,10 @@ def parse_csids(csids, multilabel=False):
     for csid in tqdm(csids):
         changeset = get_changeset(csid)
         if multilabel:
-            labels.append(changeset['labels'])
+            if 'labels' in changeset:
+                labels.append(changeset['labels'])
+            else:
+                labels.append([changeset['label']])
         else:
             labels.append(changeset['label'])
         features.append(changeset['changes'])
@@ -341,7 +350,7 @@ def get_multilabel_scores(clf, X_train, y_train, csids_train,
                           X_test, y_test, csids_test):
     """Gets scores while providing the ntags to clf"""
     clf.fit(X_train, y_train)
-    ntags = [len(y) for y in y_test]
+    ntags = [len(y) if isinstance(y, list) else 1 for y in y_test]
     preds = clf.top_k_tags(X_test, ntags)
     hits = misses = predictions = 0
     for pred, label in zip(preds, y_test):

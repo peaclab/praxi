@@ -54,7 +54,10 @@ class Hybrid(BaseEstimator):
             modelfileobj.close()
         else:
             self.vw_modelfile = 'trained_model.vw'
-            os.unlink(self.vw_modelfile)
+            try:
+                os.unlink(self.vw_modelfile)
+            except FileNotFoundError:
+                pass
         logging.info('Started hybrid model, vw_modelfile: %s',
                      self.vw_modelfile)
         self.vw_args_ = self.vw_args
@@ -83,9 +86,9 @@ class Hybrid(BaseEstimator):
         if self.use_temp_files:
             f = tempfile.NamedTemporaryFile('w', delete=False)
         else:
-            f = open('./fit_input.txt', 'w')
             with open('./label_table.yaml', 'w') as f:
                 yaml.dump(self.reverse_labels, f)
+            f = open('./fit_input.txt', 'w')
         for tag, labels in train_set:
             if isinstance(labels, str):
                 labels = [labels]

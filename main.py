@@ -48,7 +48,7 @@ def get_free_filename(stub, directory, suffix=''):
 def multiapp_trainw_dirty():
     resfile_name = get_free_filename('results-multiapp-hybrid', '.', suffix='.pkl')
     outdir = get_free_filename('hybrid-results-multiapp', '/home/centos/results')
-    suffix = 2
+    suffix = 'normal'
     clf = Hybrid(freq_threshold=2, pass_freq_to_vw=True,
                  # pass_files_to_vw=True,
                  suffix=suffix,
@@ -100,7 +100,7 @@ def multiapp_trainw_dirty():
             ml_csids = train_csids + multilabel_chunks[ml_train_idx[0]] +\
                 multilabel_chunks[ml_train_idx[1]]
             X_test, y_test = parse_csids(ml_chunk, multilabel=True)
-            with open('./true_labels-%d.txt' % suffix, 'w') as f:
+            with open('./true_labels-%s.txt' % suffix, 'w') as f:
                 for label in y_test:
                     if isinstance(label, list):
                         f.write(' '.join(label) + '\n')

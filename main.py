@@ -33,10 +33,8 @@ def get_free_filename(stub, directory, suffix=''):
     while True:
         file_candidate = '{}/{}-{}{}'.format(
             str(directory), stub, counter, suffix)
-        for filename in Path(directory).glob('*'):
-            if str(filename) == file_candidate:
-                counter += 1
-                break
+        if Path(file_candidate).exists():
+            counter += 1
         else:  # No match found
             if suffix:
                 Path(file_candidate).touch()
@@ -48,7 +46,7 @@ def get_free_filename(stub, directory, suffix=''):
 def multiapp_trainw_dirty():
     resfile_name = get_free_filename('results-multiapp-hybrid', '.', suffix='.pkl')
     outdir = get_free_filename('hybrid-results-multiapp', '/home/centos/results')
-    suffix = 'normal'
+    suffix = 'first_test'
     clf = Hybrid(freq_threshold=2, pass_freq_to_vw=True,
                  # pass_files_to_vw=True,
                  suffix=suffix,
@@ -110,8 +108,6 @@ def multiapp_trainw_dirty():
                 clf, ml_features, ml_labels, X_test, y_test))
             pickle.dump(results, resfile)
             resfile.seek(0)
-            break
-        break
     resfile.close()
     print_multilabel_results(resfile_name, outdir, args=clf.get_args())
 

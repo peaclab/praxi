@@ -26,7 +26,7 @@ class Hybrid(BaseEstimator):
     """ scikit style class for hybrid method """
     def __init__(self, freq_threshold=1, vw_binary='/home/centos/bin/vw',
                  pass_freq_to_vw=False, pass_files_to_vw=False,
-                 vw_args='--passes 20 ',
+                 vw_args='-b 26 --passes=20 -l 50 --cache',
                  probability=False, tqdm=True,
                  suffix='',
                  loss_function='hinge',
@@ -123,8 +123,12 @@ class Hybrid(BaseEstimator):
         tags = self._get_tags(X)
         if self.use_temp_files:
             f = tempfile.NamedTemporaryFile('w', delete=False)
+            outfobj = tempfile.NamedTemporaryFile('w', delete=False)
+            outf = outfobj.name
+            outf.close()
         else:
             f = open('./pred_input-%s.txt' % self.suffix, 'w')
+            outf = './pred_output-%s.txt' % self.suffix
         for tag in tags:
             f.write('{} | {}\n'.format(
                 ' '.join([str(x) for x in self.reverse_labels.keys()]),
@@ -133,9 +137,9 @@ class Hybrid(BaseEstimator):
         logging.info('vw input written to %s, starting testing', f.name)
         args = f.name
         if self.probability:
-            args += ' -r /dev/stdout'
+            args += ' -r %s' % outf
         else:
-            args += ' -p /dev/stdout'
+            args += ' -p %s' % outf
         c = envoy.run(
             '{vw_binary} {args} -t -i {vw_modelfile}'.format(
                 vw_binary=self.vw_binary, args=args,
@@ -148,21 +152,20 @@ class Hybrid(BaseEstimator):
             raise IOError('Something happened to vw')
         else:
             logging.info(
-                'vw ran sucessfully. one prediction: %s, err: %s',
-                c.std_out.split()[0], c.std_err)
+                'vw ran sucessfully. out: %s, err: %s',
+                c.std_out, c.std_err)
+        all_probas = []
+        with open(outf, 'r') as f:
+            for line in f:
+                probas = {}
+                for word in line.split(' '):
+                    tag, p = word.split(':')
+                    probas[tag] = float(p)
+                all_probas.append(probas)
         if self.use_temp_files:
             os.unlink(f.name)
             os.unlink(self.vw_modelfile)
-        all_probas = []
-        for line in c.std_out.split('\n'):
-            probas = {}
-            for word in line.split(' '):
-                if word == 'args':
-                    break
-                if word:
-                    tag, p = word.split(':')
-                    probas[tag] = float(p)
-            all_probas.append(probas)
+            os.unlink(outf)
         return all_probas
 
     def top_k_tags(self, X, ntags):

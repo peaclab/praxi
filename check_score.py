@@ -24,7 +24,7 @@ def score_vw(result, table, truth, output):
     y_test = []
     ntags = []
     for line in truth:
-        labels = line.split(' ')
+        labels = [x.strip() for x in line.split(' ')]
         y_test.append(labels)
         ntags.append(len(labels))
 

@@ -26,9 +26,7 @@ class Hybrid(BaseEstimator):
     """ scikit style class for hybrid method """
     def __init__(self, freq_threshold=1, vw_binary='/home/centos/bin/vw',
                  pass_freq_to_vw=False, pass_files_to_vw=False,
-                 vw_args='-c --stage_poly -b 26 --passes 1000 '
-                 '--l1 1e-6 --l2 1e-6 --decay_learning_rate 0.995 '
-                 '--ftrl',
+                 vw_args='--passes 20 ',
                  probability=False, tqdm=True,
                  suffix='',
                  loss_function='hinge',

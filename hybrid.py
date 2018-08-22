@@ -26,7 +26,7 @@ class Hybrid(BaseEstimator):
     """ scikit style class for hybrid method """
     def __init__(self, freq_threshold=1, vw_binary='/home/centos/bin/vw',
                  pass_freq_to_vw=False, pass_files_to_vw=False,
-                 vw_args='-b 26 --passes=20 -l 50 --cache',
+                 vw_args='-b 26 --passes=20 -l 50',
                  probability=False, tqdm=True,
                  suffix='',
                  loss_function='hinge',
@@ -101,9 +101,13 @@ class Hybrid(BaseEstimator):
                     input_string += '{}:1.0 '.format(number)
             f.write('{}| {}\n'.format(input_string, ' '.join(tag)))
         f.close()
+        try:
+            os.unlink('a.cache')
+        except FileNotFoundError:
+            pass
         logging.info('vw input written to %s, starting training', f.name)
         c = envoy.run(
-            '{vw_binary} {vw_input} {vw_args} -f {vw_modelfile}'.format(
+            '{vw_binary} {vw_input} {vw_args} --cache_file a.cache -f {vw_modelfile}'.format(
                 vw_binary=self.vw_binary, vw_input=f.name,
                 vw_args=self.vw_args_, vw_modelfile=self.vw_modelfile)
         )

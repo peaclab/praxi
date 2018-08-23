@@ -73,7 +73,7 @@ def multiapp_trainw_dirty():
     resfile = open(resfile_name, 'wb')
     results = []
     for ml_idx, ml_chunk in enumerate(multilabel_chunks):
-        logging.info('Test set is %d', idx)
+        logging.info('Test set is %d', ml_idx)
         ml_train_idx = [0, 1, 2]
         ml_train_idx.remove(ml_idx)
         X_train, y_train = parse_csids(multilabel_chunks[ml_train_idx[0]],

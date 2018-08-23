@@ -72,44 +72,33 @@ def multiapp_trainw_dirty():
 
     resfile = open(resfile_name, 'wb')
     results = []
-    for idx, chunk in tqdm(enumerate(threeks)):
-        logging.info('Omitted set is %d', idx)
-        train_idx = [0, 1, 2]
-        train_idx.remove(idx)
-        # Split calls to parse_csids for more efficient memoization
-        X_train, y_train = parse_csids(threeks[train_idx[0]], multilabel=True)
-        features, labels = parse_csids(threeks[train_idx[1]], multilabel=True)
+    for ml_idx, ml_chunk in enumerate(multilabel_chunks):
+        logging.info('Test set is %d', idx)
+        ml_train_idx = [0, 1, 2]
+        ml_train_idx.remove(ml_idx)
+        X_train, y_train = parse_csids(multilabel_chunks[ml_train_idx[0]],
+                                       multilabel=True)
+        features, labels = parse_csids(multilabel_chunks[ml_train_idx[1]],
+                                       multilabel=True)
         X_train += features
         y_train += labels
-        train_csids = threeks[train_idx[0]] + threeks[train_idx[1]]
-        for ml_idx, ml_chunk in enumerate(multilabel_chunks):
-            logging.info('Test set is %d', ml_idx)
-            ml_train_idx = [0, 1, 2]
-            ml_train_idx.remove(ml_idx)
-            ml_features, ml_labels = \
-                parse_csids(multilabel_chunks[ml_train_idx[0]],
-                            multilabel=True)
-            features, labels = parse_csids(multilabel_chunks[ml_train_idx[1]],
-                                           multilabel=True)
-            ml_features += features
-            ml_labels += labels
-            ml_features += X_train
-            ml_labels += y_train
-            ml_csids = train_csids + multilabel_chunks[ml_train_idx[0]] +\
-                multilabel_chunks[ml_train_idx[1]]
-            X_test, y_test = parse_csids(ml_chunk, multilabel=True)
-            with open('./true_labels-%s.txt' % suffix, 'w') as f:
-                for label in y_test:
-                    if isinstance(label, list):
-                        f.write(' '.join(label) + '\n')
-                    else:
-                        f.write(label + '\n')
+        X_test, y_test = parse_csids(ml_chunk, multilabel=True)
+        results.append(get_multilabel_scores(
+            clf, X_train, y_train, X_test, y_test))
+        pickle.dump(results, resfile)
+        resfile.seek(0)
+
+        for idx, chunk in tqdm(enumerate(threeks)):
+            logging.info('Extra training set is %d', idx)
+            features, labels = parse_csids(chunk, multilabel=True)
+            X_train += features
+            y_train += labels
             results.append(get_multilabel_scores(
-                clf, ml_features, ml_labels, X_test, y_test))
+                clf, X_train, y_train, X_test, y_test))
             pickle.dump(results, resfile)
             resfile.seek(0)
     resfile.close()
-    print_multilabel_results(resfile_name, outdir, args=clf.get_args())
+    print_multilabel_results(resfile_name, outdir, args=clf.get_args(), n_starts=4)
 
 
 def onekdirty():
@@ -183,7 +172,7 @@ def clean_test():
     print_results('./results-rule-clean.pkl', outdir)
 
 
-def print_multilabel_results(resfile, outdir, args=None):
+def print_multilabel_results(resfile, outdir, args=None, n_strats=1):
     logging.info('Writing scores to %s', str(outdir))
     with open(resfile, 'rb') as f:
         results = pickle.load(f)
@@ -192,48 +181,50 @@ def print_multilabel_results(resfile, outdir, args=None):
     # #    0 => ([x, y, z], <-- true
     # #          [x, y, k]) <-- pred
     # #]
-    y_true = []
-    y_pred = []
+    y_trues = [[] for _ in range(n_strats)]
+    y_preds = [[] for _ in range(n_strats)]
     for idx, result in enumerate(results):
-        y_true += result[0]
-        y_pred += result[1]
-    bnz = MultiLabelBinarizer()
-    bnz.fit(y_true)
-    all_tags = copy.deepcopy(y_true)
-    for preds in y_pred:
-        for label in preds:
-            if label not in bnz.classes_:
-                all_tags.append([label])
-                bnz.fit(all_tags)
-    y_true = bnz.transform(y_true)
-    y_pred = bnz.transform(y_pred)
+        y_trues[idx % n_strats] += result[0]
+        y_preds[idx % n_strats] += result[1]
 
-    labels = bnz.classes_
-    report = metrics.classification_report(y_true, y_pred, target_names=labels)
-    f1w = metrics.f1_score(y_true, y_pred, average='weighted')
-    f1i = metrics.f1_score(y_true, y_pred, average='micro')
-    f1a = metrics.f1_score(y_true, y_pred, average='macro')
-    pw = metrics.precision_score(y_true, y_pred, average='weighted')
-    pi = metrics.precision_score(y_true, y_pred, average='micro')
-    pa = metrics.precision_score(y_true, y_pred, average='macro')
-    rw = metrics.recall_score(y_true, y_pred, average='weighted')
-    ri = metrics.recall_score(y_true, y_pred, average='micro')
-    ra = metrics.recall_score(y_true, y_pred, average='macro')
+    for strat, (y_true, y_pred) in enumerate(zip(y_trues, y_preds)):
+        bnz = MultiLabelBinarizer()
+        bnz.fit(y_true)
+        all_tags = copy.deepcopy(y_true)
+        for preds in y_pred:
+            for label in preds:
+                if label not in bnz.classes_:
+                    all_tags.append([label])
+                    bnz.fit(all_tags)
+        y_true = bnz.transform(y_true)
+        y_pred = bnz.transform(y_pred)
 
-    file_header = (
-        "# MULTILABEL EXPERIMENT REPORT\n" +
-        time.strftime("# Generated %c\n#\n") +
-        ('#\n# Args: {}\n#\n'.format(args) if args else '') +
-        "# 3 FOLD CROSS VALIDATION WITH {} CHANGESETS\n".format(len(y_true)) +
-        "# F1 SCORE : {:.3f} weighted, {:.3f} micro-avg'd, {:.3f} macro-avg'd\n".format(f1w, f1i, f1a) +
-        "# PRECISION: {:.3f} weighted, {:.3f} micro-avg'd, {:.3f} macro-avg'd\n".format(pw, pi, pa) +
-        "# RECALL   : {:.3f} weighted, {:.3f} micro-avg'd, {:.3f} macro-avg'd\n#\n".format(rw, ri, ra) +
-        "# {:-^55}\n#".format("CLASSIFICATION REPORT") + report.replace('\n', "\n#")
-    )
-    os.makedirs(str(outdir), exist_ok=True)
-    savetxt("{}/result.txt".format(outdir),
-            np.array([]), fmt='%d', header=file_header, delimiter=',',
-            comments='')
+        labels = bnz.classes_
+        report = metrics.classification_report(y_true, y_pred, target_names=labels)
+        f1w = metrics.f1_score(y_true, y_pred, average='weighted')
+        f1i = metrics.f1_score(y_true, y_pred, average='micro')
+        f1a = metrics.f1_score(y_true, y_pred, average='macro')
+        pw = metrics.precision_score(y_true, y_pred, average='weighted')
+        pi = metrics.precision_score(y_true, y_pred, average='micro')
+        pa = metrics.precision_score(y_true, y_pred, average='macro')
+        rw = metrics.recall_score(y_true, y_pred, average='weighted')
+        ri = metrics.recall_score(y_true, y_pred, average='micro')
+        ra = metrics.recall_score(y_true, y_pred, average='macro')
+
+        file_header = (
+            "# MULTILABEL EXPERIMENT REPORT\n" +
+            time.strftime("# Generated %c\n#\n") +
+            ('#\n# Args: {}\n#\n'.format(args) if args else '') +
+            "# 3 FOLD CROSS VALIDATION WITH {} CHANGESETS\n".format(len(y_true)) +
+            "# F1 SCORE : {:.3f} weighted, {:.3f} micro-avg'd, {:.3f} macro-avg'd\n".format(f1w, f1i, f1a) +
+            "# PRECISION: {:.3f} weighted, {:.3f} micro-avg'd, {:.3f} macro-avg'd\n".format(pw, pi, pa) +
+            "# RECALL   : {:.3f} weighted, {:.3f} micro-avg'd, {:.3f} macro-avg'd\n#\n".format(rw, ri, ra) +
+            "# {:-^55}\n#".format("CLASSIFICATION REPORT") + report.replace('\n', "\n#")
+        )
+        os.makedirs(str(outdir), exist_ok=True)
+        savetxt("{}/{}.txt".format(outdir, strat),
+                np.array([]), fmt='%d', header=file_header, delimiter=',',
+                comments='')
 
 
 def print_results(resfile, outdir, n_strats=5):
@@ -438,6 +429,7 @@ if __name__ == '__main__':
     setup_logging()
     # resfile_name = './results-multiapp-hybrid-1.pkl'
     # outdir = get_free_filename('hybrid-results-multiapp', '/home/centos/results')
-    # print_multilabel_results(resfile_name, outdir)
+    # print_multilabel_results('./results-multiapp-hybrid-3.pkl', '/home/centos/results/multilabel',
+    #                          n_strats=3)
     multiapp_trainw_dirty()
     # onekdirty()

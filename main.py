@@ -98,7 +98,7 @@ def multiapp_trainw_dirty():
             pickle.dump(results, resfile)
             resfile.seek(0)
     resfile.close()
-    print_multilabel_results(resfile_name, outdir, args=clf.get_args(), n_starts=4)
+    print_multilabel_results(resfile_name, outdir, args=clf.get_args(), n_strats=4)
 
 
 def onekdirty():
@@ -429,7 +429,7 @@ if __name__ == '__main__':
     setup_logging()
     # resfile_name = './results-multiapp-hybrid-1.pkl'
     # outdir = get_free_filename('hybrid-results-multiapp', '/home/centos/results')
-    # print_multilabel_results('./results-multiapp-hybrid-3.pkl', '/home/centos/results/multilabel',
-    #                          n_strats=3)
+    # print_multilabel_results('./results-multiapp-hybrid-5.pkl', '/home/centos/results/multilabel',
+    #                          n_strats=4)
     multiapp_trainw_dirty()
     # onekdirty()

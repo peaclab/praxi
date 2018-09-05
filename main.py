@@ -44,9 +44,9 @@ def get_free_filename(stub, directory, suffix=''):
 
 
 def multiapp_trainw_dirty():
-    resfile_name = get_free_filename('results-multiapp-hybrid', '.', suffix='.pkl')
-    outdir = get_free_filename('hybrid-results-multiapp', '/home/centos/results')
-    suffix = 'first_test'
+    resfile_name = get_free_filename('results-multiapp-rule', '.', suffix='.pkl')
+    outdir = get_free_filename('rule-results-multiapp', '/home/centos/results')
+    suffix = 'first_test_rule'
     clf = RuleBased()
     # clf = Hybrid(freq_threshold=2, pass_freq_to_vw=True,
     #              suffix=suffix,

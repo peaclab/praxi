@@ -47,10 +47,10 @@ def multiapp_trainw_dirty():
     resfile_name = get_free_filename('results-multiapp-hybrid', '.', suffix='.pkl')
     outdir = get_free_filename('hybrid-results-multiapp', '/home/centos/results')
     suffix = 'first_test'
-    clf = Hybrid(freq_threshold=2, pass_freq_to_vw=True,
-                 # pass_files_to_vw=True,
-                 suffix=suffix,
-                 probability=True, tqdm=True)
+    clf = RuleBased()
+    # clf = Hybrid(freq_threshold=2, pass_freq_to_vw=True,
+    #              suffix=suffix,
+    #              probability=True, tqdm=True)
     # Get multiapp changesets
     multilabel_csids = []
     with open('/home/centos/multi_app/changesets.txt', 'r') as f:

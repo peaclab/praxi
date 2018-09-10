@@ -49,6 +49,8 @@ class Hybrid(BaseEstimator):
         return self.vw_args_
 
     def fit(self, X, y):
+        if not self.probability:
+            X, y = self._filter_multilabels(X, y)
         if self.use_temp_files:
             modelfileobj = tempfile.NamedTemporaryFile('w', delete=False)
             self.vw_modelfile = modelfileobj.name
@@ -79,6 +81,8 @@ class Hybrid(BaseEstimator):
         if self.probability:
             self.vw_args_ += ' --csoaa {}'.format(len(all_labels))
         else:
+            self.vw_args_ += ' --probabilities'
+            self.loss_function = 'logistic'
             self.vw_args_ += ' --oaa {}'.format(len(all_labels))
             self.vw_args_ += ' --loss_function={}'.format(self.loss_function)
         tags = self._get_tags(X)
@@ -94,23 +98,26 @@ class Hybrid(BaseEstimator):
             if isinstance(labels, str):
                 labels = [labels]
             input_string = ''
-            for label, number in self.indexed_labels.items():
-                if label in labels:
-                    input_string += '{}:0.0 '.format(number)
-                else:
-                    input_string += '{}:1.0 '.format(number)
+            if self.probability:
+                for label, number in self.indexed_labels.items():
+                    if label in labels:
+                        input_string += '{}:0.0 '.format(number)
+                    else:
+                        input_string += '{}:1.0 '.format(number)
+            else:
+                input_string += '{} '.format(self.indexed_labels[labels[0]])
             f.write('{}| {}\n'.format(input_string, ' '.join(tag)))
         f.close()
         try:
             os.unlink('a.cache')
         except FileNotFoundError:
             pass
+        command = '{vw_binary} {vw_input} {vw_args} --cache_file a.cache -f {vw_modelfile}'.format(
+            vw_binary=self.vw_binary, vw_input=f.name,
+            vw_args=self.vw_args_, vw_modelfile=self.vw_modelfile)
         logging.info('vw input written to %s, starting training', f.name)
-        c = envoy.run(
-            '{vw_binary} {vw_input} {vw_args} --cache_file a.cache -f {vw_modelfile}'.format(
-                vw_binary=self.vw_binary, vw_input=f.name,
-                vw_args=self.vw_args_, vw_modelfile=self.vw_modelfile)
-        )
+        logging.info('vw command: %s', command)
+        c = envoy.run(command)
         if c.status_code:
             logging.error(
                 'something happened to vw, code: %d, out: %s, err: %s',
@@ -133,22 +140,26 @@ class Hybrid(BaseEstimator):
         else:
             f = open('./pred_input-%s.txt' % self.suffix, 'w')
             outf = './pred_output-%s.txt' % self.suffix
-        for tag in tags:
-            f.write('{} | {}\n'.format(
-                ' '.join([str(x) for x in self.reverse_labels.keys()]),
-                ' '.join(tag)))
+        if self.probability:
+            for tag in tags:
+                f.write('{} | {}\n'.format(
+                    ' '.join([str(x) for x in self.reverse_labels.keys()]),
+                    ' '.join(tag)))
+        else:
+            for tag in tags:
+                f.write('| {}\n'.format(' '.join(tag)))
         f.close()
         logging.info('vw input written to %s, starting testing', f.name)
         args = f.name
         if self.probability:
             args += ' -r %s' % outf
         else:
-            args += ' -p %s' % outf
-        c = envoy.run(
-            '{vw_binary} {args} -t -i {vw_modelfile}'.format(
-                vw_binary=self.vw_binary, args=args,
-                vw_modelfile=self.vw_modelfile)
-        )
+            args += ' -r %s' % outf
+        command = '{vw_binary} {args} -t -i {vw_modelfile}'.format(
+            vw_binary=self.vw_binary, args=args,
+            vw_modelfile=self.vw_modelfile)
+        logging.info('vw command: %s', command)
+        c = envoy.run(command)
         if c.status_code:
             logging.error(
                 'something happened to vw, code: %d, out: %s, err: %s',
@@ -178,7 +189,10 @@ class Hybrid(BaseEstimator):
         for ntag, proba in zip(ntags, probas):
             cur_top_k = []
             for i in range(ntag):
-                tag = min(proba.keys(), key=lambda key: proba[key])
+                if self.probability:
+                    tag = min(proba.keys(), key=lambda key: proba[key])
+                else:
+                    tag = max(proba.keys(), key=lambda key: proba[key])
                 proba.pop(tag)
                 cur_top_k.append(self.reverse_labels[int(tag)])
             result.append(cur_top_k)
@@ -194,11 +208,11 @@ class Hybrid(BaseEstimator):
             f.write('| {}\n'.format(' '.join(tag)))
         f.close()
         logging.info('vw input written to %s, starting testing', f.name)
-        c = envoy.run(
-            '{vw_binary} {vw_input} -t -p /dev/stdout -i {vw_modelfile}'.format(
-                vw_binary=self.vw_binary, vw_input=f.name,
-                vw_modelfile=self.vw_modelfile)
-        )
+        command = '{vw_binary} {vw_input} -t -p /dev/stdout -i {vw_modelfile}'.format(
+            vw_binary=self.vw_binary, vw_input=f.name,
+            vw_modelfile=self.vw_modelfile)
+        logging.info('vw command: %s', command)
+        c = envoy.run(command)
         if c.status_code:
             logging.error(
                 'something happened to vw, code: %d, out: %s, err: %s',
@@ -220,6 +234,18 @@ class Hybrid(BaseEstimator):
         return _get_columbus_tags(X, disable_tqdm=(not self.tqdm),
                                   freq_threshold=self.freq_threshold,
                                   return_freq=self.pass_freq_to_vw)
+
+    def _filter_multilabels(self, X, y):
+        new_X = []
+        new_y = []
+        for data, labels in zip(X, y):
+            if isinstance(labels, list) and len(labels) == 1:
+                new_X.append(data)
+                new_y.append(labels[0])
+            elif isinstance(labels, str):
+                new_X.append(data)
+                new_y.append(labels)
+        return new_X, new_y
 
     def score(self, X, y):
         predictions = self.predict(X)

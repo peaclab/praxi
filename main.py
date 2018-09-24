@@ -75,6 +75,7 @@ def multiapp_trainw_dirty():
           'threek_dirty_chunks.p').open('rb') as f:
         threeks = pickle.load(f)
 
+    logging.info("Prediction pickle is %s", resfile_name)
     resfile = open(resfile_name, 'wb')
     results = []
     for ml_idx, ml_chunk in enumerate(multilabel_chunks):
@@ -344,6 +345,10 @@ def parse_csids(csids, multilabel=False):
 def get_multilabel_scores(clf, X_train, y_train, X_test, y_test):
     """Gets scores while providing the ntags to clf"""
     clf.fit(X_train, y_train)
+    rulefile = get_free_filename('rules', '.', suffix='.yml')
+    logging.info("Dumping rules to %s", rulefile)
+    with open(rulefile, 'w') as f:
+        yaml.dump(clf.rules, f)
     ntags = [len(y) if isinstance(y, list) else 1 for y in y_test]
     preds = clf.top_k_tags(X_test, ntags)
     hits = misses = predictions = 0
@@ -434,7 +439,9 @@ if __name__ == '__main__':
     setup_logging()
     # resfile_name = './results-multiapp-hybrid-1.pkl'
     # outdir = get_free_filename('hybrid-results-multiapp', '/home/centos/results')
-    # print_multilabel_results('./results-multiapp-hybrid-5.pkl', '/home/centos/results/multilabel',
+    # print_multilabel_results('./results-rule-0.pkl', '/home/centos/results/rule0',
+    #                          n_strats=4)
+    # print_multilabel_results('./results-rule-1.pkl', '/home/centos/results/rule1',
     #                          n_strats=4)
     multiapp_trainw_dirty()
     # onekdirty()

@@ -47,12 +47,12 @@ def multiapp_trainw_dirty():
     resfile_name = get_free_filename('results-rule', '.', suffix='.pkl')
     outdir = get_free_filename('rule-results-multiapp', '/home/centos/results')
     suffix = 'rule_based'
-    clf = RuleBased()
-    # clf = Hybrid(freq_threshold=2, pass_freq_to_vw=True, probability=False,
-    #              vw_args='-q :: --l2 0.005 -b 25 --passes 300 '
-    #              '--learning_rate 1.25 --decay_learning_rate 0.95 --ftrl',
-    #              suffix=suffix
-    #              )
+    # clf = RuleBased(filter_method='intersect')
+    clf = Hybrid(freq_threshold=2, pass_freq_to_vw=True, probability=False,
+                 vw_args='-q :: --l2 0.005 -b 25 --passes 300 '
+                 '--learning_rate 1.25 --decay_learning_rate 0.95 --ftrl',
+                 suffix=suffix
+                 )
     # clf = Hybrid(freq_threshold=2, pass_freq_to_vw=True,
     #              suffix=suffix,
     #              probability=True, tqdm=True)
@@ -345,10 +345,10 @@ def parse_csids(csids, multilabel=False):
 def get_multilabel_scores(clf, X_train, y_train, X_test, y_test):
     """Gets scores while providing the ntags to clf"""
     clf.fit(X_train, y_train)
-    rulefile = get_free_filename('rules', '.', suffix='.yml')
-    logging.info("Dumping rules to %s", rulefile)
-    with open(rulefile, 'w') as f:
-        yaml.dump(clf.rules, f)
+    # rulefile = get_free_filename('rules', '.', suffix='.yml')
+    # logging.info("Dumping rules to %s", rulefile)
+    # with open(rulefile, 'w') as f:
+    #     yaml.dump(clf.rules, f)
     ntags = [len(y) if isinstance(y, list) else 1 for y in y_test]
     preds = clf.top_k_tags(X_test, ntags)
     hits = misses = predictions = 0

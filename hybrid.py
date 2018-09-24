@@ -18,7 +18,7 @@ from columbus.columbus import columbus
 
 
 LOCK = Lock()
-COLUMBUS_CACHE = Path('~/caches/columbus-cache').expanduser()
+COLUMBUS_CACHE = Path('~/caches/columbus-cache-2').expanduser()
 memory = Memory(cachedir='/home/centos/caches/joblib-cache', verbose=0)
 
 

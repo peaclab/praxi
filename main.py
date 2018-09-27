@@ -44,31 +44,22 @@ def get_free_filename(stub, directory, suffix=''):
 
 
 def multiapp_trainw_dirty():
-    resfile_name = get_free_filename('results-rule', '.', suffix='.pkl')
-    outdir = get_free_filename('rule-results-multiapp', '/home/centos/results')
-    suffix = 'rule_based'
-    # clf = RuleBased(filter_method='intersect')
-    clf = Hybrid(freq_threshold=2, pass_freq_to_vw=True, probability=False,
-                 vw_args='-q :: --l2 0.005 -b 25 --passes 300 '
-                 '--learning_rate 1.25 --decay_learning_rate 0.95 --ftrl',
-                 suffix=suffix
-                 )
+    resfile_name = get_free_filename('result-rule', '.', suffix='.pkl')
+    outdir = get_free_filename('rule-multiapp', '/home/centos/results')
+    suffix = 'rule'
+    clf = RuleBased(filter_method='take_max')
+    # clf = Hybrid(freq_threshold=2, pass_freq_to_vw=True, probability=False,
+    #              vw_args='-q :: --l2 0.005 -b 25 --passes 300 '
+    #              '--learning_rate 1.25 --decay_learning_rate 0.95 --ftrl',
+    #              suffix=suffix
+    #              )
     # clf = Hybrid(freq_threshold=2, pass_freq_to_vw=True,
     #              suffix=suffix,
     #              probability=True, tqdm=True)
     # Get multiapp changesets
-    multilabel_csids = []
-    with open('/home/centos/multi_app/changesets.txt', 'r') as f:
-        for line in f:
-            multilabel_csids.append(int(line.strip()))
-    random.seed(51)
-    random.shuffle(multilabel_csids)
-    nfolds = 3
-    fold_size = len(multilabel_csids) // nfolds
-    multilabel_chunks = []
-    for i in range(nfolds):
-        multilabel_chunks.append(
-            multilabel_csids[fold_size * i:fold_size * (i+1)])
+    with (PROJECT_ROOT / 'changeset_sets' /
+          'multilabel_chunks.p').open('rb') as f:
+        multilabel_chunks = pickle.load(f)
 
     # Get single app dirty changesets
     with (PROJECT_ROOT / 'changeset_sets' /

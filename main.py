@@ -47,7 +47,7 @@ def multiapp_trainw_dirty():
     resfile_name = get_free_filename('result-rule', '.', suffix='.pkl')
     outdir = get_free_filename('rule-multiapp', '/home/centos/results')
     suffix = 'rule'
-    clf = RuleBased(filter_method='take_max')
+    clf = RuleBased(filter_method='take_max', num_rules=6)
     # clf = Hybrid(freq_threshold=2, pass_freq_to_vw=True, probability=False,
     #              vw_args='-q :: --l2 0.005 -b 25 --passes 300 '
     #              '--learning_rate 1.25 --decay_learning_rate 0.95 --ftrl',

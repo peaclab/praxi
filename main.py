@@ -3,6 +3,7 @@
 import copy
 import logging
 import logging.config
+import itertools
 import os
 import pickle
 from pathlib import Path
@@ -26,6 +27,78 @@ PROJECT_ROOT = Path('~/hybrid-method').expanduser()
 CHANGESET_ROOT = Path('~/caches/changesets/').expanduser()
 memory = Memory(cachedir='/home/centos/caches/joblib-cache', verbose=0)
 LABEL_DICT = Path('./pred_label_dict.pkl')
+
+
+def iterative_tests():
+    resfile_name = get_free_filename('iterative-hybrid', '.', suffix='.pkl')
+    outdir = get_free_filename('iterative-hybrid', '/home/centos/results')
+    suffix = 'hybrid'
+    # clf = RuleBased(filter_method='take_max', num_rules=6)
+    clf = Hybrid(freq_threshold=2, pass_freq_to_vw=True, probability=False,
+                 vw_args='-q :: --l2 0.005 -b 25 --passes 300 '
+                 '--learning_rate 1.25 --decay_learning_rate 0.95 --ftrl',
+                 suffix=suffix
+                 )
+    # clf = Hybrid(freq_threshold=2, pass_freq_to_vw=True,
+    #              suffix=suffix,
+    #              probability=True, tqdm=True)
+    # Get single app dirty changesets
+    with (PROJECT_ROOT / 'changeset_sets' /
+          'threek_dirty_chunks.p').open('rb') as f:
+        threeks = pickle.load(f)
+
+    all_csids = list(itertools.chain.from_iterable(threeks))
+    _, labels = parse_csids(all_csids)
+    import pandas as pd
+    # Shuffle the csids
+    df = pd.DataFrame({'csid': all_csids, 'label': labels}).sample(frac=1)
+    chunks = []
+    inner_chunks = [[], [], []]
+    counter = 0
+    for label in df['label'].unique():
+        if counter in [20, 40, 60]:
+            chunks.append(copy.deepcopy(inner_chunks))
+            inner_chunks = [[], [], []]
+        inner_chunks[0].extend(df[df['label'] == label]['csid'].values[:10])
+        inner_chunks[1].extend(df[df['label'] == label]['csid'].values[10:20])
+        inner_chunks[2].extend(df[df['label'] == label]['csid'].values[20:30])
+        counter += 1
+    chunks.append(copy.deepcopy(inner_chunks))
+    with open('./iterative_chunks.p', 'wb') as f:
+        pickle.dump(chunks, f)
+
+
+
+    # logging.info("Prediction pickle is %s", resfile_name)
+    # resfile = open(resfile_name, 'wb')
+    # results = []
+    # for ml_idx, ml_chunk in enumerate(multilabel_chunks):
+    #     logging.info('Test set is %d', ml_idx)
+    #     ml_train_idx = [0, 1, 2]
+    #     ml_train_idx.remove(ml_idx)
+    #     X_train, y_train = parse_csids(multilabel_chunks[ml_train_idx[0]],
+    #                                    multilabel=True)
+    #     features, labels = parse_csids(multilabel_chunks[ml_train_idx[1]],
+    #                                    multilabel=True)
+    #     X_train += features
+    #     y_train += labels
+    #     X_test, y_test = parse_csids(ml_chunk, multilabel=True)
+    #     results.append(get_multilabel_scores(
+    #         clf, X_train, y_train, X_test, y_test))
+    #     pickle.dump(results, resfile)
+    #     resfile.seek(0)
+
+    #     for idx, chunk in tqdm(enumerate(threeks)):
+    #         logging.info('Extra training set is %d', idx)
+    #         features, labels = parse_csids(chunk, multilabel=True)
+    #         X_train += features
+    #         y_train += labels
+    #         results.append(get_multilabel_scores(
+    #             clf, X_train, y_train, X_test, y_test))
+    #         pickle.dump(results, resfile)
+    #         resfile.seek(0)
+    # resfile.close()
+    # print_multilabel_results(resfile_name, outdir, args=clf.get_args(), n_strats=4)
 
 
 def get_free_filename(stub, directory, suffix=''):
@@ -434,5 +507,6 @@ if __name__ == '__main__':
     #                          n_strats=4)
     # print_multilabel_results('./results-rule-1.pkl', '/home/centos/results/rule1',
     #                          n_strats=4)
-    multiapp_trainw_dirty()
+    # multiapp_trainw_dirty()
+    iterative_tests()
     # onekdirty()

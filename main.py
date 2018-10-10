@@ -43,19 +43,20 @@ def iterative_tests():
     #              suffix=suffix,
     #              probability=True, tqdm=True)
     # Get single app dirty changesets
-    with (PROJECT_ROOT / 'changeset_sets' /
-          'threek_dirty_chunks.p').open('rb') as f:
-        threeks = pickle.load(f)
+    with (PROJECT_ROOT / 'iterative_chunks.p').open('rb') as f:
+        it_chunks = pickle.load(f)
 
-    all_csids = list(itertools.chain.from_iterable(threeks))
-    _, labels = parse_csids(all_csids)
+    # all_csids = list(itertools.chain.from_iterable(threeks))
+    # _, labels = parse_csids(all_csids)
     import pandas as pd
     # Shuffle the csids
-    df = pd.DataFrame({'csid': all_csids, 'label': labels}).sample(frac=1)
+    df = pd.read_csv('~/october.csv').sample(frac=1)
     chunks = []
     inner_chunks = [[], [], []]
     counter = 0
     for label in df['label'].unique():
+        if len(df[df['label'] == label]) < 30:
+            print(label, len(df[df['label'] == label]))
         if counter in [20, 40, 60]:
             chunks.append(copy.deepcopy(inner_chunks))
             inner_chunks = [[], [], []]

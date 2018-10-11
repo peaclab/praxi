@@ -46,60 +46,30 @@ def iterative_tests():
     with (PROJECT_ROOT / 'iterative_chunks.p').open('rb') as f:
         it_chunks = pickle.load(f)
 
-    # all_csids = list(itertools.chain.from_iterable(threeks))
-    # _, labels = parse_csids(all_csids)
-    import pandas as pd
-    # Shuffle the csids
-    df = pd.read_csv('~/october.csv').sample(frac=1)
-    chunks = []
-    inner_chunks = [[], [], []]
-    counter = 0
-    for label in df['label'].unique():
-        if len(df[df['label'] == label]) < 30:
-            print(label, len(df[df['label'] == label]))
-        if counter in [20, 40, 60]:
-            chunks.append(copy.deepcopy(inner_chunks))
-            inner_chunks = [[], [], []]
-        inner_chunks[0].extend(df[df['label'] == label]['csid'].values[:10])
-        inner_chunks[1].extend(df[df['label'] == label]['csid'].values[10:20])
-        inner_chunks[2].extend(df[df['label'] == label]['csid'].values[20:30])
-        counter += 1
-    chunks.append(copy.deepcopy(inner_chunks))
-    with open('./iterative_chunks.p', 'wb') as f:
-        pickle.dump(chunks, f)
-
-
-
-    # logging.info("Prediction pickle is %s", resfile_name)
-    # resfile = open(resfile_name, 'wb')
-    # results = []
-    # for ml_idx, ml_chunk in enumerate(multilabel_chunks):
-    #     logging.info('Test set is %d', ml_idx)
-    #     ml_train_idx = [0, 1, 2]
-    #     ml_train_idx.remove(ml_idx)
-    #     X_train, y_train = parse_csids(multilabel_chunks[ml_train_idx[0]],
-    #                                    multilabel=True)
-    #     features, labels = parse_csids(multilabel_chunks[ml_train_idx[1]],
-    #                                    multilabel=True)
-    #     X_train += features
-    #     y_train += labels
-    #     X_test, y_test = parse_csids(ml_chunk, multilabel=True)
-    #     results.append(get_multilabel_scores(
-    #         clf, X_train, y_train, X_test, y_test))
-    #     pickle.dump(results, resfile)
-    #     resfile.seek(0)
-
-    #     for idx, chunk in tqdm(enumerate(threeks)):
-    #         logging.info('Extra training set is %d', idx)
-    #         features, labels = parse_csids(chunk, multilabel=True)
-    #         X_train += features
-    #         y_train += labels
-    #         results.append(get_multilabel_scores(
-    #             clf, X_train, y_train, X_test, y_test))
-    #         pickle.dump(results, resfile)
-    #         resfile.seek(0)
-    # resfile.close()
-    # print_multilabel_results(resfile_name, outdir, args=clf.get_args(), n_strats=4)
+    logging.info("Prediction pickle is %s", resfile_name)
+    resfile = open(resfile_name, 'wb')
+    results = []
+    X_train = []
+    y_train = []
+    X_test = []
+    y_test = []
+    for idx, inner_chunks in enumerate(it_chunks):
+        logging.info('In iteration %d', ml_idx)
+        features, labels = parse_csids(inner_chunks[0])
+        X_train += features
+        y_train += labels
+        features, labels = parse_csids(inner_chunks[1])
+        X_train += features
+        y_train += labels
+        features, labels = parse_csids(inner_chunks[2])
+        X_test += features
+        y_test += labels
+        results.append(get_multilabel_scores(
+            clf, X_train, y_train, X_test, y_test))
+        pickle.dump(results, resfile)
+        resfile.seek(0)
+    resfile.close()
+    print_results(resfile_name, outdir, args=clf.get_args(), n_strats=len(it_chunks))
 
 
 def get_free_filename(stub, directory, suffix=''):
@@ -298,7 +268,8 @@ def print_multilabel_results(resfile, outdir, args=None, n_strats=1):
                 comments='')
 
 
-def print_results(resfile, outdir, n_strats=5):
+def print_results(resfile, outdir, n_strats=5, args=None):
+    logging.info('Writing scores to %s', str(outdir))
     with open(resfile, 'rb') as f:
         results = pickle.load(f)
     # # Now do the evaluation!
@@ -350,6 +321,7 @@ def print_results(resfile, outdir, n_strats=5):
         file_header = (
             "# 1K DIRTY EXPERIMENTAL REPORT: STRATUM {}\n".format(strat) +
             time.strftime("# Generated %c\n#\n") +
+            ('#\n# Args: {}\n#\n'.format(args) if args else '') +
             "# TRAIN: Dirty (1000, avg'ed over #0,1,2) + Clean #{}\n".format(clean_tr_str) +
             "# TEST : Dirty (2000, avg'ed over #0,1,2) + Clean #nil = 2000 total\n" +
             "# F1 SCORE : {:.3f} weighted, {:.3f} micro-avg'd, {:.3f} macro-avg'd\n".format(f1w, f1i, f1a) +
@@ -358,8 +330,8 @@ def print_results(resfile, outdir, n_strats=5):
             "# {:-^55}\n#".format("CLASSIFICATION REPORT") + report.replace('\n', "\n#") +
             " {:-^55}\n".format("CONFUSION MATRIX")
         )
-        os.makedirs("/home/centos/{}".format(outdir), exist_ok=True)
-        savetxt("/home/centos/{}/{}.txt".format(outdir, strat),
+        os.makedirs(str(outdir), exist_ok=True)
+        savetxt("{}/{}.txt".format(outdir, strat),
                 confuse, fmt='%d', header=file_header, delimiter=',',
                 comments='')
 

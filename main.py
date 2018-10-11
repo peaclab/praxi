@@ -54,14 +54,14 @@ def iterative_tests():
     X_test = []
     y_test = []
     for idx, inner_chunks in enumerate(it_chunks):
-        logging.info('In iteration %d', ml_idx)
-        features, labels = parse_csids(inner_chunks[0])
+        logging.info('In iteration %d', idx)
+        features, labels = parse_csids(inner_chunks[0], iterative=True)
         X_train += features
         y_train += labels
-        features, labels = parse_csids(inner_chunks[1])
+        features, labels = parse_csids(inner_chunks[1], iterative=True)
         X_train += features
         y_train += labels
-        features, labels = parse_csids(inner_chunks[2])
+        features, labels = parse_csids(inner_chunks[2], iterative=True)
         X_test += features
         y_test += labels
         results.append(get_multilabel_scores(
@@ -336,13 +336,17 @@ def print_results(resfile, outdir, n_strats=5, args=None):
                 comments='')
 
 
-def get_changeset(csid):
+def get_changeset(csid, iterative=False):
     changeset = None
     if str(csid) in {'5', '6', '7'}:
         # Dirty fix for finger, autotrace
-        globstr = '*[!16].5.*'
+        globstr = '*[!16].5'
     else:
-        globstr = '*.{}.*'.format(csid)
+        globstr = '*.{}'.format(csid)
+    if iterative:
+        globstr += '.yaml'
+    else:
+        globstr += '.*'
     for csfile in CHANGESET_ROOT.glob(globstr):
         if changeset is not None:
             raise IOError(
@@ -361,13 +365,13 @@ def get_changeset(csid):
 
 
 @memory.cache
-def parse_csids(csids, multilabel=False):
+def parse_csids(csids, multilabel=False, iterative=False):
     """ Returns labels and features from csids, features are file sets
     file sets: list of string of format '644 /usr/.../file' """
     features = []
     labels = []
     for csid in tqdm(csids):
-        changeset = get_changeset(csid)
+        changeset = get_changeset(csid, iterative=iterative)
         if multilabel:
             if 'labels' in changeset:
                 labels.append(changeset['labels'])

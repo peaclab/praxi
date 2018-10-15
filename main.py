@@ -64,12 +64,12 @@ def iterative_tests():
         features, labels = parse_csids(inner_chunks[2], iterative=True)
         X_test += features
         y_test += labels
-        results.append(get_multilabel_scores(
-            clf, X_train, y_train, X_test, y_test))
+        results.append(get_scores(clf, X_train, y_train, X_test, y_test))
         pickle.dump(results, resfile)
         resfile.seek(0)
     resfile.close()
-    print_results(resfile_name, outdir, args=clf.get_args(), n_strats=len(it_chunks))
+    print_results(resfile_name, outdir, args=clf.get_args(),
+                  n_strats=len(it_chunks), iterative=True)
 
 
 def get_free_filename(stub, directory, suffix=''):
@@ -268,7 +268,7 @@ def print_multilabel_results(resfile, outdir, args=None, n_strats=1):
                 comments='')
 
 
-def print_results(resfile, outdir, n_strats=5, args=None):
+def print_results(resfile, outdir, n_strats=5, args=None, iterative=False):
     logging.info('Writing scores to %s', str(outdir))
     with open(resfile, 'rb') as f:
         results = pickle.load(f)
@@ -295,6 +295,7 @@ def print_results(resfile, outdir, n_strats=5, args=None):
     r_micro = []
     r_macro = []
     confusions = []
+    label_counts = []
     for x, y in zip(y_true, y_pred):
         classifications.append(metrics.classification_report(x, y, labels))
         f1_weighted.append(metrics.f1_score(x, y, labels, average='weighted'))
@@ -309,21 +310,30 @@ def print_results(resfile, outdir, n_strats=5, args=None):
         r_micro.append(metrics.recall_score(x, y, labels, average='micro'))
         r_macro.append(metrics.recall_score(x, y, labels, average='macro'))
         confusions.append(metrics.confusion_matrix(x, y, labels))
+        label_counts.append(len(set(x)))
 
-    for strat, report, f1w, f1i, f1a, pw, pi, pa, rw, ri, ra, confuse in zip(
+    for strat, report, f1w, f1i, f1a, pw, pi, pa, rw, ri, ra, confuse, lc in zip(
             range(n_strats), classifications, f1_weighted, f1_micro, f1_macro,
             p_weighted, p_micro, p_macro, r_weighted, r_micro, r_macro,
-            confusions):
-        clean_tr_str = (
-            "nil = 1000 total" if strat == 0 else
-            ','.join(str(x) for x in range(strat)) + " ({}) = {} total".format(
-                strat * 2500, strat * 2500 + 1000))
-        file_header = (
-            "# 1K DIRTY EXPERIMENTAL REPORT: STRATUM {}\n".format(strat) +
-            time.strftime("# Generated %c\n#\n") +
-            ('#\n# Args: {}\n#\n'.format(args) if args else '') +
-            "# TRAIN: Dirty (1000, avg'ed over #0,1,2) + Clean #{}\n".format(clean_tr_str) +
-            "# TEST : Dirty (2000, avg'ed over #0,1,2) + Clean #nil = 2000 total\n" +
+            confusions, label_counts):
+        if not iterative:
+            clean_tr_str = (
+                "nil = 1000 total" if strat == 0 else
+                ','.join(str(x) for x in range(strat)) + " ({}) = {} total".format(
+                    strat * 2500, strat * 2500 + 1000))
+            file_header = (
+                "# 1K DIRTY EXPERIMENTAL REPORT: STRATUM {}\n".format(strat) +
+                time.strftime("# Generated %c\n#\n") +
+                ('#\n# Args: {}\n#\n'.format(args) if args else '') +
+                "# TRAIN: Dirty (1000, avg'ed over #0,1,2) + Clean #{}\n".format(clean_tr_str) +
+                "# TEST : Dirty (2000, avg'ed over #0,1,2) + Clean #nil = 2000 total\n")
+        else:
+            file_header = (
+                "# ITERATIVE EXPERIMENTAL REPORT: STRATUM {}\n".format(strat) +
+                time.strftime("# Generated %c\n#\n") +
+                ('#\n# Args: {}\n#\n'.format(args) if args else '') +
+                "# LABEL COUNT : {}\n".format(lc))
+        file_header += (
             "# F1 SCORE : {:.3f} weighted, {:.3f} micro-avg'd, {:.3f} macro-avg'd\n".format(f1w, f1i, f1a) +
             "# PRECISION: {:.3f} weighted, {:.3f} micro-avg'd, {:.3f} macro-avg'd\n".format(pw, pi, pa) +
             "# RECALL   : {:.3f} weighted, {:.3f} micro-avg'd, {:.3f} macro-avg'd\n#\n".format(rw, ri, ra) +
@@ -447,7 +457,7 @@ def get_scores(clf, X_train, y_train, X_test, y_test,
     logging.info("Preds:" + str(predictions))
     logging.info("Hits:" + str(hits))
     logging.info("Misses:" + str(misses))
-    return y_test, preds
+    return copy.deepcopy(y_test), preds
 
 
 def setup_logging():

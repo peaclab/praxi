@@ -53,20 +53,24 @@ def iterative_tests():
     y_train = []
     X_test = []
     y_test = []
-    for idx, inner_chunks in enumerate(it_chunks):
-        logging.info('In iteration %d', idx)
-        features, labels = parse_csids(inner_chunks[0], iterative=True)
-        X_train += features
-        y_train += labels
-        features, labels = parse_csids(inner_chunks[1], iterative=True)
-        X_train += features
-        y_train += labels
-        features, labels = parse_csids(inner_chunks[2], iterative=True)
-        X_test += features
-        y_test += labels
-        results.append(get_scores(clf, X_train, y_train, X_test, y_test))
-        pickle.dump(results, resfile)
-        resfile.seek(0)
+    for i in range(3):
+        i1 = i % 3
+        i2 = (i + 1) % 3
+        i3 = (i + 2) % 3
+        for idx, inner_chunks in enumerate(it_chunks):
+            logging.info('In iteration %d', idx)
+            features, labels = parse_csids(inner_chunks[i1], iterative=True)
+            X_train += features
+            y_train += labels
+            features, labels = parse_csids(inner_chunks[i2], iterative=True)
+            X_train += features
+            y_train += labels
+            features, labels = parse_csids(inner_chunks[i3], iterative=True)
+            X_test += features
+            y_test += labels
+            results.append(get_scores(clf, X_train, y_train, X_test, y_test))
+            pickle.dump(results, resfile)
+            resfile.seek(0)
     resfile.close()
     print_results(resfile_name, outdir, args=clf.get_args(),
                   n_strats=len(it_chunks), iterative=True)

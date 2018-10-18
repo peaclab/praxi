@@ -99,6 +99,8 @@ class Hybrid(BaseEstimator):
             self.loss_function = 'logistic'
             self.vw_args_ += ' --oaa {}'.format(len(self.all_labels))
             self.vw_args_ += ' --loss_function={}'.format(self.loss_function)
+        if self.iterative:
+            self.vw_args_ += ' --save_resume'
         tags = self._get_tags(X)
         train_set = list(zip(tags, y))
         random.shuffle(train_set)

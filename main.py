@@ -33,11 +33,12 @@ def iterative_tests():
     resfile_name = get_free_filename('iterative-hybrid', '.', suffix='.pkl')
     outdir = get_free_filename('iterative-hybrid', '/home/centos/results')
     suffix = 'hybrid'
+    iterative = True
     # clf = RuleBased(filter_method='take_max', num_rules=6)
     clf = Hybrid(freq_threshold=2, pass_freq_to_vw=True, probability=False,
                  vw_args='-q :: --l2 0.005 -b 25 --passes 300 '
                  '--learning_rate 1.25 --decay_learning_rate 0.95 --ftrl',
-                 suffix=suffix
+                 suffix=suffix, iterative=iterative
                  )
     # clf = Hybrid(freq_threshold=2, pass_freq_to_vw=True,
     #              suffix=suffix,
@@ -49,19 +50,25 @@ def iterative_tests():
     logging.info("Prediction pickle is %s", resfile_name)
     resfile = open(resfile_name, 'wb')
     results = []
-    X_train = []
-    y_train = []
-    X_test = []
-    y_test = []
     for i in range(3):
         i1 = i % 3
         i2 = (i + 1) % 3
         i3 = (i + 2) % 3
+        X_train = []
+        y_train = []
+        X_test = []
+        y_test = []
+        if iterative:
+            clf.refresh()
         for idx, inner_chunks in enumerate(it_chunks):
             logging.info('In iteration %d', idx)
             features, labels = parse_csids(inner_chunks[i1], iterative=True)
-            X_train += features
-            y_train += labels
+            if iterative:
+                X_train = features
+                y_train = labels
+            else:
+                X_train += features
+                y_train += labels
             features, labels = parse_csids(inner_chunks[i2], iterative=True)
             X_train += features
             y_train += labels

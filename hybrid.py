@@ -28,7 +28,7 @@ class Hybrid(BaseEstimator):
                  pass_freq_to_vw=False, pass_files_to_vw=False,
                  vw_args='-b 26 --passes=20 -l 50',
                  probability=False, tqdm=True,
-                 suffix='',
+                 suffix='', iterative=False,
                  loss_function='hinge',
                  use_temp_files=False):
         """ Initializer for Hybrid method. Do not use multiple instances
@@ -41,12 +41,17 @@ class Hybrid(BaseEstimator):
         self.loss_function = loss_function
         self.vw_binary = vw_binary
         self.tqdm = tqdm
-        self.use_temp_files = use_temp_files
         self.pass_files_to_vw = pass_files_to_vw
         self.suffix = suffix
+        self.iterative = iterative
+        self.use_temp_files = (not iterative) and use_temp_files
 
     def get_args(self):
         return self.vw_args_
+
+    def refresh(self):
+        """Remove all cached files, reset iterative training."""
+        os.unlink(self.vw_modelfile)
 
     def fit(self, X, y):
         if not self.probability:

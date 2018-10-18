@@ -51,14 +51,12 @@ class Hybrid(BaseEstimator):
 
     def refresh(self):
         """Remove all cached files, reset iterative training."""
-        try:
+        if hasattr(self, 'vw_modelfile'):
             os.unlink(self.vw_modelfile)
             self.indexed_labels = {}
             self.reverse_labels = {}
             self.all_labels = set()
-        except AttributeError:
-            # We didn't train anything yet
-            pass
+            self.label_counter = 1
 
     def fit(self, X, y):
         if not self.probability:
@@ -83,15 +81,18 @@ class Hybrid(BaseEstimator):
             self.indexed_labels = {}
             self.reverse_labels = {}
             self.all_labels = set()
+            self.label_counter = 1
         for labels in y:
             if isinstance(labels, list):
                 for l in labels:
                     self.all_labels.add(l)
             else:
                 self.all_labels.add(labels)
-        for idx, label in enumerate(sorted(list(self.all_labels))):
-            self.indexed_labels[label] = idx + 1
-            self.reverse_labels[idx + 1] = label
+        for label in sorted(list(self.all_labels)):
+            if label not in self.indexed_labels:
+                self.indexed_labels[label] = self.label_counter
+                self.reverse_labels[self.label_counter] = label
+                self.label_counter += 1
         if self.probability:
             self.vw_args_ += ' --csoaa {}'.format(len(self.all_labels))
         else:

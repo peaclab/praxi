@@ -51,7 +51,14 @@ class Hybrid(BaseEstimator):
 
     def refresh(self):
         """Remove all cached files, reset iterative training."""
-        os.unlink(self.vw_modelfile)
+        try:
+            os.unlink(self.vw_modelfile)
+            self.indexed_labels = {}
+            self.reverse_labels = {}
+            self.all_labels = set()
+        except AttributeError:
+            # We didn't train anything yet
+            pass
 
     def fit(self, X, y):
         if not self.probability:
@@ -62,27 +69,29 @@ class Hybrid(BaseEstimator):
             modelfileobj.close()
         else:
             self.vw_modelfile = 'trained_model-%s.vw' % self.suffix
-            try:
-                os.unlink(self.vw_modelfile)
-            except FileNotFoundError:
-                pass
+            if not (iterative and hasattr(self, 'indexed_labels')):
+                try:
+                    os.unlink(self.vw_modelfile)
+                except FileNotFoundError:
+                    pass
+            else:
+                logging.info("Using old vw_modelfile: %s", self.vw_modelfile)
         logging.info('Started hybrid model, vw_modelfile: %s',
                      self.vw_modelfile)
         self.vw_args_ = self.vw_args
-        self.indexed_labels = {}
-        self.reverse_labels = {}
-        counter = 1
-        all_labels = set()
+        if not (iterative and hasattr(self, 'indexed_labels')):
+            self.indexed_labels = {}
+            self.reverse_labels = {}
+            self.all_labels = set()
         for labels in y:
             if isinstance(labels, list):
                 for l in labels:
-                    all_labels.add(l)
+                    self.all_labels.add(l)
             else:
-                all_labels.add(labels)
-        for label in sorted(list(all_labels)):
-            self.indexed_labels[label] = counter
-            self.reverse_labels[counter] = label
-            counter += 1
+                self.all_labels.add(labels)
+        for idx, label in enumerate(sorted(list(self.all_labels))):
+            self.indexed_labels[label] = idx + 1
+            self.reverse_labels[idx + 1] = label
         if self.probability:
             self.vw_args_ += ' --csoaa {}'.format(len(all_labels))
         else:

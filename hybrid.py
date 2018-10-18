@@ -44,7 +44,7 @@ class Hybrid(BaseEstimator):
         self.pass_files_to_vw = pass_files_to_vw
         self.suffix = suffix
         self.iterative = iterative
-        self.use_temp_files = (not iterative) and use_temp_files
+        self.use_temp_files = (not self.iterative) and use_temp_files
 
     def get_args(self):
         return self.vw_args_
@@ -69,7 +69,7 @@ class Hybrid(BaseEstimator):
             modelfileobj.close()
         else:
             self.vw_modelfile = 'trained_model-%s.vw' % self.suffix
-            if not (iterative and hasattr(self, 'indexed_labels')):
+            if not (self.iterative and hasattr(self, 'indexed_labels')):
                 try:
                     os.unlink(self.vw_modelfile)
                 except FileNotFoundError:
@@ -79,7 +79,7 @@ class Hybrid(BaseEstimator):
         logging.info('Started hybrid model, vw_modelfile: %s',
                      self.vw_modelfile)
         self.vw_args_ = self.vw_args
-        if not (iterative and hasattr(self, 'indexed_labels')):
+        if not (self.iterative and hasattr(self, 'indexed_labels')):
             self.indexed_labels = {}
             self.reverse_labels = {}
             self.all_labels = set()

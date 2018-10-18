@@ -93,11 +93,11 @@ class Hybrid(BaseEstimator):
             self.indexed_labels[label] = idx + 1
             self.reverse_labels[idx + 1] = label
         if self.probability:
-            self.vw_args_ += ' --csoaa {}'.format(len(all_labels))
+            self.vw_args_ += ' --csoaa {}'.format(len(self.all_labels))
         else:
             self.vw_args_ += ' --probabilities'
             self.loss_function = 'logistic'
-            self.vw_args_ += ' --oaa {}'.format(len(all_labels))
+            self.vw_args_ += ' --oaa {}'.format(len(self.all_labels))
             self.vw_args_ += ' --loss_function={}'.format(self.loss_function)
         tags = self._get_tags(X)
         train_set = list(zip(tags, y))

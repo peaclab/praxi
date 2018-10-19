@@ -105,6 +105,7 @@ class Hybrid(BaseEstimator):
                 self.vw_args_ += ' --oaa {}'.format(len(self.all_labels))
         if self.iterative:
             self.vw_args_ += ' --save_resume'
+        self.vw_args_ += ' --kill_cache --cache_file a.cache'
         tags = self._get_tags(X)
         train_set = list(zip(tags, y))
         random.shuffle(train_set)
@@ -128,11 +129,7 @@ class Hybrid(BaseEstimator):
                 input_string += '{} '.format(self.indexed_labels[labels[0]])
             f.write('{}| {}\n'.format(input_string, ' '.join(tag)))
         f.close()
-        try:
-            os.unlink('a.cache')
-        except FileNotFoundError:
-            pass
-        command = '{vw_binary} {vw_input} {vw_args} --cache_file a.cache -f {vw_modelfile}'.format(
+        command = '{vw_binary} {vw_input} {vw_args} -f {vw_modelfile}'.format(
             vw_binary=self.vw_binary, vw_input=f.name,
             vw_args=self.vw_args_, vw_modelfile=self.vw_modelfile)
         logging.info('vw input written to %s, starting training', f.name)

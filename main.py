@@ -36,7 +36,7 @@ def iterative_tests():
     iterative = True
     # clf = RuleBased(filter_method='take_max', num_rules=6)
     clf = Hybrid(freq_threshold=2, pass_freq_to_vw=True, probability=False,
-                 vw_args='--l2 0.005 -b 25 --passes 30 '
+                 vw_args='-q :: --l2 0.005 -b 25 --passes 30 '
                  '--learning_rate 1.25 --decay_learning_rate 0.95 --ftrl',
                  suffix=suffix, iterative=iterative
                  )

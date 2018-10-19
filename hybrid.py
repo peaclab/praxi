@@ -82,6 +82,8 @@ class Hybrid(BaseEstimator):
             self.reverse_labels = {}
             self.all_labels = set()
             self.label_counter = 1
+        else:
+            self.vw_args_ += ' -i {}'.format(self.vw_modelfile)
         for labels in y:
             if isinstance(labels, list):
                 for l in labels:
@@ -243,11 +245,15 @@ class Hybrid(BaseEstimator):
         all_preds = []
         with open(outf, 'r') as f:
             for line in f:
-                all_preds.append(int(line))
+                try:
+                    all_preds.append(self.reverse_labels[int(line)])
+                except KeyError:
+                    logging.critical("Got label %s predicted!?", int(line))
+                    all_preds.append('??')
         if self.use_temp_files:
             os.unlink(f.name)
             os.unlink(self.vw_modelfile)
-        return [self.reverse_labels[x] for x in all_preds]
+        return all_preds
 
     def _get_tags(self, X):
         if self.pass_files_to_vw:

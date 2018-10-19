@@ -171,10 +171,7 @@ class Hybrid(BaseEstimator):
         f.close()
         logging.info('vw input written to %s, starting testing', f.name)
         args = f.name
-        if self.probability:
-            args += ' -r %s' % outf
-        else:
-            args += ' -r %s' % outf
+        args += ' -r %s' % outf
         command = '{vw_binary} {args} -t -i {vw_modelfile}'.format(
             vw_binary=self.vw_binary, args=args,
             vw_modelfile=self.vw_modelfile)
@@ -222,14 +219,18 @@ class Hybrid(BaseEstimator):
         tags = self._get_tags(X)
         if self.use_temp_files:
             f = tempfile.NamedTemporaryFile('w', delete=False)
+            outfobj = tempfile.NamedTemporaryFile('w', delete=False)
+            outf = outfobj.name
+            outf.close()
         else:
             f = open('./pred_input-%s.txt' % self.suffix, 'w')
+            outf = './pred_output-%s.txt' % self.suffix
         for tag in tags:
             f.write('| {}\n'.format(' '.join(tag)))
         f.close()
         logging.info('vw input written to %s, starting testing', f.name)
-        command = '{vw_binary} {vw_input} -t -p /dev/stdout -i {vw_modelfile}'.format(
-            vw_binary=self.vw_binary, vw_input=f.name,
+        command = '{vw_binary} {vw_input} -t -p {outf} -i {vw_modelfile}'.format(
+            vw_binary=self.vw_binary, vw_input=f.name, outf=outf,
             vw_modelfile=self.vw_modelfile)
         logging.info('vw command: %s', command)
         c = envoy.run(command)
@@ -240,12 +241,16 @@ class Hybrid(BaseEstimator):
             raise IOError('Something happened to vw')
         else:
             logging.info(
-                'vw ran sucessfully. one prediction: %s, err: %s',
-                c.std_out.split()[0], c.std_err)
+                'vw ran sucessfully. out: %s, err: %s',
+                c.std_out, c.std_err)
+        all_preds = []
+        with open(outf, 'r') as f:
+            for line in f:
+                all_preds.append(int(line))
         if self.use_temp_files:
             os.unlink(f.name)
             os.unlink(self.vw_modelfile)
-        return [self.reverse_labels[int(x)] for x in c.std_out.split()]
+        return [self.reverse_labels[x] for x in all_preds]
 
     def _get_tags(self, X):
         if self.pass_files_to_vw:

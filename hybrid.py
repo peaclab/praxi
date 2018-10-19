@@ -99,7 +99,7 @@ class Hybrid(BaseEstimator):
             self.vw_args_ += ' --probabilities'
             self.loss_function = 'logistic'
             self.vw_args_ += ' --loss_function={}'.format(self.loss_function)
-            if iterative:
+            if self.iterative:
                 self.vw_args_ += ' --oaa 80'
             else:
                 self.vw_args_ += ' --oaa {}'.format(len(self.all_labels))

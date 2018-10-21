@@ -15,13 +15,14 @@ FILTER_PATH_TOKENS = ['usr', 'bin', 'proc', 'sys', 'etc', 'local', 'src',
                       'cache']
 
 
-def columbus(changeset):
+def columbus(changeset, freq_threshold=2):
     """ Get labels from single changeset """
-    return run_file_paths_discovery2(filtertags, changeset)
+    return run_file_paths_discovery2(filtertags, changeset,
+                                     freq_threshold=freq_threshold)
 
 
-def run_file_paths_discovery2(filtertags, changeset):
-    ftrie = Trie(frequency_limit=2)
+def run_file_paths_discovery2(filtertags, changeset, freq_threshold=2):
+    ftrie = Trie(frequency_limit=freq_threshold)
     for filepath in changeset:
         pathtokens = filepath.split('/')
         for token in pathtokens:

@@ -45,18 +45,20 @@ class Hybrid(BaseEstimator):
         self.suffix = suffix
         self.iterative = iterative
         self.use_temp_files = (not self.iterative) and use_temp_files
+        self.trained = False
 
     def get_args(self):
         return self.vw_args_
 
     def refresh(self):
         """Remove all cached files, reset iterative training."""
-        if hasattr(self, 'vw_modelfile'):
+        if self.trained:
             os.unlink(self.vw_modelfile)
             self.indexed_labels = {}
             self.reverse_labels = {}
             self.all_labels = set()
             self.label_counter = 1
+        self.trained = False
 
     def fit(self, X, y):
         if not self.probability:
@@ -67,7 +69,7 @@ class Hybrid(BaseEstimator):
             modelfileobj.close()
         else:
             self.vw_modelfile = 'trained_model-%s.vw' % self.suffix
-            if not (self.iterative and hasattr(self, 'indexed_labels')):
+            if not (self.iterative and self.trained):
                 try:
                     os.unlink(self.vw_modelfile)
                 except FileNotFoundError:
@@ -77,7 +79,7 @@ class Hybrid(BaseEstimator):
         logging.info('Started hybrid model, vw_modelfile: %s',
                      self.vw_modelfile)
         self.vw_args_ = self.vw_args
-        if not (self.iterative and hasattr(self, 'indexed_labels')):
+        if not (self.iterative and self.trained):
             self.indexed_labels = {}
             self.reverse_labels = {}
             self.all_labels = set()
@@ -148,8 +150,11 @@ class Hybrid(BaseEstimator):
                 c.std_out, c.std_err)
         if self.use_temp_files:
             os.unlink(f.name)
+        self.trained = True
 
     def predict_proba(self, X):
+        if not self.trained:
+            raise ValueError("Need to train the classifier first")
         tags = self._get_tags(X)
         if self.use_temp_files:
             f = tempfile.NamedTemporaryFile('w', delete=False)
@@ -215,6 +220,8 @@ class Hybrid(BaseEstimator):
         return result
 
     def predict(self, X):
+        if not self.trained:
+            raise ValueError("Need to train the classifier first")
         tags = self._get_tags(X)
         if self.use_temp_files:
             f = tempfile.NamedTemporaryFile('w', delete=False)
@@ -336,28 +343,16 @@ def _get_filename_frequencies(X, disable_tqdm=False, freq_threshold=2):
                      for tag, freq in dict(c).items() if freq > freq_threshold])
     return tags
 
-@memory.cache
 def _get_columbus_tags(X, disable_tqdm=False,
                        return_freq=True,
                        freq_threshold=2):
     logging.info('Getting columbus output for %d changesets', len(X))
     tags = []
     for changeset in tqdm(X, disable=disable_tqdm):
-        cshash = md5(str(sorted(changeset)).encode()).hexdigest()
-        cache_file = COLUMBUS_CACHE / '{}.yaml'.format(cshash)
-        if cache_file.exists():
-            with cache_file.open('r') as f:
-                tag_dict = yaml.load(f)
-        else:
-            with LOCK:
-                tag_dict = columbus(changeset)
-            with cache_file.open('w') as f:
-                yaml.dump(tag_dict, f)
+        tag_dict = columbus(changeset, freq_threshold=freq_threshold)
         if return_freq:
             tags.append(['{}:{}'.format(tag, freq) for tag, freq
-                         in tag_dict.items()
-                         if freq > freq_threshold])
+                         in tag_dict.items()])
         else:
-            tags.append([tag for tag, freq in tag_dict.items()
-                         if freq > freq_threshold])
+            tags.append([tag for tag, freq in tag_dict.items()])
     return tags

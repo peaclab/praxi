@@ -48,7 +48,11 @@ class Hybrid(BaseEstimator):
         self.trained = False
 
     def get_args(self):
-        return self.vw_args_
+        try:
+            retval = self.vw_args_
+        except AttributeError:
+            retval = self.vw_args
+        return retval
 
     def refresh(self):
         """Remove all cached files, reset iterative training."""
@@ -160,7 +164,7 @@ class Hybrid(BaseEstimator):
             f = tempfile.NamedTemporaryFile('w', delete=False)
             outfobj = tempfile.NamedTemporaryFile('w', delete=False)
             outf = outfobj.name
-            outf.close()
+            outfobj.close()
         else:
             f = open('./pred_input-%s.txt' % self.suffix, 'w')
             outf = './pred_output-%s.txt' % self.suffix
@@ -263,6 +267,7 @@ class Hybrid(BaseEstimator):
         return all_preds
 
     def _get_tags(self, X):
+        logging.info("Getting tags for input set %s" % len(X))
         if self.pass_files_to_vw:
             return _get_filename_frequencies(X, disable_tqdm=(not self.tqdm),
                                              freq_threshold=self.freq_threshold)

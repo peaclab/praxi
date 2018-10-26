@@ -14,11 +14,16 @@ FILTER_PATH_TOKENS = ['usr', 'bin', 'proc', 'sys', 'etc', 'local', 'src',
                       'dev', 'home', 'root', 'lib', 'pkg', 'sbin', 'share',
                       'cache']
 
+COLUMBUS_CACHE = {}
+
 
 def columbus(changeset, freq_threshold=2):
     """ Get labels from single changeset """
-    return run_file_paths_discovery2(filtertags, changeset,
-                                     freq_threshold=freq_threshold)
+    key = str(sorted(changeset))
+    if key not in COLUMBUS_CACHE:
+        COLUMBUS_CACHE[key] = run_file_paths_discovery2(
+            filtertags, changeset, freq_threshold=freq_threshold)
+    return COLUMBUS_CACHE[key]
 
 
 def run_file_paths_discovery2(filtertags, changeset, freq_threshold=2):

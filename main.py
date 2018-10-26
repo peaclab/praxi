@@ -33,11 +33,11 @@ def iterative_tests():
     resfile_name = get_free_filename('iterative-hybrid', '.', suffix='.pkl')
     outdir = get_free_filename('iterative-hybrid', '/home/centos/results')
     suffix = 'hybrid'
-    iterative = True
+    iterative = False
     # clf = RuleBased(filter_method='take_max', num_rules=6)
     clf = Hybrid(freq_threshold=2, pass_freq_to_vw=True, probability=False,
-                 vw_args='-q :: --l2 0.005 -b 25 --passes 30 '
-                 '--learning_rate 1.25 --decay_learning_rate 0.95 --ftrl',
+                 vw_args='--l2 0.5 -b 26 --passes 30 '
+                 '--learning_rate 12.5 --decay_learning_rate 0.95 --ftrl',
                  suffix=suffix, iterative=iterative
                  )
     # clf = Hybrid(freq_threshold=2, pass_freq_to_vw=True,
@@ -78,6 +78,7 @@ def iterative_tests():
             results.append(get_scores(clf, X_train, y_train, X_test, y_test))
             pickle.dump(results, resfile)
             resfile.seek(0)
+        break
     resfile.close()
     print_results(resfile_name, outdir, args=clf.get_args(),
                   n_strats=len(it_chunks), iterative=True)

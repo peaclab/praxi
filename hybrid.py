@@ -148,7 +148,7 @@ class Hybrid(BaseEstimator):
         logging.info('vw command: %s', command)
         vw_start = time.time()
         c = envoy.run(command)
-        logging.info("vw took %f secs." % time.time() - vw_start)
+        logging.info("vw took %f secs." % (time.time() - vw_start))
         if c.status_code:
             logging.error(
                 'something happened to vw, code: %d, out: %s, err: %s',
@@ -161,7 +161,7 @@ class Hybrid(BaseEstimator):
         if self.use_temp_files:
             os.unlink(f.name)
         self.trained = True
-        logging.info("Training took %f secs." % time.time() - start)
+        logging.info("Training took %f secs." % (time.time() - start))
 
     def predict_proba(self, X):
         start = time.time()
@@ -194,7 +194,7 @@ class Hybrid(BaseEstimator):
         logging.info('vw command: %s', command)
         vw_start = time.time()
         c = envoy.run(command)
-        logging.info("vw took %f secs." % time.time() - vw_start)
+        logging.info("vw took %f secs." % (time.time() - vw_start))
         if c.status_code:
             logging.error(
                 'something happened to vw, code: %d, out: %s, err: %s',
@@ -216,7 +216,7 @@ class Hybrid(BaseEstimator):
             os.unlink(f.name)
             os.unlink(self.vw_modelfile)
             os.unlink(outf)
-        logging.info("Testing took %f secs." % time.time() - start)
+        logging.info("Testing took %f secs." % (time.time() - start))
         return all_probas
 
     def top_k_tags(self, X, ntags):
@@ -257,7 +257,7 @@ class Hybrid(BaseEstimator):
         logging.info('vw command: %s', command)
         vw_start = time.time()
         c = envoy.run(command)
-        logging.info("vw took %f secs." % time.time() - vw_start)
+        logging.info("vw took %f secs." % (time.time() - vw_start))
         if c.status_code:
             logging.error(
                 'something happened to vw, code: %d, out: %s, err: %s',
@@ -278,7 +278,7 @@ class Hybrid(BaseEstimator):
         if self.use_temp_files:
             os.unlink(f.name)
             os.unlink(self.vw_modelfile)
-        logging.info("Testing took %f secs." % time.time() - start)
+        logging.info("Testing took %f secs." % (time.time() - start))
         return all_preds
 
     def _get_tags(self, X):

@@ -60,8 +60,7 @@ def iterative_tests():
         y_train = []
         X_test = []
         y_test = []
-        if iterative:
-            clf.refresh()
+        clf.refresh()
         for idx, inner_chunks in enumerate(it_chunks):
             logging.info('In iteration %d', idx)
             features, labels = parse_csids(inner_chunks[i1], iterative=True)

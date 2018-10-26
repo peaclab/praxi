@@ -59,7 +59,10 @@ class Hybrid(BaseEstimator):
     def refresh(self):
         """Remove all cached files, reset iterative training."""
         if self.trained:
-            os.unlink(self.vw_modelfile)
+            try:
+                os.unlink(self.vw_modelfile)
+            except OSError:
+                pass
             self.indexed_labels = {}
             self.reverse_labels = {}
             self.all_labels = set()

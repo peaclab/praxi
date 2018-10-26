@@ -7,6 +7,7 @@ import os
 from pathlib import Path
 import random
 import tempfile
+import time
 import yaml
 
 import envoy
@@ -15,6 +16,7 @@ from sklearn.base import BaseEstimator
 from tqdm import tqdm
 
 from columbus.columbus import columbus
+from columbus.columbus import refresh_columbus
 
 
 LOCK = Lock()
@@ -63,8 +65,10 @@ class Hybrid(BaseEstimator):
             self.all_labels = set()
             self.label_counter = 1
         self.trained = False
+        refresh_columbus()
 
     def fit(self, X, y):
+        start = time.time()
         if not self.probability:
             X, y = self._filter_multilabels(X, y)
         if self.use_temp_files:
@@ -142,7 +146,9 @@ class Hybrid(BaseEstimator):
             vw_args=self.vw_args_, vw_modelfile=self.vw_modelfile)
         logging.info('vw input written to %s, starting training', f.name)
         logging.info('vw command: %s', command)
+        vw_start = time.time()
         c = envoy.run(command)
+        logging.info("vw took %f secs." % time.time() - vw_start)
         if c.status_code:
             logging.error(
                 'something happened to vw, code: %d, out: %s, err: %s',
@@ -155,8 +161,10 @@ class Hybrid(BaseEstimator):
         if self.use_temp_files:
             os.unlink(f.name)
         self.trained = True
+        logging.info("Training took %f secs." % time.time() - start)
 
     def predict_proba(self, X):
+        start = time.time()
         if not self.trained:
             raise ValueError("Need to train the classifier first")
         tags = self._get_tags(X)
@@ -184,7 +192,9 @@ class Hybrid(BaseEstimator):
             vw_binary=self.vw_binary, args=args,
             vw_modelfile=self.vw_modelfile)
         logging.info('vw command: %s', command)
+        vw_start = time.time()
         c = envoy.run(command)
+        logging.info("vw took %f secs." % time.time() - vw_start)
         if c.status_code:
             logging.error(
                 'something happened to vw, code: %d, out: %s, err: %s',
@@ -206,6 +216,7 @@ class Hybrid(BaseEstimator):
             os.unlink(f.name)
             os.unlink(self.vw_modelfile)
             os.unlink(outf)
+        logging.info("Testing took %f secs." % time.time() - start)
         return all_probas
 
     def top_k_tags(self, X, ntags):
@@ -224,6 +235,7 @@ class Hybrid(BaseEstimator):
         return result
 
     def predict(self, X):
+        start = time.time()
         if not self.trained:
             raise ValueError("Need to train the classifier first")
         tags = self._get_tags(X)
@@ -243,7 +255,9 @@ class Hybrid(BaseEstimator):
             vw_binary=self.vw_binary, vw_input=f.name, outf=outf,
             vw_modelfile=self.vw_modelfile)
         logging.info('vw command: %s', command)
+        vw_start = time.time()
         c = envoy.run(command)
+        logging.info("vw took %f secs." % time.time() - vw_start)
         if c.status_code:
             logging.error(
                 'something happened to vw, code: %d, out: %s, err: %s',
@@ -264,6 +278,7 @@ class Hybrid(BaseEstimator):
         if self.use_temp_files:
             os.unlink(f.name)
             os.unlink(self.vw_modelfile)
+        logging.info("Testing took %f secs." % time.time() - start)
         return all_preds
 
     def _get_tags(self, X):

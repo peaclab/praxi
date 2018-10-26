@@ -17,6 +17,7 @@ from numpy import savetxt
 from sklearn import metrics
 from sklearn.multiclass import OneVsRestClassifier
 from sklearn.preprocessing import MultiLabelBinarizer
+
 from joblib import Memory
 
 from hybrid import Hybrid
@@ -33,7 +34,7 @@ def iterative_tests():
     resfile_name = get_free_filename('iterative-hybrid', '.', suffix='.pkl')
     outdir = get_free_filename('iterative-hybrid', '/home/centos/results')
     suffix = 'hybrid'
-    iterative = False
+    iterative = True
     # clf = RuleBased(filter_method='take_max', num_rules=6)
     clf = Hybrid(freq_threshold=2, pass_freq_to_vw=True, probability=False,
                  vw_args='--l2 0.5 -b 26 --passes 30 '
@@ -79,7 +80,6 @@ def iterative_tests():
             results.append(get_scores(clf, X_train, y_train, X_test, y_test))
             pickle.dump(results, resfile)
             resfile.seek(0)
-        break
     resfile.close()
     print_results(resfile_name, outdir, args=clf.get_args(),
                   n_strats=len(it_chunks), iterative=True)

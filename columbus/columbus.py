@@ -17,6 +17,11 @@ FILTER_PATH_TOKENS = ['usr', 'bin', 'proc', 'sys', 'etc', 'local', 'src',
 COLUMBUS_CACHE = {}
 
 
+def refresh_columbus():
+    global COLUMBUS_CACHE
+    COLUMBUS_CACHE = {}
+
+
 def columbus(changeset, freq_threshold=2):
     """ Get labels from single changeset """
     key = str(sorted(changeset))

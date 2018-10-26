@@ -38,7 +38,8 @@ def iterative_tests():
     clf = Hybrid(freq_threshold=2, pass_freq_to_vw=True, probability=False,
                  vw_args='--l2 0.5 -b 26 --passes 30 '
                  '--learning_rate 12.5 --decay_learning_rate 0.95 --ftrl',
-                 suffix=suffix, iterative=iterative
+                 suffix=suffix, iterative=iterative,
+                 use_temp_files=True
                  )
     # clf = Hybrid(freq_threshold=2, pass_freq_to_vw=True,
     #              suffix=suffix,

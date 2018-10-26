@@ -231,7 +231,7 @@ class Hybrid(BaseEstimator):
             f = tempfile.NamedTemporaryFile('w', delete=False)
             outfobj = tempfile.NamedTemporaryFile('w', delete=False)
             outf = outfobj.name
-            outf.close()
+            outfobj.close()
         else:
             f = open('./pred_input-%s.txt' % self.suffix, 'w')
             outf = './pred_output-%s.txt' % self.suffix

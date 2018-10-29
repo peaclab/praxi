@@ -37,8 +37,7 @@ def iterative_tests():
     iterative = True
     # clf = RuleBased(filter_method='take_max', num_rules=6)
     clf = Hybrid(freq_threshold=2, pass_freq_to_vw=True, probability=False,
-                 vw_args='-b 26 --passes 50 --bfgs '
-                 '--learning_rate 1.25 --decay_learning_rate 0.9',
+                 vw_args='-b 26 --learning_rate 1.5',
                  suffix=suffix, iterative=iterative,
                  use_temp_files=True
                  )
@@ -76,7 +75,7 @@ def iterative_tests():
             features, labels = parse_csids(inner_chunks[i3], iterative=True)
             X_test += features
             y_test += labels
-            results.append(get_scores(clf, X_train, y_train, X_test, y_test, store_true=True))
+            results.append(get_scores(clf, X_train, y_train, X_test, y_test))
             pickle.dump(results, resfile)
             resfile.seek(0)
     resfile.close()

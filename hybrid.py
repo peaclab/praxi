@@ -166,6 +166,9 @@ class Hybrid(BaseEstimator):
         self.trained = True
         logging.info("Training took %f secs." % (time.time() - start))
 
+    def transform_labels(self, y):
+        return [self.indexed_labels[x] for x in y]
+
     def predict_proba(self, X):
         start = time.time()
         if not self.trained:

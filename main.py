@@ -34,11 +34,11 @@ def iterative_tests():
     resfile_name = get_free_filename('iterative-hybrid', '.', suffix='.pkl')
     outdir = get_free_filename('iterative-hybrid', '/home/centos/results')
     suffix = 'hybrid'
-    iterative = False
+    iterative = True
     # clf = RuleBased(filter_method='take_max', num_rules=6)
     clf = Hybrid(freq_threshold=2, pass_freq_to_vw=True, probability=False,
-                 vw_args='--l2 0.5 -b 26 --passes 30 '
-                 '--learning_rate 12.5 --decay_learning_rate 0.95 --ftrl',
+                 vw_args='-b 26 --passes 50 --bfgs '
+                 '--learning_rate 1.25 --decay_learning_rate 0.9',
                  suffix=suffix, iterative=iterative,
                  use_temp_files=True
                  )
@@ -76,7 +76,7 @@ def iterative_tests():
             features, labels = parse_csids(inner_chunks[i3], iterative=True)
             X_test += features
             y_test += labels
-            results.append(get_scores(clf, X_train, y_train, X_test, y_test))
+            results.append(get_scores(clf, X_train, y_train, X_test, y_test, store_true=True))
             pickle.dump(results, resfile)
             resfile.seek(0)
     resfile.close()
@@ -428,7 +428,7 @@ def get_multilabel_scores(clf, X_train, y_train, X_test, y_test):
 
 
 def get_scores(clf, X_train, y_train, X_test, y_test,
-               binarize=False, human_check=False):
+               binarize=False, human_check=False, store_true=False):
     """ Gets two lists of changeset ids, does training+testing """
     if binarize:
         binarizer = MultiLabelBinarizer()
@@ -437,6 +437,12 @@ def get_scores(clf, X_train, y_train, X_test, y_test,
     else:
         clf.fit(X_train, y_train)
         preds = clf.predict(X_test)
+        if store_true:
+            labels = clf.transform_labels(y_test)
+            with open('/home/centos/sets/true_labels.txt', 'w') as f:
+                for label in labels:
+                    f.write(str(label) + '\n')
+            logging.info("Wrote true labels to ~/sets/true_labels.txt")
     hits = misses = predictions = 0
     if LABEL_DICT.exists():
         with LABEL_DICT.open('rb') as f:

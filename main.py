@@ -34,7 +34,7 @@ def iterative_tests():
     resfile_name = get_free_filename('iterative-hybrid', '.', suffix='.pkl')
     outdir = get_free_filename('iterative-hybrid', '/home/centos/results')
     suffix = 'hybrid'
-    iterative = True
+    iterative = False
     # clf = RuleBased(filter_method='take_max', num_rules=6)
     clf = Hybrid(freq_threshold=2, pass_freq_to_vw=True, probability=False,
                  vw_args='-b 26 --learning_rate 1.5',

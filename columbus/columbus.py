@@ -22,13 +22,17 @@ def refresh_columbus():
     COLUMBUS_CACHE = {}
 
 
-def columbus(changeset, freq_threshold=2):
+def columbus(changeset, freq_threshold=2, use_cache=False):
     """ Get labels from single changeset """
-    key = str(sorted(changeset))
-    if key not in COLUMBUS_CACHE:
-        COLUMBUS_CACHE[key] = run_file_paths_discovery2(
-            filtertags, changeset, freq_threshold=freq_threshold)
-    return COLUMBUS_CACHE[key]
+    if use_cache:
+        key = str(sorted(changeset))
+        if key in COLUMBUS_CACHE:
+            return COLUMBUS_CACHE[key]
+    tags = run_file_paths_discovery2(
+        filtertags, changeset, freq_threshold=freq_threshold)
+    if use_cache:
+        COLUMBUS_CACHE[key] = tags
+    return tags
 
 
 def run_file_paths_discovery2(filtertags, changeset, freq_threshold=2):

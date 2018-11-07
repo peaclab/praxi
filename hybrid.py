@@ -59,10 +59,7 @@ class Hybrid(BaseEstimator):
     def refresh(self):
         """Remove all cached files, reset iterative training."""
         if self.trained:
-            try:
-                os.unlink(self.vw_modelfile)
-            except OSError:
-                pass
+            safe_unlink(self.vw_modelfile)
             self.indexed_labels = {}
             self.reverse_labels = {}
             self.all_labels = set()
@@ -81,10 +78,7 @@ class Hybrid(BaseEstimator):
         else:
             self.vw_modelfile = 'trained_model-%s.vw' % self.suffix
             if not (self.iterative and self.trained):
-                try:
-                    os.unlink(self.vw_modelfile)
-                except FileNotFoundError:
-                    pass
+                safe_unlink(self.vw_modelfile)
             else:
                 logging.info("Using old vw_modelfile: %s", self.vw_modelfile)
         logging.info('Started hybrid model, vw_modelfile: %s',
@@ -162,7 +156,7 @@ class Hybrid(BaseEstimator):
                 'vw ran sucessfully. out: %s, err: %s',
                 c.std_out, c.std_err)
         if self.use_temp_files:
-            os.unlink(f.name)
+            safe_unlink(f.name)
         self.trained = True
         logging.info("Training took %f secs." % (time.time() - start))
 
@@ -219,9 +213,9 @@ class Hybrid(BaseEstimator):
                     probas[tag] = float(p)
                 all_probas.append(probas)
         if self.use_temp_files:
-            os.unlink(f.name)
-            os.unlink(self.vw_modelfile)
-            os.unlink(outf)
+            safe_unlink(f.name)
+            safe_unlink(self.vw_modelfile)
+            safe_unlink(outf)
         logging.info("Testing took %f secs." % (time.time() - start))
         return all_probas
 
@@ -282,8 +276,8 @@ class Hybrid(BaseEstimator):
                     logging.critical("Got label %s predicted!?", int(line))
                     all_preds.append('??')
         if self.use_temp_files:
-            os.unlink(f.name)
-            os.unlink(self.vw_modelfile)
+            safe_unlink(f.name)
+            safe_unlink(self.vw_modelfile)
         logging.info("Testing took %f secs." % (time.time() - start))
         return all_preds
 
@@ -382,3 +376,10 @@ def _get_columbus_tags(X, disable_tqdm=False,
         else:
             tags.append([tag for tag, freq in tag_dict.items()])
     return tags
+
+
+def safe_unlink(filename):
+    try:
+        os.unlink(filename)
+    except (FileNotFoundError, OSError):
+        pass

@@ -99,18 +99,14 @@ def get_free_filename(stub, directory, suffix=''):
 
 
 def multiapp_trainw_dirty():
-    resfile_name = get_free_filename('result-rule', '.', suffix='.pkl')
-    outdir = get_free_filename('rule-multiapp', '/home/centos/results')
-    suffix = 'rule'
-    clf = RuleBased(filter_method='take_max', num_rules=6)
-    # clf = Hybrid(freq_threshold=2, pass_freq_to_vw=True, probability=False,
-    #              vw_args='-q :: --l2 0.005 -b 25 --passes 300 '
-    #              '--learning_rate 1.25 --decay_learning_rate 0.95 --ftrl',
-    #              suffix=suffix
-    #              )
-    # clf = Hybrid(freq_threshold=2, pass_freq_to_vw=True,
-    #              suffix=suffix,
-    #              probability=True, tqdm=True)
+    resfile_name = get_free_filename('result-timing', '.', suffix='.pkl')
+    outdir = get_free_filename('timing-multiapp', '/home/centos/results')
+    suffix = 'timing'
+    # clf = RuleBased(filter_method='take_max', num_rules=6)
+    clf = Hybrid(freq_threshold=2, pass_freq_to_vw=True, probability=True,
+                 vw_args='-b 26 --learning_rate 1.5 --passes 10',
+                 suffix=suffix, use_temp_files=True
+                 )
     # Get multiapp changesets
     with (PROJECT_ROOT / 'changeset_sets' /
           'multilabel_chunks.p').open('rb') as f:
@@ -367,7 +363,7 @@ def get_changeset(csid, iterative=False):
     if iterative:
         globstr += '.yaml'
     else:
-        globstr += '.*'
+        globstr += '.[!y]*'
     for csfile in CHANGESET_ROOT.glob(globstr):
         if changeset is not None:
             raise IOError(
@@ -511,6 +507,6 @@ if __name__ == '__main__':
     #                          n_strats=4)
     # print_multilabel_results('./results-rule-1.pkl', '/home/centos/results/rule1',
     #                          n_strats=4)
-    # multiapp_trainw_dirty()
-    iterative_tests()
+    multiapp_trainw_dirty()
+    # iterative_tests()
     # onekdirty()

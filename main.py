@@ -150,9 +150,15 @@ def multiapp_trainw_dirty():
 
 
 def onekdirty():
-    resfile_name = './results-columbus.pkl'
-    outdir = 'columbus-results'
-    clf = Columbus()
+    resfile_name = './results-timing-rule.pkl'
+    outdir = 'rule-timing-results'
+    suffix = 'rule-timing'
+    clf = RuleBased(filter_method='take_max', num_rules=6)
+    # clf = Hybrid(freq_threshold=2, pass_freq_to_vw=True, probability=False,
+    #              vw_args='-b 26 --learning_rate 1.5 --passes 10',
+    #              suffix=suffix, iterative=False,
+    #              use_temp_files=True
+    #              )
     with (PROJECT_ROOT / 'changeset_sets' /
           'threek_dirty_chunks.p').open('rb') as f:
         threeks = pickle.load(f)
@@ -161,8 +167,7 @@ def onekdirty():
         tenks = pickle.load(f)
     resfile = open(resfile_name, 'wb')
     results = []
-    for idx, chunk in tqdm(enumerate(threeks)):
-        train_csids = copy.deepcopy(chunk)
+    for idx, train_csids in tqdm(enumerate(threeks)):
         logging.info('Train set is %d', idx)
         test_idx = [0, 1, 2]
         test_idx.remove(idx)
@@ -172,9 +177,8 @@ def onekdirty():
         X_test += features
         y_test += labels
         X_train, y_train = parse_csids(train_csids)
-        test_csids = threeks[test_idx[0]] + threeks[test_idx[1]]
-        results.append(get_scores(clf, X_train, y_train, train_csids,
-                                  X_test, y_test, test_csids, human_check=True))
+        results.append(get_scores(clf, X_train, y_train,
+                                  X_test, y_test))
         pickle.dump(results, resfile)
         resfile.seek(0)
         for inner_idx, extra_cleans in tqdm(enumerate(tenks)):
@@ -182,9 +186,8 @@ def onekdirty():
             features, labels = parse_csids(extra_cleans)
             X_train += features
             y_train += labels
-            train_csids += extra_cleans
             results.append(get_scores(clf, X_train, y_train,
-                                      X_test, y_test, human_check=True))
+                                      X_test, y_test))
             pickle.dump(results, resfile)
             resfile.seek(0)
     resfile.close()
@@ -507,6 +510,6 @@ if __name__ == '__main__':
     #                          n_strats=4)
     # print_multilabel_results('./results-rule-1.pkl', '/home/centos/results/rule1',
     #                          n_strats=4)
-    multiapp_trainw_dirty()
+    # multiapp_trainw_dirty()
     # iterative_tests()
-    # onekdirty()
+    onekdirty()

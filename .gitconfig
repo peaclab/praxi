@@ -1,0 +1,7 @@
+[user]
+	name = Sadie Allen
+	mail = sadiela@bu.edu
+[color]
+	ui = auto
+[push]
+	default = simple

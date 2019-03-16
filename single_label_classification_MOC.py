@@ -58,6 +58,7 @@ def parse_csids(csids, multilabel=False, iterative=False):
         changeset = get_changeset(csid, iterative=iterative)
         labels.append(changeset['label'])
         features.append(changeset['changes'])
+        print(type(features))
     return features, labels
 
 def get_changeset(csid, iterative=False):
@@ -133,6 +134,9 @@ def run_one_fold(train_csids, test_csids, filename):
     ########################
     # run a fold given pre-partitioned CSID lists
     X_train, y_train = parse_csids(train_csids)
+    #print(type(X_train))
+    #print(type(X_train[0]))
+    #print(X_train[0][0])
     X_test, y_test = parse_csids(test_csids)
 
     clf = Hybrid(freq_threshold=2, pass_freq_to_vw=True, probability=False,
@@ -140,14 +144,15 @@ def run_one_fold(train_csids, test_csids, filename):
                  suffix=suffix, iterative=iterative,
                  use_temp_files=True)
     # Fit model
+    print("Entering clf.fit(X_train, y_train)")
     clf.fit(X_train, y_train)
     # Get predictions
-    y_preds = clf.predict(X_test) # will assign a label for each changeset
+    """y_preds = clf.predict(X_test) # will assign a label for each changeset
     # Now I have y_test and y_preds (save to file?)
     file = open(filename, "wb")
     pickle.dump(y_test, file)
     pickle.dump(y_preds, file)
-    file.close()
+    file.close()"""
 
     #results = zip(preds, y_test)
     #resultSet = set(results)
@@ -320,7 +325,8 @@ if __name__ == '__main__':
     part_file_names = ['0clean', '2500clean', '5000clean', '7500clean', '10000clean']
     #runtest(clean, dirty)
     #runfolds(clean, dirty, res_dir, part_file_names)
-    run_one_fold(dirty[0], dirty[1]+dirty[2], "results/firstTest.p")
+    run_one_fold(dirty[0][0:5], dirty[1][0:5], "results/firstTest.p")
+    # What's going on in the Hybrid file?
     print("Done!")
 
     #gen_F1_scores('/home/centos/hybrid-method/week2_results')

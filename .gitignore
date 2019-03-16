@@ -103,4 +103,12 @@ ENV/
 #2to3 backups
 *.bak
 
+# Miscellaneous
+week*/
+results/
+caches/
+a.cache
+changeset_sets/
+columbus/
+
 # user requested caches/

@@ -18,21 +18,21 @@ from tqdm import tqdm
 from columbus.columbus import columbus
 from columbus.columbus import refresh_columbus
 
-
+#  Change for use on local machine
 LOCK = Lock()
 COLUMBUS_CACHE = Path('~/caches/columbus-cache-2').expanduser()
-memory = Memory(cachedir='/home/centos/caches/joblib-cache', verbose=0)
+memory = Memory(cachedir='/home/ubuntu/caches/joblib-cache', verbose=0)
 
 
 class Hybrid(BaseEstimator):
     """ scikit style class for hybrid method """
-    def __init__(self, freq_threshold=1, vw_binary='/home/centos/bin/vw',
+    def __init__(self, freq_threshold=1, vw_binary='/home/ubuntu/bin/vw',
                  pass_freq_to_vw=False, pass_files_to_vw=False,
                  vw_args='-b 26 --passes=20 -l 50',
                  probability=False, tqdm=True,
                  suffix='', iterative=False,
                  loss_function='hinge',
-                 use_temp_files=False):
+                 use_temp_files=False): # if this is set true it will delete everything after end of runtime?
         """ Initializer for Hybrid method. Do not use multiple instances
         simultaneously.
         """
@@ -67,7 +67,7 @@ class Hybrid(BaseEstimator):
         self.trained = False
         refresh_columbus()
 
-    def fit(self, X, y):
+    def fit(self, X, y): # X = changesets, y = labels!!!
         start = time.time()
         if not self.probability:
             X, y = self._filter_multilabels(X, y)
@@ -115,7 +115,14 @@ class Hybrid(BaseEstimator):
         if self.iterative:
             self.vw_args_ += ' --save_resume'
         self.vw_args_ += ' --kill_cache --cache_file a.cache'
-        tags = self._get_tags(X)
+        #print(self.vw_args_)
+        tags = self._get_tags(X) # list of directories?
+        print("Type of tags: ", type(tags))
+        print("Length of tags: ", len(tags))
+        print("Type of tags element:", type(tags[0]))
+        print(tags[4][1])
+        #print("Tags element 0: ", tags[0])
+        """
         train_set = list(zip(tags, y))
         random.shuffle(train_set)
         if self.use_temp_files:
@@ -137,6 +144,7 @@ class Hybrid(BaseEstimator):
             else:
                 input_string += '{} '.format(self.indexed_labels[labels[0]])
             f.write('{}| {}\n'.format(input_string, ' '.join(tag)))
+            #print(input_string)
         f.close()
         command = '{vw_binary} {vw_input} {vw_args} -f {vw_modelfile}'.format(
             vw_binary=self.vw_binary, vw_input=f.name,
@@ -155,11 +163,12 @@ class Hybrid(BaseEstimator):
             logging.info(
                 'vw ran sucessfully. out: %s, err: %s',
                 c.std_out, c.std_err)
-        if self.use_temp_files:
+        if self.use_temp_files: # WILL BE FALSE
             safe_unlink(f.name)
-        self.trained = True
-        logging.info("Training took %f secs." % (time.time() - start))
+        self.trained = True # once the fit function has been run, model has been trained
+        logging.info("Training took %f secs." % (time.time() - start))"""
 
+    # THIS FUNCTION IS NEVER CALLED IN THIS FILE
     def transform_labels(self, y):
         return [self.indexed_labels[x] for x in y]
 
@@ -290,6 +299,7 @@ class Hybrid(BaseEstimator):
                                   freq_threshold=self.freq_threshold,
                                   return_freq=self.pass_freq_to_vw)
 
+    # FIX TO WORK W CHANGESETS
     def _filter_multilabels(self, X, y):
         new_X = []
         new_y = []
@@ -319,11 +329,11 @@ class Hybrid(BaseEstimator):
 
 
 class Columbus(BaseEstimator):
-    """ scikit style class for columbus """
+    #scikit style class for columbus
     def __init__(self, freq_threshold=2, tqdm=True):
-        """ Initializer for columbus. Do not use multiple instances
-        simultaneously.
-        """
+        # Initializer for columbus. Do not use multiple instances
+        #simultaneously.
+
         self.freq_threshold = freq_threshold
         self.tqdm = tqdm
 

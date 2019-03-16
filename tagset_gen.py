@@ -4,6 +4,7 @@
 # COMMAND LINE INPUTS:
 #      - one input: changeset directory
 #      - two inputs: changset directory, tagset directory (IN THAT ORDER)
+#                    * changeset directory must exist, if tagset directory does not exist it will be created
 ############################ TEST THIS FILE ########################################
 # All functionalities seem to be working, so now I will try to delete some dead code
 
@@ -23,7 +24,7 @@ import yaml
 
 import envoy
 from joblib import Memory
-from sklearn.base import BaseEstimator
+#from sklearn.base import BaseEstimator
 from tqdm import tqdm
 
 from columbus.columbus import columbus
@@ -69,52 +70,6 @@ def get_changeset(cs_fname, cs_dir, iterative=False):
     if 'changes' not in changeset or ('label' not in changeset and 'labels' not in changeset):
         raise IOError("Couldn't read changeset")
     return changeset
-
-"""
-class Columbus(BaseEstimator):
-    # scikit style class for columbus
-    def __init__(self, freq_threshold=2, tqdm=True):
-        #Initializer for columbus. Do not use multiple instances
-        #simultaneously.
-        self.freq_threshold = freq_threshold
-        self.tqdm = tqdm
-
-    def fit(self, X, y):
-        pass
-
-    def predict(self, X):
-        tags = self._columbize(X)
-        result = []
-        for tagset in tags:
-            result.append(max(tagset.keys(), key=lambda key: tagset[key]))
-        return result
-
-    def _columbize(self, X):
-        mytags =  _get_columbus_tags(X, disable_tqdm=(not self.tqdm),
-                                     freq_threshold=self.freq_threshold,
-                                     return_freq=True)
-        result = []
-        for tagset in mytags:
-            tagdict = {}
-            for x in tagset:
-                key, value = x.split(':')
-                tagdict[key] = value
-            result.append(tagdict)
-        return result
-"""
-
-@memory.cache
-def _get_filename_frequencies(X, disable_tqdm=False, freq_threshold=2):
-    #logging.info("Getting filename frequencies for %d changesets", len(X))
-    tags = []
-    for changeset in tqdm(X, disable=disable_tqdm):
-        c = Counter()
-        for filename in changeset:
-            c.update(filename.split(' ')[1].split('/'))
-        del c['']
-        tags.append(['{}:{}'.format(tag.replace(':', '').replace('|', ''), freq)
-                     for tag, freq in dict(c).items() if freq > freq_threshold])
-    return tags
 
 def _get_columbus_tags(X, disable_tqdm=False,
                        return_freq=True,
@@ -163,7 +118,6 @@ def create_files(tagset_names, ts_dir, labels, ids, tags):
     for i, tagset_name in enumerate(tagset_names):
         #if()
         # CHANGE "labels" to "label" if not multi?
-        print(type(labels[i]))
         # multilabel changeset
         if(isinstance(labels[i], list)):
             cur_dict = {'labels': labels[i], 'id' : ids[i], 'tags': tags[i]}
@@ -206,32 +160,29 @@ def create_res_dir(work_dir, path_str=""): # THIS IS DONE I THINK
     return path_str
 
 def get_cs_dir(path_str, work_dir):
-    valid_dir = True
+    # if not absolute, assume relative
     if not os.path.isabs(path_str):
         path_str = work_dir + '/' + path_str
-    # Check if directory exists/contains changesets
+    # Check if directory exists
     if not os.path.isdir(path_str):
         print('Error: directory does not exsist!')
-        valid_dir = False
-    return valid_dir, path_str
+        path_str = ""
+    return path_str
 
 def get_directories(arg_list):
-    err = False # False as long as command line input is valid
     cs_dir = ""
     ts_dir = ""
     valid = True
     if len(arg_list) == 1:
         # No input directory provided
         print("Error: please provide a changeset directory")
-        err = True
     elif len(arg_list) == 2:
         # Must create a result directory...
         ts_dir = create_res_dir(work_dir)
         # Check if cs_dir exists
         cs_dir = arg_list[1]
         if not os.path.isdir(cs_dir):
-            print('Changeset directory does not exist')
-            err = True
+            raise ValueError("Error: Changeset directory does not exist")
         else:
             valid, cs_dir = get_cs_dir(arg_list[1], work_dir)
     elif len(arg_list) == 3:
@@ -239,19 +190,16 @@ def get_directories(arg_list):
         ts_dir = create_res_dir(work_dir, arg_list[2])
         cs_dir = arg_list[1]
         if not os.path.isdir(cs_dir):
-            print('Changeset directory does not exist')
-            err = True
+            raise ValueError("Error: Changeset directory does not exist")
         else:
-            valid, cs_dir = get_cs_dir(arg_list[1], work_dir)
+            cs_dir = get_cs_dir(arg_list[1], work_dir)
     else:
         print("Error: too many arguments!")
-        err = True
 
-    return err, valid, cs_dir, ts_dir
+    return cs_dir, ts_dir
 
 
 if __name__ == '__main__':
-    # Test: generate tagsets for a small list of tagsets
     # COMMAND LINE ARGS
     #cs_dir = '/home/ubuntu/praxi/week5/cs_multitest'
     #ts_dir = '/home/ubuntu/praxi/week5/multitest_tags'
@@ -261,40 +209,25 @@ if __name__ == '__main__':
     # Deal with command line arguments
     arg_list = sys.argv
     print(arg_list)
-    err, valid, cs_dir, ts_dir = get_directories(arg_list)
+    cs_dir, ts_dir = get_directories(arg_list)
+
+    if cs_dir == '':
+        raise ValueError("Invalid changeset directory")
+    if ts_dir == '':
+        raise ValueError("Invalid tagset directory")
 
     # generate tagsets and place in ts directory!
-    if (not err) and valid:
-        changeset_names = get_changeset_names(cs_dir)
-        if len(changeset_names)!=0:
-            tagset_names = create_tagset_names(changeset_names) # names for new tagset files!!!
-            ids = get_ids(changeset_names)
+    changeset_names = get_changeset_names(cs_dir)
+    if len(changeset_names)==0:
+        raise ValueError("No changesets in selected directory")
 
-            changesets = []
-            labels = []
-            changesets, labels = parse_cs(changeset_names, cs_dir, multilabel = True)
+    tagset_names = create_tagset_names(changeset_names) # names for new tagset files!!!
+    ids = get_ids(changeset_names)
 
-            tags = _get_columbus_tags(changesets)
+    changesets = []
+    labels = []
+    changesets, labels = parse_cs(changeset_names, cs_dir, multilabel = True)
 
-            create_files(tagset_names, ts_dir, labels, ids, tags)
-        else:
-            print("Error: no changesets in selected directory")
+    tags = _get_columbus_tags(changesets)
 
-    """
-    try:
-        changeset_names = get_changeset_names(cs_dir)
-        if len(changeset_names)!=0:
-            tagset_names = create_tagset_names(changeset_names) # names for new tagset files!!!
-            ids = get_ids(changeset_names)
-
-            changesets = []
-            labels = []
-            changesets, labels = parse_cs(changeset_names, multilabel = True)
-
-            tags = _get_columbus_tags(changesets)
-
-            create_files(tagset_names, ts_dir, labels, ids, tags)
-        else:
-            print('Error: no changesets in selected directory')
-    except: # Should execute if err = true or valid = false
-        print('Program encountered an error')"""
+    create_files(tagset_names, ts_dir, labels, ids, tags)

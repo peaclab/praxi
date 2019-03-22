@@ -107,7 +107,7 @@ def multiapp_trainw_dirty():
     suffix = 'timing' # what is this for?
     # clf = RuleBased(filter_method='take_max', num_rules=6)
     clf = Hybrid(freq_threshold=2, pass_freq_to_vw=True, probability=True,
-                 vw_args='-b 26 --learning_rate 1.5 --passes 10',
+                 vw_args='-b 26 --passes 50 --bfgs --learning_rate 1.25 --decay_learning_rate 0.9',
                  suffix=suffix, use_temp_files=True)
 
     #print(clf.get_args())

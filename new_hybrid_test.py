@@ -294,13 +294,13 @@ if __name__ == '__main__':
     test_preds = clf.predict(test_tags)
 
     # Now I have y_test and y_preds (save to file?)
-    filename = '~/first_ts_test.p'
-    file = open(filename, "wb")
+    #filename = 'first_ts_test.p'
+    file = open('first_ts_test.p', 'wb')
     pickle.dump(test_labels, file)
     pickle.dump(test_preds, file)
     file.close()
 
-    results = zip(preds, y_test)
+    results = zip(test_preds, test_labels)
     resultSet = set(results)
     #clf.score(X_test, y_test)
     print(resultSet)

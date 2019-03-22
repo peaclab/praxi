@@ -242,10 +242,12 @@ class Hybrid(BaseEstimator):
         return result
 
     def predict(self, X):
+        # JUST WANT THE TAGS... got that
+        # EXPECTS A LIST OF DICTIONARIES
         start = time.time()
         if not self.trained:
             raise ValueError("Need to train the classifier first")
-        tags = self._get_tags(X)
+        #tags = self._get_tags(X)
         if self.use_temp_files:
             f = tempfile.NamedTemporaryFile('w', delete=False)
             outfobj = tempfile.NamedTemporaryFile('w', delete=False)
@@ -254,14 +256,14 @@ class Hybrid(BaseEstimator):
         else:
             f = open('./pred_input-%s.txt' % self.suffix, 'w')
             outf = './pred_output-%s.txt' % self.suffix
-        for tag in tags:
+        for tag in X:
             f.write('| {}\n'.format(' '.join(tag)))
         f.close()
-        logging.info('vw input written to %s, starting testing', f.name)
+        #logging.info('vw input written to %s, starting testing', f.name)
         command = '{vw_binary} {vw_input} -t -p {outf} -i {vw_modelfile}'.format(
             vw_binary=self.vw_binary, vw_input=f.name, outf=outf,
             vw_modelfile=self.vw_modelfile)
-        logging.info('vw command: %s', command)
+        #logging.info('vw command: %s', command)
         vw_start = time.time()
         c = envoy.run(command)
         logging.info("vw took %f secs." % (time.time() - vw_start))
@@ -287,15 +289,6 @@ class Hybrid(BaseEstimator):
             safe_unlink(self.vw_modelfile)
         logging.info("Testing took %f secs." % (time.time() - start))
         return all_preds
-
-    def _get_tags(self, X):
-        logging.info("Getting tags for input set %s" % len(X))
-        if self.pass_files_to_vw:
-            return _get_filename_frequencies(X, disable_tqdm=(not self.tqdm),
-                                             freq_threshold=self.freq_threshold)
-        return _get_columbus_tags(X, disable_tqdm=(not self.tqdm),
-                                  freq_threshold=self.freq_threshold,
-                                  return_freq=self.pass_freq_to_vw)
 
     # FIX TO WORK W CHANGESETS... actually it should work as-is
     def _filter_multilabels(self, X, y):
@@ -324,6 +317,19 @@ class Hybrid(BaseEstimator):
         print("Hits:" + str(hits))
         print("Misses:" + str(misses))
         return {'preds': preds, 'hits': hits, 'misses': misses}
+
+        """
+        def _get_tags(self, X, return_freq=True, freq_threshold=2):
+            logging.info("Getting tags for input set %s" % len(X))
+            if self.pass_files_to_vw:
+                return _get_filename_frequencies(X, disable_tqdm=(not self.tqdm),
+                                                 freq_threshold=self.freq_threshold)
+            tags = []
+            for tagset in tqdm(X):
+                if return_freq:
+            return _get_columbus_tags(X, disable_tqdm=(not self.tqdm),
+                                      freq_threshold=self.freq_threshold,
+                                      return_freq=self.pass_freq_to_vw)"""
 
 
 def safe_unlink(filename):

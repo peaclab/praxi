@@ -73,7 +73,6 @@ def get_tagset(ts_path): # combine with parse_ts
     return data_loaded
 
 """
-
 def runtest(clean_csids, dirty_csids):
     # for now, just try one fold with 2000 dirty labels and 2500 clean labels
     # get the F1 score and the runtime
@@ -96,7 +95,7 @@ def runtest(clean_csids, dirty_csids):
                  use_temp_files=True)
     # why is it called clf??? changeset labeling function... idk
     get_scores(clf, X_train, y_train, X_test, y_test)
-
+"""
 def run_one_fold(train_csids, test_csids, filename):
     # Weird constants you need for ML model
     suffix = 'hybrid'
@@ -200,7 +199,7 @@ def runfolds(clean, dirty, resdir, part_file_names):
                 # RUN THE FOLD
                 run_one_fold(train_csids, dirty_test_csids, fname)
                 #F1score, runtime = run_one_fold(train_csids, dirty_test_csids)
-
+"""
 def gen_F1_scores(folder_path):
     # given the address to a folder with results and generate the F1 score for each file in said folder
     n_strats = 5
@@ -252,30 +251,6 @@ def mean(list):
     return sum/len(list)
 
 
-def avg_F1(fileName):
-    # I have a list of 15 F1 scores, need to average every 3 to get the
-    # official F1 for every experiment
-    file = open(fileName, 'rb')
-    fnames = pickle.load(file)
-    scores = pickle.load(file)
-    print(len(fnames), len(scores)) # 15, good
-    file.close()
-
-    for i in scores:
-        print(i)
-
-    exp_names = ["0 Clean", "2500 Clean", "5000 Clean", "7500 Clean", "10000 Clean"]
-    f1_scores = [mean(scores[0:3]),mean(scores[3:6]),mean(scores[6:9]),mean(scores[9:12]),mean(scores[12:15])]
-    for i, j in zip(exp_names, f1_scores):
-        print(i, j)
-
-    resFile = 'week3_results/F1_scores_single_label_FINAL.p'
-    # create a pickle file and dump
-    file = open(resFile, 'wb')
-    pickle.dump(exp_names, file)
-    pickle.dump(f1_scores, file)
-    file.close()
-
 def dataTest(file_path):
     file = open(file_path, 'rb')
     y_test = pickle.load(file)
@@ -290,13 +265,17 @@ def dataTest(file_path):
 """
 
 if __name__ == '__main__':
-    ts_path = '/home/ubuntu/praxi/week5/multitest_tags'
-    ts_names = [f for f in listdir(ts_path) if isfile(join(ts_path, f))]
-    # ^ Make sure to filter specifically for tagsets
+    ts_train_path = '/home/ubuntu/praxi/week7/tagsets_train'
+    ts_train_names = [f for f in listdir(ts_train_path) if isfile(join(ts_train_path, f))]
 
-    tags, labels = parse_ts(ts_names, ts_path)
+    ts_test_path = '/home/ubuntu/praxi/week7/tagsets_test'
+    ts_test_names = [f for f in listdir(ts_test_path) if isfile(join(ts_test_path, f))]
+    # ^ Make sure to filter specifically for tagsets!! (Should end with .tag extension)
+
+
+    train_tags, train_labels = parse_ts(ts_train_names, ts_train_path)
+    test_tags, test_labels = parse_ts(ts_test_names, ts_test_path)
     # ^^ This is what I will pass into the clf.fit function
-
 
     suffix = 'hybrid'
     iterative = False
@@ -306,17 +285,26 @@ if __name__ == '__main__':
                  suffix=suffix, iterative=iterative,
                  use_temp_files=True)
 
-
-    all_preds = clf.predict(tags)
-
     # Fit model
     print("Entering clf.fit(X_train, y_train)")
-    clf.fit(tags, labels)
+    clf.fit(train_tags, train_labels)
 
     # Now try to use predict! :) ... need a test set...
+    # this *should* work
+    test_preds = clf.predict(test_tags)
 
+    # Now I have y_test and y_preds (save to file?)
+    filename = '~/first_ts_test.p'
+    file = open(filename, "wb")
+    pickle.dump(test_labels, file)
+    pickle.dump(test_preds, file)
+    file.close()
 
-    # TEST FIT
+    results = zip(preds, y_test)
+    resultSet = set(results)
+    #clf.score(X_test, y_test)
+    print(resultSet)
+    print("DONE!")
 
     #print("Num tags: ", len(tags))
     #print("Labels: ", labels)

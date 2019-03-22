@@ -116,13 +116,7 @@ class Hybrid(BaseEstimator):
             self.vw_args_ += ' --save_resume'
         self.vw_args_ += ' --kill_cache --cache_file a.cache'
         #print(self.vw_args_)
-        tags = self._get_tags(X) # list of directories?
-        print("Type of tags: ", type(tags))
-        print("Length of tags: ", len(tags))
-        print("Type of tags element:", type(tags[0]))
-        print(tags[4][1])
-        #print("Tags element 0: ", tags[0])
-        """
+        tags = self._get_tags(X)
         train_set = list(zip(tags, y))
         random.shuffle(train_set)
         if self.use_temp_files:
@@ -144,7 +138,7 @@ class Hybrid(BaseEstimator):
             else:
                 input_string += '{} '.format(self.indexed_labels[labels[0]])
             f.write('{}| {}\n'.format(input_string, ' '.join(tag)))
-            #print(input_string)
+            print(input_string)
         f.close()
         command = '{vw_binary} {vw_input} {vw_args} -f {vw_modelfile}'.format(
             vw_binary=self.vw_binary, vw_input=f.name,
@@ -153,6 +147,7 @@ class Hybrid(BaseEstimator):
         logging.info('vw command: %s', command)
         vw_start = time.time()
         c = envoy.run(command)
+        print("VW start")
         logging.info("vw took %f secs." % (time.time() - vw_start))
         if c.status_code:
             logging.error(
@@ -166,7 +161,7 @@ class Hybrid(BaseEstimator):
         if self.use_temp_files: # WILL BE FALSE
             safe_unlink(f.name)
         self.trained = True # once the fit function has been run, model has been trained
-        logging.info("Training took %f secs." % (time.time() - start))"""
+        logging.info("Training took %f secs." % (time.time() - start))
 
     # THIS FUNCTION IS NEVER CALLED IN THIS FILE
     def transform_labels(self, y):
@@ -299,7 +294,6 @@ class Hybrid(BaseEstimator):
                                   freq_threshold=self.freq_threshold,
                                   return_freq=self.pass_freq_to_vw)
 
-    # FIX TO WORK W CHANGESETS
     def _filter_multilabels(self, X, y):
         new_X = []
         new_y = []
@@ -329,11 +323,11 @@ class Hybrid(BaseEstimator):
 
 
 class Columbus(BaseEstimator):
-    #scikit style class for columbus
+    """ scikit style class for columbus """
     def __init__(self, freq_threshold=2, tqdm=True):
-        # Initializer for columbus. Do not use multiple instances
-        #simultaneously.
-
+        """ Initializer for columbus. Do not use multiple instances
+        simultaneously.
+        """
         self.freq_threshold = freq_threshold
         self.tqdm = tqdm
 

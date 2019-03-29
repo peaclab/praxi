@@ -1,0 +1,33 @@
+id: '300289'
+labels:
+- ksh
+- dcraw
+tags:
+- 000:338
+- extended_states.:6
+- dpkg:80
+- tmp.:36
+- con:9
+- ksh.dpkg-:29
+- ksh.:44
+- ksh:72
+- shcomp.:11
+- ksh93.:7
+- rksh.:7
+- rksh:16
+- rksh93.:7
+- zh_:12
+- update:30
+- status-:10
+- pkgcache.bin.:6
+- RELEASE:4
+- ksh.p:3
+- ksh.post:2
+- dcparse.:7
+- dcfujigreen.:7
+- dcfuji:24
+- dccleancrw.:7
+- dcraw.:17
+- dcfujiturn16.:7
+- dcfujiturn:16
+- dcfujiturn.:7

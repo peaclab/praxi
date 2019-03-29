@@ -1,0 +1,33 @@
+id: '301500'
+labels:
+- qrencode
+- lshw
+- docker
+tags:
+- 000:415
+- extended_states.:9
+- dpkg:121
+- tmp.:51
+- libqrencode.so.3.:7
+- libqrencode:20
+- libqrencode3amd64.:8
+- libqrencode3:12
+- con:14
+- qrencode.:17
+- zh_:18
+- update:51
+- status-:15
+- pkgcache.bin.:9
+- cups:22
+- subscriptions.conf.:8
+- job.cache.:4
+- sys:3
+- system:2
+- libqrencode3amd64.s:2
+- 001:2
+- lshw.:14
+- docker.:13
+- wmdocker.:7
+- config.dat-:4
+- templates.dat-:4
+- docker.post:2

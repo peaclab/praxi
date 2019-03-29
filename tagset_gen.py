@@ -5,8 +5,9 @@
 #      - one input: changeset directory
 #      - two inputs: changset directory, tagset directory (IN THAT ORDER)
 #                    * changeset directory must exist, if tagset directory does not exist it will be created
+# OUTPUTS:
+#      - a directory containing tagsets (.yaml files) for each of the changesets in the given changeset directory
 ############################ TEST THIS FILE ########################################
-# All functionalities seem to be working, so now I will try to delete some dead code
 
 # Imports
 from collections import Counter
@@ -28,7 +29,7 @@ from joblib import Memory
 from tqdm import tqdm
 
 from columbus.columbus import columbus
-from columbus.columbus import refresh_columbus
+#from columbus.columbus import refresh_columbus
 
 #  Change for use on local machine
 LOCK = Lock()
@@ -74,7 +75,8 @@ def get_changeset(cs_fname, cs_dir, iterative=False):
 def _get_columbus_tags(X, disable_tqdm=False,
                        return_freq=True,
                        freq_threshold=2):
-    # Returns a list of tags and their frequency (as strings)
+    # input: a list of changesets (dictionaries)
+    # output: a list of tags and their frequency (as strings)
     tags = []
     for changeset in tqdm(X, disable=disable_tqdm):
         #print("changeset data type", type(changeset))
@@ -98,13 +100,15 @@ def create_tagset_names(changeset_names):
     return tagset_names
 
 def get_changeset_names(cs_dir):
-    # takes a directory name and returns all changeset files within the directory
+    # input: a directory name
+    # output: names of all changeset files within the directory
     all_files = [f for f in listdir(cs_dir) if isfile(join(cs_dir, f))]
     changeset_names = [f for f in all_files if ".yaml" in f and ".tag" not in f]
     return changeset_names
 
 def get_ids(changeset_names):
-    # return the ids of all changesets in a list (between first and second '.')
+    # input: list of changeset names
+    # output: list of ids of all changesets in the list (between first and second '.')
     c_ids = []
     c = '.'
     for cs_name in changeset_names:
@@ -114,14 +118,15 @@ def get_ids(changeset_names):
     return c_ids
 
 def create_files(tagset_names, ts_dir, labels, ids, tags):
-    # add tags, labels, ids to yaml files
+    # input: names of tagsets, name of target directory, labels, ids, and tags
+    # output: returns nothing, creates tagset files (.yaml format) in given directory
     for i, tagset_name in enumerate(tagset_names):
         #if()
         # CHANGE "labels" to "label" if not multi?
         # multilabel changeset
         if(isinstance(labels[i], list)):
             cur_dict = {'labels': labels[i], 'id' : ids[i], 'tags': tags[i]}
-            print("multi!")
+            #print("multi!")
         else:
             cur_dict = {'label': labels[i], 'id' : ids[i], 'tags': tags[i]}
         #print(tagset_names[i])
@@ -146,7 +151,7 @@ def get_free_filename(stub, directory, suffix=''):
 
 def create_res_dir(work_dir, path_str=""): # THIS IS DONE I THINK
     # Given a path string, check if it exists, if is doesn't create a directory
-    # return full file path
+    # output: full file path
     if (path_str!=""): # path specified
         if not os.path.isabs(path_str):
             # IF PATH IS NOT ABSOLUTE, ASSUMED TO BE RELATIVE
@@ -201,8 +206,10 @@ def get_directories(arg_list):
 
 if __name__ == '__main__':
     # COMMAND LINE ARGS
-    #cs_dir = '/home/ubuntu/praxi/week5/cs_multitest'
-    #ts_dir = '/home/ubuntu/praxi/week5/multitest_tags'
+    #cs_dir = '/home/ubuntu/praxi/results/week5/cs_multitest'
+    #ts_dir = '/home/ubuntu/praxi/results/week5/multitest_tags'
+
+    prog_start = time.time()
 
     work_dir = os.path.abspath('.')
 
@@ -231,3 +238,5 @@ if __name__ == '__main__':
     tags = _get_columbus_tags(changesets)
 
     create_files(tagset_names, ts_dir, labels, ids, tags)
+
+    print("Tagset generation time:", (time.time() - prog_start))

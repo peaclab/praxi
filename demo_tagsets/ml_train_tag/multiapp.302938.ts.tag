@@ -1,0 +1,34 @@
+id: '302938'
+labels:
+- cdparanoia
+- lshw
+- rdist
+- iotop
+tags:
+- 000:545
+- extended_states.:12
+- dpkg:153
+- tmp.:63
+- libcdda_interface.so.0.:7
+- libcdda_:16
+- libcd:34
+- libcdda_paranoia.so.0.:7
+- libcdparanoia0:18
+- libcdparanoia0amd64.:8
+- con:17
+- man:325
+- cdparanoia.:19
+- zh_:24
+- config.dat-:4
+- templates.dat-:4
+- update:64
+- status-:20
+- pkgcache.bin.:12
+- libcdparanoia0amd64.post:2
+- lshw.:14
+- rdist.:15
+- rdist:27
+- rdistd.:7
+- iotop.:42
+- iotop:79
+- iotop.p:2

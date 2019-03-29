@@ -1,0 +1,32 @@
+id: '301153'
+labels:
+- iotop
+- mstflint
+- lshw
+tags:
+- 000:420
+- extended_states.:9
+- dpkg:98
+- tmp.:42
+- con:14
+- iotop.:34
+- iotop:63
+- man:240
+- zh_:18
+- update:45
+- status-:15
+- pkgcache.bin.:9
+- iotop.p:2
+- mst:73
+- mstm:16
+- hca_self_test.:6
+- mstflint.:28
+- config.dat-:4
+- templates.dat-:4
+- mtcr:4
+- ConnectX:12
+- Connect:14
+- Switch:4
+- ConnectX3:4
+- ConnectX4:4
+- lshw.:14

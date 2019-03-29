@@ -1,0 +1,20 @@
+id: '13812'
+label: mksh
+tags:
+- 000:212
+- dpkg:54
+- tmp.:26
+- con:6
+- pre:6
+- mksh:97
+- mksh.:35
+- lksh.:7
+- mksh16:8
+- check.:10
+- mksh-static.:7
+- zh_:6
+- update:12
+- status-:5
+- mksh.pre:2
+- mksh.p:4
+- mksh.post:2

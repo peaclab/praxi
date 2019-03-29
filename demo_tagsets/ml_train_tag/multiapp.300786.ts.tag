@@ -1,0 +1,34 @@
+id: '300786'
+labels:
+- mksh
+- lftp
+tags:
+- 000:320
+- extended_states.:6
+- dpkg:88
+- tmp.:42
+- con:19
+- pre:6
+- mksh:74
+- mksh.:35
+- lksh.:7
+- mksh16:8
+- mksh-static.:7
+- man:187
+- zh_:12
+- config.dat-:4
+- templates.dat-:4
+- update:30
+- status-:10
+- pkgcache.bin.:6
+- README.:8
+- check.:4
+- mksh.pre:2
+- mksh.p:4
+- mksh.post:2
+- lftp.conf.:7
+- lftp.conf:9
+- lftp.:34
+- lftp:56
+- lftpget.:7
+- import-n:4

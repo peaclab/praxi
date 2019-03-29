@@ -1,0 +1,37 @@
+id: '301804'
+labels:
+- tree
+- mariadb-server
+- tcsh
+tags:
+- 000:392
+- extended_states.:9
+- dpkg:112
+- tmp.:51
+- con:17
+- tree.:16
+- zh_:12
+- config.dat-:4
+- templates.dat-:4
+- update:43
+- status-:15
+- pkgcache.bin.:9
+- loc:45
+- README.:6
+- cups:15
+- subscriptions.conf.:4
+- job.cache.:4
+- mariadb-server.:7
+- pre:6
+- csh.:25
+- csh:34
+- csh.log:8
+- complete.tcsh.:5
+- tcsh.:73
+- csh-:6
+- tcsh.c:43
+- msg.:14
+- '2339:10'
+- tcsh.pre:2
+- tcsh.p:4
+- tcsh.post:2

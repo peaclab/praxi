@@ -1,0 +1,31 @@
+id: '300743'
+labels:
+- powertop
+- tcsh
+tags:
+- 000:335
+- extended_states.:6
+- dpkg:89
+- tmp.:42
+- con:14
+- man:176
+- powertop.:15
+- zh_:12
+- config.dat-:4
+- templates.dat-:4
+- update:31
+- status-:10
+- pkgcache.bin.:6
+- loc:44
+- pre:6
+- csh.:25
+- csh:34
+- csh.log:8
+- complete.tcsh.:5
+- tcsh.:73
+- csh-:6
+- tcsh.c:43
+- README.:4
+- tcsh.pre:2
+- tcsh.p:4
+- tcsh.post:2

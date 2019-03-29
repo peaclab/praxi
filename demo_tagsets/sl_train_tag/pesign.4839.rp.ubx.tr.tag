@@ -1,0 +1,24 @@
+id: '4839'
+label: pesign
+tags:
+- 000:203
+- dpkg:41
+- tmp.:17
+- tmp:21
+- con:6
+- pesign.conf:5
+- pesign.:40
+- pesign:82
+- pesig:90
+- pesign-client.:7
+- pesign-:12
+- efikeygen.:7
+- efi:16
+- authvar.:7
+- pesigcheck.:7
+- efisiglist.:7
+- pesign.p:6
+- zh_:6
+- update:15
+- status-:5
+- pesign-authorize-:4

@@ -1,0 +1,31 @@
+id: '300276'
+labels:
+- tcsh
+- tree
+tags:
+- 000:336
+- subscriptions.conf.:4
+- extended_states.:6
+- dpkg:86
+- tmp.:39
+- con:14
+- pre:6
+- csh.:25
+- csh:34
+- csh.log:8
+- complete.tcsh.:5
+- tcsh.:73
+- csh-:6
+- loc:44
+- tcsh.c:43
+- zh_:12
+- config.dat-:4
+- templates.dat-:4
+- update:32
+- status-:10
+- pkgcache.bin.:6
+- README.:6
+- tcsh.pre:2
+- tcsh.p:4
+- tcsh.post:2
+- tree.:16

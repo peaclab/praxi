@@ -1,0 +1,33 @@
+id: '300444'
+labels:
+- powertop
+- emacs-nox
+tags:
+- 000:215
+- extended_states.:6
+- dpkg:100
+- tmp.c:30
+- tmp.:39
+- con:14
+- libnl-3.so.200.:7
+- libnl-3.:10
+- libnl-3:33
+- libnl-:53
+- libnl-3-200amd64.:9
+- libnl-3-200:15
+- libnl-genl-3.so.200.:7
+- libnl-genl-3:20
+- libnl-genl-3-200amd64.:8
+- libnl-genl-3-200:12
+- powertop.:15
+- zh_:6
+- update:37
+- status-:10
+- pkgcache.bin.:6
+- changelog.:8
+- libnl-3-200amd64.s:2
+- libnl-genl-3-200amd64.s:2
+- 001:5
+- emacs-nox.:7
+- config.dat-:4
+- templates.dat-:4

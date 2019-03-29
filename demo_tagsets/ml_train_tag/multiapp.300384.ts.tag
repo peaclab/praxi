@@ -1,0 +1,33 @@
+id: '300384'
+labels:
+- ksh
+- lftp
+tags:
+- 000:323
+- extended_states.:6
+- dpkg:84
+- tmp.:39
+- con:14
+- ksh.dpkg-:31
+- ksh.:49
+- ksh:78
+- man:208
+- shcomp.:11
+- ksh93.:7
+- rksh.:7
+- rksh:16
+- rksh93.:7
+- zh_:12
+- update:30
+- status-:10
+- pkgcache.bin.:6
+- RELEASE:4
+- ksh.p:3
+- ksh.post:2
+- lftp.conf.:7
+- lftp.conf:9
+- lftp.:34
+- lftp:56
+- lftpget.:7
+- import-n:4
+- README.:6

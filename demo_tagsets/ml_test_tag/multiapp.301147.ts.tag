@@ -1,0 +1,37 @@
+id: '301147'
+labels:
+- pax
+- tcsh
+- lshw
+tags:
+- 000:459
+- extended_states.:9
+- dpkg:116
+- tmp.c:36
+- tmp.:51
+- con:22
+- pax.:17
+- pax:37
+- paxtar.:7
+- paxcpio.:7
+- zh_:18
+- config.dat-:8
+- templates.dat-:8
+- update:47
+- status-:15
+- pkgcache.bin.:9
+- loc:45
+- pre:6
+- csh.:25
+- csh:34
+- csh.log:8
+- complete.tcsh.:5
+- tcsh.:73
+- csh-:6
+- tcsh.c:43
+- sys:2
+- README.:4
+- tcsh.pre:2
+- tcsh.p:4
+- tcsh.post:2
+- lshw.:14

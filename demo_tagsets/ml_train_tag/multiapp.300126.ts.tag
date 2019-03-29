@@ -1,0 +1,30 @@
+id: '300126'
+labels:
+- iotop
+- qrencode
+tags:
+- 000:313
+- extended_states.:6
+- dpkg:91
+- tmp.:39
+- con:11
+- iotop.:42
+- iotop:79
+- man:152
+- zh_:12
+- update:36
+- status-:10
+- pkgcache.bin.:6
+- iotop.p:2
+- cups:15
+- subscriptions.conf.:4
+- job.cache.:4
+- libqrencode.so.3.:7
+- libqrencode:20
+- libqrencode3amd64.:8
+- libqrencode3:12
+- qrencode.:17
+- config.dat-:4
+- templates.dat-:4
+- libqrencode3amd64.s:2
+- 001:2

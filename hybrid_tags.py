@@ -1,3 +1,4 @@
+# Imports
 from collections import Counter
 import logging
 import logging.config
@@ -11,7 +12,7 @@ import time
 import yaml
 
 import envoy
-from joblib import Memory
+#from joblib import Memory
 from sklearn.base import BaseEstimator
 from tqdm import tqdm
 
@@ -22,8 +23,8 @@ from columbus.columbus import refresh_columbus
 
 #  Change for use on local machine
 LOCK = Lock()
-COLUMBUS_CACHE = Path('~/caches/columbus-cache-2').expanduser()
-memory = Memory(cachedir='/home/ubuntu/caches/joblib-cache', verbose=0)
+#COLUMBUS_CACHE = Path('~/caches/columbus-cache-2').expanduser()
+#memory = Memory(cachedir='/home/ubuntu/caches/joblib-cache', verbose=0)
 
 
 class Hybrid(BaseEstimator):
@@ -44,12 +45,12 @@ class Hybrid(BaseEstimator):
         self.probability = probability
         self.loss_function = loss_function
         self.vw_binary = vw_binary
-        self.tqdm = tqdm
-        self.pass_files_to_vw = pass_files_to_vw
+        self.tqdm = tqdm #loop progrss
+        self.pass_files_to_vw = pass_files_to_vw # bool
         self.suffix = suffix
         self.iterative = iterative
         self.use_temp_files = (not self.iterative) and use_temp_files
-        self.trained = False
+        self.trained = False # model is always instantiated untrained
 
     def get_args(self):
         try:
@@ -69,7 +70,7 @@ class Hybrid(BaseEstimator):
         self.trained = False
         refresh_columbus()
 
-    def fit(self, X, y): # X = TAGsets, y = labels!!!
+    def fit(self, X, y): # X = TAGsets, y = labels!!! WORKS
         start = time.time()
         if not self.probability: # probability has to do with whether or not it is multilabel?
             X, y = self._filter_multilabels(X, y)
@@ -86,6 +87,7 @@ class Hybrid(BaseEstimator):
         logging.info('Started hybrid model, vw_modelfile: %s',
                      self.vw_modelfile)
         self.vw_args_ = self.vw_args
+        # add labels to self.all_labels field ########
         if not (self.iterative and self.trained):
             self.indexed_labels = {}
             self.reverse_labels = {}
@@ -104,6 +106,8 @@ class Hybrid(BaseEstimator):
                 self.indexed_labels[label] = self.label_counter
                 self.reverse_labels[self.label_counter] = label
                 self.label_counter += 1
+        ################################################
+        ## Create VW arg string ########################
         if self.probability:
             self.vw_args_ += ' --csoaa {}'.format(len(self.all_labels))
         else:
@@ -117,8 +121,8 @@ class Hybrid(BaseEstimator):
         if self.iterative:
             self.vw_args_ += ' --save_resume'
         self.vw_args_ += ' --kill_cache --cache_file a.cache'
-        #print(self.vw_args_)
-        #tags = self._get_tags(X)
+        ####################################################
+        #### Save
         train_set = list(zip(X, y))
         random.shuffle(train_set)
         if self.use_temp_files:
@@ -139,10 +143,11 @@ class Hybrid(BaseEstimator):
                         input_string += '{}:1.0 '.format(number)
             else:
                 input_string += '{} '.format(self.indexed_labels[labels[0]])
+            #print(input_string) # want to see what the args are
             f.write('{}| {}\n'.format(input_string, ' '.join(tag)))
-            #print(input_string)
         f.close()
-        # Call VW ML alg
+        # write all tag/label combos into a file f ^^^
+        ######## Call VW ML alg ##################################
         command = '{vw_binary} {vw_input} {vw_args} -f {vw_modelfile}'.format(
             vw_binary=self.vw_binary, vw_input=f.name,
             vw_args=self.vw_args_, vw_modelfile=self.vw_modelfile)
@@ -150,6 +155,8 @@ class Hybrid(BaseEstimator):
         #logging.info('vw command: %s', command)
         vw_start = time.time()
         c = envoy.run(command)
+        ##########################################################
+        ### Print info about VW run ##############################
         #logging.info("vw took %f secs." % (time.time() - vw_start))
         print("vw took this many seconds: ", (time.time() - vw_start))
         if c.status_code:
@@ -163,18 +170,18 @@ class Hybrid(BaseEstimator):
                 c.std_out, c.std_err)
         if self.use_temp_files: # WILL USUALLY BE FALSE
             safe_unlink(f.name)
-        self.trained = True # once the fit function has been run, model has been trained
+        self.trained = True # once the fit function has been run, model has been trained!
         logging.info("Training took %f secs." % (time.time() - start))
 
     # THIS FUNCTION IS NEVER CALLED IN THIS FILE (I think it's dead)
-    def transform_labels(self, y):
-        return [self.indexed_labels[x] for x in y]
+    # def transform_labels(self, y):
+    #    return [self.indexed_labels[x] for x in y]
 
-    def predict_proba(self, X):
+    def predict_proba(self, X): # X = tagsets
         start = time.time()
         if not self.trained:
             raise ValueError("Need to train the classifier first")
-        tags = self._get_tags(X)
+        #tags = self._get_tags(X) (X = tags)
         if self.use_temp_files:
             f = tempfile.NamedTemporaryFile('w', delete=False)
             outfobj = tempfile.NamedTemporaryFile('w', delete=False)
@@ -184,12 +191,12 @@ class Hybrid(BaseEstimator):
             f = open('./pred_input-%s.txt' % self.suffix, 'w')
             outf = './pred_output-%s.txt' % self.suffix
         if self.probability:
-            for tag in tags:
+            for tag in X:
                 f.write('{} | {}\n'.format(
                     ' '.join([str(x) for x in self.reverse_labels.keys()]),
                     ' '.join(tag)))
         else:
-            for tag in tags:
+            for tag in X:
                 f.write('| {}\n'.format(' '.join(tag)))
         f.close()
         logging.info('vw input written to %s, starting testing', f.name)
@@ -243,7 +250,7 @@ class Hybrid(BaseEstimator):
 
     def predict(self, X):
         # JUST WANT THE TAGS... got that
-        # EXPECTS A LIST OF DICTIONARIES
+        # EXPECTS A LIST OF LISTS (no labels)
         start = time.time()
         if not self.trained:
             raise ValueError("Need to train the classifier first")
@@ -313,23 +320,10 @@ class Hybrid(BaseEstimator):
             else:
                 misses += 1
             preds += 1
-        print("Preds:" + str(preds))
-        print("Hits:" + str(hits))
-        print("Misses:" + str(misses))
+        #print("Preds:" + str(preds))
+        #print("Hits:" + str(hits))
+        #print("Misses:" + str(misses))
         return {'preds': preds, 'hits': hits, 'misses': misses}
-
-        """
-        def _get_tags(self, X, return_freq=True, freq_threshold=2):
-            logging.info("Getting tags for input set %s" % len(X))
-            if self.pass_files_to_vw:
-                return _get_filename_frequencies(X, disable_tqdm=(not self.tqdm),
-                                                 freq_threshold=self.freq_threshold)
-            tags = []
-            for tagset in tqdm(X):
-                if return_freq:
-            return _get_columbus_tags(X, disable_tqdm=(not self.tqdm),
-                                      freq_threshold=self.freq_threshold,
-                                      return_freq=self.pass_freq_to_vw)"""
 
 
 def safe_unlink(filename):

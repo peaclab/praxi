@@ -1,0 +1,32 @@
+id: '300211'
+labels:
+- powertop
+- ksh
+tags:
+- 000:314
+- extended_states.:6
+- dpkg:84
+- tmp.:39
+- con:9
+- man:195
+- powertop.:15
+- zh_:12
+- update:30
+- status-:10
+- pkgcache.bin.:6
+- sys:3
+- system:2
+- cups:15
+- subscriptions.conf.:4
+- job.cache.:4
+- ksh.dpkg-:31
+- ksh.:49
+- ksh:78
+- shcomp.:11
+- ksh93.:7
+- rksh.:7
+- rksh:16
+- rksh93.:7
+- RELEASE:4
+- ksh.p:3
+- ksh.post:2

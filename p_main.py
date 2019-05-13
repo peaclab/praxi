@@ -6,6 +6,9 @@
 #from hashlib import md5
 from multiprocessing import Lock
 
+import logging
+import logging.config
+
 import os
 from os import listdir
 from os.path import isfile, join
@@ -116,29 +119,27 @@ def fold_partitioning(ts_names, n=3):
 
     return folds
 
-"""
 ################################
 ##### ITERATIVE TRAINING #######
 ################################
 def iterative_tests(vwargs, outdir):
     # get result file name
-    resfile_name = get_free_filename('iterative-hybrid', '.', suffix='.pkl')
-    outdir = get_free_filename('iterative-hybrid', '/home/centos/results')
+    outdir = '/home/ubuntu/results/iterative'
+    resfile_name = get_free_filename('iterative-hybrid', 'outdir', suffix='.pkl')
     suffix = 'hybrid'
     iterative = True
     # clf = RuleBased(filter_method='take_max', num_rules=6)
     clf = Hybrid(freq_threshold=2, pass_freq_to_vw=True, probability=False,
-                 vw_args= vwargs,
-                 suffix=suffix, iterative=iterative,
+                 vw_args= vwargs, suffix=suffix, iterative=iterative,
                  use_temp_files=True)
     # clf = Hybrid(freq_threshold=2, pass_freq_to_vw=True,
     #              suffix=suffix,
     #              probability=True, tqdm=True)
     # Get single app dirty changesets
-    with (PROJECT_ROOT / 'iterative_chunks.p').open('rb') as f:
+    with ('/home/ubuntu/praxi/iterative_chunks.p').open('rb') as f:
         it_chunks = pickle.load(f)
 
-    logging.info("Prediction pickle is %s", resfile_name)
+    #print("Prediction pickle is %s", resfile_name)
     resfile = open(resfile_name, 'wb')
     results = []
     for i in range(3):
@@ -151,7 +152,7 @@ def iterative_tests(vwargs, outdir):
         y_test = []
         clf.refresh()
         for idx, inner_chunks in enumerate(it_chunks):
-            logging.info('In iteration %d', idx)
+            print('In iteration %d', idx)
             features, labels = parse_csids(inner_chunks[i1], iterative=True)
             if iterative:
                 X_train = features
@@ -171,12 +172,11 @@ def iterative_tests(vwargs, outdir):
     resfile.close()
     print_results(resfile_name, outdir, args=clf.get_args(),
                   n_strats=len(it_chunks), iterative=True)
-"""
 
 #################################
 #### SINGLE LABEL EXPERIMENT ####
 #################################
-def single_label_experiment(folds, tr_path, resfile_name, outdir, vwargs, result_type, ts_path=None):
+def single_label_experiment(nfolds, tr_path, resfile_name, outdir, vwargs, result_type, ts_path=None):
     # instantiate hybrid object
     suffix = 'single'
     clf = Hybrid(freq_threshold=2, pass_freq_to_vw=True, probability=False,
@@ -186,20 +186,22 @@ def single_label_experiment(folds, tr_path, resfile_name, outdir, vwargs, result
     results = []
     if(ts_path==None): # folds!
         tr_names = [f for f in listdir(tr_path) if (isfile(join(tr_path, f))and f[-3:]=='tag')]
+        logging.info("Partitioning into %d folds", nfolds)
         folds = fold_partitioning(tr_names, n=nfolds)
+        logging.info("Starting cross validation folds: ")
         for idx, fold in enumerate(folds):
-            # take one fold to be the "test", use the rest as training
+            # take current fold to be the "test", use the rest as training
+            logging.info("Test fold is: %d", idx)
             test_tagset_names = fold
             train_idx_list = list(range(len(folds)))
             train_idx_list.remove(idx)
-            print(train_idx_list)
+            logging.info("Training folds: %s", str(train_idx_list))
             train_tagset_names = []
             for i in train_idx_list:
                 train_tagset_names += folds[i]
             test_tags, test_labels = parse_ts(test_tagset_names, tr_path)
             train_tags, train_labels = parse_ts(train_tagset_names, tr_path)
             results.append(get_scores(clf, train_tags, train_labels, test_tags, test_labels))
-            print(idx)
     else: # no folds/crossvalidation
         # get traintags, trainlabels, etc from ts_path, tr_path
         ts_train_names = [f for f in listdir(tr_path) if (isfile(join(tr_path, f))and f[-3:]=='tag')]
@@ -208,26 +210,31 @@ def single_label_experiment(folds, tr_path, resfile_name, outdir, vwargs, result
         train_tags, train_labels = parse_ts(ts_train_names, ts_train_path)
         test_tags, test_labels = parse_ts(ts_test_names, ts_test_path)
 
+        logging.info("Getting single label scores:")
         results.append(get_scores(clf, train_tags, train_labels, test_tags, test_labels))
 
     pickle.dump(results, resfile)
-    # results is a list of tuples
-    resfile.close()
+    # results is a list of tuples!!
+    resfile.close
+    logging.info("Printing results:")
     print_results(resfile_name, outdir, result_type)
 
 def get_scores(clf, train_tags, train_labels, test_tags, test_labels,
-               binarize=False, human_check=False, store_true=False):
+               binarize=False, store_true=False):
     """ Gets two lists of changeset ids, does training+testing """
     if binarize:
         binarizer = MultiLabelBinarizer()
         clf.fit(train_tags, binarizer.fit_transform(train_labels))
         preds = binarizer.inverse_transform(clf.predict(test_labels))
     else:
+        logging.info("Fitting model:")
         clf.fit(train_tags, train_labels) # train model
+        logging.info("Generating predictions:")
         preds = clf.predict(test_tags) # predict labels for test set
     return copy.deepcopy(test_labels), preds
 
 def print_results(resfile, outdir, result_type, n_strats=1, args=None, iterative=False):
+    logging.info("Writing scores to %s", str(outdir))
     with open(resfile, 'rb') as f:
         results = pickle.load(f)
     # # Now do the evaluation!
@@ -274,6 +281,7 @@ def print_results(resfile, outdir, result_type, n_strats=1, args=None, iterative
     confusions.append(metrics.confusion_matrix(x, y, labels))
     label_counts.append(len(set(x)))
 
+    # this for loop will only run once... might as well get rid of it
     for strat, report, f1w, f1i, f1a, pw, pi, pa, rw, ri, ra, confuse, lc in zip(
             range(n_strats), classifications, f1_weighted, f1_micro, f1_macro,
             p_weighted, p_micro, p_macro, r_weighted, r_micro, r_macro,
@@ -299,7 +307,7 @@ def print_results(resfile, outdir, result_type, n_strats=1, args=None, iterative
                 "LABEL COUNT : {}\n".format(lc))
             #fname = get_free_filename('iterative_exp', outdir, '.txt')
 
-        os.makedirs(str(outdir), exist_ok=True)
+        os.makedirs(str(outdir), exist_ok=True) # makes directory if it doesnt exist... also could get rid of this
         if result_type == 'summary':
             fname = get_free_filename('single_exp_summary', outdir, '.txt')
             file_header += (
@@ -344,9 +352,9 @@ def multi_label_experiment(nfolds, tr_path, resfile_name, outdir, vwargs, result
 
     resfile = open(resfile_name, 'wb')
     results = []
-    if (ts_path==None): # cross validation!
+    if (ts_path==None): # CROSS VALIDATION EXPERIMENT!
         tagset_names = [f for f in listdir(tr_path) if (isfile(join(tr_path, f))and f[-3:]=='tag')]
-        random.shuffle(tagset_names)
+        #random.shuffle(tagset_names)
         # Partition into folds (random)
         folds = [[] for _ in range(nfolds)]
         # randomly shuffle tagset names, split into 4
@@ -465,9 +473,6 @@ if __name__ == '__main__':
 
     prog_start = time.time()
 
-    #ts_train_path = '/home/ubuntu/praxi/results/week7/tagsets_train'
-    #ts_test_path = '/home/ubuntu/praxi/results/week7/tagsets_test'
-
     ##############################################################################
     ### GET TEST AND TRAIN TAGSETS FROM DIRECTORIES INPUT AS COMMAND LINE FLAGS ##
     ##############################################################################
@@ -481,46 +486,67 @@ if __name__ == '__main__':
     parser.add_argument('-w','--vwargs', dest='vw_args', default='-b 26 --learning_rate 1.5 --passes 10', help="custom arguments for VW.")
     parser.add_argument('-n', '--nfolds', help='number of folds to use in cross validation', default=1) # make default 1?
     parser.add_argument('-f', '--fullres', help='generate full result file.', dest='result', action='store_const', const='full', default='summary')
+    parser.add_argument('-v', '--verbosity', dest='loglevel', action='store_const', const='DEBUG', default='WARNING',help='specify level of detail for log file')
     # DEFAULT: NO FOLDS
     #   - will expect TWO directories as arguments
 
-    # add argument to send pre-partitioned ids (pickle files again)?
-
-    ###########################################
-    # ADD PRE-PARTITIONS?
-    ###########################################
-
     args = vars(parser.parse_args())
-    print(args)
 
-    result_type = args['result']
-    exp_type = args['experiment'] # 'single' or 'multi'
-    vwargs = args['vw_args']
     outdir = os.path.abspath(args['outdir'])
+
     nfolds = int(args['nfolds'])
 
     ts_train_path = args['traindir']
+
     ts_test_path = args['testdir']
-    print(ts_test_path)
-    #ts_test_names = [f for f in listdir(ts_test_path) if (isfile(join(ts_test_path, f)) and f[-3:]=='tag')]
+
+    # SET UP LOGGING
+    loglevel = args['loglevel']
+    stub = 'praxi_exp'
+    logfile_name = get_free_filename(stub, outdir, '.log')
+
+    numeric_level = getattr(logging, loglevel, None)
+    logging.basicConfig(filename=logfile_name,level=numeric_level)
+
+    # Log command line args
+    result_type = args['result'] # full or summary
+    logging.info("Result type: %s", result_type)
+
+    exp_type = args['experiment'] # single or multi
+    logging.info("Experiment type: %s", exp_type)
+
+    vwargs = args['vw_args']
+    logging.info("Arguments for Vowpal Wabbit: %s", vwargs)
 
     if(nfolds!= 1 and ts_test_path!=None):
         # ERROR: SHOULDNT HAVE A TEST DIRECTORY IF CROSS VALIDATION IS OCCURRING
+        logging.error("Too many input directories. If performing cross validation, expect just one.")
         raise ValueError("Too many input directories! Only need one for cross validation.")
+    #else if(nfolds == 1 and ts_test_path == None):
+    #    logging.error("Must have more than one fold for a cross validation experiment")
+    #    raise ValueError("Must have more than one fold for a cross validation experiment")
     else:
-        # RUN EXPERIMENT
         if exp_type == 'single':
-            print('single')
-            resfile_name = get_free_filename('single_test', outdir, '.p')
+            if(nfolds == 1):
+                logging.info("Starting single label experiment")
+                logging.info("Training directory: %s", ts_train_path)
+                logging.info("Testing directory: %s", ts_test_path)
+            else:
+                # CROSS VALIDATION
+                logging.info("Starting cross validation single label experiment with %s folds", str(nfolds))
+                logging.info("Tagset directory: %s", ts_train_path)
+            resfile_name = get_free_filename('single_test', outdir, '.p') # add arg to set stub?
             single_label_experiment(nfolds, ts_train_path, resfile_name, outdir, vwargs, result_type, ts_path=ts_test_path) # no traim directory
         else:
-            print('multi')
+            if(nfolds == 1):
+                logging.info("Starting multi label experiment")
+                logging.info("Training directory: %s", ts_train_path)
+                logging.info("Testing directory: %s", ts_test_path)
+            else:
+                # CROSS VALIDATION
+                logging.info("Starting cross validation multi label experiment with %s folds", str(nfolds))
+                logging.info("Tagset directory: %s", ts_train_path)
             resfile_name = get_free_filename('multi_test', outdir, '.p')
             multi_label_experiment(nfolds, ts_train_path, resfile_name, outdir, vwargs, result_type, ts_path=ts_test_path)
 
-        # also put pickle file in outdir
-
-    print("Program runtime:", (time.time() - prog_start))
-
-    # functions in hybrid_tags.py to test:
-    # - score: should work if predict works
+    logging.info("Program runtime: %s", str(time.time()-prog_start))

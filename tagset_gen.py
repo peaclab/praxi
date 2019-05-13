@@ -1,17 +1,20 @@
 #!/usr/bin/python3
-# Script function:
-#      - given a directory of changesets, create a directory containing the corresponding tagsets
-# COMMAND LINE INPUTS:
-#      - one input: changeset directory
-#      - two inputs: changset directory, tagset directory (IN THAT ORDER)
-#                    * changeset directory must exist, if tagset directory does not exist it will be created
-# OUTPUTS:
-#      - a directory containing tagsets (.yaml files) for each of the changesets in the given changeset directory
-############################ TEST THIS FILE ########################################
+""" Script function:
+     - given a directory of changesets, create a directory containing the corresponding tagsets
+COMMAND LINE INPUTS:
+     - one input: changeset directory
+     - two inputs: changset directory, tagset directory (IN THAT ORDER)
+         * changeset directory must exist, if tagset directory does not exist it will be created
+OUTPUTS:
+     - a directory containing tagsets (.yaml files) for each of the changesets in the given changeset directory
+"""
 
 # Imports
 from collections import Counter
 from multiprocessing import Lock
+
+import logging
+import logging.config
 
 import os
 from os import listdir
@@ -19,7 +22,6 @@ from os.path import isfile, join, isabs
 import sys
 
 from pathlib import Path
-import random
 import time
 import yaml
 
@@ -33,32 +35,40 @@ from columbus.columbus import columbus
 
 #  Change for use on local machine
 LOCK = Lock()
-#CHANGESET_ROOT = Path('~/caches/changesets/').expanduser()
-#COLUMBUS_CACHE = Path('/home/ubuntu/caches/columbus-cache-2').expanduser()
+
+# TRY W/O MEM
 memory = Memory(cachedir='/home/ubuntu/caches/joblib-cache', verbose=0)
 
 
 @memory.cache # what does this do...?
 def parse_cs(changeset_names, cs_dir, multilabel=False, iterative=False):
-    # input: list of changeset names (strings)
-    # output: a list of labels and a corresponding list of features (list of filepaths of changed/added files)
+    """ Function for parsing a list of changesets.
+    input: list of changeset names (strings), name of the directory in which
+            they are located
+    output: a list of labels and a corresponding list of features
+            (list of filepaths of changed/added files)
+    """
     features = []
     labels = []
     for cs_name in tqdm(changeset_names):
             changeset = get_changeset(cs_name, cs_dir, iterative=iterative)
             if multilabel:
+                """ running a trial in which there may be more than one label for
+                    a given changeset """
                 if 'labels' in changeset:
                     labels.append(changeset['labels'])
                 else:
                     labels.append(changeset['label'])
-            else:
+            else: # each chaangeset will have just one label
                 labels.append(changeset['label'])
             features.append(changeset['changes'])
     return features, labels
 
 def get_changeset(cs_fname, cs_dir, iterative=False):
-    # input: file name of a *single* changeset
-    # output: dictionary containing changed/added filepaths and label(s)
+    """ Function that takes a changeset and returns the dictionary stored in it
+    input: file name of a *single* changeset
+    output: dictionary containing changed/added filepaths and label(s)
+    """
     cs_dir_obj = Path(cs_dir).expanduser()
     changeset = None
     for csfile in cs_dir_obj.glob(cs_fname): # CHANGE THIS
@@ -67,19 +77,22 @@ def get_changeset(cs_fname, cs_dir, iterative=False):
         with csfile.open('r') as f:
             changeset = yaml.load(f)
     if changeset is None:
+        logging.error("No changesets match the name %s", str(csfile))
         raise IOError("No changesets match the name")
     if 'changes' not in changeset or ('label' not in changeset and 'labels' not in changeset):
+        logging.error("Couldn't read changeset")
         raise IOError("Couldn't read changeset")
     return changeset
 
-def _get_columbus_tags(X, disable_tqdm=False,
-                       return_freq=True,
+def get_columbus_tags(X, disable_tqdm=False, return_freq=True,
                        freq_threshold=2):
-    # input: a list of changesets (dictionaries)
-    # output: a list of tags and their frequency (as strings)
+    """ Function that gets the columbus tags for a given list of filesystem
+        changes
+    input: a list of filesystem changes
+    output: a list of tags and their frequency (as strings)
+    """
     tags = []
     for changeset in tqdm(X, disable=disable_tqdm):
-        #print("changeset data type", type(changeset))
         tag_dict = columbus(changeset, freq_threshold=freq_threshold)
         if return_freq:
             tags.append(['{}:{}'.format(tag, freq) for tag, freq
@@ -89,8 +102,11 @@ def _get_columbus_tags(X, disable_tqdm=False,
     return tags
 
 def create_tagset_names(changeset_names):
-    # input: list of changeset names
-    # output: list of names for tagsets created for these changesets
+    """ Create names for the new tagset files
+        (same as changeset names but with a .tag extension)
+    input: list of changeset names
+    output: list of names for tagsets created for these changesets
+    """
     tagset_names = []
     for name in changeset_names:
         new_tagname = name[:-4] + "tag"
@@ -100,15 +116,19 @@ def create_tagset_names(changeset_names):
     return tagset_names
 
 def get_changeset_names(cs_dir):
+    """ Get the names of all the changesets in a given directory
     # input: a directory name
     # output: names of all changeset files within the directory
+    """
     all_files = [f for f in listdir(cs_dir) if isfile(join(cs_dir, f))]
     changeset_names = [f for f in all_files if ".yaml" in f and ".tag" not in f]
     return changeset_names
 
 def get_ids(changeset_names):
-    # input: list of changeset names
-    # output: list of ids of all changesets in the list (between first and second '.')
+    """ Get the unique ID's of each changeset in a list
+    input: list of changeset names
+    output: list of ids of all changesets in the list (between first and second '.')
+    """
     c_ids = []
     c = '.'
     for cs_name in changeset_names:
@@ -118,24 +138,27 @@ def get_ids(changeset_names):
     return c_ids
 
 def create_files(tagset_names, ts_dir, labels, ids, tags):
-    # input: names of tagsets, name of target directory, labels, ids, and tags
-    # output: returns nothing, creates tagset files (.yaml format) in given directory
+    """ Creates the tagset files and puts them in the specified directory
+    input: names of tagsets, name of target directory, labels, ids, and tags
+    output: returns nothing, creates tagset files (.yaml format) in given directory
+    """
     for i, tagset_name in enumerate(tagset_names):
-        #if()
-        # CHANGE "labels" to "label" if not multi?
-        # multilabel changeset
         if(isinstance(labels[i], list)):
             cur_dict = {'labels': labels[i], 'id' : ids[i], 'tags': tags[i]}
-            #print("multi!")
         else:
             cur_dict = {'label': labels[i], 'id' : ids[i], 'tags': tags[i]}
-        #print(tagset_names[i])
         cur_fname = ts_dir + '/' + tagset_name
         with open(cur_fname, 'w') as outfile:
             yaml.dump(cur_dict, outfile, default_flow_style=False)
 
 
 def get_free_filename(stub, directory, suffix=''):
+    """ Get a file name that is unique in the given directory
+    input: the "stub" (string you would like to be the beginning of the file
+        name), the name of the directory, and the suffix (denoting the file type)
+    output: file name using the stub and suffix that is currently unused
+        in the given directory
+    """
     counter = 0
     while True:
         file_candidate = '{}/{}-{}{}'.format(
@@ -149,9 +172,12 @@ def get_free_filename(stub, directory, suffix=''):
                 Path(file_candidate).mkdir()
             return file_candidate
 
-def create_res_dir(work_dir, path_str=""): # THIS IS DONE I THINK
-    # Given a path string, check if it exists, if is doesn't create a directory
-    # output: full file path
+def create_res_dir(work_dir, path_str=""):
+    """ Either creates a result directory in the working directory or
+        creates a directory with the specified path name
+    input: path of working directory, OPTIONAL additional path string
+    output: full file path
+    """
     if (path_str!=""): # path specified
         if not os.path.isabs(path_str):
             # IF PATH IS NOT ABSOLUTE, ASSUMED TO BE RELATIVE
@@ -170,16 +196,23 @@ def get_cs_dir(path_str, work_dir):
         path_str = work_dir + '/' + path_str
     # Check if directory exists
     if not os.path.isdir(path_str):
+        logging.error("Error: directory %s does not exist", path_str)
         print('Error: directory does not exsist!')
         path_str = ""
     return path_str
 
 def get_directories(arg_list):
+    """ Get the names of the changeset and tagset directories from the command
+        line inputs
+    input: command line arguments passed in at runtime
+    output: name of changeset directory, name of tagset directory
+    """
     cs_dir = ""
     ts_dir = ""
     valid = True
     if len(arg_list) == 1:
         # No input directory provided
+        logging.error("Error: please provide a changeset directory")
         print("Error: please provide a changeset directory")
     elif len(arg_list) == 2:
         # Must create a result directory...
@@ -187,6 +220,7 @@ def get_directories(arg_list):
         # Check if cs_dir exists
         cs_dir = arg_list[1]
         if not os.path.isdir(cs_dir):
+            logging.error("Error: Changeset directory does not exist")
             raise ValueError("Error: Changeset directory does not exist")
         else:
             valid, cs_dir = get_cs_dir(arg_list[1], work_dir)
@@ -195,6 +229,7 @@ def get_directories(arg_list):
         ts_dir = create_res_dir(work_dir, arg_list[2])
         cs_dir = arg_list[1]
         if not os.path.isdir(cs_dir):
+            logging.error('Error: Changeset directory does not exist')
             raise ValueError("Error: Changeset directory does not exist")
         else:
             cs_dir = get_cs_dir(arg_list[1], work_dir)
@@ -205,7 +240,7 @@ def get_directories(arg_list):
 
 
 if __name__ == '__main__':
-    # COMMAND LINE ARGS
+    # COMMAND LINE ARGS -- examples
     #cs_dir = '/home/ubuntu/praxi/results/week5/cs_multitest'
     #ts_dir = '/home/ubuntu/praxi/results/week5/multitest_tags'
 
@@ -216,18 +251,28 @@ if __name__ == '__main__':
     # Deal with command line arguments
     arg_list = sys.argv
     print(arg_list)
-    cs_dir, ts_dir = get_directories(arg_list)
+    cs_dir, ts_dir = get_directories(arg_list) # should be three args, need to add ARG LEVEL
 
     if cs_dir == '':
         raise ValueError("Invalid changeset directory")
     if ts_dir == '':
         raise ValueError("Invalid tagset directory")
 
+    # SET UP LOGGING
+    loglevel = 'DEBUG'
+    stub = 'tagset_gen'
+    logfile_name = get_free_filename(stub, ts_dir, '.log')
+
+    numeric_level = getattr(logging, loglevel, None)
+    logging.basicConfig(filename=logfile_name,level=numeric_level)
+
     # generate tagsets and place in ts directory!
     changeset_names = get_changeset_names(cs_dir)
     if len(changeset_names)==0:
+        logging.error("No changesets in selected directory. Make sure to chose an input directory containing changesets")
         raise ValueError("No changesets in selected directory")
 
+    logging.info("Creating names for new tagset files:")
     tagset_names = create_tagset_names(changeset_names) # names for new tagset files!!!
     ids = get_ids(changeset_names)
 
@@ -235,8 +280,11 @@ if __name__ == '__main__':
     labels = []
     changesets, labels = parse_cs(changeset_names, cs_dir, multilabel = True)
 
-    tags = _get_columbus_tags(changesets)
+    logging.info("Generating tagsets:")
+    tags = get_columbus_tags(changesets)
 
+    logging.info("Writing tagset files to %s", ts_dir)
     create_files(tagset_names, ts_dir, labels, ids, tags)
 
     print("Tagset generation time:", (time.time() - prog_start))
+    logging.info("Tagset generation time: %s", str(time.time() - prog_start))

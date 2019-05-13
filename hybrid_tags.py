@@ -2,7 +2,7 @@
 from collections import Counter
 import logging
 import logging.config
-from hashlib import md5
+#from hashlib import md5
 from multiprocessing import Lock
 import os
 from pathlib import Path
@@ -106,6 +106,7 @@ class Hybrid(BaseEstimator):
                 self.indexed_labels[label] = self.label_counter
                 self.reverse_labels[self.label_counter] = label
                 self.label_counter += 1
+        print("Size of all labels: ", len(self.all_labels))
         ################################################
         ## Create VW arg string ########################
         if self.probability:
@@ -115,7 +116,7 @@ class Hybrid(BaseEstimator):
             self.loss_function = 'logistic'
             self.vw_args_ += ' --loss_function={}'.format(self.loss_function)
             if self.iterative:
-                self.vw_args_ += ' --oaa 80'
+                self.vw_args_ += ' --oaa 80' #
             else:
                 self.vw_args_ += ' --oaa {}'.format(len(self.all_labels))
         if self.iterative:
@@ -124,7 +125,7 @@ class Hybrid(BaseEstimator):
         ####################################################
         #### Save
         train_set = list(zip(X, y))
-        random.shuffle(train_set)
+        #random.shuffle(train_set)
         if self.use_temp_files:
             f = tempfile.NamedTemporaryFile('w', delete=False)
         else:

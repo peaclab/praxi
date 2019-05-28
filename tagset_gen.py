@@ -1,12 +1,15 @@
 #!/usr/bin/python3
 """ Script function:
-     - given a directory of changesets, create a directory containing the corresponding tagsets
+     - given a directory of changesets, create a directory containing the
+       corresponding tagsets
 COMMAND LINE INPUTS:
      - one input: changeset directory
      - two inputs: changset directory, tagset directory (IN THAT ORDER)
-         * changeset directory must exist, if tagset directory does not exist it will be created
+         * changeset directory must exist, if tagset directory does not exist it
+           will be created
 OUTPUTS:
-     - a directory containing tagsets (.yaml files) for each of the changesets in the given changeset directory
+     - a directory containing tagsets (.yaml files w/ .tag extension) for each
+       of the changesets in the given changeset directory
 """
 
 # Imports
@@ -26,7 +29,7 @@ import time
 import yaml
 
 import envoy
-from joblib import Memory
+#from joblib import Memory
 #from sklearn.base import BaseEstimator
 from tqdm import tqdm
 
@@ -37,15 +40,16 @@ from columbus.columbus import columbus
 LOCK = Lock()
 
 # TRY W/O MEM
-memory = Memory(cachedir='/home/ubuntu/caches/joblib-cache', verbose=0)
+#memory = Memory(cachedir='/home/ubuntu/caches/joblib-cache', verbose=0)
 
 
-@memory.cache # what does this do...?
-def parse_cs(changeset_names, cs_dir, multilabel=False, iterative=False):
+#@memory.cache
+def parse_cs(changeset_names, cs_dir, multilabel=False, iterative=False): # SHOULD PROBABLY GET RID OF ITERATIVE OPTION
     """ Function for parsing a list of changesets.
     input: list of changeset names (strings), name of the directory in which
             they are located
-    output: a list of labels and a corresponding list of features
+    output: a list of labels and a corresponding list of features for each
+            changeset in the directory
             (list of filepaths of changed/added files)
     """
     features = []
@@ -59,7 +63,7 @@ def parse_cs(changeset_names, cs_dir, multilabel=False, iterative=False):
                     labels.append(changeset['labels'])
                 else:
                     labels.append(changeset['label'])
-            else: # each chaangeset will have just one label
+            else: # each changeset will have just one label
                 labels.append(changeset['label'])
             features.append(changeset['changes'])
     return features, labels
@@ -89,7 +93,7 @@ def get_columbus_tags(X, disable_tqdm=False, return_freq=True,
     """ Function that gets the columbus tags for a given list of filesystem
         changes
     input: a list of filesystem changes
-    output: a list of tags and their frequency (as strings)
+    output: a list of tags and their frequency (as strings separated by a colon)
     """
     tags = []
     for changeset in tqdm(X, disable=disable_tqdm):
@@ -99,6 +103,7 @@ def get_columbus_tags(X, disable_tqdm=False, return_freq=True,
                          in tag_dict.items()])
         else:
             tags.append([tag for tag, freq in tag_dict.items()])
+    print(tags[0:5]) # REMOVE!!!
     return tags
 
 def create_tagset_names(changeset_names):
@@ -110,9 +115,7 @@ def create_tagset_names(changeset_names):
     tagset_names = []
     for name in changeset_names:
         new_tagname = name[:-4] + "tag"
-        #print(new_tagname)
         tagset_names.append(new_tagname)
-    #print('TAGSET_NAMES ELEM', tagset_names[0])
     return tagset_names
 
 def get_changeset_names(cs_dir):
@@ -212,61 +215,50 @@ def get_directories(arg_list):
     valid = True
     if len(arg_list) == 1:
         # No input directory provided
-        logging.error("Error: please provide a changeset directory")
-        print("Error: please provide a changeset directory")
+        raise ValueError("Error: please provide a changeset directory") # TEST IF I NEED THESE
     elif len(arg_list) == 2:
         # Must create a result directory...
         ts_dir = create_res_dir(work_dir)
         # Check if cs_dir exists
         cs_dir = arg_list[1]
         if not os.path.isdir(cs_dir):
-            logging.error("Error: Changeset directory does not exist")
             raise ValueError("Error: Changeset directory does not exist")
         else:
-            valid, cs_dir = get_cs_dir(arg_list[1], work_dir)
+            cs_dir = get_cs_dir(arg_list[1], work_dir)
     elif len(arg_list) == 3:
         # use result dir given
         ts_dir = create_res_dir(work_dir, arg_list[2])
         cs_dir = arg_list[1]
         if not os.path.isdir(cs_dir):
-            logging.error('Error: Changeset directory does not exist')
             raise ValueError("Error: Changeset directory does not exist")
         else:
             cs_dir = get_cs_dir(arg_list[1], work_dir)
     else:
-        print("Error: too many arguments!")
+        raise ValueError("Error: too many arguments!")
 
     return cs_dir, ts_dir
 
 
 if __name__ == '__main__':
-    # COMMAND LINE ARGS -- examples
-    #cs_dir = '/home/ubuntu/praxi/results/week5/cs_multitest'
-    #ts_dir = '/home/ubuntu/praxi/results/week5/multitest_tags'
-
     prog_start = time.time()
-
     work_dir = os.path.abspath('.')
 
-    # Deal with command line arguments
     arg_list = sys.argv
-    print(arg_list)
-    cs_dir, ts_dir = get_directories(arg_list) # should be three args, need to add ARG LEVEL
+    cs_dir, ts_dir = get_directories(arg_list) # should be 2 or 3 args, need to add ARG LEVEL
 
     if cs_dir == '':
         raise ValueError("Invalid changeset directory")
     if ts_dir == '':
         raise ValueError("Invalid tagset directory")
 
-    # SET UP LOGGING
-    loglevel = 'DEBUG'
+    # No log messages before logging is set up
+    loglevel = 'DEBUG' # add level options to this?
     stub = 'tagset_gen'
     logfile_name = get_free_filename(stub, ts_dir, '.log')
 
     numeric_level = getattr(logging, loglevel, None)
     logging.basicConfig(filename=logfile_name,level=numeric_level)
 
-    # generate tagsets and place in ts directory!
     changeset_names = get_changeset_names(cs_dir)
     if len(changeset_names)==0:
         logging.error("No changesets in selected directory. Make sure to chose an input directory containing changesets")
@@ -286,5 +278,4 @@ if __name__ == '__main__':
     logging.info("Writing tagset files to %s", ts_dir)
     create_files(tagset_names, ts_dir, labels, ids, tags)
 
-    print("Tagset generation time:", (time.time() - prog_start))
     logging.info("Tagset generation time: %s", str(time.time() - prog_start))

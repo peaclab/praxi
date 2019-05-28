@@ -29,21 +29,12 @@ import time
 import yaml
 
 import envoy
-#from joblib import Memory
-#from sklearn.base import BaseEstimator
 from tqdm import tqdm
 
 from columbus.columbus import columbus
-#from columbus.columbus import refresh_columbus
 
-#  Change for use on local machine
 LOCK = Lock()
 
-# TRY W/O MEM
-#memory = Memory(cachedir='/home/ubuntu/caches/joblib-cache', verbose=0)
-
-
-#@memory.cache
 def parse_cs(changeset_names, cs_dir, multilabel=False, iterative=False): # SHOULD PROBABLY GET RID OF ITERATIVE OPTION
     """ Function for parsing a list of changesets.
     input: list of changeset names (strings), name of the directory in which
@@ -75,7 +66,7 @@ def get_changeset(cs_fname, cs_dir, iterative=False):
     """
     cs_dir_obj = Path(cs_dir).expanduser()
     changeset = None
-    for csfile in cs_dir_obj.glob(cs_fname): # CHANGE THIS
+    for csfile in cs_dir_obj.glob(cs_fname):
         if changeset is not None:
             raise IOError("Too many changesets match the file name")
         with csfile.open('r') as f:
@@ -103,7 +94,6 @@ def get_columbus_tags(X, disable_tqdm=False, return_freq=True,
                          in tag_dict.items()])
         else:
             tags.append([tag for tag, freq in tag_dict.items()])
-    print(tags[0:5]) # REMOVE!!!
     return tags
 
 def create_tagset_names(changeset_names):
@@ -199,8 +189,7 @@ def get_cs_dir(path_str, work_dir):
         path_str = work_dir + '/' + path_str
     # Check if directory exists
     if not os.path.isdir(path_str):
-        logging.error("Error: directory %s does not exist", path_str)
-        print('Error: directory does not exsist!')
+        raise ValueError('Error: directory does not exsist!')
         path_str = ""
     return path_str
 
@@ -217,7 +206,7 @@ def get_directories(arg_list):
         # No input directory provided
         raise ValueError("Error: please provide a changeset directory") # TEST IF I NEED THESE
     elif len(arg_list) == 2:
-        # Must create a result directory...
+        # Must create a result directory
         ts_dir = create_res_dir(work_dir)
         # Check if cs_dir exists
         cs_dir = arg_list[1]
@@ -244,7 +233,7 @@ if __name__ == '__main__':
     work_dir = os.path.abspath('.')
 
     arg_list = sys.argv
-    cs_dir, ts_dir = get_directories(arg_list) # should be 2 or 3 args, need to add ARG LEVEL
+    cs_dir, ts_dir = get_directories(arg_list) 
 
     if cs_dir == '':
         raise ValueError("Invalid changeset directory")
@@ -265,7 +254,7 @@ if __name__ == '__main__':
         raise ValueError("No changesets in selected directory")
 
     logging.info("Creating names for new tagset files:")
-    tagset_names = create_tagset_names(changeset_names) # names for new tagset files!!!
+    tagset_names = create_tagset_names(changeset_names)
     ids = get_ids(changeset_names)
 
     changesets = []

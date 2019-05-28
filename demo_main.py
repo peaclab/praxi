@@ -1,9 +1,30 @@
 #!/usr/bin/env python3
-# Same as p_main.py with added features for Praxi paper experiment replication
+""" Script function:
+    - two modes:
+        * 1) Cross Validation: takes a single directory of tagsets and runs the
+                Praxi application discovery algorithm, dividing the
+                data into folds and repeatedly running the experiment
+                with each fold being the test set
+        * 2) "Real World" Experiment: takes two directories of tagsets, one for
+                training, one for testing, and runs Praxi once, first training
+                the model and then evaluating its accuracy using the test
+                directory
+    - inputs/arguments:
+        * -t [directory name]: path to training tagset directory (REQUIRED)
+        * -s [directory name]: path to testing tagset directory (only required
+                               for experiment 2)
+        * -o [directory name]: path to desired result directory
+        * -m: run a multilabel experiment
+        * -w [args]: customize arguments for VW learning algorithm
+        * -n [# of folds]: number of folds to use if running an experiment with
+                           cross validation
+        * -f: output the full results instead of a summary
+        * -v: increase verbosity of log messages
+    - output: outputs a text file containing statistics about the performance
+              of the algorithm; choice between summary or full result file
+"""
 
 # Imports
-#from collections import Counter
-#from hashlib import md5
 from multiprocessing import Lock
 
 import logging
@@ -15,15 +36,12 @@ from os.path import isfile, join
 
 from pathlib import Path
 import random
-#import tempfile
 import time
 import yaml
 import pickle
 import copy
 import argparse
 
-#import envoy
-#from joblib import Memory
 from sklearn.base import BaseEstimator
 from tqdm import tqdm
 
@@ -33,28 +51,23 @@ from sklearn import metrics
 from sklearn.multiclass import OneVsRestClassifier
 from sklearn.preprocessing import MultiLabelBinarizer
 
-from hybrid_tags import Hybrid
-
-# Directory constants
-#PROJECT_ROOT = Path('~/praxi').expanduser() # leave as project root to access any necessary files
-#memory = Memory(cachedir='/home/ubuntu/caches/joblib-cache', verbose=0)
-#LABEL_DICT = Path('./pred_label_dict.pkl') # Do I need this?
+from demo_hybrid import Hybrid
 
 LOCK = Lock()
 
-#######################################
-#   FUNCTIONS for accessing tagsets   #
-#######################################
 def parse_ts(tagset_names, ts_dir):
-    # Arguments: - tagset_names: a list of names of tagsets
-    #            - ts_dir: the directory in which they are located
-    # Returns: - tags: list of lists-- tags for each tagset name
-    #          - labels: application name corresponding to each tagset
+    """ Function for parsing a list of tagsets
+    input: - tagset_names: a list of names of tagsets
+           - ts_dir: the directory in which they are located
+    output: - tags: list of lists-- tags for each tagset name
+            - labels: application name corresponding to each tagset
+    """
     tags = []
     labels = []
     for ts_name in tqdm(tagset_names):
             ts_path = ts_dir + '/' + ts_name
-            tagset = get_tagset(ts_path)
+            with open(ts_path, 'r') as stream:
+                tagset = yaml.load(stream)
             if 'labels' in tagset:
                 # Multilabel changeset
                 labels.append(tagset['labels'])
@@ -63,18 +76,14 @@ def parse_ts(tagset_names, ts_dir):
             tags.append(tagset['tags'])
     return tags, labels
 
-def get_tagset(ts_path): # combine with parse_ts
-    # Argument: - complete path to a tagset .yaml file
-    # Returns:  - tagset dictionary contained in file (tags, labels)
-    with open(ts_path, 'r') as stream:
-        data_loaded = yaml.load(stream)
-    return data_loaded
-
-#######################################
-#     MISCELLANEOUS                   #
-#######################################
 
 def get_free_filename(stub, directory, suffix=''):
+    """ Get a file name that is unique in the given directory
+    input: the "stub" (string you would like to be the beginning of the file
+        name), the name of the directory, and the suffix (denoting the file type)
+    output: file name using the stub and suffix that is currently unused
+        in the given directory
+    """
     counter = 0
     while True:
         file_candidate = '{}/{}-{}{}'.format(
@@ -93,7 +102,12 @@ def get_free_filename(stub, directory, suffix=''):
             return file_candidate
 
 def fold_partitioning(ts_names, n=3):
-    # partition tagsets into folds for cross validation
+    """ Partitions tagsets into folds for cross validation, making sure to avoid
+    class imbalance by putting an (approximately) equal number of examples of
+    each application in every fold
+    input: list of tagset names and the desired number of folds
+    output: list containing n lists of balanced tagsets
+    """
     folds = [[] for _ in range(n)]
 
     just_progs = []
@@ -116,12 +130,12 @@ def fold_partitioning(ts_names, n=3):
     for ts_names in prog_partition:
         for idx, name in enumerate(ts_names):
             folds[idx % n].append(name)
-
     return folds
 
 ################################
 ##### ITERATIVE TRAINING #######
 ################################
+# Come back to this...
 def iterative_tests(vwargs, outdir):
     # get result file name
     outdir = '/home/ubuntu/results/iterative'
@@ -173,10 +187,15 @@ def iterative_tests(vwargs, outdir):
     print_results(resfile_name, outdir, args=clf.get_args(),
                   n_strats=len(it_chunks), iterative=True)
 
-#################################
-#### SINGLE LABEL EXPERIMENT ####
-#################################
+
 def single_label_experiment(nfolds, tr_path, resfile_name, outdir, vwargs, result_type, ts_path=None):
+    """ Run a single-label experiment (with or without cross validation)
+    input: number of folds, training directory path, name of result file,
+            result directory path, Vowpal Wabbit arguments, result type
+            (summary or full), testing directory path
+    output: pickle file with label predictions and text file with experiment
+            performance statistics both written to output directory
+    """
     # instantiate hybrid object
     suffix = 'single'
     clf = Hybrid(freq_threshold=2, pass_freq_to_vw=True, probability=False,
@@ -184,7 +203,7 @@ def single_label_experiment(nfolds, tr_path, resfile_name, outdir, vwargs, resul
                  use_temp_files=True)
     resfile = open(resfile_name, 'wb')
     results = []
-    if(ts_path==None): # folds!
+    if(ts_path==None): # cross validation
         tr_names = [f for f in listdir(tr_path) if (isfile(join(tr_path, f))and f[-3:]=='tag')]
         logging.info("Partitioning into %d folds", nfolds)
         folds = fold_partitioning(tr_names, n=nfolds)
@@ -203,7 +222,6 @@ def single_label_experiment(nfolds, tr_path, resfile_name, outdir, vwargs, resul
             train_tags, train_labels = parse_ts(train_tagset_names, tr_path)
             results.append(get_scores(clf, train_tags, train_labels, test_tags, test_labels))
     else: # no folds/crossvalidation
-        # get traintags, trainlabels, etc from ts_path, tr_path
         ts_train_names = [f for f in listdir(tr_path) if (isfile(join(tr_path, f))and f[-3:]=='tag')]
         ts_test_names = [f for f in listdir(ts_path) if (isfile(join(ts_path, f)) and f[-3:]=='tag')]
 
@@ -214,14 +232,19 @@ def single_label_experiment(nfolds, tr_path, resfile_name, outdir, vwargs, resul
         results.append(get_scores(clf, train_tags, train_labels, test_tags, test_labels))
 
     pickle.dump(results, resfile)
-    # results is a list of tuples!!
-    resfile.close
+    # results is a list of tuples
+    resfile.close()
     logging.info("Printing results:")
     print_results(resfile_name, outdir, result_type)
 
 def get_scores(clf, train_tags, train_labels, test_tags, test_labels,
                binarize=False, store_true=False):
-    """ Gets two lists of changeset ids, does training+testing """
+    """ Performs training and testing on the given tagsets
+    input: model object, tags and labels for training set, tags and labels for
+            testing set
+    output: list of labels for the test set, list of label predictions given by
+            the classifier
+    """
     if binarize:
         binarizer = MultiLabelBinarizer()
         clf.fit(train_tags, binarizer.fit_transform(train_labels))
@@ -234,6 +257,11 @@ def get_scores(clf, train_tags, train_labels, test_tags, test_labels,
     return copy.deepcopy(test_labels), preds
 
 def print_results(resfile, outdir, result_type, n_strats=1, args=None, iterative=False):
+    """ Calculate result statistics and print them to result file
+    input: name of result pickle file, path to result directory, type of result
+           desired
+    output: text file with experiment result statistics
+    """
     logging.info("Writing scores to %s", str(outdir))
     with open(resfile, 'rb') as f:
         results = pickle.load(f)
@@ -242,7 +270,6 @@ def print_results(resfile, outdir, result_type, n_strats=1, args=None, iterative
     # #    0 => ([x, y, z], <-- true
     # #          [x, y, k]) <-- pred
     # #]
-    # results should have a list of tuples .... add labels/guesses to master list
     numfolds = len(results)
     y_true = []
     y_pred = []
@@ -250,7 +277,7 @@ def print_results(resfile, outdir, result_type, n_strats=1, args=None, iterative
         y_true += result[0]
         y_pred += result[1]
 
-    labels = sorted(set(y_true)) # gotta figure out this line...
+    labels = sorted(set(y_true))
     # these will be all length 1
     classifications = []
     f1_weighted = []
@@ -264,7 +291,6 @@ def print_results(resfile, outdir, result_type, n_strats=1, args=None, iterative
     r_macro = []
     confusions = []
     label_counts = []
-    # y_true, y_pred used to be lists of lists, now that there is one stratum, this is not the case
     x = y_true
     y = y_pred
 
@@ -281,7 +307,7 @@ def print_results(resfile, outdir, result_type, n_strats=1, args=None, iterative
     confusions.append(metrics.confusion_matrix(x, y, labels))
     label_counts.append(len(set(x)))
 
-    # this for loop will only run once... might as well get rid of it
+    # this for loop will only run once
     for strat, report, f1w, f1i, f1a, pw, pi, pa, rw, ri, ra, confuse, lc in zip(
             range(n_strats), classifications, f1_weighted, f1_micro, f1_macro,
             p_weighted, p_micro, p_macro, r_weighted, r_micro, r_macro,
@@ -305,9 +331,8 @@ def print_results(resfile, outdir, result_type, n_strats=1, args=None, iterative
                 time.strftime("Generated %c\n\n") +
                 ('\nArgs: {}\n\n'.format(args) if args else '') +
                 "LABEL COUNT : {}\n".format(lc))
-            #fname = get_free_filename('iterative_exp', outdir, '.txt')
 
-        os.makedirs(str(outdir), exist_ok=True) # makes directory if it doesnt exist... also could get rid of this
+        os.makedirs(str(outdir), exist_ok=True) # makes directory if it doesn't exist
         if result_type == 'summary':
             fname = get_free_filename('single_exp_summary', outdir, '.txt')
             file_header += (
@@ -340,24 +365,25 @@ def print_results(resfile, outdir, result_type, n_strats=1, args=None, iterative
 
 
 
-##############################################################################
-###                MULTILABEL EXPERIMENTS                                  ###
-##############################################################################
 
 def multi_label_experiment(nfolds, tr_path, resfile_name, outdir, vwargs, result_type, ts_path=None):
+    """ Run a multi-label experiment (with or without cross validation)
+    input: number of folds, training directory path, name of result file,
+            result directory path, Vowpal Wabbit arguments, result type
+            (summary or full), testing directory path
+    output: pickle file with label predictions and text file with experiment
+            performance statistics both written to output directory
+    """
     suffix = 'multi'
-    # VW ARGS SHOULD BE PASSED IN
     clf = Hybrid(freq_threshold=2, pass_freq_to_vw=True, probability=True,
                  vw_args=vwargs, suffix=suffix, use_temp_files=True)
 
     resfile = open(resfile_name, 'wb')
     results = []
-    if (ts_path==None): # CROSS VALIDATION EXPERIMENT!
+    if (ts_path==None): # CROSS VALIDATION EXPERIMENT
         tagset_names = [f for f in listdir(tr_path) if (isfile(join(tr_path, f))and f[-3:]=='tag')]
-        #random.shuffle(tagset_names)
         # Partition into folds (random)
         folds = [[] for _ in range(nfolds)]
-        # randomly shuffle tagset names, split into 4
         for i, name in enumerate(tagset_names):
             folds[i%nfolds].append(name)
         for idx, fold in enumerate(folds):
@@ -385,17 +411,23 @@ def multi_label_experiment(nfolds, tr_path, resfile_name, outdir, vwargs, result
 
 
 def get_multilabel_scores(clf, train_tags, train_labels, test_tags, test_labels):
-    """Gets scores while providing the ntags to clf"""
+    """ Performs training and testing on the given tagsets
+    input: model object, tags and labels for training set, tags and labels for
+            testing set
+    output: list of labels for the test set, list of label predictions given by
+            the classifier
+    """
     clf.fit(train_tags, train_labels)
-    # rulefile = get_free_filename('rules', '.', suffix='.yml')
-    # logging.info("Dumping rules to %s", rulefile)
-    # with open(rulefile, 'w') as f:
-    #     yaml.dump(clf.rules, f)
     ntags = [len(y) if isinstance(y, list) else 1 for y in test_labels]
     preds = clf.top_k_tags(test_tags, ntags)
     return test_labels, preds
 
 def print_multilabel_results(resfile, outdir, result_type, args=None, n_strats=1, summary=False):
+    """ Calculate result statistics and print them to result file
+    input: name of result pickle file, path to result directory, type of result
+           desired
+    output: text file with experiment result statistics
+    """
     #logging.info('Writing scores to %s', str(outdir))
     with open(resfile, 'rb') as f:
         results = pickle.load(f)
@@ -470,12 +502,7 @@ def print_multilabel_results(resfile, outdir, result_type, args=None, n_strats=1
 
 
 if __name__ == '__main__':
-
     prog_start = time.time()
-
-    ##############################################################################
-    ### GET TEST AND TRAIN TAGSETS FROM DIRECTORIES INPUT AS COMMAND LINE FLAGS ##
-    ##############################################################################
 
     parser = argparse.ArgumentParser(description='Arguments for Praxi software discovery algorithm.')
     parser.add_argument('-t','--traindir', help='Path to training tagset directory.', required=True)
@@ -493,11 +520,8 @@ if __name__ == '__main__':
     args = vars(parser.parse_args())
 
     outdir = os.path.abspath(args['outdir'])
-
     nfolds = int(args['nfolds'])
-
     ts_train_path = args['traindir']
-
     ts_test_path = args['testdir']
 
     # SET UP LOGGING
@@ -522,9 +546,6 @@ if __name__ == '__main__':
         # ERROR: SHOULDNT HAVE A TEST DIRECTORY IF CROSS VALIDATION IS OCCURRING
         logging.error("Too many input directories. If performing cross validation, expect just one.")
         raise ValueError("Too many input directories! Only need one for cross validation.")
-    #else if(nfolds == 1 and ts_test_path == None):
-    #    logging.error("Must have more than one fold for a cross validation experiment")
-    #    raise ValueError("Must have more than one fold for a cross validation experiment")
     else:
         if exp_type == 'single':
             if(nfolds == 1):
@@ -537,7 +558,7 @@ if __name__ == '__main__':
                 logging.info("Tagset directory: %s", ts_train_path)
             resfile_name = get_free_filename('single_test', outdir, '.p') # add arg to set stub?
             single_label_experiment(nfolds, ts_train_path, resfile_name, outdir, vwargs, result_type, ts_path=ts_test_path) # no traim directory
-        else:
+        else: # multi
             if(nfolds == 1):
                 logging.info("Starting multi label experiment")
                 logging.info("Training directory: %s", ts_train_path)

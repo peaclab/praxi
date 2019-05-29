@@ -76,7 +76,7 @@ class Hybrid(BaseEstimator):
         #    self.vw_modelfile = modelfileobj.name
         #    modelfileobj.close()
         #else:
-        #self.vw_modelfile = 'trained_model_test2-%s.vw' % self.suffix
+        self.vw_modelfile = 'trained_model_test2-%s.vw' % self.suffix
         if not (self.iterative and self.trained):
             safe_unlink(self.vw_modelfile)
         elif existing_model is not None:
@@ -94,16 +94,7 @@ class Hybrid(BaseEstimator):
         #    self.reverse_labels = {}
         #    self.all_labels = set()
         #    self.label_counter = 1
-        """
-        with open(ts_path, 'r') as stream:
-            tagset = yaml.load(stream)
-        if 'labels' in tagset:
-            # Multilabel changeset
-            labels.append(tagset['labels'])
-        else:
-            labels.append(tagset['label'])
-        tags.append(tagset['tags'])
-        """
+
         if existing_model is not None:
             self.vw_args_ += ' -i {}'.format(existing_model)
             self.indexed_labels = idx_dic['indexed_labels']
@@ -111,7 +102,7 @@ class Hybrid(BaseEstimator):
             self.all_labels = set(idx_dic['all_labels'])
             self.label_counter = idx_dic['label_counter']
         else:
-            self.vw_args_ += ' -i {}'.format(self.vw_modelfile)
+            #self.vw_args_ += ' -i {}'.format(self.vw_modelfile)
             self.indexed_labels = {}
             self.reverse_labels = {}
             self.all_labels = set()
@@ -128,6 +119,7 @@ class Hybrid(BaseEstimator):
                 self.indexed_labels[label] = self.label_counter
                 self.reverse_labels[self.label_counter] = label
                 self.label_counter += 1
+                print(self.label_counter)
         print("Number of labels: ", len(self.all_labels))
         ################################################
         ## Create VW arg string ########################

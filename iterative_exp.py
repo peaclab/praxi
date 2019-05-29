@@ -102,7 +102,7 @@ def new_train():
     test = '/home/ubuntu/praxi/it_tagsets/first_test'
     outdir = '/home/ubuntu/praxi/results/iterative'
 
-    old_model_name = 'initial_model.vw'
+    old_model_name = 'trained_model_test2-initial.vw'
     idx_file = '/home/ubuntu/praxi/idx_file.yaml'
 
     vwargs = '-b 26 --learning_rate 1.5 --passes 10'
@@ -154,9 +154,9 @@ def get_scores_new(clf, res_name, X_train, y_train, X_test, y_test,
 
 
 if __name__ == '__main__':
-    initial_train()
+    #initial_train()
     #input("Press Enter to continue...")
-    #new_train()
+    new_train()
 
 
 

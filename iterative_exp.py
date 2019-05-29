@@ -9,15 +9,12 @@ from os.path import isfile, join
 
 from pathlib import Path
 import random
-#import tempfile
 import time
 import yaml
 import pickle
 import copy
 import argparse
 
-#import envoy
-#from joblib import Memory
 from sklearn.base import BaseEstimator
 from tqdm import tqdm
 
@@ -27,10 +24,9 @@ from sklearn import metrics
 from sklearn.multiclass import OneVsRestClassifier
 from sklearn.preprocessing import MultiLabelBinarizer
 
-from hybrid import Hybrid
+from hybrid_mod import Hybrid
 
 CHANGESET_ROOT = Path('~/praxi/caches/changesets/').expanduser()
-
 
 def get_free_filename(stub, directory, suffix=''):
     counter = 0
@@ -50,200 +46,190 @@ def get_free_filename(stub, directory, suffix=''):
                 Path(file_candidate).mkdir()
             return file_candidate
 
-def parse_csids(csids, multilabel=False, iterative=False):
-    """ Returns labels and features from csids, features are file sets
-    file sets: list of string of format '644 /usr/.../file' """
-    features = []
+
+def parse_ts(tagset_names, ts_dir):
+    """ Function for parsing a list of tagsets
+    input: - tagset_names: a list of names of tagsets
+           - ts_dir: the directory in which they are located
+    output: - tags: list of lists-- tags for each tagset name
+            - labels: application name corresponding to each tagset
+    """
+    tags = []
     labels = []
-    for csid in tqdm(csids):
-        changeset = get_changeset(csid, iterative=iterative)
-        if multilabel:
-            if 'labels' in changeset:
-                labels.append(changeset['labels'])
+    for ts_name in tqdm(tagset_names):
+            ts_path = ts_dir + '/' + ts_name
+            with open(ts_path, 'r') as stream:
+                tagset = yaml.load(stream)
+            if 'labels' in tagset:
+                # Multilabel changeset
+                labels.append(tagset['labels'])
             else:
-                labels.append([changeset['label']])
-        else:
-            labels.append(changeset['label'])
-        features.append(changeset['changes'])
-    return features, labels
+                labels.append(tagset['label'])
+            tags.append(tagset['tags'])
+    return tags, labels
 
-def get_changeset(csid, iterative=False):
-    changeset = None
-    if str(csid) in {'5', '6', '7'}:
-        # Dirty fix for finger, autotrace
-        globstr = '*[!16].5'
-    else:
-        globstr = '*.{}'.format(csid)
-    if iterative:
-        globstr += '.yaml'
-    else:
-        globstr += '.[!y]*'
-    for csfile in CHANGESET_ROOT.glob(globstr):
-        if changeset is not None:
-            raise IOError(
-                "Too many changesets match the csid {}, globstr {}".format(
-                    csid, globstr))
-        with csfile.open('r') as f:
-            changeset = yaml.load(f)
-    if changeset is None:
-        raise IOError("No changesets match the csid {}".format(csid))
-    if 'changes' not in changeset or (
-            'label' not in changeset and 'labels' not in changeset):
-        logging.error("Malformed changeset, id: %d, changeset: %s",
-                      csid, csfile)
-        raise IOError("Couldn't read changeset")
-    return changeset
-
-
-def iterative_tests():
+def initial_train():
     # get result file name
+    train_init = '/home/ubuntu/praxi/it_tagsets/sl_train'
+    #train_it = '/home/ubuntu/praxi/it_tagsets/it_train'
+    test = '/home/ubuntu/praxi/it_tagsets/first_test'
     outdir = '/home/ubuntu/praxi/results/iterative'
+
     vwargs = '-b 26 --learning_rate 1.5 --passes 10'
-    resfile_name = get_free_filename('iterative-hybrid', outdir, suffix='.pkl')
-    suffix = 'hybrid'
+    resfile_name = get_free_filename('iterative-hybrid', outdir, suffix='.yaml')
+    suffix = 'initial'
     iterative = True
-    # clf = RuleBased(filter_method='take_max', num_rules=6)
+    modfile='initial_model.vw'
+
     clf = Hybrid(freq_threshold=2, pass_freq_to_vw=True, probability=False,
                  vw_args= vwargs, suffix=suffix, iterative=iterative,
-                 use_temp_files=True)
-    # clf = Hybrid(freq_threshold=2, pass_freq_to_vw=True,
-    #              suffix=suffix,
-    #              probability=True, tqdm=True)
-    # Get single app dirty changesets
+                 use_temp_files=False, vw_modelfile=modfile)
+    # GET TAGSETS
+    ### THIS IS NOT DONE!!!
+    train_init_names = [f for f in listdir(train_init) if (isfile(join(train_init, f))and f[-3:]=='tag')]
+    #train_it_names = [f for f in listdir(train_it) if (isfile(join(train_it, f)) and f[-3:]=='tag')]
+    test_names = [f for f in listdir(test) if (isfile(join(test, f)) and f[-3:]=='tag')]
 
-    with (Path('/home/ubuntu/praxi/changeset_sets/').expanduser() / 'iterative_chunks.p').open('rb') as f:
-        it_chunks = pickle.load(f)
+    train_init_tags, train_init_labels = parse_ts(train_init_names, train_init)
+    test_tags, test_labels = parse_ts(test_names, test)
 
-    #print("Prediction pickle is %s", resfile_name)
-    resfile = open(resfile_name, 'wb')
-    results = []
-    for i in range(3):
-        i1 = i % 3
-        i2 = (i + 1) % 3
-        i3 = (i + 2) % 3
-        X_train = []
-        y_train = []
-        X_test = []
-        y_test = []
-        clf.refresh()
-        for idx, inner_chunks in enumerate(it_chunks):
-            print('In iteration %d', idx)
-            features, labels = parse_csids(inner_chunks[i1], iterative=True)
-            if iterative:
-                X_train = features
-                y_train = labels
-            else:
-                X_train += features
-                y_train += labels
-            features, labels = parse_csids(inner_chunks[i2], iterative=True)
-            X_train += features
-            y_train += labels
-            features, labels = parse_csids(inner_chunks[i3], iterative=True)
-            X_test += features
-            y_test += labels
-            results.append(get_scores(clf, X_train, y_train, X_test, y_test))
-            pickle.dump(results, resfile)
-            resfile.seek(0)
-    resfile.close()
-    print_results(resfile_name, outdir, args=clf.get_args(),
-                  n_strats=len(it_chunks), iterative=True)
+    # Now train iteratively!
+    get_scores_new(clf, resfile_name, train_init_tags, train_init_labels, test_tags, test_labels)
 
 
-def get_scores(clf, X_train, y_train, X_test, y_test,
-               binarize=False):
-    """ Gets two lists of changeset ids, does training+testing """
-    if binarize:
-        binarizer = MultiLabelBinarizer()
-        clf.fit(X_train, binarizer.fit_transform(y_train))
-        preds = binarizer.inverse_transform(clf.predict(X_test))
-    else:
-        clf.fit(X_train, y_train)
-        preds = clf.predict(X_test)
-    #if LABEL_DICT.exists():
-    #    with LABEL_DICT.open('rb') as f:
-    #        pred_label_dict = pickle.load(f)
-    #else:
-    #    pred_label_dict = {}
-    #for pred, label in zip(preds, y_test):
-    return copy.deepcopy(y_test), preds
+def new_train():
+    train_it = '/home/ubuntu/praxi/it_tagsets/it_train'
+    test = '/home/ubuntu/praxi/it_tagsets/first_test'
+    outdir = '/home/ubuntu/praxi/results/iterative'
 
-def print_results(resfile, outdir, n_strats=5, args=None, iterative=False):
-    print('Writing scores to %s', str(outdir))
-    with open(resfile, 'rb') as f:
-        results = pickle.load(f)
-    # # Now do the evaluation!
-    # #results = [
-    # #    0 => ([x, y, z], <-- true
-    # #          [x, y, k]) <-- pred
-    # #]
-    y_true = [[] for _ in range(n_strats)]
-    y_pred = [[] for _ in range(n_strats)]
-    for idx, result in enumerate(results):
-        y_true[idx % n_strats] += result[0]
-        y_pred[idx % n_strats] += result[1]
+    old_model_name = 'initial_model.vw'
+    idx_file = '/home/ubuntu/praxi/idx_file.yaml'
 
-    labels = sorted(set(j for i in range(n_strats) for j in y_true[i]))
-    classifications = []
-    f1_weighted = []
-    f1_micro = []
-    f1_macro = []
-    p_weighted = []
-    p_micro = []
-    p_macro = []
-    r_weighted = []
-    r_micro = []
-    r_macro = []
-    confusions = []
-    label_counts = []
-    for x, y in zip(y_true, y_pred):
-        classifications.append(metrics.classification_report(x, y, labels))
-        f1_weighted.append(metrics.f1_score(x, y, labels, average='weighted'))
-        f1_micro.append(metrics.f1_score(x, y, labels, average='micro'))
-        f1_macro.append(metrics.f1_score(x, y, labels, average='macro'))
-        p_weighted.append(
-            metrics.precision_score(x, y, labels, average='weighted'))
-        p_micro.append(metrics.precision_score(x, y, labels, average='micro'))
-        p_macro.append(metrics.precision_score(x, y, labels, average='macro'))
-        r_weighted.append(
-            metrics.recall_score(x, y, labels, average='weighted'))
-        r_micro.append(metrics.recall_score(x, y, labels, average='micro'))
-        r_macro.append(metrics.recall_score(x, y, labels, average='macro'))
-        confusions.append(metrics.confusion_matrix(x, y, labels))
-        label_counts.append(len(set(x)))
+    vwargs = '-b 26 --learning_rate 1.5 --passes 10'
 
-    for strat, report, f1w, f1i, f1a, pw, pi, pa, rw, ri, ra, confuse, lc in zip(
-            range(n_strats), classifications, f1_weighted, f1_micro, f1_macro,
-            p_weighted, p_micro, p_macro, r_weighted, r_micro, r_macro,
-            confusions, label_counts):
-        if not iterative:
-            clean_tr_str = (
-                "nil = 1000 total" if strat == 0 else
-                ','.join(str(x) for x in range(strat)) + " ({}) = {} total".format(
-                    strat * 2500, strat * 2500 + 1000))
-            file_header = (
-                "# 1K DIRTY EXPERIMENTAL REPORT: STRATUM {}\n".format(strat) +
-                time.strftime("# Generated %c\n#\n") +
-                ('#\n# Args: {}\n#\n'.format(args) if args else '') +
-                "# TRAIN: Dirty (1000, avg'ed over #0,1,2) + Clean #{}\n".format(clean_tr_str) +
-                "# TEST : Dirty (2000, avg'ed over #0,1,2) + Clean #nil = 2000 total\n")
-        else:
-            file_header = (
-                "# ITERATIVE EXPERIMENTAL REPORT: STRATUM {}\n".format(strat) +
-                time.strftime("# Generated %c\n#\n") +
-                ('#\n# Args: {}\n#\n'.format(args) if args else '') +
-                "# LABEL COUNT : {}\n".format(lc))
-        file_header += (
-            "# F1 SCORE : {:.3f} weighted, {:.3f} micro-avg'd, {:.3f} macro-avg'd\n".format(f1w, f1i, f1a) +
-            "# PRECISION: {:.3f} weighted, {:.3f} micro-avg'd, {:.3f} macro-avg'd\n".format(pw, pi, pa) +
-            "# RECALL   : {:.3f} weighted, {:.3f} micro-avg'd, {:.3f} macro-avg'd\n#\n".format(rw, ri, ra) +
-            "# {:-^55}\n#".format("CLASSIFICATION REPORT") + report.replace('\n', "\n#") +
-            " {:-^55}\n".format("CONFUSION MATRIX")
-        )
-        os.makedirs(str(outdir), exist_ok=True)
-        savetxt("{}/{}.txt".format(outdir, strat),
-                confuse, fmt='%d', header=file_header, delimiter=',',
-                comments='')
+    modfile = 'new_model.vw'
+
+    resfile_name = get_free_filename('iterative-hybrid-newdata', outdir, suffix='.yaml')
+    suffix = 'iteration'
+    iterative = True
+
+    clf = Hybrid(freq_threshold=2, pass_freq_to_vw=True, probability=False,
+                 vw_args= vwargs, suffix=suffix, iterative=iterative,
+                 use_temp_files=False, vw_modelfile=modfile)
+
+    train_it_names = [f for f in listdir(train_it) if (isfile(join(train_it, f)) and f[-3:]=='tag')]
+    test_names = [f for f in listdir(test) if (isfile(join(test, f)) and f[-3:]=='tag')]
+
+    train_it_tags, train_it_labels = parse_ts(train_it_names, train_it)
+    test_tags, test_labels = parse_ts(test_names, test)
+
+    with open(idx_file, 'r') as stream:
+        idx_dic = yaml.load(stream)
+
+    get_scores_new(clf, resfile_name, train_it_tags, train_it_labels,
+               test_tags, test_labels, existing_model=old_model_name, old_idx=idx_dic)
+
+
+
+def get_scores_new(clf, res_name, X_train, y_train, X_test, y_test,
+               existing_model=None, old_idx=None, binarize=False):
+    #Gets two lists of changeset ids, does training+testing
+    clf.fit(X_train, y_train, existing_model=existing_model, idx_dic=old_idx)
+    print("Training complete")
+    input("Press Enter to continue...")
+    preds = clf.predict(X_test)
+
+    # create a dictionary containing true labels, predictions, missed, and # missed
+    missed_apps = []
+    num_missed = 0
+    for label, pred in zip(y_test, preds):
+        if label != pred:
+            # create a tuple
+            wrong_pred = (label, pred)
+            missed_apps.append(wrong_pred)
+            num_missed += 1
+    res_dict = {'missed apps': missed_apps, 'number missed': num_missed}
+    with open(res_name, 'w') as outfile:
+        yaml.dump(res_dict, outfile, default_flow_style=False)
 
 
 if __name__ == '__main__':
-    iterative_tests()
+    initial_train()
+    #input("Press Enter to continue...")
+    #new_train()
+
+
+
+
+
+
+##########################
+
+"""
+def initial_train():
+    # get result file name
+    train_init = '/home/ubuntu/praxi/it_tagsets/sl_train'
+    #train_it = '/home/ubuntu/praxi/it_tagsets/it_train'
+    test = '/home/ubuntu/praxi/it_tagsets/first_test'
+    outdir = '/home/ubuntu/praxi/results/iterative'
+
+    vwargs = '-b 26 --learning_rate 1.5 --passes 10'
+    resfile_name = get_free_filename('iterative-hybrid', outdir, suffix='.yaml')
+    suffix = 'initial'
+    iterative = True
+    modfile='initial_model.vw'
+
+    clf = Hybrid(freq_threshold=2, pass_freq_to_vw=True, probability=False,
+                 vw_args= vwargs, suffix=suffix, iterative=iterative,
+                 use_temp_files=False, vw_modelfile=modfile)
+    # GET TAGSETS
+    ### THIS IS NOT DONE!!!
+    train_init_names = [f for f in listdir(train_init) if (isfile(join(train_init, f))and f[-3:]=='tag')]
+    #train_it_names = [f for f in listdir(train_it) if (isfile(join(train_it, f)) and f[-3:]=='tag')]
+    test_names = [f for f in listdir(test) if (isfile(join(test, f)) and f[-3:]=='tag')]
+
+    train_init_tags, train_init_labels = parse_ts(train_init_names, train_init)
+    test_tags, test_labels = parse_ts(test_names, test)
+
+    # Now train iteratively!
+    get_scores_new(clf, resfile_name, train_init_tags, train_init_labels, test_tags, test_labels)
+
+    train_it = '/home/ubuntu/praxi/it_tagsets/it_train'
+    old_model_name = 'initial_model.vw'
+    test = '/home/ubuntu/praxi/it_tagsets/first_test'
+
+    modfile = 'new_model.vw'
+
+    resfile_name2 = get_free_filename('iterative-hybrid-newdata', outdir, suffix='.yaml')
+
+    train_it_names = [f for f in listdir(train_it) if (isfile(join(train_it, f)) and f[-3:]=='tag')]
+
+    train_it_tags, train_it_labels = parse_ts(train_it_names, train_it)
+
+    print("Adding new data!")
+    get_scores_new(clf, resfile_name2, train_it_tags, train_it_labels,
+               test_tags, test_labels)
+
+
+
+def get_scores_new(clf, res_name, X_train, y_train, X_test, y_test,
+               existing_model=None, binarize=False):
+    # Gets two lists of changeset ids, does training+testing
+    clf.fit(X_train, y_train, existing_model=existing_model)
+    print("Training complete")
+    input("Press Enter to continue...")
+    preds = clf.predict(X_test)
+
+    # create a dictionary containing true labels, predictions, missed, and # missed
+    missed_apps = []
+    num_missed = 0
+    for label, pred in zip(y_test, preds):
+        if label != pred:
+            # create a tuple
+            wrong_pred = (label, pred)
+            missed_apps.append(wrong_pred)
+            num_missed += 1
+    res_dict = {'missed apps': missed_apps, 'number missed': num_missed}
+    with open(res_name, 'w') as outfile:
+        yaml.dump(res_dict, outfile, default_flow_style=False)
+"""

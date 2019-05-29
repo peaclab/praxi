@@ -1,0 +1,7 @@
+{1: arpwatch, 2: autotrace, 3: bacula-client, 4: bind9, 5: cobertura, 6: crda, 7: dcraw,
+  8: django, 9: docker, 10: dovecot-core, 11: dstat, 12: emacs-nox, 13: finger, 14: freeradius,
+  15: gitweb, 16: iotop, 17: iptraf-ng, 18: ksh, 19: lftp, 20: lighttpd, 21: logwatch,
+  22: lshw, 23: lynx, 24: mariadb-server, 25: memcached, 26: mgetty-voice, 27: mtr,
+  28: mutt, 29: nmap, 30: pax, 31: powertop, 32: qemu-kvm, 33: quagga, 34: quota,
+  35: rdist, 36: sane, 37: smartmontools, 38: squid, 39: subversion, 40: supermin,
+  41: sysstat, 42: traceroute, 43: tree, 44: tshark, 45: units, 46: vsftpd, 47: watchdog}

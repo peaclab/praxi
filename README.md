@@ -16,7 +16,7 @@ Once you have your directories of testing and training changesets, the next step
 
 Note that you can use absolute or relative paths for this command. In addition, the `tagset_directory_name` argument is optional. If it is not provided, a tagset directory will be created in the working directory (named `tagesets-x`). 
 
-You will have to run this module twice: once for your training changeset directory and one for your testing changeset directory.
+If you are not running an experiment with cross validation, you will have to run this module twice: once for your training changeset directory and one for your testing changeset directory.
 
 ## Step 3: Train a Model and Test it! (main.py and hybrid.py)
 

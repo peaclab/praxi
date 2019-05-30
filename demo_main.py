@@ -89,12 +89,12 @@ def get_free_filename(stub, directory, suffix=''):
         file_candidate = '{}/{}-{}{}'.format(
             str(directory), stub, counter, suffix)
         if Path(file_candidate).exists():
-            print("file exists")
+            logging.info("file exists matching the string %s", file_candidate)
             counter += 1
         else:  # No match found
-            print("no file")
+            logging.info("no file exists matching the string %s", file_candidate)
             if suffix=='.p':
-                print("will create pickle file")
+                logging.info("will create pickle file")
             elif suffix:
                 Path(file_candidate).touch()
             else:
@@ -139,6 +139,17 @@ def fold_partitioning(ts_names, n=3):
 def iterative_experiment(train_path, test_path, resfile_name,
                         outdir, vwargs, result_type,
                         initial_model=None):
+    """ This function is for running iterative experiments. The model data for
+        iterative experiments will be saved to the working directory, and the
+        function has the option of building on an existing model.
+    input: paths to test directory, train directory, and result directory,
+        desired result file name, vw arguments, type of result desired, and
+        optionally the name of a pickle file containing a previously trained
+        model (an instance of the hybrid class)
+    output: trained model .p and .vw files (written to working directory),
+        pickle file with label predictions and text file with experiment
+        performance statistics (written to result directory)
+    """
 
     print("Entered iterative experiment")
 
@@ -150,9 +161,7 @@ def iterative_experiment(train_path, test_path, resfile_name,
                      vw_args= vwargs, suffix=suffix, iterative=iterative,
                      use_temp_files=True, vw_modelfile=modfile)
     else:
-        # load old model
         clf = pickle.load(open(initial_model, "rb"))
-        #clf.save_model = save_name
 
     train_names = [f for f in listdir(train_path) if (isfile(join(train_path, f))and f[-3:]=='tag')]
     test_names = [f for f in listdir(test_path) if (isfile(join(test_path, f)) and f[-3:]=='tag')]
@@ -160,12 +169,20 @@ def iterative_experiment(train_path, test_path, resfile_name,
     train_tags, train_labels = parse_ts(train_names, train_path)
     test_tags, test_labels = parse_ts(test_names, test_path)
 
+    resfile = open(resfile_name, 'wb')
+    results = []
+
     # Now train iteratively! (just fit and predict)
     labels, preds = get_scores(clf, train_tags, train_labels, test_tags, test_labels)
+    results.append((labels, preds))
 
-    for label, pred in zip(labels, preds):
-        print(label, pred)
+    # save and print results
+    pickle.dump(results, resfile)
+    resfile.close()
+    logging.info("Printing results:")
+    print_results(resfile_name, outdir, result_type)
 
+    # save model
     save_name = clf.vw_modelfile[:-2] + 'p'
     pickle.dump(clf, open(save_name, "wb" ))
 
@@ -238,7 +255,7 @@ def get_scores(clf, train_tags, train_labels, test_tags, test_labels,
         preds = clf.predict(test_tags) # predict labels for test set
     return copy.deepcopy(test_labels), preds
 
-def print_results(resfile, outdir, result_type, n_strats=1, args=None, iterative=False):
+def print_results(resfile, outdir, result_type='summary', n_strats=1, args=None, iterative=False):
     """ Calculate result statistics and print them to result file
     input: name of result pickle file, path to result directory, type of result
            desired

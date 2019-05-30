@@ -40,7 +40,7 @@ class Hybrid(BaseEstimator):
         self.pass_files_to_vw = pass_files_to_vw # bool
         self.suffix = suffix
         self.iterative = iterative
-        self.use_temp_files = (not self.iterative) and use_temp_files
+        self.use_temp_files = use_temp_files # (not self.iterative) and
         self.vw_modelfile = vw_modelfile
         self.trained = False # model is always instantiated untrained
 
@@ -71,11 +71,11 @@ class Hybrid(BaseEstimator):
 
         print(len(y))
         input("Press Enter to continue...")
-        
+
         start = time.time()
         if not self.probability: # probability has to do with whether or not it is multilabel
             X, y = self._filter_multilabels(X, y)
-        if self.use_temp_files:
+        """if self.use_temp_files:
             modelfileobj = tempfile.NamedTemporaryFile('w', delete=False)
             self.vw_modelfile = modelfileobj.name
             modelfileobj.close()
@@ -84,8 +84,10 @@ class Hybrid(BaseEstimator):
             if not (self.iterative and self.trained):
                 safe_unlink(self.vw_modelfile)
             else:
-                logging.info("Using old vw_modelfile: %s", self.vw_modelfile)
+                logging.info("Using old vw_modelfile: %s", self.vw_modelfile)"""
         logging.info('Started hybrid model, vw_modelfile: %s',
+                     self.vw_modelfile)
+        print('Started hybrid model, vw_modelfile: %s',
                      self.vw_modelfile)
         self.vw_args_ = self.vw_args
         if not (self.iterative and self.trained):
@@ -229,8 +231,9 @@ class Hybrid(BaseEstimator):
                 all_probas.append(probas)
         if self.use_temp_files:
             safe_unlink(f.name)
-            safe_unlink(self.vw_modelfile)
             safe_unlink(outf)
+            if not self.iterative:
+                safe_unlink(self.vw_modelfile)
         logging.info("Testing took %f secs." % (time.time() - start))
         return all_probas
 

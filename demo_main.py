@@ -136,56 +136,38 @@ def fold_partitioning(ts_names, n=3):
 ##### ITERATIVE TRAINING #######
 ################################
 # Come back to this...
-def iterative_tests(vwargs, outdir):
-    # get result file name
-    outdir = '/home/ubuntu/results/iterative'
-    resfile_name = get_free_filename('iterative-hybrid', 'outdir', suffix='.pkl')
-    suffix = 'hybrid'
-    iterative = True
-    # clf = RuleBased(filter_method='take_max', num_rules=6)
-    clf = Hybrid(freq_threshold=2, pass_freq_to_vw=True, probability=False,
-                 vw_args= vwargs, suffix=suffix, iterative=iterative,
-                 use_temp_files=True)
-    # clf = Hybrid(freq_threshold=2, pass_freq_to_vw=True,
-    #              suffix=suffix,
-    #              probability=True, tqdm=True)
-    # Get single app dirty changesets
-    with ('/home/ubuntu/praxi/iterative_chunks.p').open('rb') as f:
-        it_chunks = pickle.load(f)
+def iterative_experiment(train_path, test_path, resfile_name,
+                        outdir, vwargs, result_type,
+                        initial_model=None):
 
-    #print("Prediction pickle is %s", resfile_name)
-    resfile = open(resfile_name, 'wb')
-    results = []
-    for i in range(3):
-        i1 = i % 3
-        i2 = (i + 1) % 3
-        i3 = (i + 2) % 3
-        X_train = []
-        y_train = []
-        X_test = []
-        y_test = []
-        clf.refresh()
-        for idx, inner_chunks in enumerate(it_chunks):
-            print('In iteration %d', idx)
-            features, labels = parse_csids(inner_chunks[i1], iterative=True)
-            if iterative:
-                X_train = features
-                y_train = labels
-            else:
-                X_train += features
-                y_train += labels
-            features, labels = parse_csids(inner_chunks[i2], iterative=True)
-            X_train += features
-            y_train += labels
-            features, labels = parse_csids(inner_chunks[i3], iterative=True)
-            X_test += features
-            y_test += labels
-            results.append(get_scores(clf, X_train, y_train, X_test, y_test))
-            pickle.dump(results, resfile)
-            resfile.seek(0)
-    resfile.close()
-    print_results(resfile_name, outdir, args=clf.get_args(),
-                  n_strats=len(it_chunks), iterative=True)
+    print("Entered iterative experiment")
+
+    if initial_model is None:
+        suffix = 'iterative'
+        iterative = True
+        modfile = 'it_model.vw'
+        clf = Hybrid(freq_threshold=2, pass_freq_to_vw=True, probability=False,
+                     vw_args= vwargs, suffix=suffix, iterative=iterative,
+                     use_temp_files=True, vw_modelfile=modfile)
+    else:
+        # load old model
+        clf = pickle.load(open(initial_model, "rb"))
+        #clf.save_model = save_name
+
+    train_names = [f for f in listdir(train_path) if (isfile(join(train_path, f))and f[-3:]=='tag')]
+    test_names = [f for f in listdir(test_path) if (isfile(join(test_path, f)) and f[-3:]=='tag')]
+
+    train_tags, train_labels = parse_ts(train_names, train_path)
+    test_tags, test_labels = parse_ts(test_names, test_path)
+
+    # Now train iteratively! (just fit and predict)
+    labels, preds = get_scores(clf, train_tags, train_labels, test_tags, test_labels)
+
+    for label, pred in zip(labels, preds):
+        print(label, pred)
+
+    save_name = clf.vw_modelfile[:-2] + 'p'
+    pickle.dump(clf, open(save_name, "wb" ))
 
 
 def single_label_experiment(nfolds, tr_path, resfile_name, outdir, vwargs, result_type, ts_path=None):
@@ -363,9 +345,6 @@ def print_results(resfile, outdir, result_type, n_strats=1, args=None, iterative
             savetxt("{}".format(fname),
                     confuse, fmt='%d', header=file_header, delimiter=',',comments='')
 
-
-
-
 def multi_label_experiment(nfolds, tr_path, resfile_name, outdir, vwargs, result_type, ts_path=None):
     """ Run a multi-label experiment (with or without cross validation)
     input: number of folds, training directory path, name of result file,
@@ -516,6 +495,9 @@ if __name__ == '__main__':
     parser.add_argument('-v', '--verbosity', dest='loglevel', action='store_const', const='DEBUG', default='WARNING',help='specify level of detail for log file')
     # DEFAULT: NO FOLDS
     #   - will expect TWO directories as arguments
+    # iterative options
+    parser.add_argument('-i', '--iterative', dest='iterative', action='store_const', const='iterative', default="non-iterative", help='Run iterative experiment')
+    parser.add_argument('-p', '--previous', default=None, help='Optional: previous model name')
 
     args = vars(parser.parse_args())
 
@@ -542,32 +524,47 @@ if __name__ == '__main__':
     vwargs = args['vw_args']
     logging.info("Arguments for Vowpal Wabbit: %s", vwargs)
 
+    iterative = args['iterative'] == 'iterative'
+    initial_model = args['previous']
+
     if(nfolds!= 1 and ts_test_path!=None):
         # ERROR: SHOULDNT HAVE A TEST DIRECTORY IF CROSS VALIDATION IS OCCURRING
         logging.error("Too many input directories. If performing cross validation, expect just one.")
         raise ValueError("Too many input directories! Only need one for cross validation.")
     else:
-        if exp_type == 'single':
-            if(nfolds == 1):
-                logging.info("Starting single label experiment")
-                logging.info("Training directory: %s", ts_train_path)
-                logging.info("Testing directory: %s", ts_test_path)
-            else:
-                # CROSS VALIDATION
-                logging.info("Starting cross validation single label experiment with %s folds", str(nfolds))
-                logging.info("Tagset directory: %s", ts_train_path)
-            resfile_name = get_free_filename('single_test', outdir, '.p') # add arg to set stub?
-            single_label_experiment(nfolds, ts_train_path, resfile_name, outdir, vwargs, result_type, ts_path=ts_test_path) # no traim directory
-        else: # multi
-            if(nfolds == 1):
-                logging.info("Starting multi label experiment")
-                logging.info("Training directory: %s", ts_train_path)
-                logging.info("Testing directory: %s", ts_test_path)
-            else:
-                # CROSS VALIDATION
-                logging.info("Starting cross validation multi label experiment with %s folds", str(nfolds))
-                logging.info("Tagset directory: %s", ts_train_path)
-            resfile_name = get_free_filename('multi_test', outdir, '.p')
-            multi_label_experiment(nfolds, ts_train_path, resfile_name, outdir, vwargs, result_type, ts_path=ts_test_path)
+        if iterative:
+            # run iterative exp (all single label for now, no cross validation)
+            logging.info("Starting iterative experiment")
+            logging.info("Model files will be saved to working directory")
+            if initial_model is not None:
+                logging.info("Will iteratively train the model: %s", initial_model)
+            # Might not need training/testing directory! (later add "just testing" and "just training" option)
+            logging.info("Training directory: %s", ts_train_path)
+            logging.info("Testing directory: %s", ts_test_path)
+            resfile_name = get_free_filename('iterative_test', outdir, '.p') # add arg to set stub?
+            iterative_experiment(ts_train_path, ts_test_path, resfile_name, outdir, vwargs, result_type, initial_model=initial_model)
+        else:
+            if exp_type == 'single':
+                if(nfolds == 1):
+                    logging.info("Starting single label experiment")
+                    logging.info("Training directory: %s", ts_train_path)
+                    logging.info("Testing directory: %s", ts_test_path)
+                else:
+                    # CROSS VALIDATION
+                    logging.info("Starting cross validation single label experiment with %s folds", str(nfolds))
+                    logging.info("Tagset directory: %s", ts_train_path)
+                resfile_name = get_free_filename('single_test', outdir, '.p') # add arg to set stub?
+                single_label_experiment(nfolds, ts_train_path, resfile_name, outdir, vwargs, result_type, ts_path=ts_test_path) # no traim directory
+            else: # multi
+                if(nfolds == 1):
+                    logging.info("Starting multi label experiment")
+                    logging.info("Training directory: %s", ts_train_path)
+                    logging.info("Testing directory: %s", ts_test_path)
+                else:
+                    # CROSS VALIDATION
+                    logging.info("Starting cross validation multi label experiment with %s folds", str(nfolds))
+                    logging.info("Tagset directory: %s", ts_train_path)
+                resfile_name = get_free_filename('multi_test', outdir, '.p')
+                multi_label_experiment(nfolds, ts_train_path, resfile_name, outdir, vwargs, result_type, ts_path=ts_test_path)
 
     logging.info("Program runtime: %s", str(time.time()-prog_start))

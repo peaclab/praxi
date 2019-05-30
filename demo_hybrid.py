@@ -25,7 +25,8 @@ class Hybrid(BaseEstimator):
                  probability=False, tqdm=True,
                  suffix='', iterative=False,
                  loss_function='hinge',
-                 use_temp_files=False): # if this is set true it will delete everything after end of runtime?
+                 use_temp_files=False,
+                 vw_modelfile='model.vw'): # if this is set true it will delete everything after end of runtime?
         """ Initializer for Hybrid method. Do not use multiple instances
         simultaneously.
         """
@@ -40,6 +41,7 @@ class Hybrid(BaseEstimator):
         self.suffix = suffix
         self.iterative = iterative
         self.use_temp_files = (not self.iterative) and use_temp_files
+        self.vw_modelfile = vw_modelfile
         self.trained = False # model is always instantiated untrained
 
     def get_args(self):
@@ -66,6 +68,10 @@ class Hybrid(BaseEstimator):
         input: list of tags [list] and labels [list] for ALL training tagsets
         output: trained model
         """
+
+        print(len(y))
+        input("Press Enter to continue...")
+        
         start = time.time()
         if not self.probability: # probability has to do with whether or not it is multilabel
             X, y = self._filter_multilabels(X, y)
@@ -74,7 +80,7 @@ class Hybrid(BaseEstimator):
             self.vw_modelfile = modelfileobj.name
             modelfileobj.close()
         else:
-            self.vw_modelfile = 'trained_model-%s.vw' % self.suffix
+            #self.vw_modelfile = 'trained_model-%s.vw' % self.suffix
             if not (self.iterative and self.trained):
                 safe_unlink(self.vw_modelfile)
             else:
@@ -295,7 +301,8 @@ class Hybrid(BaseEstimator):
                     all_preds.append('??')
         if self.use_temp_files:
             safe_unlink(f.name)
-            safe_unlink(self.vw_modelfile)
+            if not self.iterative:
+                safe_unlink(self.vw_modelfile)
         logging.info("Testing took %f secs." % (time.time() - start))
         return all_preds
 

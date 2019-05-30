@@ -68,14 +68,10 @@ class Hybrid(BaseEstimator):
         input: list of tags [list] and labels [list] for ALL training tagsets
         output: trained model
         """
-
-        print(len(y))
-        input("Press Enter to continue...")
-
         start = time.time()
         if not self.probability: # probability has to do with whether or not it is multilabel
             X, y = self._filter_multilabels(X, y)
-        """if self.use_temp_files:
+        if self.use_temp_files and not self.iterative:
             modelfileobj = tempfile.NamedTemporaryFile('w', delete=False)
             self.vw_modelfile = modelfileobj.name
             modelfileobj.close()
@@ -84,10 +80,8 @@ class Hybrid(BaseEstimator):
             if not (self.iterative and self.trained):
                 safe_unlink(self.vw_modelfile)
             else:
-                logging.info("Using old vw_modelfile: %s", self.vw_modelfile)"""
+                logging.info("Using old vw_modelfile: %s", self.vw_modelfile)
         logging.info('Started hybrid model, vw_modelfile: %s',
-                     self.vw_modelfile)
-        print('Started hybrid model, vw_modelfile: %s',
                      self.vw_modelfile)
         self.vw_args_ = self.vw_args
         if not (self.iterative and self.trained):

@@ -35,7 +35,7 @@ from columbus.columbus import columbus
 
 LOCK = Lock()
 
-def parse_cs(changeset_names, cs_dir, multilabel=False, iterative=False): # SHOULD PROBABLY GET RID OF ITERATIVE OPTION
+def parse_cs(changeset_names, cs_dir, multilabel=False): # SHOULD PROBABLY GET RID OF ITERATIVE OPTION
     """ Function for parsing a list of changesets.
     input: list of changeset names (strings), name of the directory in which
             they are located
@@ -46,7 +46,7 @@ def parse_cs(changeset_names, cs_dir, multilabel=False, iterative=False): # SHOU
     features = []
     labels = []
     for cs_name in tqdm(changeset_names):
-            changeset = get_changeset(cs_name, cs_dir, iterative=iterative)
+            changeset = get_changeset(cs_name, cs_dir)
             if multilabel:
                 """ running a trial in which there may be more than one label for
                     a given changeset """
@@ -59,7 +59,7 @@ def parse_cs(changeset_names, cs_dir, multilabel=False, iterative=False): # SHOU
             features.append(changeset['changes'])
     return features, labels
 
-def get_changeset(cs_fname, cs_dir, iterative=False):
+def get_changeset(cs_fname, cs_dir):
     """ Function that takes a changeset and returns the dictionary stored in it
     input: file name of a *single* changeset
     output: dictionary containing changed/added filepaths and label(s)
@@ -137,9 +137,9 @@ def create_files(tagset_names, ts_dir, labels, ids, tags):
     """
     for i, tagset_name in enumerate(tagset_names):
         if(isinstance(labels[i], list)):
-            cur_dict = {'labels': labels[i], 'id' : ids[i], 'tags': tags[i]}
+            cur_dict = {'labels': labels[i], 'id': ids[i], 'tags': tags[i]}
         else:
-            cur_dict = {'label': labels[i], 'id' : ids[i], 'tags': tags[i]}
+            cur_dict = {'label': labels[i], 'id': ids[i], 'tags': tags[i]}
         cur_fname = ts_dir + '/' + tagset_name
         with open(cur_fname, 'w') as outfile:
             yaml.dump(cur_dict, outfile, default_flow_style=False)
@@ -233,7 +233,7 @@ if __name__ == '__main__':
     work_dir = os.path.abspath('.')
 
     arg_list = sys.argv
-    cs_dir, ts_dir = get_directories(arg_list) 
+    cs_dir, ts_dir = get_directories(arg_list)
 
     if cs_dir == '':
         raise ValueError("Invalid changeset directory")

@@ -348,15 +348,16 @@ def print_results(resfile, outdir, result_type='summary', n_strats=1, args=None,
                 "F1 SCORE : {:.3f} weighted\n".format(f1w) +
                 "PRECISION: {:.3f} weighted\n".format(pw) +
                 "RECALL   : {:.3f} weighted\n\n".format(rw))
-            hits = misses = predictions = 0
-            for pred, label in zip(y_true, y_pred):
-                if pred == label:
-                    hits += 1
-                else:
-                    misses += 1
-                predictions += 1
-            str_add = "\nPreds: " + str(predictions) + "\nHits: " + str(hits) + "\nMisses: " + str(misses)
-            file_header += str_add
+            if numfolds == 1:
+                hits = misses = predictions = 0
+                for pred, label in zip(y_true, y_pred):
+                    if pred == label:
+                        hits += 1
+                    else:
+                        misses += 1
+                    predictions += 1
+                str_add = "\nPreds: " + str(predictions) + "\nHits: " + str(hits) + "\nMisses: " + str(misses)
+                file_header += str_add
             f = open(fname, "w")
             f.write(file_header) # just need header b/c no confusion matrix
             f.close()
@@ -480,30 +481,20 @@ def print_multilabel_results(resfile, outdir, result_type, args=None, n_strats=1
 
     if numfolds == 1:
         file_header = ("MULTILABEL EXPERIMENT REPORT\n" +
-            time.strftime("Generated %c\n\n") +
-            ('\n Args: {}\n\n'.format(args) if args else '') +
+            time.strftime("Generated %c\n") +
+            ('\nArgs: {}\n\n'.format(args) if args else '') +
             "EXPERIMENT WITH {} CHANGESETS\n".format(len(y_true)))
     else:
         file_header = ("MULTILABEL EXPERIMENT REPORT\n" +
             time.strftime("Generated %c\n\n") +
-            ('\n Args: {}\n\n'.format(args) if args else '') +
+            ('\nArgs: {}\n'.format(args) if args else '') +
             "{} FOLD CROSS VALIDATION WITH {} CHANGESETS\n".format(numfolds, len(y_true)))
 
     if result_type == 'summary':
         file_header += ("F1 SCORE : {:.3f} weighted\n".format(f1w) +
             "PRECISION: {:.3f} weighted\n".format(pw) +
-            "RECALL   : {:.3f} weighted\n\n".format(rw))
+            "RECALL   : {:.3f} weighted\n".format(rw))
         fname = get_free_filename('multi_exp_summary', outdir, '.txt')
-        """
-        hits = misses = predictions = 0
-        for pred, label in zip(y_true, y_pred):
-            if set(pred) == set(label):
-                hits += 1
-            else:
-                misses += 1
-            predictions += 1
-        str_add = "\nPreds: " + str(predictions) + "\nHits: " + str(hits) + "\nMisses: " + str(misses)
-        file_header += str_add"""
     else:
         file_header += ("F1 SCORE : {:.3f} weighted, {:.3f} micro-avg'd, {:.3f} macro-avg'd\n".format(f1w, f1i, f1a) +
             "PRECISION: {:.3f} weighted, {:.3f} micro-avg'd, {:.3f} macro-avg'd\n".format(pw, pi, pa) +

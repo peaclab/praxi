@@ -104,7 +104,6 @@ class Hybrid(BaseEstimator):
                 self.indexed_labels[label] = self.label_counter
                 self.reverse_labels[self.label_counter] = label
                 self.label_counter += 1
-        print("Number of labels: ", len(self.all_labels))
         ################################################
         ## Create VW arg string ########################
         if self.probability:

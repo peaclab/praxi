@@ -15,6 +15,8 @@ OUTPUTS:
 # Imports
 from collections import Counter
 from multiprocessing import Lock
+import sys
+sys.path.insert(0, '../') 
 
 import logging
 import logging.config

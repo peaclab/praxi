@@ -138,7 +138,7 @@ def fold_partitioning(ts_names, n=3):
 # Come back to this...
 def iterative_experiment(train_path, test_path, resfile_name,
                         outdir, vwargs, result_type,
-                        initial_model=None):
+                        initial_model=None, print_misses=False):
     """ This function is for running iterative experiments. The model data for
         iterative experiments will be saved to the working directory, and the
         function has the option of building on an existing model.
@@ -176,6 +176,12 @@ def iterative_experiment(train_path, test_path, resfile_name,
     labels, preds = get_scores(clf, train_tags, train_labels, test_tags, test_labels)
     results.append((labels, preds))
 
+    if print_misses:
+        print("Misclassified labels:")
+        for label, pred in zip(labels, preds):
+            if label != pred:
+                print('label:',label,'prediction:',pred)
+
     # save and print results
     pickle.dump(results, resfile)
     resfile.close()
@@ -187,7 +193,7 @@ def iterative_experiment(train_path, test_path, resfile_name,
     pickle.dump(clf, open(save_name, "wb" ))
 
 
-def single_label_experiment(nfolds, tr_path, resfile_name, outdir, vwargs, result_type, ts_path=None):
+def single_label_experiment(nfolds, tr_path, resfile_name, outdir, vwargs, result_type, ts_path=None, print_misses=False):
     """ Run a single-label experiment (with or without cross validation)
     input: number of folds, training directory path, name of result file,
             result directory path, Vowpal Wabbit arguments, result type
@@ -228,7 +234,13 @@ def single_label_experiment(nfolds, tr_path, resfile_name, outdir, vwargs, resul
         test_tags, test_labels = parse_ts(ts_test_names, ts_test_path)
 
         logging.info("Getting single label scores:")
-        results.append(get_scores(clf, train_tags, train_labels, test_tags, test_labels))
+        preds, labels = get_scores(clf, train_tags, train_labels, test_tags, test_labels)
+        results.append((preds,labels))
+        if print_misses:
+            print("Misclassified labels:")
+            for label, pred in zip(labels, preds):
+                if label != pred:
+                    print('label:',label,'prediction:',pred)
 
     pickle.dump(results, resfile)
     # results is a list of tuples
@@ -362,7 +374,7 @@ def print_results(resfile, outdir, result_type='summary', n_strats=1, args=None,
             savetxt("{}".format(fname),
                     confuse, fmt='%d', header=file_header, delimiter=',',comments='')
 
-def multi_label_experiment(nfolds, tr_path, resfile_name, outdir, vwargs, result_type, ts_path=None):
+def multi_label_experiment(nfolds, tr_path, resfile_name, outdir, vwargs, result_type, ts_path=None, print_misses=False):
     """ Run a multi-label experiment (with or without cross validation)
     input: number of folds, training directory path, name of result file,
             result directory path, Vowpal Wabbit arguments, result type
@@ -399,7 +411,14 @@ def multi_label_experiment(nfolds, tr_path, resfile_name, outdir, vwargs, result
         train_tags, train_labels = parse_ts(ts_train_names, ts_train_path)
         test_tags, test_labels = parse_ts(ts_test_names, ts_test_path)
 
-        results.append(get_multilabel_scores(clf, train_tags, train_labels, test_tags, test_labels))
+        labels, preds = get_multilabel_scores(clf, train_tags, train_labels, test_tags, test_labels)
+        results.append((labels, preds))
+        # might not work
+        if print_misses:
+            print("Misclassified labels:")
+            for label, pred in zip(labels, preds):
+                if label != pred:
+                    print('label:',label,'prediction:',pred)
 
     pickle.dump(results, resfile)
     resfile.close()
@@ -510,6 +529,8 @@ if __name__ == '__main__':
     parser.add_argument('-n', '--nfolds', help='number of folds to use in cross validation', default=1) # make default 1?
     parser.add_argument('-f', '--fullres', help='generate full result file.', dest='result', action='store_const', const='full', default='summary')
     parser.add_argument('-v', '--verbosity', dest='loglevel', action='store_const', const='DEBUG', default='WARNING',help='specify level of detail for log file')
+    # IMPLEMENT THIS!
+    parser.add_argument('-l' '--labels', dest='print_labels', action='store_const', const=True, default=False, help='Print missed labels')
     # DEFAULT: NO FOLDS
     #   - will expect TWO directories as arguments
     # iterative options
@@ -538,6 +559,8 @@ if __name__ == '__main__':
     exp_type = args['experiment'] # single or multi
     logging.info("Experiment type: %s", exp_type)
 
+    print_misses = args['print_labels']
+
     vwargs = args['vw_args']
     logging.info("Arguments for Vowpal Wabbit: %s", vwargs)
 
@@ -559,7 +582,7 @@ if __name__ == '__main__':
             logging.info("Training directory: %s", ts_train_path)
             logging.info("Testing directory: %s", ts_test_path)
             resfile_name = get_free_filename('iterative_test', outdir, '.p') # add arg to set stub?
-            iterative_experiment(ts_train_path, ts_test_path, resfile_name, outdir, vwargs, result_type, initial_model=initial_model)
+            iterative_experiment(ts_train_path, ts_test_path, resfile_name, outdir, vwargs, result_type, initial_model=initial_model, print_misses=print_misses)
         else:
             if exp_type == 'single':
                 if(nfolds == 1):
@@ -571,7 +594,7 @@ if __name__ == '__main__':
                     logging.info("Starting cross validation single label experiment with %s folds", str(nfolds))
                     logging.info("Tagset directory: %s", ts_train_path)
                 resfile_name = get_free_filename('single_test', outdir, '.p') # add arg to set stub?
-                single_label_experiment(nfolds, ts_train_path, resfile_name, outdir, vwargs, result_type, ts_path=ts_test_path) # no traim directory
+                single_label_experiment(nfolds, ts_train_path, resfile_name, outdir, vwargs, result_type, ts_path=ts_test_path, print_misses=print_misses) # no traim directory
             else: # multi
                 if(nfolds == 1):
                     logging.info("Starting multi label experiment")
@@ -582,6 +605,6 @@ if __name__ == '__main__':
                     logging.info("Starting cross validation multi label experiment with %s folds", str(nfolds))
                     logging.info("Tagset directory: %s", ts_train_path)
                 resfile_name = get_free_filename('multi_test', outdir, '.p')
-                multi_label_experiment(nfolds, ts_train_path, resfile_name, outdir, vwargs, result_type, ts_path=ts_test_path)
+                multi_label_experiment(nfolds, ts_train_path, resfile_name, outdir, vwargs, result_type, ts_path=ts_test_path, print_misses=print_misses)
 
     logging.info("Program runtime: %s", str(time.time()-prog_start))

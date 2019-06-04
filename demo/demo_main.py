@@ -163,11 +163,11 @@ def iterative_experiment(train_path, test_path, resfile_name,
 
     train_names = [f for f in listdir(train_path) if (isfile(join(train_path, f))and f[-3:]=='tag')]
     if(len(train_names) == 0):
-        log.error("No tagsets found in provided training directory")
+        logging.error("No tagsets found in provided training directory")
         raise ValueError("No tagsets in training directory!")
     test_names = [f for f in listdir(test_path) if (isfile(join(test_path, f)) and f[-3:]=='tag')]
     if(len(test_names) == 0):
-        log.error("No tagsets found in provided testing directory")
+        logging.error("No tagsets found in provided testing directory")
         raise ValueError("No tagsets in testing directory!")
 
     train_tags, train_labels = parse_ts(train_names, train_path)
@@ -190,7 +190,7 @@ def iterative_experiment(train_path, test_path, resfile_name,
     pickle.dump(results, resfile)
     resfile.close()
     logging.info("Printing results:")
-    print_results(resfile_name, outdir, result_type)
+    print_results(resfile_name, outdir, result_type, iterative=True)
 
     # save model
     save_name = clf.vw_modelfile[:-2] + 'p'
@@ -213,10 +213,10 @@ def single_label_experiment(nfolds, tr_path, resfile_name, outdir, vwargs, resul
     resfile = open(resfile_name, 'wb')
     results = []
     if(ts_path==None): # cross validation
-        log.info("Starting single-label cross validation experiment: ")
+        logging.info("Starting single-label cross validation experiment: ")
         tr_names = [f for f in listdir(tr_path) if (isfile(join(tr_path, f))and f[-3:]=='tag')]
         if(len(tr_names) == 0):
-            log.error("No tagsets found in provided directory")
+            logging.error("No tagsets found in provided directory")
             raise ValueError("No tagsets in provided directory!")
         logging.info("Partitioning into %d folds", nfolds)
         folds = fold_partitioning(tr_names, n=nfolds)
@@ -235,14 +235,14 @@ def single_label_experiment(nfolds, tr_path, resfile_name, outdir, vwargs, resul
             train_tags, train_labels = parse_ts(train_tagset_names, tr_path)
             results.append(get_scores(clf, train_tags, train_labels, test_tags, test_labels))
     else: # no folds/crossvalidation
-        log.info("Starting single-label 'field test' experiment: ")
+        logging.info("Starting single-label 'field test' experiment: ")
         ts_train_names = [f for f in listdir(tr_path) if (isfile(join(tr_path, f))and f[-3:]=='tag')]
         if(len(ts_train_names) == 0):
-            log.error("No tagsets found in provided training directory")
+            logging.error("No tagsets found in provided training directory")
             raise ValueError("No tagsets in training directory!")
         ts_test_names = [f for f in listdir(ts_path) if (isfile(join(ts_path, f)) and f[-3:]=='tag')]
         if(len(ts_test_names) == 0):
-            log.error("No tagsets found in testing directory")
+            logging.error("No tagsets found in testing directory")
             raise ValueError("No tagsets in testing directory!")
 
         train_tags, train_labels = parse_ts(ts_train_names, ts_train_path)
@@ -358,7 +358,8 @@ def print_results(resfile, outdir, result_type='summary', n_strats=1, args=None,
                 "ITERATIVE EXPERIMENTAL REPORT:\n" +
                 time.strftime("Generated %c\n\n") +
                 ('\nArgs: {}\n\n'.format(args) if args else '') +
-                "LABEL COUNT : {}\n".format(lc))
+                "LABEL COUNT : {}\n\n".format(lc) +
+                "EXPERIMENT WITH {} TEST CHANGESETS\n".format(len(y_true)))
             fstub = 'iter_exp'
 
         os.makedirs(str(outdir), exist_ok=True) # makes directory if it doesn't exist
@@ -376,7 +377,7 @@ def print_results(resfile, outdir, result_type='summary', n_strats=1, args=None,
                     else:
                         misses += 1
                     predictions += 1
-                str_add = "\nPreds: " + str(predictions) + "\nHits: " + str(hits) + "\nMisses: " + str(misses)
+                str_add = "Preds: " + str(predictions) + "\nHits: " + str(hits) + "\nMisses: " + str(misses)
                 file_header += str_add
             fname = get_free_filename(fstub, outdir, '.txt')
             f = open(fname, "w")
@@ -508,9 +509,9 @@ def print_multilabel_results(resfile, outdir, result_type, args=None, n_strats=1
         fstub = 'multi_exp'
     else:
         file_header = ("MULTILABEL EXPERIMENT REPORT\n" +
-            time.strftime("Generated %c\n\n") +
+            time.strftime("Generated %c\n") +
             ('\nArgs: {}\n'.format(args) if args else '') +
-            "{} FOLD CROSS VALIDATION WITH {} CHANGESETS\n".format(numfolds, len(y_true)))
+            "\n{} FOLD CROSS VALIDATION WITH {} CHANGESETS\n".format(numfolds, len(y_true)))
         fstub = 'multi_exp_cv'
 
     if result_type == 'summary':
@@ -601,6 +602,7 @@ if __name__ == '__main__':
             logging.info("Model files will be saved to working directory")
             if initial_model is not None:
                 logging.info("Will iteratively train the model: %s", initial_model)
+                new_model_name = None
             else:
                 new_model_name = iterative
                 logging.info("Will save new model to %s", new_model_name)

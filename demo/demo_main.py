@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """ Script function:
     - two modes:
-        * 1) Cross Validation: takes a single directory of tagsets and runs the
+        1) Cross Validation: takes a single directory of tagsets and runs the
                 Praxi application discovery algorithm, dividing the
                 data into folds and repeatedly running the experiment
                 with each fold being the test set
-        * 2) "Real World" Experiment: takes two directories of tagsets, one for
+        2) "Real World" Experiment: takes two directories of tagsets, one for
                 training, one for testing, and runs Praxi once, first training
                 the model and then evaluating its accuracy using the test
                 directory
@@ -162,7 +162,13 @@ def iterative_experiment(train_path, test_path, resfile_name,
         clf = pickle.load(open(initial_model, "rb"))
 
     train_names = [f for f in listdir(train_path) if (isfile(join(train_path, f))and f[-3:]=='tag')]
+    if(len(train_names) == 0):
+        log.error("No tagsets found in provided training directory")
+        raise ValueError("No tagsets in training directory!")
     test_names = [f for f in listdir(test_path) if (isfile(join(test_path, f)) and f[-3:]=='tag')]
+    if(len(test_names) == 0):
+        log.error("No tagsets found in provided testing directory")
+        raise ValueError("No tagsets in testing directory!")
 
     train_tags, train_labels = parse_ts(train_names, train_path)
     test_tags, test_labels = parse_ts(test_names, test_path)
@@ -207,7 +213,11 @@ def single_label_experiment(nfolds, tr_path, resfile_name, outdir, vwargs, resul
     resfile = open(resfile_name, 'wb')
     results = []
     if(ts_path==None): # cross validation
+        log.info("Starting single-label cross validation experiment: ")
         tr_names = [f for f in listdir(tr_path) if (isfile(join(tr_path, f))and f[-3:]=='tag')]
+        if(len(tr_names) == 0):
+            log.error("No tagsets found in provided directory")
+            raise ValueError("No tagsets in provided directory!")
         logging.info("Partitioning into %d folds", nfolds)
         folds = fold_partitioning(tr_names, n=nfolds)
         logging.info("Starting cross validation folds: ")
@@ -225,8 +235,15 @@ def single_label_experiment(nfolds, tr_path, resfile_name, outdir, vwargs, resul
             train_tags, train_labels = parse_ts(train_tagset_names, tr_path)
             results.append(get_scores(clf, train_tags, train_labels, test_tags, test_labels))
     else: # no folds/crossvalidation
+        log.info("Starting single-label 'field test' experiment: ")
         ts_train_names = [f for f in listdir(tr_path) if (isfile(join(tr_path, f))and f[-3:]=='tag')]
+        if(len(ts_train_names) == 0):
+            log.error("No tagsets found in provided training directory")
+            raise ValueError("No tagsets in training directory!")
         ts_test_names = [f for f in listdir(ts_path) if (isfile(join(ts_path, f)) and f[-3:]=='tag')]
+        if(len(ts_test_names) == 0):
+            log.error("No tagsets found in testing directory")
+            raise ValueError("No tagsets in testing directory!")
 
         train_tags, train_labels = parse_ts(ts_train_names, ts_train_path)
         test_tags, test_labels = parse_ts(ts_test_names, ts_test_path)
@@ -328,22 +345,25 @@ def print_results(resfile, outdir, result_type='summary', n_strats=1, args=None,
                     time.strftime("Generated %c\n\n") +
                     ('\n Args: {}\n\n'.format(args) if args else '') +
                     "EXPERIMENT WITH {} TEST CHANGESETS\n".format(len(y_true)))
+                fstub = 'single_exp'
             else:
                 file_header = (
                     "SINGLE LABEL EXPERIMENTAL REPORT:\n" +
                     time.strftime("Generated %c\n\n") +
                     ('\n Args: {}\n\n'.format(args) if args else '') +
                     "{} FOLD CROSS VALIDATION WITH {} CHANGESETS\n".format(numfolds, len(y_true)))
+                fstub = 'single_exp_cv'
         else:
             file_header = (
                 "ITERATIVE EXPERIMENTAL REPORT:\n" +
                 time.strftime("Generated %c\n\n") +
                 ('\nArgs: {}\n\n'.format(args) if args else '') +
                 "LABEL COUNT : {}\n".format(lc))
+            fstub = 'iter_exp'
 
         os.makedirs(str(outdir), exist_ok=True) # makes directory if it doesn't exist
         if result_type == 'summary':
-            fname = get_free_filename('single_exp_summary', outdir, '.txt')
+            fstub += '_summary'
             file_header += (
                 "F1 SCORE : {:.3f} weighted\n".format(f1w) +
                 "PRECISION: {:.3f} weighted\n".format(pw) +
@@ -358,18 +378,19 @@ def print_results(resfile, outdir, result_type='summary', n_strats=1, args=None,
                     predictions += 1
                 str_add = "\nPreds: " + str(predictions) + "\nHits: " + str(hits) + "\nMisses: " + str(misses)
                 file_header += str_add
+            fname = get_free_filename(fstub, outdir, '.txt')
             f = open(fname, "w")
             f.write(file_header) # just need header b/c no confusion matrix
             f.close()
         else:
             # FULL RESULTS (original result format)
-            fname = get_free_filename('single_exp', outdir, '.txt')
             file_header += (
                 "F1 SCORE : {:.3f} weighted, {:.3f} micro-avg'd, {:.3f} macro-avg'd\n".format(f1w, f1i, f1a) +
                 "PRECISION: {:.3f} weighted, {:.3f} micro-avg'd, {:.3f} macro-avg'd\n".format(pw, pi, pa) +
                 "RECALL   : {:.3f} weighted, {:.3f} micro-avg'd, {:.3f} macro-avg'd\n#\n".format(rw, ri, ra))
             file_header += ("# {:-^55}\n#".format("CLASSIFICATION REPORT") + report.replace('\n', "\n#") +
                            " {:-^55}\n".format("CONFUSION MATRIX"))
+            fname = get_free_filename(fstub, outdir, '.txt')
             savetxt("{}".format(fname),
                     confuse, fmt='%d', header=file_header, delimiter=',',comments='')
 
@@ -483,24 +504,27 @@ def print_multilabel_results(resfile, outdir, result_type, args=None, n_strats=1
         file_header = ("MULTILABEL EXPERIMENT REPORT\n" +
             time.strftime("Generated %c\n") +
             ('\nArgs: {}\n\n'.format(args) if args else '') +
-            "EXPERIMENT WITH {} CHANGESETS\n".format(len(y_true)))
+            "EXPERIMENT WITH {} TEST CHANGESETS\n".format(len(y_true)))
+        fstub = 'multi_exp'
     else:
         file_header = ("MULTILABEL EXPERIMENT REPORT\n" +
             time.strftime("Generated %c\n\n") +
             ('\nArgs: {}\n'.format(args) if args else '') +
             "{} FOLD CROSS VALIDATION WITH {} CHANGESETS\n".format(numfolds, len(y_true)))
+        fstub = 'multi_exp_cv'
 
     if result_type == 'summary':
         file_header += ("F1 SCORE : {:.3f} weighted\n".format(f1w) +
             "PRECISION: {:.3f} weighted\n".format(pw) +
             "RECALL   : {:.3f} weighted\n".format(rw))
-        fname = get_free_filename('multi_exp_summary', outdir, '.txt')
+        fstub += '_summary'
     else:
         file_header += ("F1 SCORE : {:.3f} weighted, {:.3f} micro-avg'd, {:.3f} macro-avg'd\n".format(f1w, f1i, f1a) +
             "PRECISION: {:.3f} weighted, {:.3f} micro-avg'd, {:.3f} macro-avg'd\n".format(pw, pi, pa) +
             "RECALL   : {:.3f} weighted, {:.3f} micro-avg'd, {:.3f} macro-avg'd\n\n".format(rw, ri, ra))
         file_header += (" {:-^55}\n".format("CLASSIFICATION REPORT") + report.replace('\n', "\n"))
-        fname = get_free_filename('multi_exp', outdir, '.txt')
+    fname = get_free_filename(fstub, outdir, '.txt')
+
 
     savetxt("{}".format(fname),
             np.array([]), fmt='%d', header=file_header, delimiter=',',
@@ -563,6 +587,9 @@ if __name__ == '__main__':
     iterative = args['iterative']
     initial_model = args['previous']
 
+    if(iterative is None and initial_model is not None):
+        iterative = initial_model
+
     if(nfolds!= 1 and ts_test_path!=None):
         # ERROR: SHOULDNT HAVE A TEST DIRECTORY IF CROSS VALIDATION IS OCCURRING
         logging.error("Too many input directories. If performing cross validation, expect just one.")
@@ -576,6 +603,7 @@ if __name__ == '__main__':
                 logging.info("Will iteratively train the model: %s", initial_model)
             else:
                 new_model_name = iterative
+                logging.info("Will save new model to %s", new_model_name)
             # Might not need training/testing directory! (later add "just testing" and "just training" option)
             logging.info("Training directory: %s", ts_train_path)
             logging.info("Testing directory: %s", ts_test_path)

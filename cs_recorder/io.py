@@ -10,10 +10,8 @@ import string
 import time
 import json
 import numpy as np
-from deltasherlock.common.changesets import Changeset
-from deltasherlock.common.changesets import ChangesetRecord
-from deltasherlock.common.fingerprinting import Fingerprint
-from deltasherlock.common.fingerprinting import FingerprintingMethod
+from changesets import Changeset
+from changesets import ChangesetRecord
 
 
 class DSEncoder(json.JSONEncoder):
@@ -75,68 +73,6 @@ class DSEncoder(json.JSONEncoder):
         return serializable
 
 
-class DSDecoder(json.JSONDecoder):
-    """
-    Provides some JSON deserialization facilities for custom objects used by
-    DeltaSherlock (currently supports Fingerprints, Changesets, and
-    ChangesetRecords). Ex. Usage: my_changeset = DSDecoder().decode(json_str)
-    """
-
-    def __init__(self, *args, **kwargs):
-        json.JSONDecoder.__init__(
-            self, object_hook=self.object_hook, *args, **kwargs)
-
-    def object_hook(self, obj: dict):
-        """
-        Called in order to covert a newly-deserialized list back to a usable
-        object
-        :param: obj the newly-deserialized list
-        :returns: the corresponding DeltaSherlock object
-        """
-        # Check if object is already deserialized
-
-        deserialized = None
-        #import ipdb; ipdb.set_trace()
-        if obj['type'] == "Fingerprint":
-            deserialized = Fingerprint(np.array(obj['array']))
-            deserialized.method = FingerprintingMethod(obj['method'])
-            deserialized.labels = obj['labels']
-            deserialized.predicted_quantity = obj['predicted_quantity']
-
-        elif obj['type'] == "Changeset":
-            deserialized = Changeset(obj['open_time'])
-            deserialized.open = obj['open']
-            deserialized.close_time = obj['close_time']
-            deserialized.labels = obj['labels']
-            deserialized.predicted_quantity = obj['predicted_quantity']
-            deserialized.creations = obj['creations']
-            deserialized.modifications = obj['modifications']
-            deserialized.deletions = obj['deletions']
-
-            # deserialized.creations = list()
-            # for cs_record_ser in obj['creations']:
-            #     import ipdb; ipdb.set_trace()
-            #     deserialized.creations.append(self.object_hook(cs_record_ser))
-            #
-            # deserialized.modifications = list()
-            # for cs_record_ser in obj['modifications']:
-            #     deserialized.modifications.append(self.object_hook(cs_record_ser))
-            #
-            # deserialized.deletions = list()
-            # for cs_record_ser in obj['deletions']:
-            #     deserialized.deletions.append(self.object_hook(cs_record_ser))
-
-        elif obj['type'] == "ChangesetRecord":
-            deserialized = ChangesetRecord(
-                obj['filename'], obj['mtime'], obj['neighbors'], obj['filesize'])
-
-        else:
-            # Give up
-            raise ValueError("Unable to determine type of JSON object")
-
-        return deserialized
-
-
 def save_object_as_json(obj: object, save_path: str):
     """
     Basically saves a text representation of select DeltaSherlock objects to a file.
@@ -148,37 +84,3 @@ def save_object_as_json(obj: object, save_path: str):
     """
     with open(save_path, 'w') as output_file:
         print(DSEncoder().encode(obj), file=output_file)
-
-
-def load_object_from_json(load_path: str) -> object:
-    """
-    Load a file created by save_object_as_json()
-    :param load_path: the full path to the file
-    """
-    with open(load_path, 'r') as input_file:
-        return DSDecoder().decode(input_file.read().replace('\n', ''))
-
-
-def uid(size=6, chars=string.ascii_uppercase + string.digits):
-    """
-    Generates a nice short unique ID for random files. For testing
-    """
-    return ''.join(random.choice(chars) for _ in range(size))
-
-
-def random_activity(testdirpath):
-    """
-    Create some random file system activity in a certain folder. For testing
-    """
-    files_created = []
-    for i in range(10):
-        files_created.append(tempfile.mkstemp(
-            dir=testdirpath, suffix=str(uid())))
-    testsubdirpath = os.path.join(testdirpath, str(uid()))
-    os.mkdir(testsubdirpath)
-    time.sleep(1)
-    for i in range(15):
-        files_created.append(tempfile.mkstemp(
-            dir=testsubdirpath, suffix=str(uid())))
-    time.sleep(1)
-    return files_created

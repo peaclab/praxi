@@ -8,7 +8,7 @@ import time
 from os import path
 from watchdog.events import PatternMatchingEventHandler
 from watchdog.observers import Observer
-from deltasherlock.common.changesets import Changeset
+from changesets import Changeset
 
 
 class DeltaSherlockEventHandler(PatternMatchingEventHandler):

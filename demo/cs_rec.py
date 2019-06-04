@@ -2,7 +2,7 @@
 
 import sys
 sys.path.insert(0, '../')
-from cs_recorder import  io, ds_watchdog
+from cs_recorder import  changesets, ds_watchdog, io
 import os
 import json
 import yaml
@@ -34,7 +34,7 @@ def json_to_yaml(fname, yamlname, label=None):
 
 
 if __name__ == '__main__':
-    watch_paths = ["/home/ubuntu/praxi/", "/home/ubuntu/praxi_p/"]
+    watch_paths = ["~/praxi"] # ["/var/", "/bin/", "/usr/", "/etc/"]
     dswd = ds_watchdog.DeltaSherlockWatchdog(watch_paths, "*", ".")
     # Recording begins immediately after instantiation.
     print("Recording started")

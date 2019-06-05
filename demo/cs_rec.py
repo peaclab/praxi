@@ -2,7 +2,8 @@
 
 import sys
 sys.path.insert(0, '../')
-from cs_recorder import  io, ds_watchdog, changesets
+from cs_recorder import  io, ds_watchdog
+from pathlib import Path
 import os
 import json
 import yaml
@@ -20,19 +21,16 @@ def get_free_filename(stub, directory, suffix=''):
         file_candidate = '{}/{}-{}{}'.format(
             str(directory), stub, counter, suffix)
         if Path(file_candidate).exists():
-            logging.info("file exists matching the string %s", file_candidate)
             counter += 1
         else:  # No match found
-            logging.info("no file exists matching the string %s", file_candidate)
             if suffix=='.p':
-                logging.info("will create pickle file")
+                print("will create pickle file")
             elif suffix:
                 Path(file_candidate).touch()
             else:
                 Path(file_candidate).mkdir()
             return file_candidate
 
-#cs = changesets.Changeset(open_time = time())
 def json_to_yaml(fname, yamlname, label=None):
     with open(fname) as json_file:
         data = json.load(json_file)
@@ -60,6 +58,8 @@ def json_to_yaml(fname, yamlname, label=None):
 
 if __name__ == '__main__':
     # Command line arguments!
+    parser = argparse.ArgumentParser(description='Arguments for Praxi software discovery algorithm.')
+
     parser.add_argument('-t','--targetdir', help='Path to target directory.', required=True)
     parser.add_argument('-l', '--label', help='Application label', required=True)
 
@@ -69,7 +69,7 @@ if __name__ == '__main__':
     label = args['label']
     yaml_name = get_free_filename(label, targetdir, suffix='.yaml')
 
-    watch_paths = ["~/praxi"] # ["/var/", "/bin/", "/usr/", "/etc/"]
+    watch_paths = ["/var/", "/bin/", "/usr/", "/etc/"]
     dswd = ds_watchdog.DeltaSherlockWatchdog(watch_paths, "*", ".")
     # Recording begins immediately after instantiation.
     print("Recording started")
@@ -78,6 +78,7 @@ if __name__ == '__main__':
 
     # Save changeset
     cs = dswd.mark()
+    print(cs)
     print("Saving as json")
     io.save_object_as_json(cs, "cs.dscs")
 
@@ -85,3 +86,4 @@ if __name__ == '__main__':
 
     # Remove json file
     os.remove("cs.dscs")
+    print("done")

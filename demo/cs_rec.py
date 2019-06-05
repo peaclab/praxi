@@ -2,10 +2,35 @@
 
 import sys
 sys.path.insert(0, '../')
-from cs_recorder import  changesets, ds_watchdog, io
+from cs_recorder import  io, ds_watchdog, changesets
 import os
 import json
 import yaml
+import argparse
+
+def get_free_filename(stub, directory, suffix=''):
+    """ Get a file name that is unique in the given directory
+    input: the "stub" (string you would like to be the beginning of the file
+        name), the name of the directory, and the suffix (denoting the file type)
+    output: file name using the stub and suffix that is currently unused
+        in the given directory
+    """
+    counter = 0
+    while True:
+        file_candidate = '{}/{}-{}{}'.format(
+            str(directory), stub, counter, suffix)
+        if Path(file_candidate).exists():
+            logging.info("file exists matching the string %s", file_candidate)
+            counter += 1
+        else:  # No match found
+            logging.info("no file exists matching the string %s", file_candidate)
+            if suffix=='.p':
+                logging.info("will create pickle file")
+            elif suffix:
+                Path(file_candidate).touch()
+            else:
+                Path(file_candidate).mkdir()
+            return file_candidate
 
 #cs = changesets.Changeset(open_time = time())
 def json_to_yaml(fname, yamlname, label=None):
@@ -34,6 +59,16 @@ def json_to_yaml(fname, yamlname, label=None):
 
 
 if __name__ == '__main__':
+    # Command line arguments!
+    parser.add_argument('-t','--targetdir', help='Path to target directory.', required=True)
+    parser.add_argument('-l', '--label', help='Application label', required=True)
+
+    args = vars(parser.parse_args())
+
+    targetdir = args['targetdir']
+    label = args['label']
+    yaml_name = get_free_filename(label, targetdir, suffix='.yaml')
+
     watch_paths = ["~/praxi"] # ["/var/", "/bin/", "/usr/", "/etc/"]
     dswd = ds_watchdog.DeltaSherlockWatchdog(watch_paths, "*", ".")
     # Recording begins immediately after instantiation.
@@ -46,13 +81,7 @@ if __name__ == '__main__':
     print("Saving as json")
     io.save_object_as_json(cs, "cs.dscs")
 
-    label = input("Input the label for this changeset:")
-
-    yamlname = input("Input the filename for this changeset (ending in .yaml):")
-
-    json_to_yaml('cs.dscs', yamlname, label=label)
+    json_to_yaml('cs.dscs', yaml_name, label=label)
 
     # Remove json file
     os.remove("cs.dscs")
-
-    print("Done!")

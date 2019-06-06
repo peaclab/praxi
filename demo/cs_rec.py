@@ -2,7 +2,11 @@
 
 import sys
 sys.path.insert(0, '../')
-from cs_recorder import  io, ds_watchdog
+#from deltasherlock.client import ds_watchdog
+#from deltasherlock.common import io
+from cs_recorder import ds_watchdog, io
+
+#import  io, ds_watchdog
 from pathlib import Path
 import os
 import json
@@ -69,7 +73,7 @@ if __name__ == '__main__':
     label = args['label']
     yaml_name = get_free_filename(label, targetdir, suffix='.yaml')
 
-    watch_paths = ["/var/", "/bin/", "/usr/", "/etc/"]
+    watch_paths = ['/usr/', '/bin/', '/etc/', '/var/']
     dswd = ds_watchdog.DeltaSherlockWatchdog(watch_paths, "*", ".")
     # Recording begins immediately after instantiation.
     print("Recording started")
@@ -79,8 +83,7 @@ if __name__ == '__main__':
     # Save changeset
     cs = dswd.mark()
     print(cs)
-    print("Saving as json")
-    io.save_object_as_json(cs, "cs.dscs")
+    io.save_object_as_json(cs, 'cs.dscs')
 
     json_to_yaml('cs.dscs', yaml_name, label=label)
 

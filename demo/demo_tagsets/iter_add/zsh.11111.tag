@@ -1,0 +1,22 @@
+id: '11111'
+label: zsh
+tags:
+- zsh:390
+- zle:10
+- dpkg:26
+- tmp.:8
+- pre:2
+- zsh.:84
+- system.:6
+- param:11
+- par:13
+- rzsh.:3
+- update:10
+- zh_:4
+- compl:10
+- 000:5
+- changelog.:6
+- zsh.pre:2
+- zsh.p:4
+- zsh.post:2
+- status-:2

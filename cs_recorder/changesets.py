@@ -7,6 +7,7 @@ from os import listdir
 from os.path import dirname, basename, isfile, getsize
 from itertools import chain
 
+
 class ChangesetRecord(object):
     """
     Container for a filesystem change record
@@ -383,51 +384,6 @@ class Changeset(object):
         self.creations = self.__filter_duplicates(self.creations)
         self.modifications = self.__filter_duplicates(self.modifications)
         self.deletions = self.__filter_duplicates(self.deletions)
-        # The following code does the actual "balancing", but this was buggy
-        # and probably not needed
-        # for deletion_record in self.deletions:
-        #     #Make sure we're not working with a None (you'll see why in a sec)
-        #     if deletion_record is not None:
-        #         #If a created file was subsequently deleted within the same interval
-        #         #either the creation record or the deletion record has to go. The
-        #         #older record gets the axe
-        #         for creation_record in self.creations:
-        #             if creation_record is not None:
-        #                 if deletion_record.filename == creation_record.filename:
-        #                     try:
-        #                         if deletion_record > creation_record:
-        #                             #Remember, never change the size of a list while you
-        #                             #iterate over it! Instead, we just replace it with None
-        #                             #and take it out later
-        #                             #TODO Re-enable or fix
-        #                             pass
-        #                             #self.creations[self.creations.index(creation_record)] = None
-        #                         else:
-        #                             self.deletions[self.deletions.index(deletion_record)] = None
-        #                     except ValueError:
-        #                         #This usually just means that we already
-        #                         #deleted the record for some other reason.
-        #                         #No biggie
-        #                         pass
-        #
-        #     # Check again, just to make sure we didn't delete the current record
-        #     if deletion_record is not None:
-        #         #Same goes for modification records
-        #         for modification_record in self.modifications:
-        #             if modification_record is not None:
-        #                 if deletion_record.filename == modification_record.filename:
-        #                     try:
-        #                         if deletion_record > modification_record:
-        #                             self.modifications[self.modifications.index(modification_record)] = None
-        #                         else:
-        #                             self.deletions[self.deletions.index(deletion_record)] = None
-        #                     except ValueError:
-        #                         pass
-        #
-        # #Finally, clean the list of Nones
-        # self.creations = list(filter(None, self.creations))
-        # self.deletions = list(filter(None, self.deletions))
-        # self.modifications = list(filter(None, self.modifications))
 
     @classmethod
     def __filter_duplicates(cls, records: list) -> list:

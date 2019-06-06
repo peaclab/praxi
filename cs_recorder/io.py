@@ -5,22 +5,13 @@ DeltaSherlock common IO module. Useful for saving and loading fingerprint/change
 import pickle
 import os
 import tempfile
-import random
 import string
 import time
 import json
 import numpy as np
+import yaml
+#from deltasherlock.common.changesets import Changeset
 
-from os import listdir
-from os.path import dirname, basename, isfile, getsize
-from itertools import chain
-
-#from changesets import Changeset
-#from changesets import ChangesetRecord
-
-########################################################
-#           CS STUFF
-########################################################
 
 class ChangesetRecord(object):
     """
@@ -398,51 +389,6 @@ class Changeset(object):
         self.creations = self.__filter_duplicates(self.creations)
         self.modifications = self.__filter_duplicates(self.modifications)
         self.deletions = self.__filter_duplicates(self.deletions)
-        # The following code does the actual "balancing", but this was buggy
-        # and probably not needed
-        # for deletion_record in self.deletions:
-        #     #Make sure we're not working with a None (you'll see why in a sec)
-        #     if deletion_record is not None:
-        #         #If a created file was subsequently deleted within the same interval
-        #         #either the creation record or the deletion record has to go. The
-        #         #older record gets the axe
-        #         for creation_record in self.creations:
-        #             if creation_record is not None:
-        #                 if deletion_record.filename == creation_record.filename:
-        #                     try:
-        #                         if deletion_record > creation_record:
-        #                             #Remember, never change the size of a list while you
-        #                             #iterate over it! Instead, we just replace it with None
-        #                             #and take it out later
-        #                             #TODO Re-enable or fix
-        #                             pass
-        #                             #self.creations[self.creations.index(creation_record)] = None
-        #                         else:
-        #                             self.deletions[self.deletions.index(deletion_record)] = None
-        #                     except ValueError:
-        #                         #This usually just means that we already
-        #                         #deleted the record for some other reason.
-        #                         #No biggie
-        #                         pass
-        #
-        #     # Check again, just to make sure we didn't delete the current record
-        #     if deletion_record is not None:
-        #         #Same goes for modification records
-        #         for modification_record in self.modifications:
-        #             if modification_record is not None:
-        #                 if deletion_record.filename == modification_record.filename:
-        #                     try:
-        #                         if deletion_record > modification_record:
-        #                             self.modifications[self.modifications.index(modification_record)] = None
-        #                         else:
-        #                             self.deletions[self.deletions.index(deletion_record)] = None
-        #                     except ValueError:
-        #                         pass
-        #
-        # #Finally, clean the list of Nones
-        # self.creations = list(filter(None, self.creations))
-        # self.deletions = list(filter(None, self.deletions))
-        # self.modifications = list(filter(None, self.modifications))
 
     @classmethod
     def __filter_duplicates(cls, records: list) -> list:
@@ -504,7 +450,7 @@ class Changeset(object):
                 str(len(self.creations)) + " creations, " +
                 str(len(self.modifications)) + " modifications, and " +
                 str(len(self.deletions)) + " deletions.>")
-
+################################################################################
 
 class DSEncoder(json.JSONEncoder):
     """
@@ -521,33 +467,43 @@ class DSEncoder(json.JSONEncoder):
         :returns: a JSON serializable object to be processed by the standard Python
         JSON encoder
         """
+        """
+        modified to just record changesets
+        """
+
+        #print('Type: ', type(o))
+        #print(str(type(o)) == "<class 'cs_recorder.ds_watchdog.Changeset'>")
+        #print('Continuing...')
         serializable = dict()
-        print(dict())
-        # Check what kind of object o is
 
+        if (str(type(o)) == "<class 'cs_recorder.ds_watchdog.Changeset'>"):
+            serializable['type'] = "Changeset"
+            serializable['open_time'] = o.open_time
+            serializable['open'] = o.open
+            serializable['close_time'] = o.close_time
+            serializable['labels'] = o.labels
+            serializable['predicted_quantity'] = o.predicted_quantity
 
-        print("Entered CS")
-        serializable['type'] = "Changeset"
-        serializable['open_time'] = o.open_time
-        serializable['open'] = o.open
-        serializable['close_time'] = o.close_time
-        serializable['labels'] = o.labels
-        serializable['predicted_quantity'] = o.predicted_quantity
+            # Rescursively serialize the file change lists
+            serializable['creations'] = list()
+            for cs_record in o.creations:
+                serializable['creations'].append(self.default(cs_record))
 
-        # Rescursively serialize the file change lists
-        serializable['creations'] = list()
-        for cs_record in o.creations:
-            serializable['creations'].append(self.default(cs_record))
+            serializable['modifications'] = list()
+            for cs_record in o.modifications:
+                serializable['modifications'].append(self.default(cs_record))
 
-        serializable['modifications'] = list()
-        for cs_record in o.modifications:
-            serializable['modifications'].append(self.default(cs_record))
+            serializable['deletions'] = list()
+            for cs_record in o.deletions:
+                serializable['deletions'].append(self.default(cs_record))
 
-        serializable['deletions'] = list()
-        for cs_record in o.deletions:
-            serializable['deletions'].append(self.default(cs_record))
+        else:
+            serializable['type'] = "ChangesetRecord"
+            serializable['filename'] = o.filename
+            serializable['filesize'] = o.filesize
+            serializable['mtime'] = o.mtime
+            serializable['neighbors'] = o.neighbors
 
-        print(serializable)
         return serializable
 
 

@@ -8,15 +8,11 @@ import time
 from os import path
 from watchdog.events import PatternMatchingEventHandler
 from watchdog.observers import Observer
-#from changesets import Changeset
-
 from os import listdir
 from os.path import dirname, basename, isfile, getsize
 from itertools import chain
+#from deltasherlock.common.changesets import Changeset
 
-########################################################
-#           CS STUFF
-########################################################
 
 class ChangesetRecord(object):
     """
@@ -395,7 +391,6 @@ class Changeset(object):
         self.modifications = self.__filter_duplicates(self.modifications)
         self.deletions = self.__filter_duplicates(self.deletions)
 
-
     @classmethod
     def __filter_duplicates(cls, records: list) -> list:
         """
@@ -456,6 +451,7 @@ class Changeset(object):
                 str(len(self.creations)) + " creations, " +
                 str(len(self.modifications)) + " modifications, and " +
                 str(len(self.deletions)) + " deletions.>")
+##########################################################################
 
 
 class DeltaSherlockEventHandler(PatternMatchingEventHandler):

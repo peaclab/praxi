@@ -1,7 +1,8 @@
+"""Contains class and functions for Praxi algorithm"""
+# Imports
 from collections import Counter
 import logging
 import logging.config
-from hashlib import md5
 from multiprocessing import Lock
 import os
 from pathlib import Path
@@ -11,18 +12,10 @@ import time
 import yaml
 
 import envoy
-from joblib import Memory
 from sklearn.base import BaseEstimator
 from tqdm import tqdm
 
-from columbus.columbus import columbus
-from columbus.columbus import refresh_columbus
-
-#  Change for use on local machine
 LOCK = Lock()
-COLUMBUS_CACHE = Path('~/caches/columbus-cache-2').expanduser()
-memory = Memory(cachedir='/home/ubuntu/caches/joblib-cache', verbose=0)
-
 
 class Hybrid(BaseEstimator):
     """ scikit style class for hybrid method """
@@ -42,14 +35,15 @@ class Hybrid(BaseEstimator):
         self.probability = probability
         self.loss_function = loss_function
         self.vw_binary = vw_binary
-        self.tqdm = tqdm
-        self.pass_files_to_vw = pass_files_to_vw
+        self.tqdm = tqdm #loop progrss
+        self.pass_files_to_vw = pass_files_to_vw # bool
         self.suffix = suffix
         self.iterative = iterative
         self.use_temp_files = (not self.iterative) and use_temp_files
-        self.trained = False
+        self.trained = False # model is always instantiated untrained
 
     def get_args(self):
+        """ Returns vw args """
         try:
             retval = self.vw_args_
         except AttributeError:
@@ -67,9 +61,13 @@ class Hybrid(BaseEstimator):
         self.trained = False
         refresh_columbus()
 
-    def fit(self, X, y): # X = changesets, y = labels!!!
+    def fit(self, X, y): # X = TAGsets, y = labels
+        """ Trains classifier
+        input: list of tags [list] and labels [list] for ALL training tagsets
+        output: trained model
+        """
         start = time.time()
-        if not self.probability:
+        if not self.probability: # probability has to do with whether or not it is multilabel
             X, y = self._filter_multilabels(X, y)
         if self.use_temp_files:
             modelfileobj = tempfile.NamedTemporaryFile('w', delete=False)
@@ -90,7 +88,9 @@ class Hybrid(BaseEstimator):
             self.all_labels = set()
             self.label_counter = 1
         else:
+            # already have a trained model
             self.vw_args_ += ' -i {}'.format(self.vw_modelfile)
+        # add labels in y to all_labels
         for labels in y:
             if isinstance(labels, list):
                 for l in labels:
@@ -102,6 +102,9 @@ class Hybrid(BaseEstimator):
                 self.indexed_labels[label] = self.label_counter
                 self.reverse_labels[self.label_counter] = label
                 self.label_counter += 1
+        print("Number of labels: ", len(self.all_labels))
+        ################################################
+        ## Create VW arg string ########################
         if self.probability:
             self.vw_args_ += ' --csoaa {}'.format(len(self.all_labels))
         else:
@@ -115,10 +118,9 @@ class Hybrid(BaseEstimator):
         if self.iterative:
             self.vw_args_ += ' --save_resume'
         self.vw_args_ += ' --kill_cache --cache_file a.cache'
-        #print(self.vw_args_)
-        tags = self._get_tags(X)
-        train_set = list(zip(tags, y))
-        random.shuffle(train_set)
+        ####################################################
+        train_set = list(zip(X, y))
+        #random.shuffle(train_set)
         if self.use_temp_files:
             f = tempfile.NamedTemporaryFile('w', delete=False)
         else:
@@ -137,18 +139,22 @@ class Hybrid(BaseEstimator):
                         input_string += '{}:1.0 '.format(number)
             else:
                 input_string += '{} '.format(self.indexed_labels[labels[0]])
+            #print(input_string) # want to see what the args are
             f.write('{}| {}\n'.format(input_string, ' '.join(tag)))
-            print(input_string)
         f.close()
+        # write all tag/label combos into a file f ^^^
+        ######## Call VW ML alg ##################################
         command = '{vw_binary} {vw_input} {vw_args} -f {vw_modelfile}'.format(
             vw_binary=self.vw_binary, vw_input=f.name,
             vw_args=self.vw_args_, vw_modelfile=self.vw_modelfile)
-        logging.info('vw input written to %s, starting training', f.name)
-        logging.info('vw command: %s', command)
+        #logging.info('vw input written to %s, starting training', f.name)
+        #logging.info('vw command: %s', command)
         vw_start = time.time()
         c = envoy.run(command)
-        print("VW start")
-        logging.info("vw took %f secs." % (time.time() - vw_start))
+        ##########################################################
+        ### Print info about VW run ##############################
+        #logging.info("vw took %f secs." % (time.time() - vw_start))
+        print("vw took this many seconds: ", (time.time() - vw_start))
         if c.status_code:
             logging.error(
                 'something happened to vw, code: %d, out: %s, err: %s',
@@ -158,20 +164,20 @@ class Hybrid(BaseEstimator):
             logging.info(
                 'vw ran sucessfully. out: %s, err: %s',
                 c.std_out, c.std_err)
-        if self.use_temp_files: # WILL BE FALSE
+        if self.use_temp_files: # WILL USUALLY BE FALSE
             safe_unlink(f.name)
-        self.trained = True # once the fit function has been run, model has been trained
+        self.trained = True # once the fit function has been run, model has been trained!
         logging.info("Training took %f secs." % (time.time() - start))
 
-    # THIS FUNCTION IS NEVER CALLED IN THIS FILE
-    def transform_labels(self, y):
-        return [self.indexed_labels[x] for x in y]
+    # THIS FUNCTION IS NEVER CALLED IN THIS FILE (I think it's dead)
+    # def transform_labels(self, y):
+    #    return [self.indexed_labels[x] for x in y]
 
-    def predict_proba(self, X):
+    def predict_proba(self, X): # X = tagsets
         start = time.time()
         if not self.trained:
             raise ValueError("Need to train the classifier first")
-        tags = self._get_tags(X)
+        #tags = self._get_tags(X) (X = tags)
         if self.use_temp_files:
             f = tempfile.NamedTemporaryFile('w', delete=False)
             outfobj = tempfile.NamedTemporaryFile('w', delete=False)
@@ -181,12 +187,12 @@ class Hybrid(BaseEstimator):
             f = open('./pred_input-%s.txt' % self.suffix, 'w')
             outf = './pred_output-%s.txt' % self.suffix
         if self.probability:
-            for tag in tags:
+            for tag in X:
                 f.write('{} | {}\n'.format(
                     ' '.join([str(x) for x in self.reverse_labels.keys()]),
                     ' '.join(tag)))
         else:
-            for tag in tags:
+            for tag in X:
                 f.write('| {}\n'.format(' '.join(tag)))
         f.close()
         logging.info('vw input written to %s, starting testing', f.name)
@@ -239,10 +245,12 @@ class Hybrid(BaseEstimator):
         return result
 
     def predict(self, X):
+        # JUST WANT THE TAGS... got that
+        # EXPECTS A LIST OF LISTS (no labels)
         start = time.time()
         if not self.trained:
             raise ValueError("Need to train the classifier first")
-        tags = self._get_tags(X)
+        #tags = self._get_tags(X)
         if self.use_temp_files:
             f = tempfile.NamedTemporaryFile('w', delete=False)
             outfobj = tempfile.NamedTemporaryFile('w', delete=False)
@@ -251,14 +259,14 @@ class Hybrid(BaseEstimator):
         else:
             f = open('./pred_input-%s.txt' % self.suffix, 'w')
             outf = './pred_output-%s.txt' % self.suffix
-        for tag in tags:
+        for tag in X:
             f.write('| {}\n'.format(' '.join(tag)))
         f.close()
-        logging.info('vw input written to %s, starting testing', f.name)
+        #logging.info('vw input written to %s, starting testing', f.name)
         command = '{vw_binary} {vw_input} -t -p {outf} -i {vw_modelfile}'.format(
             vw_binary=self.vw_binary, vw_input=f.name, outf=outf,
             vw_modelfile=self.vw_modelfile)
-        logging.info('vw command: %s', command)
+        #logging.info('vw command: %s', command)
         vw_start = time.time()
         c = envoy.run(command)
         logging.info("vw took %f secs." % (time.time() - vw_start))
@@ -285,15 +293,7 @@ class Hybrid(BaseEstimator):
         logging.info("Testing took %f secs." % (time.time() - start))
         return all_preds
 
-    def _get_tags(self, X):
-        logging.info("Getting tags for input set %s" % len(X))
-        if self.pass_files_to_vw:
-            return _get_filename_frequencies(X, disable_tqdm=(not self.tqdm),
-                                             freq_threshold=self.freq_threshold)
-        return _get_columbus_tags(X, disable_tqdm=(not self.tqdm),
-                                  freq_threshold=self.freq_threshold,
-                                  return_freq=self.pass_freq_to_vw)
-
+    # FIX TO WORK W CHANGESETS... actually it should work as-is
     def _filter_multilabels(self, X, y):
         new_X = []
         new_y = []
@@ -316,74 +316,15 @@ class Hybrid(BaseEstimator):
             else:
                 misses += 1
             preds += 1
-        print("Preds:" + str(preds))
-        print("Hits:" + str(hits))
-        print("Misses:" + str(misses))
+        #print("Preds:" + str(preds))
+        #print("Hits:" + str(hits))
+        #print("Misses:" + str(misses))
         return {'preds': preds, 'hits': hits, 'misses': misses}
-
-
-class Columbus(BaseEstimator):
-    """ scikit style class for columbus """
-    def __init__(self, freq_threshold=2, tqdm=True):
-        """ Initializer for columbus. Do not use multiple instances
-        simultaneously.
-        """
-        self.freq_threshold = freq_threshold
-        self.tqdm = tqdm
-
-    def fit(self, X, y):
-        pass
-
-    def predict(self, X):
-        tags = self._columbize(X)
-        result = []
-        for tagset in tags:
-            result.append(max(tagset.keys(), key=lambda key: tagset[key]))
-        return result
-
-    def _columbize(self, X):
-        mytags =  _get_columbus_tags(X, disable_tqdm=(not self.tqdm),
-                                     freq_threshold=self.freq_threshold,
-                                     return_freq=True)
-        result = []
-        for tagset in mytags:
-            tagdict = {}
-            for x in tagset:
-                key, value = x.split(':')
-                tagdict[key] = value
-            result.append(tagdict)
-        return result
-
-@memory.cache
-def _get_filename_frequencies(X, disable_tqdm=False, freq_threshold=2):
-    logging.info("Getting filename frequencies for %d changesets", len(X))
-    tags = []
-    for changeset in tqdm(X, disable=disable_tqdm):
-        c = Counter()
-        for filename in changeset:
-            c.update(filename.split(' ')[1].split('/'))
-        del c['']
-        tags.append(['{}:{}'.format(tag.replace(':', '').replace('|', ''), freq)
-                     for tag, freq in dict(c).items() if freq > freq_threshold])
-    return tags
-
-def _get_columbus_tags(X, disable_tqdm=False,
-                       return_freq=True,
-                       freq_threshold=2):
-    logging.info('Getting columbus output for %d changesets', len(X))
-    tags = []
-    for changeset in tqdm(X, disable=disable_tqdm):
-        tag_dict = columbus(changeset, freq_threshold=freq_threshold)
-        if return_freq:
-            tags.append(['{}:{}'.format(tag, freq) for tag, freq
-                         in tag_dict.items()])
-        else:
-            tags.append([tag for tag, freq in tag_dict.items()])
-    return tags
 
 
 def safe_unlink(filename):
     try:
         os.unlink(filename)
-    except (FileNotFoundError, OSError):
+    except (FileNotFoundError, OSError): # OSError raised if directory instead of file
+                                         # exception is also raised if you attempt to remove a file that is in use
         pass

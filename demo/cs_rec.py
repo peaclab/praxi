@@ -73,7 +73,7 @@ if __name__ == '__main__':
     label = args['label']
     yaml_name = get_free_filename(label, targetdir, suffix='.yaml')
 
-    watch_paths = ['/usr/', '/bin/', '/etc/', '/var/']
+    watch_paths = ['/home/ubuntu/.local/lib/python3.6/site-packages/']
     dswd = ds_watchdog.DeltaSherlockWatchdog(watch_paths, "*", ".")
     # Recording begins immediately after instantiation.
     print("Recording started")

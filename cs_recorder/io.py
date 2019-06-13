@@ -5,11 +5,11 @@ DeltaSherlock common IO module. Useful for saving and loading fingerprint/change
 import pickle
 import os
 import tempfile
+import random
 import string
 import time
 import json
 import numpy as np
-import yaml
 #from deltasherlock.common.changesets import Changeset
 
 
@@ -518,3 +518,26 @@ def save_object_as_json(obj: object, save_path: str):
     """
     with open(save_path, 'w') as output_file:
         print(DSEncoder().encode(obj), file=output_file)
+
+def uid(size=6, chars=string.ascii_uppercase + string.digits):
+    """
+    Generates a nice short unique ID for random files. For testing
+    """
+    return ''.join(random.choice(chars) for _ in range(size))
+
+def random_activity(testdirpath):
+    """
+    Create some random file system activity in a certain folder. For testing
+    """
+    files_created = []
+    for i in range(10):
+        files_created.append(tempfile.mkstemp(
+            dir=testdirpath, suffix=str(uid())))
+    testsubdirpath = os.path.join(testdirpath, str(uid()))
+    os.mkdir(testsubdirpath)
+    time.sleep(1)
+    for i in range(15):
+        files_created.append(tempfile.mkstemp(
+            dir=testsubdirpath, suffix=str(uid())))
+    time.sleep(1)
+    return files_created

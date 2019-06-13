@@ -1,10 +1,9 @@
 #!/usr/bin/python3
 
 import sys
-sys.path.insert(0, '../')
+#sys.path.insert(0, '../')
 
-from deltasherlock.client import ds_watchdog
-from deltasherlock.common import io
+from cs_recorder import ds_watchdog, io
 
 #import  io, ds_watchdog
 from pathlib import Path
@@ -76,8 +75,13 @@ if __name__ == '__main__':
     watch_paths = ['/home/']
     dswd = ds_watchdog.DeltaSherlockWatchdog(watch_paths, "*", ".")
     # Recording begins immediately after instantiation.
-    io.random_activity('/home/')
     print("Recording started")
+    io.random_activity('/home/')
+    io.random_activity('/home/')
+    io.random_activity('/home/')
+    io.random_activity('/home/')
+
+    print("Recording still working")
     input("Press Enter to continue...")
     print("Recording stopped")
 

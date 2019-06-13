@@ -72,14 +72,14 @@ if __name__ == '__main__':
     label = args['label']
     yaml_name = get_free_filename(label, targetdir, suffix='.yaml')
 
-    watch_paths = ['/home/']
+    watch_paths = ['/var/log/']
     dswd = ds_watchdog.DeltaSherlockWatchdog(watch_paths, "*", ".")
     # Recording begins immediately after instantiation.
     print("Recording started")
-    io.random_activity('/home/')
-    io.random_activity('/home/')
-    io.random_activity('/home/')
-    io.random_activity('/home/')
+    #io.random_activity('/home/')
+    #io.random_activity('/tmp/')
+    #io.random_activity('/etc/')
+    #io.random_activity('/home/')
 
     print("Recording still working")
     input("Press Enter to continue...")

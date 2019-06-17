@@ -90,3 +90,4 @@ if __name__ == '__main__':
     # Remove json file
     os.remove("cs.dscs")
     print("done")
+    sys.exit()

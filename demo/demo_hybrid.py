@@ -19,7 +19,7 @@ LOCK = Lock()
 
 class Hybrid(BaseEstimator):
     """ scikit style class for hybrid method """
-    def __init__(self, freq_threshold=1, vw_binary='/home/ubuntu/bin/vw',
+    def __init__(self, freq_threshold=1, vw_binary='/usr/bin/vw',
                  pass_freq_to_vw=False, pass_files_to_vw=False,
                  vw_args='-b 26 --passes=20 -l 50',
                  probability=False, tqdm=True,

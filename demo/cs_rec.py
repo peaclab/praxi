@@ -1,9 +1,7 @@
 #!/usr/bin/python3
-
+import getpass
 import sys
 sys.path.insert(0, '../')
-#from deltasherlock.client import ds_watchdog
-#from deltasherlock.common import io
 from cs_recorder import ds_watchdog, io
 
 #import  io, ds_watchdog
@@ -73,7 +71,9 @@ if __name__ == '__main__':
     label = args['label']
     yaml_name = get_free_filename(label, targetdir, suffix='.yaml')
 
-    watch_paths = ['/home/ubuntu/.local/lib/python3.6/site-packages/']
+    username = '/home/' + getpass.getuser() + '/.local/lib/python3.6/site-packages/'
+
+    watch_paths = [watch_path]
     dswd = ds_watchdog.DeltaSherlockWatchdog(watch_paths, "*", ".")
     # Recording begins immediately after instantiation.
     print("Recording started")
@@ -90,4 +90,3 @@ if __name__ == '__main__':
     # Remove json file
     os.remove("cs.dscs")
     print("done")
-    sys.exit()

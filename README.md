@@ -12,5 +12,5 @@ A combination of DeltaSherlock, Columbus, and the Rule-Based method
 
 1. Ensure your system's up to date: `sudo apt update && sudo apt upgrade`
 2. Install PIP and ensure it's up to date: `sudo apt install python3-pip && sudo pip3 install --upgrade pip`
-3. Install (or update) dependencies: `sudo pip3 install --upgrade watchdog numpy scipy sklearn`
-4. Clone this repo somewhere easy, like to your home directory: `https://github.com/deltasherlock/praxi.git`
+3. Install (or update) dependencies: `sudo pip3 install --upgrade watchdog numpy scipy sklearn tqdm envoy`
+4. Clone this repo somewhere easy, like to your home directory: `git clone https://github.com/deltasherlock/praxi.git`

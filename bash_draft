@@ -1,0 +1,16 @@
+#!/bin/bash
+sudo apt update && sudo apt upgrade
+sudo apt-get install libboost-dev libboost-program-options-dev libboost-system-dev libboost-thread-dev libboost-math-dev libboost-test-dev zlib1g-dev cmake rapidjson-dev
+sudo apt-get install vowpal-wabbit
+sudo apt install python3-pip && sudo pip3 install --upgrade pip
+
+sudo pip3 install --upgrade watchdog numpy scipy sklearn tqdm envoy
+git clone https://github.com/deltasherlock/praxi.git
+
+pip3 install pandas --user
+pip3 uninstall pandas
+
+
+#sudo adduser demo1
+#sudo adduser demo2
+#sudo adduser demo3

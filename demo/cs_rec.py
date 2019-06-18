@@ -71,7 +71,7 @@ if __name__ == '__main__':
     label = args['label']
     yaml_name = get_free_filename(label, targetdir, suffix='.yaml')
 
-    username = '/home/' + getpass.getuser() + '/.local/lib/python3.6/site-packages/'
+    watch_path = '/home/' + getpass.getuser() + '/.local/lib/python3.6/site-packages/'
 
     watch_paths = [watch_path]
     dswd = ds_watchdog.DeltaSherlockWatchdog(watch_paths, "*", ".")
@@ -90,3 +90,4 @@ if __name__ == '__main__':
     # Remove json file
     os.remove("cs.dscs")
     print("done")
+    sys.exit()

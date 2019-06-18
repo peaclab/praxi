@@ -1,5 +1,6 @@
 #!/bin/bash
-# NOTICE!!! RUN THIS BEFORE STARTING: sudo apt update && sudo apt upgrade
+export DEBIAN_FRONTEND=noninteractive
+sudo apt -yq update && sudo apt -yq upgrade
 echo "Y" | sudo apt-get install libboost-dev libboost-program-options-dev libboost-system-dev libboost-thread-dev libboost-math-dev libboost-test-dev zlib1g-dev cmake rapidjson-dev
 echo "Y" | sudo apt-get install vowpal-wabbit
 echo "Y" | sudo apt install python3-pip && sudo pip3 install --upgrade pip

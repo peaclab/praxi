@@ -1,28 +1,19 @@
 #!/bin/bash
-export DEBIAN_FRONTEND=noninteractive
-sudo apt -yq update && sudo apt -yq upgrade
+sudo DEBIAN_FRONTEND=noninteractive apt -yq update
+sudo DEBIAN_FRONTEND=noninteractive apt -yq upgrade
 echo "Y" | sudo apt-get install libboost-dev libboost-program-options-dev libboost-system-dev libboost-thread-dev libboost-math-dev libboost-test-dev zlib1g-dev cmake rapidjson-dev
 echo "Y" | sudo apt-get install vowpal-wabbit
 echo "Y" | sudo apt install python3-pip && sudo pip3 install --upgrade pip
 echo "Y" | sudo pip3 install --upgrade watchdog numpy scipy sklearn tqdm envoy
 
 git clone https://github.com/deltasherlock/praxi.git
-pip3 install pandas --user
-echo "y" | pip3 uninstall pandas
+sudo -H pip3 install pandas
+echo "y" | sudo -H pip3 uninstall pandas
 
-sudo adduser demo1 --gecos "demo 1,,," --disabled-password
-echo "demo1:d1" | sudo chpasswd
-
-sudo adduser demo2 --gecos "demo 2,,," --disabled-password
-echo "demo2:d2" | sudo chpasswd
-
-sudo adduser demo3 --gecos "demo3,,," --disabled-password
-echo "demo3:d3" | sudo chpasswd
-
-sudo cp -r /home/ubuntu/praxi /home/demo1
-sudo cp -r /home/ubuntu/praxi /home/demo2
-sudo cp -r /home/ubuntu/praxi /home/demo3
-
-sudo chown -R demo1:demo1 /home/demo1
-sudo chown -R demo2:demo2 /home/demo2
-sudo chown -R demo3:demo3 /home/demo3
+for i in {1..10..1}
+do
+    sudo adduser demo$i --gecos "demo $i,,," --disabled-password
+    echo "demo$i:d$i" | sudo chpasswd
+    sudo cp -r /home/ubuntu/praxi /home/demo$i
+    sudo chown -R demo$i:demo$i /home/demo$i
+done

@@ -17,3 +17,6 @@ do
     sudo cp -r /home/ubuntu/praxi /home/demo$i
     sudo chown -R demo$i:demo$i /home/demo$i
 done
+
+sudo sed -i 's|[#]*PasswordAuthentication no|PasswordAuthentication yes|g' /etc/ssh/sshd_config
+sudo service ssh restart

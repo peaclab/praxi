@@ -16,6 +16,8 @@ do
     echo "demo$i:d$i" | sudo chpasswd
     sudo cp -r /home/ubuntu/praxi /home/demo$i
     sudo chown -R demo$i:demo$i /home/demo$i
+    sudo runuser -l demo$i -c 'pip3 install pandas --user'
+    sudo runuser -l demo$i -c 'echo "y" | pip3 uninstall pandas'
 done
 
 sudo sed -i 's|[#]*PasswordAuthentication no|PasswordAuthentication yes|g' /etc/ssh/sshd_config

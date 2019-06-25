@@ -1,3 +1,6 @@
+import sys
+sys.path.insert(0, '../')
+
 from collections import Counter
 import logging
 import logging.config
@@ -11,23 +14,18 @@ import time
 import yaml
 
 import envoy
-from joblib import Memory
 from sklearn.base import BaseEstimator
 from tqdm import tqdm
 
 from columbus.columbus import columbus
 from columbus.columbus import refresh_columbus
 
-
 # Fix this!
 LOCK = Lock()
-COLUMBUS_CACHE = Path('~/caches/columbus-cache-2').expanduser()
-memory = Memory(cachedir='/home/centos/caches/joblib-cache', verbose=0)
-
 
 class Hybrid(BaseEstimator):
     """ scikit style class for hybrid method """
-    def __init__(self, freq_threshold=1, vw_binary='/home/centos/bin/vw',
+    def __init__(self, freq_threshold=1, vw_binary='/home/ubuntu/bin/vw',
                  pass_freq_to_vw=False, pass_files_to_vw=False,
                  vw_args='-b 26 --passes=20 -l 50',
                  probability=False, tqdm=True,
@@ -357,7 +355,7 @@ class Columbus(BaseEstimator):
             result.append(tagdict)
         return result
 
-@memory.cache
+#@memory.cache
 def _get_filename_frequencies(X, disable_tqdm=False, freq_threshold=2):
     logging.info("Getting filename frequencies for %d changesets", len(X))
     tags = []

@@ -23,20 +23,20 @@ from sklearn import metrics
 from sklearn.multiclass import OneVsRestClassifier
 from sklearn.preprocessing import MultiLabelBinarizer
 
-from joblib import Memory
+#from joblib import Memory
 
-from hybrid import Hybrid
-from hybrid import Columbus
+from r_hybrid import Hybrid
+from r_hybrid import Columbus
 
 # figure out what to do w this
-from rule_based import RuleBased
+#from rule_based import RuleBased
 
 
 # Fix these!!
-PROJECT_ROOT = Path('~/praxi/changeset_sets').expanduser()
-CHANGESET_ROOT = Path('~/praxi/caches/changesets/').expanduser()
-memory = Memory(cachedir='/home/centos/caches/joblib-cache', verbose=0)
-LABEL_DICT = Path('./pred_label_dict.pkl')
+PROJECT_ROOT = Path('/home/ubuntu/praxi/').expanduser()
+CHANGESET_ROOT = Path('/home/ubuntu/praxi/caches/changesets/').expanduser()
+#memory = Memory(cachedir='/home/centos/caches/joblib-cache', verbose=0)
+#LABEL_DICT = Path('./pred_label_dict.pkl')
 
 def get_free_filename(stub, directory, suffix=''):
     """ Get a file name that is unique in the given directory
@@ -85,13 +85,12 @@ def get_changeset(csid, iterative=False):
         raise IOError("No changesets match the csid {}".format(csid))
     if 'changes' not in changeset or (
             'label' not in changeset and 'labels' not in changeset):
-        logging.error("Malformed changeset, id: %d, changeset: %s",
-                      csid, csfile)
+        #logging.error("Malformed changeset, id: %d, changeset: %s",
+        #              csid, csfile)
         raise IOError("Couldn't read changeset")
     return changeset
 
-
-@memory.cache
+#@memory.cache
 def parse_csids(csids, multilabel=False, iterative=False):
     """ Returns labels and features from csids, features are file sets
     file sets: list of string of format '644 /usr/.../file' """
@@ -113,9 +112,12 @@ def iterative_tests():
     """ Function runs iterative tests on the changesets stored in
         iterative_chunks.p
     """
-    resfile_name = get_free_filename('iterative-hybrid', '.', suffix='.pkl')
-    outdir = get_free_filename('iterative-hybrid', '~/praxi/results')
-    suffix = 'hybrid'
+    #resfile_name = get_free_filename('iterative-hybrid', '.', suffix='.pkl')
+    #outdir = get_free_filename('iterative-hybrid', '~/praxi/results')
+    #suffix = 'hybrid'
+    resfile_name = 'iterative.pkl'
+    outdir = '/home/ubuntu/praxi/results'
+    suffix = 'ite'
     iterative = True
     # clf = RuleBased(filter_method='take_max', num_rules=6)
     clf = Hybrid(freq_threshold=2, pass_freq_to_vw=True, probability=False,
@@ -129,7 +131,7 @@ def iterative_tests():
     with (PROJECT_ROOT / 'iterative_chunks.p').open('rb') as f:
         it_chunks = pickle.load(f)
 
-    logging.info("Prediction pickle is %s", resfile_name)
+    #logging.info("Prediction pickle is %s", resfile_name)
     resfile = open(resfile_name, 'wb')
     results = []
     for i in range(3):
@@ -165,9 +167,12 @@ def iterative_tests():
 
 def multiapp_trainw_dirty():
     """Function used to generate multilabel experiment results"""
-    resfile_name = get_free_filename('result-timing', '.', suffix='.pkl')
-    outdir = get_free_filename('timing-multiapp', '/home/centos/results')
-    suffix = 'timing'
+    #resfile_name = get_free_filename('result-timing', '.', suffix='.pkl')
+    #outdir = get_free_filename('timing-multiapp', '/home/centos/results')
+    #suffix = 'timing'
+    resfile_name = 'multi-label.pkl'
+    outdir = '/home/ubuntu/praxi/results'
+    suffix = 'mle'
     # clf = RuleBased(filter_method='take_max', num_rules=6)
     clf = Hybrid(freq_threshold=2, pass_freq_to_vw=True, probability=True,
                  vw_args='-b 26 --learning_rate 1.5 --passes 10',
@@ -183,11 +188,11 @@ def multiapp_trainw_dirty():
           'threek_dirty_chunks.p').open('rb') as f:
         threeks = pickle.load(f)
 
-    logging.info("Prediction pickle is %s", resfile_name)
+    #logging.info("Prediction pickle is %s", resfile_name)
     resfile = open(resfile_name, 'wb')
     results = []
     for ml_idx, ml_chunk in enumerate(multilabel_chunks):
-        logging.info('Test set is %d', ml_idx)
+        #logging.info('Test set is %d', ml_idx)
         ml_train_idx = [0, 1, 2]
         ml_train_idx.remove(ml_idx)
         X_train, y_train = parse_csids(multilabel_chunks[ml_train_idx[0]],
@@ -203,7 +208,7 @@ def multiapp_trainw_dirty():
         resfile.seek(0)
 
         for idx, chunk in tqdm(enumerate(threeks)):
-            logging.info('Extra training set is %d', idx)
+            #logging.info('Extra training set is %d', idx)
             features, labels = parse_csids(chunk, multilabel=True)
             X_train += features
             y_train += labels
@@ -217,15 +222,18 @@ def multiapp_trainw_dirty():
 
 def onekdirty():
     """ Function used to run single-label experiments from paper"""
-    resfile_name = './results-timing-rule.pkl'
-    outdir = 'rule-timing-results'
-    suffix = 'rule-timing'
-    clf = RuleBased(filter_method='take_max', num_rules=6)
-    # clf = Hybrid(freq_threshold=2, pass_freq_to_vw=True, probability=False,
-    #              vw_args='-b 26 --learning_rate 1.5 --passes 10',
-    #              suffix=suffix, iterative=False,
-    #              use_temp_files=True
-    #              )
+    #resfile_name = './results-timing-rule.pkl'
+    #outdir = 'rule-timing-results'
+    #suffix = 'rule-timing'
+    #clf = RuleBased(filter_method='take_max', num_rules=6)
+    resfile_name = 'single-label.pkl'
+    outdir = '/home/ubuntu/praxi/results'
+    suffix = 'sle'
+    clf = Hybrid(freq_threshold=2, pass_freq_to_vw=True, probability=False,
+                 vw_args='-b 26 --learning_rate 1.5 --passes 10',
+                 suffix=suffix, iterative=False,
+                 use_temp_files=True
+                 )
     with (PROJECT_ROOT / 'changeset_sets' /
           'threek_dirty_chunks.p').open('rb') as f:
         threeks = pickle.load(f)
@@ -234,22 +242,25 @@ def onekdirty():
         tenks = pickle.load(f)
     resfile = open(resfile_name, 'wb')
     results = []
+    print("Beginning experiment")
     for idx, train_csids in tqdm(enumerate(threeks)):
-        logging.info('Train set is %d', idx)
+        #logging.info('Train set is %d', idx)
         test_idx = [0, 1, 2]
         test_idx.remove(idx)
         # Split calls to parse_csids for more efficient memoization
+        print("Parsing csids:")
         X_test, y_test = parse_csids(threeks[test_idx[0]])
         features, labels = parse_csids(threeks[test_idx[1]])
         X_test += features
         y_test += labels
         X_train, y_train = parse_csids(train_csids)
+        print("Generating scores:")
         results.append(get_scores(clf, X_train, y_train,
                                   X_test, y_test))
         pickle.dump(results, resfile)
         resfile.seek(0)
         for inner_idx, extra_cleans in tqdm(enumerate(tenks)):
-            logging.info('Extra clean count: %d', inner_idx + 1)
+            #logging.info('Extra clean count: %d', inner_idx + 1)
             features, labels = parse_csids(extra_cleans)
             X_train += features
             y_train += labels
@@ -258,19 +269,22 @@ def onekdirty():
             pickle.dump(results, resfile)
             resfile.seek(0)
     resfile.close()
+    print("PRINTING RESULTS")
     print_results(resfile_name, outdir)
 
 
 def clean_test():
     """ Experiment with only clean changesets"""
-    outdir = 'result-rule-clean'
+    resfile_name = 'clean-test.pkl'
+    outdir = '/home/ubuntu/praxi/results'
+    suffix = 'ct'
     with (PROJECT_ROOT / 'changeset_sets' /
           'tenk_clean_chunks.p').open('rb') as f:
         tenks = pickle.load(f)
-    resfile = open('./results-rule-clean.pkl', 'wb')
+    resfile = open(resfile_name, 'wb')
     results = []
     for idx, test_csids in tqdm(enumerate(tenks)):
-        logging.info('Test set is %d', idx)
+        #logging.info('Test set is %d', idx)
         train_idx = list(range(len(tenks)))
         train_idx.remove(idx)
         # Split calls to parse_csids for more efficient memoization
@@ -288,14 +302,14 @@ def clean_test():
         pickle.dump(results, resfile)
         resfile.seek(0)
     resfile.close()
-    print_results('./results-rule-clean.pkl', outdir)
+    print_results(resfile_name, outdir)
 
 
 def print_multilabel_results(resfile, outdir, args=None, n_strats=1):
     """ Function that calculates performance statistics and prints them to
         a result file for multilabel tests
     """
-    logging.info('Writing scores to %s', str(outdir))
+    #logging.info('Writing scores to %s', str(outdir))
     with open(resfile, 'rb') as f:
         results = pickle.load(f)
     # # Now do the evaluation!
@@ -353,7 +367,7 @@ def print_results(resfile, outdir, n_strats=5, args=None, iterative=False):
     """ Function that calculates performance statistics and prints them to
         a result file for single label or iterative tests
     """
-    logging.info('Writing scores to %s', str(outdir))
+    #logging.info('Writing scores to %s', str(outdir))
     with open(resfile, 'rb') as f:
         results = pickle.load(f)
     # # Now do the evaluation!
@@ -435,7 +449,6 @@ def get_multilabel_scores(clf, X_train, y_train, X_test, y_test):
         This function performs the actual training and testing
         returns true and predicted labels
     """
-
     clf.fit(X_train, y_train)
     # rulefile = get_free_filename('rules', '.', suffix='.yml')
     # logging.info("Dumping rules to %s", rulefile)
@@ -450,9 +463,9 @@ def get_multilabel_scores(clf, X_train, y_train, X_test, y_test):
         else:
             misses += 1
         predictions += 1
-    logging.info("Preds:" + str(predictions))
-    logging.info("Hits:" + str(hits))
-    logging.info("Misses:" + str(misses))
+    #logging.info("Preds:" + str(predictions))
+    #logging.info("Hits:" + str(hits))
+    #logging.info("Misses:" + str(misses))
     return y_test, preds
 
 
@@ -473,13 +486,13 @@ def get_scores(clf, X_train, y_train, X_test, y_test,
             with open('/home/centos/sets/true_labels.txt', 'w') as f:
                 for label in labels:
                     f.write(str(label) + '\n')
-            logging.info("Wrote true labels to ~/sets/true_labels.txt")
+            #logging.info("Wrote true labels to ~/sets/true_labels.txt")
     hits = misses = predictions = 0
-    if LABEL_DICT.exists():
-        with LABEL_DICT.open('rb') as f:
-            pred_label_dict = pickle.load(f)
-    else:
-        pred_label_dict = {}
+    #if LABEL_DICT.exists():
+    #    with LABEL_DICT.open('rb') as f:
+    #        pred_label_dict = pickle.load(f)
+    #else:
+    pred_label_dict = {}
     for pred, label in zip(preds, y_test):
         if human_check:
             while (pred, label) not in pred_label_dict:
@@ -503,9 +516,9 @@ def get_scores(clf, X_train, y_train, X_test, y_test,
             else:
                 misses += 1
         predictions += 1
-    logging.info("Preds:" + str(predictions))
-    logging.info("Hits:" + str(hits))
-    logging.info("Misses:" + str(misses))
+    #logging.info("Preds:" + str(predictions))
+    #logging.info("Hits:" + str(hits))
+    #logging.info("Misses:" + str(misses))
     return copy.deepcopy(y_test), preds
 
 
@@ -536,9 +549,9 @@ def setup_logging():
 
 
 if __name__ == '__main__':
-    setup_logging()
+    #setup_logging()
     # Uncomment as desired
-    # onekdirty()
-    # multiapp_trainw_dirty()
-    # iterative_tests()
-    # clean_test()
+    onekdirty()
+    #multiapp_trainw_dirty()
+    #iterative_tests()
+    #clean_test()

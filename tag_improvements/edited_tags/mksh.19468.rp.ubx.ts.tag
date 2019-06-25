@@ -1,0 +1,24 @@
+id: '19468'
+labels: mksh
+tags:
+- 000:203
+- cups:15
+- subscriptions.conf:4
+- job.cache:4
+- dpkg:54
+- tmp:27
+- con:11
+- pre:6
+- mksh:109
+- lksh:7
+- mksh16:8
+- mksh-static:7
+- zh:6
+- config.dat:4
+- templates.dat:4
+- update:15
+- status:5
+- check:4
+- mksh.pre:2
+- mksh.p:4
+- mksh.post:2

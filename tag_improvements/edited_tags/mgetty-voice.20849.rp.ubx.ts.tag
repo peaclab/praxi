@@ -1,0 +1,25 @@
+id: '20849'
+labels: mgetty-voice
+tags:
+- 000:216
+- dpkg:55
+- tmp:21
+- con:11
+- log:11
+- mgetty:113
+- callback:7
+- changelog:10
+- man:131
+- vgetty:7
+- voice:7
+- vm:7
+- mgetty-voice:10
+- zh:6
+- config.dat:4
+- templates.dat:4
+- update:21
+- status:5
+- mgetty.conf:3
+- mgetty.post:2
+- mgetty-voice.post:2
+- 001:2

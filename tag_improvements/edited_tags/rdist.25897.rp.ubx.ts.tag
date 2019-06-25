@@ -1,0 +1,20 @@
+id: '25897'
+labels: rdist
+tags:
+- 000:137
+- cups:15
+- subscriptions.conf:4
+- job.cache:4
+- dpkg:30
+- tmp:12
+- con:8
+- rdist:42
+- rdistd:7
+- zh:6
+- config.dat:4
+- templates.dat:4
+- update:15
+- status:5
+- mail:2
+- sys:3
+- system:2

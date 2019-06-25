@@ -1,0 +1,22 @@
+id: '22580'
+labels: ksh
+tags:
+- 000:193
+- dpkg:50
+- tmp:24
+- con:6
+- ksh.dpkg:29
+- ksh:116
+- shcomp:11
+- ksh93:7
+- rksh:23
+- rksh93:7
+- zh:6
+- update:15
+- status:5
+- cups:15
+- subscriptions.conf:4
+- job.cache:4
+- RELEASE:4
+- ksh.p:3
+- ksh.post:2

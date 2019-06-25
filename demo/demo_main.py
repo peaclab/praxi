@@ -571,6 +571,7 @@ if __name__ == '__main__':
     logfile_name = get_free_filename(stub, outdir, '.log')
 
     numeric_level = getattr(logging, loglevel, None)
+    print(numeric_level)
     logging.basicConfig(filename=logfile_name,level=numeric_level)
 
     # Log command line args
@@ -585,6 +586,7 @@ if __name__ == '__main__':
     vwargs = args['vw_args']
     logging.info("Arguments for Vowpal Wabbit: %s", vwargs)
 
+    ####################
     iterative = args['iterative']
     initial_model = args['previous']
 
@@ -639,3 +641,4 @@ if __name__ == '__main__':
                                        result_type, ts_path=ts_test_path, print_misses=print_misses)
 
     logging.info("Program runtime: %s", str(time.time()-prog_start))
+    print("Program runtime: %s", str(time.time()-prog_start))

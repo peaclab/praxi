@@ -25,7 +25,8 @@ class Hybrid(BaseEstimator):
                  probability=False, tqdm=True,
                  suffix='', iterative=False,
                  loss_function='hinge',
-                 use_temp_files=False): # if this is set true it will delete everything after end of runtime?
+                 use_temp_files=False,
+                 vw_modelfile='model.vw'): # if this is set true it will delete everything after end of runtime?
         """ Initializer for Hybrid method. Do not use multiple instances
         simultaneously.
         """
@@ -39,7 +40,8 @@ class Hybrid(BaseEstimator):
         self.pass_files_to_vw = pass_files_to_vw # bool
         self.suffix = suffix
         self.iterative = iterative
-        self.use_temp_files = (not self.iterative) and use_temp_files
+        self.use_temp_files = use_temp_files # (not self.iterative) and
+        self.vw_modelfile = vw_modelfile
         self.trained = False # model is always instantiated untrained
 
     def get_args(self):
@@ -69,12 +71,12 @@ class Hybrid(BaseEstimator):
         start = time.time()
         if not self.probability: # probability has to do with whether or not it is multilabel
             X, y = self._filter_multilabels(X, y)
-        if self.use_temp_files:
+        if self.use_temp_files and not self.iterative:
             modelfileobj = tempfile.NamedTemporaryFile('w', delete=False)
             self.vw_modelfile = modelfileobj.name
             modelfileobj.close()
         else:
-            self.vw_modelfile = 'trained_model-%s.vw' % self.suffix
+            #self.vw_modelfile = 'trained_model-%s.vw' % self.suffix
             if not (self.iterative and self.trained):
                 safe_unlink(self.vw_modelfile)
             else:
@@ -102,7 +104,6 @@ class Hybrid(BaseEstimator):
                 self.indexed_labels[label] = self.label_counter
                 self.reverse_labels[self.label_counter] = label
                 self.label_counter += 1
-        print("Number of labels: ", len(self.all_labels))
         ################################################
         ## Create VW arg string ########################
         if self.probability:
@@ -120,7 +121,7 @@ class Hybrid(BaseEstimator):
         self.vw_args_ += ' --kill_cache --cache_file a.cache'
         ####################################################
         train_set = list(zip(X, y))
-        #random.shuffle(train_set)
+        random.shuffle(train_set)
         if self.use_temp_files:
             f = tempfile.NamedTemporaryFile('w', delete=False)
         else:
@@ -139,7 +140,6 @@ class Hybrid(BaseEstimator):
                         input_string += '{}:1.0 '.format(number)
             else:
                 input_string += '{} '.format(self.indexed_labels[labels[0]])
-            #print(input_string) # want to see what the args are
             f.write('{}| {}\n'.format(input_string, ' '.join(tag)))
         f.close()
         # write all tag/label combos into a file f ^^^
@@ -169,11 +169,12 @@ class Hybrid(BaseEstimator):
         self.trained = True # once the fit function has been run, model has been trained!
         logging.info("Training took %f secs." % (time.time() - start))
 
-    # THIS FUNCTION IS NEVER CALLED IN THIS FILE (I think it's dead)
-    # def transform_labels(self, y):
-    #    return [self.indexed_labels[x] for x in y]
-
     def predict_proba(self, X): # X = tagsets
+        """Calculates probability of any of the labels that the model has been
+            trained on belonging to each tagset in X
+        input: list of tagsets
+        output: probabilities for each label and each tagset
+        """
         start = time.time()
         if not self.trained:
             raise ValueError("Need to train the classifier first")
@@ -224,12 +225,19 @@ class Hybrid(BaseEstimator):
                 all_probas.append(probas)
         if self.use_temp_files:
             safe_unlink(f.name)
-            safe_unlink(self.vw_modelfile)
             safe_unlink(outf)
+            if not self.iterative:
+                safe_unlink(self.vw_modelfile)
         logging.info("Testing took %f secs." % (time.time() - start))
         return all_probas
 
     def top_k_tags(self, X, ntags):
+        """ Given a list of multilabel tagsets and the number of predicted labels
+            for each, returns predicted labels for each tagset
+        input: list of multilabel tagsets, corresponding list containing the
+               number of labels expected for each
+        output: list of lists containing the predicted labels for each tagset
+        """
         probas = self.predict_proba(X)
         result = []
         for ntag, proba in zip(ntags, probas):
@@ -245,12 +253,13 @@ class Hybrid(BaseEstimator):
         return result
 
     def predict(self, X):
-        # JUST WANT THE TAGS... got that
-        # EXPECTS A LIST OF LISTS (no labels)
+        """ Make label predictions for a list of tagsets
+        input: list of tagsets
+        output: list of predicted labels
+        """
         start = time.time()
         if not self.trained:
             raise ValueError("Need to train the classifier first")
-        #tags = self._get_tags(X)
         if self.use_temp_files:
             f = tempfile.NamedTemporaryFile('w', delete=False)
             outfobj = tempfile.NamedTemporaryFile('w', delete=False)
@@ -289,12 +298,13 @@ class Hybrid(BaseEstimator):
                     all_preds.append('??')
         if self.use_temp_files:
             safe_unlink(f.name)
-            safe_unlink(self.vw_modelfile)
+            if not self.iterative:
+                safe_unlink(self.vw_modelfile)
         logging.info("Testing took %f secs." % (time.time() - start))
         return all_preds
 
-    # FIX TO WORK W CHANGESETS... actually it should work as-is
     def _filter_multilabels(self, X, y):
+        """Remove all multilabel tagsets from the X, y list"""
         new_X = []
         new_y = []
         for data, labels in zip(X, y):
@@ -307,6 +317,8 @@ class Hybrid(BaseEstimator):
         return new_X, new_y
 
     def score(self, X, y):
+        """ Returns the number of hits and misses for a given list of tagsets
+        after first predicting the labels"""
         predictions = self.predict(X)
         logging.info('Getting scores')
         hits = misses = preds = 0
@@ -316,13 +328,10 @@ class Hybrid(BaseEstimator):
             else:
                 misses += 1
             preds += 1
-        #print("Preds:" + str(preds))
-        #print("Hits:" + str(hits))
-        #print("Misses:" + str(misses))
         return {'preds': preds, 'hits': hits, 'misses': misses}
 
-
 def safe_unlink(filename):
+    """ Delete file path """
     try:
         os.unlink(filename)
     except (FileNotFoundError, OSError): # OSError raised if directory instead of file

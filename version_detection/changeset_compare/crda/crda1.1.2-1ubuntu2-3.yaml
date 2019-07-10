@@ -1,0 +1,16 @@
+changes:
+- /var/lib/dpkg/tmp.ci/md5sums
+- /var/lib/dpkg/tmp.ci/preinst
+- /var/lib/dpkg/updates/tmp.i
+- /var/lib/dpkg/tmp.ci/postinst
+- /var/log/apt/term.log
+- /var/lib/dpkg/triggers/Lock
+- /var/log/dpkg.log
+- /var/lib/dpkg/tmp.ci/conffiles
+- /var/log/auth.log
+- /var/lib/dpkg/lock
+- /var/lib/dpkg/tmp.ci/control
+- /var/log/apt/history.log
+close_time: 1562094702.3157258
+label: crda1.1.2-1ubuntu2
+open_time: 1562094695.788802

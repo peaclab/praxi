@@ -1,0 +1,21 @@
+id: 1a15-2-6
+label: arpwatch
+tags:
+- update:15
+- tmp.:9
+- zh_:2
+- dpkg:35
+- 000:10
+- .depend.:3
+- status-:2
+- arp:19
+- arpwatch.:11
+- 001:2
+- pre:2
+- arpwatch.pre:2
+- arpwatch.p:4
+- con:2
+- sys:3
+- arpwatch.conf:2
+- arpwatch.post:2
+- .depend.st:2

@@ -1,0 +1,13 @@
+changes:
+- /var/lib/dpkg/tmp.ci/md5sums
+- /var/lib/dpkg/triggers/Lock
+- /var/lib/dpkg/lock
+- /var/log/apt/history.log
+- /var/log/apt/term.log
+- /var/log/dpkg.log
+- /var/lib/dpkg/tmp.ci/control
+- /var/lib/dpkg/updates/tmp.i
+- /var/log/auth.log
+close_time: 1562095489.5284922
+label: dcraw9.19-1.1ubuntu1
+open_time: 1562095482.9922984

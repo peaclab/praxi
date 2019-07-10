@@ -1,4 +1,28 @@
 #!/usr/bin/env python3
+""" Script function:
+    - two modes:
+        1) Cross Validation: takes a single directory of tagsets and runs the
+                Praxi application discovery algorithm, dividing the
+                data into folds and repeatedly running the experiment
+                with each fold being the test set
+        2) "Real World" Experiment: takes two directories of tagsets, one for
+                training, one for testing, and runs Praxi once, first training
+                the model and then evaluating its accuracy using the test
+                directory
+    - inputs/arguments:
+        * -t [directory name]: path to training tagset directory (REQUIRED)
+        * -s [directory name]: path to testing tagset directory (only required
+                               for experiment 2)
+        * -o [directory name]: path to desired result directory
+        * -m: run a multilabel experiment
+        * -w [args]: customize arguments for VW learning algorithm
+        * -n [# of folds]: number of folds to use if running an experiment with
+                           cross validation
+        * -f: output the full results instead of a summary
+        * -v: increase verbosity of log messages
+    - output: outputs a text file containing statistics about the performance
+              of the algorithm; choice between summary or full result file
+"""
 
 # Imports
 from multiprocessing import Lock
@@ -127,8 +151,6 @@ def iterative_experiment(train_path, test_path, resfile_name,
         pickle file with label predictions and text file with experiment
         performance statistics (written to result directory)
     """
-
-
     if initial_model is None:
         suffix = 'iterative'
         iterative = True
@@ -192,7 +214,7 @@ def iterative_experiment(train_path, test_path, resfile_name,
 #################################
 #### SINGLE LABEL EXPERIMENT ####
 #################################
-def single_label_experiment(nfolds, tr_path, resfile_name, outdir, vwargs, result_type, ts_path=None):
+def single_label_experiment(nfolds, tr_path, resfile_name, outdir, vwargs, result_type, ts_path=None, print_misses=False):
     # instantiate hybrid object
     suffix = 'single'
     clf = Hybrid(freq_threshold=2, pass_freq_to_vw=True, probability=False,
@@ -228,7 +250,15 @@ def single_label_experiment(nfolds, tr_path, resfile_name, outdir, vwargs, resul
             for i in train_idx_list:
                 train_tags += tags[i]
                 train_labels += labels[i]
-            results.append(get_scores(clf, train_tags, train_labels, test_tags, test_labels))
+
+            true_labels, preds = get_scores(clf, train_tags, train_labels, test_tags, test_labels)
+            results.append((true_labels, preds))
+            if print_misses:
+                print("Misclassified labels for fold:", idx)
+                for label, pred in zip(true_labels, preds):
+                    if label != pred:
+                        print('label:',label,'prediction:',pred)
+
     else: # no folds/crossvalidation
         # get traintags, trainlabels, etc from ts_path, tr_path
         ts_train_names = [f for f in listdir(tr_path) if (isfile(join(tr_path, f))and f[-3:]=='tag')]
@@ -238,11 +268,18 @@ def single_label_experiment(nfolds, tr_path, resfile_name, outdir, vwargs, resul
         test_tags, test_labels = parse_ts(ts_test_names, ts_test_path)
 
         logging.info("Getting single label scores:")
-        results.append(get_scores(clf, train_tags, train_labels, test_tags, test_labels))
+        labels, preds = get_scores(clf, train_tags, train_labels, test_tags, test_labels)
+        results.append((labels, preds))
+
+        if print_misses:
+            print("Misclassified labels:")
+            for label, pred in zip(labels, preds):
+                if label != pred:
+                    print('label:',label,'prediction:',pred)
 
     pickle.dump(results, resfile)
     # results is a list of tuples!!
-    resfile.close
+    resfile.close()
     logging.info("Printing results:")
     print_results(resfile_name, outdir, result_type)
 
@@ -609,7 +646,7 @@ if __name__ == '__main__':
                     logging.info("Tagset directory: %s", ts_train_path)
                 resfile_name = get_free_filename('single_test', outdir, '.p') # add arg to set stub?
                 single_label_experiment(nfolds, ts_train_path, resfile_name, outdir, vwargs, result_type,
-                                        ts_path=ts_test_path)#, print_misses=print_misses) # no train directory
+                                        ts_path=ts_test_path, print_misses=print_misses) # no train directory
             else: # multi
                 if(nfolds == 1):
                     logging.info("Starting multi label experiment")

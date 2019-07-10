@@ -1,0 +1,19 @@
+id: 1a15-6-4
+label: arpwatch2.1a15-6
+tags:
+- update:17
+- dpkg:39
+- tmp.:10
+- arpwatch.:14
+- 000:10
+- status-:2
+- system:6
+- sys:7
+- deb-systemd-helper-:3
+- pre:2
+- arpwatch.pre:2
+- arpwatch.p:4
+- zh_:4
+- arpwatch.post:2
+- con:2
+- 001:2

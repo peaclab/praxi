@@ -13,16 +13,18 @@ OUTPUTS:
 """
 
 # Imports
-from collections import Counter
+#from collections import Counter
 from multiprocessing import Lock
 
 import logging
 import logging.config
 
+import argparse
 import os
 from os import listdir
 from os.path import isfile, join, isabs
 import sys
+sys.path.insert(0, '../')
 
 from pathlib import Path
 import time
@@ -46,6 +48,7 @@ def parse_cs(changeset_names, cs_dir, multilabel=False): # SHOULD PROBABLY GET R
     features = []
     labels = []
     for cs_name in tqdm(changeset_names):
+            print(cs_dir, cs_name)
             changeset = get_changeset(cs_name, cs_dir)
             if multilabel:
                 """ running a trial in which there may be more than one label for
@@ -193,7 +196,7 @@ def get_cs_dir(path_str, work_dir):
         path_str = ""
     return path_str
 
-def get_directories(arg_list):
+def get_directories(c_path, t_path):
     """ Get the names of the changeset and tagset directories from the command
         line inputs
     input: command line arguments passed in at runtime
@@ -202,28 +205,23 @@ def get_directories(arg_list):
     cs_dir = ""
     ts_dir = ""
     valid = True
-    if len(arg_list) == 1:
-        # No input directory provided
-        raise ValueError("Error: please provide a changeset directory") # TEST IF I NEED THESE
-    elif len(arg_list) == 2:
+    if t_path is None:
         # Must create a result directory
         ts_dir = create_res_dir(work_dir)
         # Check if cs_dir exists
-        cs_dir = arg_list[1]
+        cs_dir = c_path
         if not os.path.isdir(cs_dir):
             raise ValueError("Error: Changeset directory does not exist")
         else:
-            cs_dir = get_cs_dir(arg_list[1], work_dir)
-    elif len(arg_list) == 3:
-        # use result dir given
-        ts_dir = create_res_dir(work_dir, arg_list[2])
-        cs_dir = arg_list[1]
-        if not os.path.isdir(cs_dir):
-            raise ValueError("Error: Changeset directory does not exist")
-        else:
-            cs_dir = get_cs_dir(arg_list[1], work_dir)
+            cs_dir = get_cs_dir(c_path, work_dir)
     else:
-        raise ValueError("Error: too many arguments!")
+        # use result dir given
+        ts_dir = create_res_dir(work_dir, t_path)
+        cs_dir = c_path
+        if not os.path.isdir(cs_dir):
+            raise ValueError("Error: Changeset directory does not exist")
+        else:
+            cs_dir = get_cs_dir(c_path, work_dir)
 
     return cs_dir, ts_dir
 
@@ -232,8 +230,17 @@ if __name__ == '__main__':
     prog_start = time.time()
     work_dir = os.path.abspath('.')
 
-    arg_list = sys.argv
-    cs_dir, ts_dir = get_directories(arg_list)
+
+    parser = argparse.ArgumentParser(description='Arguments for tagset generation.')
+    parser.add_argument('-c','--changedir', help='Path to changeset directory.', required=True)
+    parser.add_argument('-t', '--tagdir', help='Optional path to desired tagset directoy.', default=None)
+
+    args = vars(parser.parse_args())
+
+    c_path = args['changedir']
+    t_path = args['tagdir']
+
+    cs_dir, ts_dir = get_directories(c_path, t_path)
 
     if cs_dir == '':
         raise ValueError("Invalid changeset directory")

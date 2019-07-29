@@ -1,0 +1,21 @@
+id: 0
+label: smartmontools
+tags:
+- smartmontools.:33
+- smart:101
+- Example:16
+- smartd.conf.:6
+- smartd.:9
+- smartd:14
+- README.:5
+- update:12
+- 000:7
+- man:17
+- tmp.:8
+- update-smart-drivedb.:3
+- smartctl.:3
+- smartmontools.pre:2
+- smartmontools.p:4
+- con:2
+- smartmontools.post:2
+- pre:2

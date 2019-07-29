@@ -1,0 +1,19 @@
+id: '1'
+label: memcached.1.4.25-2ubuntu1.4
+tags:
+- zh_:2
+- dpkg:33
+- memcached.:12
+- status-:2
+- memcached.post:2
+- memcached.p:3
+- update:15
+- 000:10
+- sys:8
+- deb-systemd-helper-:5
+- .state:2
+- tmp.:8
+- 001:2
+- .depend.st:2
+- .depend.:3
+- con:2

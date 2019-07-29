@@ -1,0 +1,26 @@
+changes:
+- /var/lib/dpkg/updates/0003
+- /var/lib/dpkg/info/lftp.md5sums
+- /var/lib/dpkg/updates/0001
+- /var/lib/dpkg/updates/0004
+- /var/lib/dpkg/info/lftp.list
+- /var/lib/dpkg/triggers/Lock
+- /var/lib/dpkg/tmp.ci/control
+- /var/lib/dpkg/updates/0000
+- /var/log/apt/term.log
+- /var/log/syslog
+- /var/lib/dpkg/updates/0002
+- /var/log/apt/history.log
+- /var/lib/dpkg/updates/tmp.i
+- /var/lib/dpkg/lock
+- /var/log/dpkg.log
+- /var/log/auth.log
+- /var/cache/man/9534
+- /var/lib/dpkg/tmp.ci/conffiles
+- /etc/lftp.conf.dpkg-new
+- /var/lib/dpkg/info/lftp.list-new
+- /var/lib/dpkg/tmp.ci/md5sums
+- /var/lib/dpkg/info/lftp.conffiles
+close_time: 1562860502.9456947
+label: lftp4.4.13-1ubuntu0.1
+open_time: 1562860496.153277

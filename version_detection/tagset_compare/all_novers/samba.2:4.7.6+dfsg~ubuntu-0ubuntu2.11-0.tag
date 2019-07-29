@@ -1,0 +1,24 @@
+id: '2:4'
+label: samba
+tags:
+- dpkg:49
+- update:25
+- 000:10
+- 001:10
+- zh_:4
+- 002:2
+- samba.:13
+- samba:14
+- system:11
+- sys:12
+- deb-systemd-helper-:6
+- .state:2
+- tmp.:11
+- smbd.:4
+- pre:2
+- status-:2
+- con:2
+- samba.post:2
+- samba.p:4
+- nmbd.:4
+- samba.pre:2

@@ -1,0 +1,13 @@
+changes:
+- /var/lib/dpkg/tmp.ci/control
+- /var/lib/dpkg/tmp.ci/md5sums
+- /var/lib/dpkg/triggers/Lock
+- /var/log/apt/history.log
+- /var/log/auth.log
+- /var/lib/dpkg/lock
+- /var/log/apt/term.log
+- /var/log/dpkg.log
+- /var/lib/dpkg/updates/tmp.i
+close_time: 1563995732.8353088
+label: bacula-client.5.2.6+dfsg-9.1ubuntu3
+open_time: 1563995725.2688575

@@ -1,0 +1,22 @@
+id: '1:2'
+label: dovecot-core
+tags:
+- dovecot:25
+- status-:2
+- 001:4
+- con:6
+- dovecot-:15
+- tmp.:12
+- dovecot-core.pre:2
+- dovecot-core.p:4
+- dovecot-core.:13
+- dovecot-core.post:2
+- dovecot-core.conf:2
+- 000:10
+- dovecot.:2
+- pre:2
+- config.dat-:2
+- zh_:2
+- templates.dat-:2
+- available-:2
+- dovecot-core.t:2

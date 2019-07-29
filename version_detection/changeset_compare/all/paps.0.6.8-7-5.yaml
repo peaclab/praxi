@@ -1,0 +1,21 @@
+changes:
+- /var/lib/dpkg/info/paps.list-new
+- /var/lib/dpkg/updates/tmp.i
+- /var/log/apt/term.log
+- /var/lib/dpkg/updates/0000
+- /var/lib/dpkg/info/paps.md5sums
+- /var/log/apt/history.log
+- /var/log/dpkg.log
+- /var/lib/dpkg/updates/0003
+- /var/lib/dpkg/info/paps.list
+- /var/lib/dpkg/tmp.ci/md5sums
+- /var/lib/dpkg/updates/0002
+- /var/lib/dpkg/tmp.ci/control
+- /var/lib/dpkg/updates/0004
+- /var/lib/dpkg/lock
+- /var/lib/dpkg/triggers/Lock
+- /var/lib/dpkg/updates/0001
+- /var/log/auth.log
+close_time: 1562871269.5970185
+label: paps0.6.8-7
+open_time: 1562871262.8753583

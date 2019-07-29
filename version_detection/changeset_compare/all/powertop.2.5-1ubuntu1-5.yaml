@@ -1,0 +1,24 @@
+changes:
+- /var/cache/man/1697
+- /var/lib/dpkg/updates/0003
+- /var/log/apt/history.log
+- /var/lib/dpkg/updates/0000
+- /var/lib/dpkg/info/powertop.list
+- /var/lib/dpkg/updates/tmp.i
+- /var/lib/dpkg/lock
+- /var/lib/dpkg/info/powertop.md5sums
+- /var/lib/dpkg/updates/0004
+- /var/lib/dpkg/info/powertop.postrm
+- /var/log/apt/term.log
+- /var/lib/dpkg/updates/0002
+- /var/lib/dpkg/tmp.ci/postrm
+- /var/lib/dpkg/info/powertop.list-new
+- /var/lib/dpkg/triggers/Lock
+- /var/log/dpkg.log
+- /var/lib/dpkg/tmp.ci/control
+- /var/lib/dpkg/updates/0001
+- /var/lib/dpkg/tmp.ci/md5sums
+- /var/log/auth.log
+close_time: 1562867646.726044
+label: powertop2.5-1ubuntu1
+open_time: 1562867639.8853166

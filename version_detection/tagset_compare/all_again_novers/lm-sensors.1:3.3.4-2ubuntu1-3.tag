@@ -1,0 +1,22 @@
+id: 0
+label: lm-sensors
+tags:
+- tellerstats.:16
+- man:48
+- lm-sensors.:27
+- index.:6
+- README.:9
+- sensors-conf-convert.:3
+- sensors-:8
+- sensors:14
+- 000:8
+- isaset.:3
+- isa:8
+- sensors.:5
+- sensors-detect.:3
+- tmp.:7
+- zh_:2
+- con:2
+- lm-sensors.post:2
+- lm-sensors.p:3
+- isadump.:3

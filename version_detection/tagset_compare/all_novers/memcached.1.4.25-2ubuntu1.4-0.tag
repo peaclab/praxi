@@ -1,0 +1,19 @@
+id: '1'
+label: memcached
+tags:
+- dpkg:33
+- memcached.:12
+- status-:2
+- update:15
+- tmp.:8
+- memcached.post:2
+- memcached.p:3
+- 000:10
+- sys:8
+- deb-systemd-helper-:5
+- 001:2
+- .depend.st:2
+- .depend.:3
+- .state:2
+- zh_:2
+- con:2

@@ -1,0 +1,22 @@
+changes:
+- /var/lib/dpkg/tmp.ci/control
+- /var/lib/dpkg/updates/0001
+- /var/lib/dpkg/info/rrdtool.list-new
+- /var/lib/dpkg/triggers/Lock
+- /var/lib/dpkg/info/rrdtool.list
+- /var/lib/dpkg/updates/0004
+- /var/lib/dpkg/lock
+- /var/lib/dpkg/updates/0000
+- /var/cache/man/4636
+- /var/log/auth.log
+- /var/lib/dpkg/updates/0003
+- /var/log/dpkg.log
+- /var/lib/dpkg/updates/0002
+- /var/lib/dpkg/updates/tmp.i
+- /var/log/apt/term.log
+- /var/lib/dpkg/info/rrdtool.md5sums
+- /var/log/apt/history.log
+- /var/lib/dpkg/tmp.ci/md5sums
+close_time: 1562870020.6604996
+label: rrdtool1.4.7-2ubuntu5
+open_time: 1562870013.3515728

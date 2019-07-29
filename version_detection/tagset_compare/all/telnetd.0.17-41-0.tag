@@ -1,0 +1,25 @@
+id: '0'
+label: telnetd.0.17-41
+tags:
+- dpkg:26
+- telnetd.:7
+- shadow.260:3
+- shadow.:4
+- passwd.260:3
+- passwd.:4
+- passwd:7
+- group.:4
+- update:8
+- 000:5
+- gshadow.260:3
+- gshadow.:4
+- zh_:4
+- group.260:3
+- telnetd.post:2
+- telnetd.p:4
+- tmp.:8
+- telnetd.pre:2
+- status-:2
+- pre:2
+- shadow.2603:2
+- passwd.2603:2

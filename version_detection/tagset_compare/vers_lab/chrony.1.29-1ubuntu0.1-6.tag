@@ -1,0 +1,24 @@
+id: 0
+label: chrony
+tags:
+- man:40
+- templates.dat-:2
+- dpkg:34
+- update:14
+- 000:10
+- chrony.:35
+- chrony:64
+- ip-:2
+- chronyd.:3
+- README.:6
+- chrony.conf:7
+- tmp.:7
+- chrony.post:2
+- chrony.p:3
+- chronyc.:3
+- con:2
+- available-:2
+- status-:2
+- chrony.conf.:4
+- zh_:2
+version: 1.29-1ubuntu0.1

@@ -1,0 +1,22 @@
+id: 0
+label: lftp
+tags:
+- man:61
+- dpkg:25
+- update:13
+- 000:10
+- lftp.d:16
+- lftp.:25
+- lftp:58
+- status-:2
+- app:4
+- README.:9
+- icon:5
+- con:5
+- zh_:4
+- import-n:6
+- tmp.:5
+- lftpget.:3
+- lftp.conf:4
+- lftp.conf.:3
+version: 4.8.1-1ubuntu0.1

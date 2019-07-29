@@ -48,7 +48,6 @@ def parse_cs(changeset_names, cs_dir, multilabel=False): # SHOULD PROBABLY GET R
     features = []
     labels = []
     for cs_name in tqdm(changeset_names):
-            print(cs_dir, cs_name)
             changeset = get_changeset(cs_name, cs_dir)
             if multilabel:
                 """ running a trial in which there may be more than one label for
@@ -75,7 +74,7 @@ def get_changeset(cs_fname, cs_dir):
         with csfile.open('r') as f:
             changeset = yaml.load(f)
     if changeset is None:
-        logging.error("No changesets match the name %s", str(csfile))
+        print("No changesets match the name %s", str(csfile))
         raise IOError("No changesets match the name")
     if 'changes' not in changeset or ('label' not in changeset and 'labels' not in changeset):
         logging.error("Couldn't read changeset")
@@ -262,7 +261,7 @@ if __name__ == '__main__':
 
     logging.info("Creating names for new tagset files:")
     tagset_names = create_tagset_names(changeset_names)
-    ids = get_ids(changeset_names)
+    ids = [0]*len(changeset_names) # = get_ids(changeset_names)
 
     changesets = []
     labels = []

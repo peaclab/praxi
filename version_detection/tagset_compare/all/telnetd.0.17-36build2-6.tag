@@ -1,0 +1,24 @@
+id: '0'
+label: telnetd0.17-36build2
+tags:
+- gshadow.1819:2
+- gshadow.:3
+- 000:6
+- group.:3
+- zh_:2
+- passwd:7
+- passwd.:4
+- telnetd.:7
+- tmp.:7
+- passwd.1820:2
+- passwd.18:3
+- telnetd.pre:2
+- telnetd.p:4
+- shadow.1820:2
+- shadow.18:3
+- shadow.:4
+- pre:2
+- status-:2
+- available-:2
+- telnetd.post:2
+- group.1819:2

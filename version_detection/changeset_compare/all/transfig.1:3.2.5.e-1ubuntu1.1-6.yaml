@@ -1,0 +1,22 @@
+changes:
+- /var/log/apt/history.log
+- /var/lib/dpkg/lock
+- /var/log/dpkg.log
+- /var/lib/dpkg/tmp.ci/control
+- /var/lib/dpkg/info/transfig.list
+- /var/lib/dpkg/triggers/Lock
+- /var/cache/man/2865
+- /var/lib/dpkg/updates/tmp.i
+- /var/lib/dpkg/updates/0004
+- /var/lib/dpkg/info/transfig.md5sums
+- /var/lib/dpkg/updates/0000
+- /var/log/auth.log
+- /var/lib/dpkg/tmp.ci/md5sums
+- /var/lib/dpkg/updates/0002
+- /var/lib/dpkg/updates/0001
+- /var/lib/dpkg/updates/0003
+- /var/log/apt/term.log
+- /var/lib/dpkg/info/transfig.list-new
+close_time: 1562873485.3978066
+label: transfig1:3.2.5.e-1ubuntu1.1
+open_time: 1562873478.295605

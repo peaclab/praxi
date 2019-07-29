@@ -1,0 +1,22 @@
+id: '1'
+label: cups1.7.2-0ubuntu1.11
+tags:
+- dpkg:48
+- update:13
+- 000:9
+- printer-driver-gutenprint.post:2
+- printer-driver-gutenprint.:5
+- cups.pre:2
+- cups.p:4
+- cups.:11
+- cups.t:2
+- templates.dat-:2
+- cups.conf:2
+- cups.post:2
+- tmp.:11
+- pre:2
+- con:6
+- config.dat-:2
+- available-:2
+- status-:2
+- zh_:2

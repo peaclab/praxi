@@ -1,0 +1,19 @@
+changes:
+- /var/log/apt/history.log
+- /var/lib/dpkg/updates/0000
+- /var/lib/dpkg/info/tshark.list-new
+- /var/lib/dpkg/tmp.ci/control
+- /var/lib/dpkg/info/tshark.list
+- /var/lib/dpkg/triggers/Lock
+- /var/lib/dpkg/updates/tmp.i
+- /var/log/auth.log
+- /var/log/dpkg.log
+- /var/lib/dpkg/lock
+- /var/lib/dpkg/tmp.ci/md5sums
+- /var/lib/dpkg/updates/0001
+- /var/lib/dpkg/updates/0002
+- /var/log/apt/term.log
+- /var/lib/dpkg/info/tshark.md5sums
+close_time: 1562785920.1150637
+label: tshark2.6.6-1~ubuntu14.04.0
+open_time: 1562785913.4600556

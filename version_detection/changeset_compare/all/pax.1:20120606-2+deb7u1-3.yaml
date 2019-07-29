@@ -1,0 +1,22 @@
+changes:
+- /var/lib/dpkg/updates/tmp.i
+- /var/log/auth.log
+- /var/lib/dpkg/lock
+- /var/lib/dpkg/tmp.ci/md5sums
+- /var/lib/dpkg/triggers/Lock
+- /var/lib/dpkg/tmp.ci/control
+- /var/lib/dpkg/info/pax.md5sums
+- /var/lib/dpkg/updates/0004
+- /var/log/apt/history.log
+- /var/log/dpkg.log
+- /var/lib/dpkg/updates/0001
+- /var/lib/dpkg/updates/0002
+- /var/lib/dpkg/info/pax.list-new
+- /var/lib/dpkg/updates/0000
+- /var/lib/dpkg/updates/0003
+- /var/log/apt/term.log
+- /var/cache/man/15448
+- /var/lib/dpkg/info/pax.list
+close_time: 1562870169.9206727
+label: pax1:20120606-2+deb7u1
+open_time: 1562870163.1215217

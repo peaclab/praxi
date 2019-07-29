@@ -118,6 +118,9 @@ def fold_partitioning(ts_names, n=3):
     prog_set = set(just_progs)
     unique_progs = (list(prog_set))
 
+    #print(unique_progs)
+    #input("Press enter to continue...")
+
     prog_partition = [[] for _ in range(len(unique_progs))]
 
     for name in ts_names:
@@ -131,6 +134,8 @@ def fold_partitioning(ts_names, n=3):
         for idx, name in enumerate(ts_names):
             folds[idx % n].append(name)
 
+    #print(folds)
+    #input("Press enter to continue...")
     return folds
 
 ################################

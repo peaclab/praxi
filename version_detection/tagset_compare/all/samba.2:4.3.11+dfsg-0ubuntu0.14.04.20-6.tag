@@ -1,0 +1,20 @@
+id: '2:4'
+label: samba2:4.3.11+dfsg-0ubuntu0.14.04.20
+tags:
+- 001:5
+- status-:2
+- tmp.:9
+- samba:20
+- 000:10
+- smbd.:2
+- log:7
+- samba.:13
+- con:2
+- pre:2
+- available-:2
+- samba-ad-dc.:2
+- samba.pre:2
+- samba.p:4
+- nmbd.:2
+- samba.post:2
+- zh_:2

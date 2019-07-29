@@ -1,0 +1,20 @@
+changes:
+- /var/lib/dpkg/tmp.ci/control
+- /var/lib/dpkg/lock
+- /var/lib/dpkg/updates/0000
+- /var/lib/dpkg/updates/0002
+- /var/log/apt/term.log
+- /var/log/dpkg.log
+- /var/lib/dpkg/info/autotrace.list-new
+- /var/log/apt/history.log
+- /var/lib/dpkg/updates/0003
+- /var/lib/dpkg/updates/0001
+- /var/lib/dpkg/tmp.ci/md5sums
+- /var/log/auth.log
+- /var/lib/dpkg/info/autotrace.md5sums
+- /var/lib/dpkg/triggers/Lock
+- /var/lib/dpkg/info/autotrace.list
+- /var/lib/dpkg/updates/tmp.i
+close_time: 1562866589.1131363
+label: autotrace0.31.1-16+deb7u1ubuntu0.1
+open_time: 1562866582.4037843

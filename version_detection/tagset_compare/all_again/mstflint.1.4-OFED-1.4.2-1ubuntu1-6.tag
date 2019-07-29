@@ -1,0 +1,19 @@
+id: 0
+label: mstflint.1.4-OFED-1.4.2-1ubuntu1
+tags:
+- 000:6
+- mtcr:6
+- tmp.:3
+- mstm:12
+- mst:35
+- mstmread.:3
+- mstmwrite.:3
+- hca_self_test.:6
+- mstflint.:10
+- status-:2
+- hca_self_test.ofed.:3
+- mstregdump.:3
+- mstvpd.:3
+- available-:2
+- mstmcra.:3
+- zh_:2

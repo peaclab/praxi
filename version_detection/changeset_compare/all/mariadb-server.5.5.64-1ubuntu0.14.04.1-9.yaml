@@ -1,0 +1,15 @@
+changes:
+- /var/log/apt/term.log
+- /var/lib/dpkg/tmp.ci/md5sums
+- /var/log/dpkg.log
+- /var/lib/dpkg/info/mariadb-server.list-new
+- /var/log/apt/history.log
+- /var/lib/dpkg/lock
+- /var/lib/dpkg/tmp.ci/control
+- /var/log/auth.log
+- /var/lib/dpkg/updates/0000
+- /var/lib/dpkg/updates/tmp.i
+- /var/lib/dpkg/triggers/Lock
+close_time: 1562786434.2329922
+label: mariadb-server5.5.64-1ubuntu0.14.04.1
+open_time: 1562786427.6506822

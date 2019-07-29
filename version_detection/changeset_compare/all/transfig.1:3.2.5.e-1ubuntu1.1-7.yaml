@@ -1,0 +1,27 @@
+changes:
+- /home/ubuntu/praxi/versions14/squid3.3.8-1ubuntu6.11-0.yaml
+- /var/lib/dpkg/tmp.ci/control
+- /var/cache/man/3461
+- /var/lib/dpkg/updates/0000
+- /var/log/auth.log
+- /var/lib/dpkg/tmp.ci/md5sums
+- /home/ubuntu/praxi/versions14/squid3.3.8-1ubuntu6.11-4.yaml
+- /var/lib/dpkg/updates/0001
+- /var/lib/dpkg/lock
+- /home/ubuntu/praxi/versions14/squid3.3.8-1ubuntu6.11-2.yaml
+- /var/lib/dpkg/updates/0003
+- /var/log/apt/term.log
+- /var/log/apt/history.log
+- /home/ubuntu/praxi/versions14/squid3.3.8-1ubuntu6.11-3.yaml
+- /var/lib/dpkg/info/transfig.list
+- /var/lib/dpkg/triggers/Lock
+- /var/log/dpkg.log
+- /var/lib/dpkg/updates/tmp.i
+- /var/lib/dpkg/updates/0004
+- /var/lib/dpkg/info/transfig.md5sums
+- /home/ubuntu/praxi/versions14/squid3.3.8-1ubuntu6.11-1.yaml
+- /var/lib/dpkg/updates/0002
+- /var/lib/dpkg/info/transfig.list-new
+close_time: 1562873498.5895314
+label: transfig1:3.2.5.e-1ubuntu1.1
+open_time: 1562873491.6938083

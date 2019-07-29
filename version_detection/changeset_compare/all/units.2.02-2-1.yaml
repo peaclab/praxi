@@ -1,0 +1,27 @@
+changes:
+- /var/lib/dpkg/info/units.list
+- /var/lib/dpkg/info/units.postrm
+- /var/log/auth.log
+- /var/lib/dpkg/updates/tmp.i
+- /var/lib/dpkg/tmp.ci/md5sums
+- /var/lib/dpkg/tmp.ci/postinst
+- /var/cache/man/30934
+- /var/lib/dpkg/info/units.md5sums
+- /var/lib/dpkg/tmp.ci/control
+- /var/log/apt/term.log
+- /var/lib/dpkg/updates/0004
+- /var/lib/dpkg/info/units.postinst
+- /var/log/apt/history.log
+- /var/lib/dpkg/updates/0002
+- /var/lib/dpkg/tmp.ci/postrm
+- /var/lib/dpkg/updates/0001
+- /var/lib/dpkg/updates/0000
+- /var/lib/dpkg/lock
+- /var/log/dpkg.log
+- /var/lib/dpkg/updates/0003
+- /var/lib/dpkg/updates/0005
+- /var/lib/dpkg/info/units.list-new
+- /var/lib/dpkg/triggers/Lock
+close_time: 1562871916.2552493
+label: units2.02-2
+open_time: 1562871909.3695166

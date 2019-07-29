@@ -1,0 +1,23 @@
+changes:
+- /var/lib/dpkg/updates/0001
+- /var/lib/dpkg/tmp.ci/md5sums
+- /var/lib/dpkg/updates/0000
+- /var/log/apt/history.log
+- /var/lib/dpkg/updates/tmp.i
+- /var/lib/dpkg/lock
+- /var/lib/dpkg/tmp.ci/control
+- /var/log/dpkg.log
+- /var/lib/dpkg/updates/0004
+- /var/log/auth.log
+- /var/lib/dpkg/updates/0002
+- /var/lib/dpkg/updates/0003
+- /var/cache/man/3801
+- /var/lib/dpkg/updates/0005
+- /var/lib/dpkg/info/nasm.list
+- /var/log/apt/term.log
+- /var/lib/dpkg/triggers/Lock
+- /var/lib/dpkg/info/nasm.list-new
+- /var/lib/dpkg/info/nasm.md5sums
+close_time: 1562868679.8749185
+label: nasm2.10.09-1ubuntu0.1
+open_time: 1562868672.8269444

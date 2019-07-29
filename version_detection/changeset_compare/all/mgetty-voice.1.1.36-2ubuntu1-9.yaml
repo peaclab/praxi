@@ -1,0 +1,26 @@
+changes:
+- /var/lib/dpkg/tmp.ci/md5sums
+- /var/lib/dpkg/info/mgetty-voice.postinst
+- /var/log/apt/term.log
+- /var/log/apt/history.log
+- /var/lib/dpkg/tmp.ci/postinst
+- /var/lib/dpkg/info/mgetty-voice.list-new
+- /var/lib/dpkg/info/mgetty-voice.list
+- /var/lib/dpkg/lock
+- /var/lib/dpkg/updates/0001
+- /var/cache/man/6859
+- /var/lib/dpkg/info/mgetty-voice.md5sums
+- /var/lib/dpkg/updates/tmp.i
+- /var/lib/dpkg/updates/0000
+- /var/lib/dpkg/updates/0002
+- /var/log/dpkg.log
+- /var/lib/dpkg/tmp.ci/control
+- /var/lib/dpkg/updates/0004
+- /var/lib/dpkg/info/mgetty-voice.postrm
+- /var/log/auth.log
+- /var/lib/dpkg/triggers/Lock
+- /var/lib/dpkg/updates/0003
+- /var/lib/dpkg/tmp.ci/postrm
+close_time: 1562860095.889283
+label: mgetty-voice1.1.36-2ubuntu1
+open_time: 1562860089.100098

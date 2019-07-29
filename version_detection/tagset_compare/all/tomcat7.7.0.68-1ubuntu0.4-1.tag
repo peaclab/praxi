@@ -1,0 +1,25 @@
+id: '7'
+label: tomcat7.7.0.68-1ubuntu0.4
+tags:
+- tomcat:39
+- dpkg:41
+- tomcat7.conf:2
+- tomcat7.:11
+- update:19
+- 001:6
+- tomcat7.p:3
+- 000:10
+- localhost:2
+- loc:3
+- tmp.:10
+- deb:8
+- config.dat-:2
+- con:8
+- auth:2
+- status-:2
+- sys:3
+- catalina.:4
+- .depend.st:2
+- .depend.:3
+- templates.dat-:2
+- tomcat7.post:2

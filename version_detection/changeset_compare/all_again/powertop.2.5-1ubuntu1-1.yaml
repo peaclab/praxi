@@ -1,0 +1,14 @@
+changes:
+- /var/lib/dpkg/triggers/Lock
+- /var/lib/dpkg/updates/tmp.i
+- /var/log/dpkg.log
+- /var/lib/dpkg/tmp.ci/postrm
+- /var/lib/dpkg/tmp.ci/control
+- /var/log/apt/term.log
+- /var/log/apt/history.log
+- /var/lib/dpkg/lock
+- /var/lib/dpkg/tmp.ci/md5sums
+- /var/log/auth.log
+close_time: 1563996034.6100576
+label: powertop.2.5-1ubuntu1
+open_time: 1563996031.9662197

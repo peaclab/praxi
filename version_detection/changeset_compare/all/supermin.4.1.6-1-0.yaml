@@ -1,0 +1,22 @@
+changes:
+- /var/lib/dpkg/updates/0003
+- /var/lib/dpkg/triggers/Lock
+- /var/lib/dpkg/updates/0000
+- /var/log/auth.log
+- /var/log/dpkg.log
+- /var/lib/dpkg/tmp.ci/md5sums
+- /var/lib/dpkg/info/supermin.md5sums
+- /var/lib/dpkg/updates/0002
+- /var/lib/dpkg/updates/tmp.i
+- /var/log/apt/history.log
+- /var/lib/dpkg/lock
+- /var/log/apt/term.log
+- /var/lib/dpkg/tmp.ci/control
+- /var/lib/dpkg/updates/0004
+- /var/cache/man/5362
+- /var/lib/dpkg/info/supermin.list-new
+- /var/lib/dpkg/info/supermin.list
+- /var/lib/dpkg/updates/0001
+close_time: 1562872145.2938046
+label: supermin4.1.6-1
+open_time: 1562872138.6764965

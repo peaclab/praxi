@@ -1,0 +1,26 @@
+changes:
+- /var/lib/dpkg/info/sane.postrm
+- /var/lib/dpkg/info/sane.postinst
+- /var/lib/dpkg/tmp.ci/control
+- /var/lib/dpkg/updates/0003
+- /var/lib/dpkg/triggers/Lock
+- /var/log/apt/term.log
+- /var/lib/dpkg/updates/0002
+- /var/lib/dpkg/tmp.ci/postinst
+- /var/lib/dpkg/updates/tmp.i
+- /var/lib/dpkg/lock
+- /var/lib/dpkg/updates/0004
+- /var/log/auth.log
+- /var/log/apt/history.log
+- /var/lib/dpkg/tmp.ci/postrm
+- /var/lib/dpkg/info/sane.list-new
+- /var/lib/dpkg/info/sane.md5sums
+- /var/lib/dpkg/updates/0000
+- /var/lib/dpkg/info/sane.list
+- /var/lib/dpkg/updates/0001
+- /var/cache/man/22660
+- /var/lib/dpkg/tmp.ci/md5sums
+- /var/log/dpkg.log
+close_time: 1562787158.7939105
+label: sane1.0.14-9
+open_time: 1562787152.2777662

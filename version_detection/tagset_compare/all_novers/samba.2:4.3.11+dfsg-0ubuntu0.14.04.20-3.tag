@@ -1,0 +1,21 @@
+id: '2:4'
+label: samba
+tags:
+- status-:2
+- tmp.:9
+- samba:19
+- '3151:2'
+- 000:10
+- smbd.:2
+- log:7
+- samba.:13
+- 001:5
+- con:2
+- pre:2
+- available-:2
+- samba-ad-dc.:2
+- samba.pre:2
+- samba.p:4
+- zh_:2
+- nmbd.:2
+- samba.post:2

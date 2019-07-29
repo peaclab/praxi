@@ -1,0 +1,22 @@
+changes:
+- /var/lib/dpkg/updates/0001
+- /var/lib/dpkg/updates/0003
+- /var/lib/dpkg/updates/tmp.i
+- /var/cache/man/12878
+- /var/log/auth.log
+- /var/lib/dpkg/tmp.ci/control
+- /var/lib/dpkg/updates/0000
+- /var/log/apt/history.log
+- /var/lib/dpkg/updates/0004
+- /var/lib/dpkg/triggers/Lock
+- /var/log/apt/term.log
+- /var/log/dpkg.log
+- /var/lib/dpkg/updates/0002
+- /var/lib/dpkg/info/marisa.list
+- /var/lib/dpkg/info/marisa.md5sums
+- /var/lib/dpkg/info/marisa.list-new
+- /var/lib/dpkg/lock
+- /var/lib/dpkg/tmp.ci/md5sums
+close_time: 1562872481.1777494
+label: marisa0.2.4-5build1
+open_time: 1562872474.4444258

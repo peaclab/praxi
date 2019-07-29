@@ -1,0 +1,25 @@
+id: 0
+label: smartmontools
+tags:
+- smartmontools.:33
+- smart:101
+- Example:16
+- smartd.conf.:6
+- smartd.:9
+- smartd:14
+- README.:5
+- update:15
+- 000:10
+- man:40
+- status-:2
+- tmp.:8
+- update-smart-drivedb.:3
+- smartctl.:3
+- smartmontools.pre:2
+- smartmontools.p:4
+- con:2
+- smartmontools.post:2
+- zh_:2
+- pre:2
+- available-:2
+version: 6.2+svn3841-1.2ubuntu0.1

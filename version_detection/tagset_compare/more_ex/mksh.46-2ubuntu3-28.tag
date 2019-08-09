@@ -1,0 +1,22 @@
+id: 0
+label: mksh.46-2ubuntu3
+tags:
+- dpkg:34
+- tmp.:8
+- mksh.:22
+- mksh:56
+- update:10
+- check.:6
+- mksh-static.:3
+- mksh16:4
+- ksh.:8
+- 000:6
+- zh_:2
+- pre:2
+- mksh.pre:2
+- mksh.p:4
+- lksh.:3
+- con:2
+- mksh.post:2
+- available-:2
+- status-:2

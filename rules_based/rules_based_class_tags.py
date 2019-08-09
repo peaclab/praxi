@@ -1,8 +1,8 @@
 """ Pseudocode for rule generation """
 
-
 from collections import OrderedDict
 from orderedset import OrderedSet
+import yaml
 
 class RuleBasedTags:
     """Scikit wrapper"""
@@ -14,17 +14,46 @@ class RuleBasedTags:
         self.unknown_label = unknown_label
         self.num_rules = num_rules
 
-    def fit(self, X, y): # X is list of lists, little lists have tags, y are labels
+    def fit_all(self, vers_dics):
+        self.rules = {}
+        list_dics = {}
+        all_labels = vers_dics.keys()
+        #print(all_labels)
+        #input("Press enter to continue...")
+        for label in all_labels:
+            if label not in list_dics:
+                list_dics[label] = {}
+                list_dics[label]['X'] = []
+                list_dics[label]['y'] = []
+            rel_dics = vers_dics[label]
+            for dic in rel_dics:
+                changelist = dic['tags']
+                list_dics[label]['X'].append(changelist)
+                version = dic['version']
+                list_dics[label]['y'].append(version)
+        self.rules = OrderedDict()
+        labels = list_dics.keys()
+        for lab in labels:
+            self.rules[lab] = self.fit(list_dics[lab]['X'], list_dics[lab]['y'])
+        with open('ts_rules.yaml', 'w') as outfile:
+            yaml.dump(self.rules, outfile, default_flow_style=False)
+
+    def fit(self, X, y): # X is list of lists, little lists have tags, y are VERSIONS
         label_to_tokens = self.transform_tagsets(X, y)
+        #print(label_to_tokens)
+        #input("Enter to continue...")
         # get inverse map
         token_to_labels = get_token_to_labels(label_to_tokens)
         # get map from labels to categorized tokens
         label_to_token_groups = get_label_to_token_groups(token_to_labels)
-        # find duplicates and filter them out
+            # find duplicates and filter them out
         duplicates = get_duplicates(label_to_tokens, token_to_labels, label_to_token_groups)
+        delete = []
         for k in label_to_tokens:
             if k in duplicates:
-                del label_to_tokens[k]
+                delete.append(k)
+        for d in delete:
+            del label_to_tokens[d]
         # get inverse map again
         token_to_labels = get_token_to_labels(label_to_tokens)
         # get map from pabels to categorized items AGAIN
@@ -33,13 +62,42 @@ class RuleBasedTags:
         rules = get_rules(label_to_tokens, token_to_labels, label_to_token_groups,
                           limit=self.num_rules, max_index=self.max_index,
                           string_rules=self.string_rules)
-        self.rules=OrderedDict()
+        rule_dic = OrderedDict()
+
+        # make rules a dictionary with keys being labels
+
         for k, v in rules.items():
             if k in y:
-                self.rules[k] = v
-        print("Finished rule generation")
+                rule_dic[k] = v
+        #print(rule_dic)
+        #input("Enter to continue...")
+        return rule_dic
 
-    def predict(self, X, ntags=None):
+    def predict_all(self, sep_test_dics):
+        print("Starting predictions")
+        test_labels = sep_test_dics.keys()
+
+        preds_dic = {}
+        list_dics = {}
+        for label in test_labels:
+            if label not in list_dics:
+                list_dics[label] = []
+                rel_dics = sep_test_dics[label]
+                for dic in rel_dics:
+                    tags = dic['tags']
+                    list_dics[label].append(tags)
+        #print("Rule labels:")
+        #print(self.rules.keys())
+        #input("Press enter to continue...")
+        for label in list_dics.keys():
+            #print(label)
+            #print(list_dics[label])
+            #input("Press enter to continue...")
+            rel_rules = self.rules[label]
+            preds_dic[label] = self.predict(list_dics[label], rel_rules)
+        return preds_dic
+
+    def predict(self, X, rel_rules, ntags=None):
         if ntags is None:
             unravel_result = True
             ntags = [1 for _ in range(len(X))]
@@ -48,15 +106,17 @@ class RuleBasedTags:
         predictions = []
         for n_preds, tags in zip(ntags, X):
             cur_predictions = {}
-            for label_tested, label_rules in self.rules.items():
+            for label_tested, label_rules in rel_rules.items():
                 n_rules_satisfied = 0
                 n_rules = len(label_rules)
                 if n_rules == 0:
-                    print(label_tested, " has no rules")
+                    #print(label_tested, " has no rules")
                     continue
                 for rule in label_rules:
                     rule_satisfied = True
                     for triplet in rule:
+                        #print(triplet)
+                        #input("Press enter to continue...")
                         token = triplet[0]
                         inside = (triplet[1] != 'outside vs')
                         if inside == (len([v for v in tags
@@ -123,6 +183,10 @@ class RuleBasedTags:
                 newres[label].add(token)
         return newres
 
+    def clear():
+        # clear rules
+        self.rules = OrderedDict()
+
 def get_token_to_labels(label_to_tokens):
     """ Returns inverse map: from tokens to sets of labels """
     token_to_labels = OrderedDict()
@@ -148,8 +212,6 @@ def get_label_to_token_groups(token_to_labels):
             if index not in label_to_token_groups[label]:
                 label_to_token_groups[label][index] = OrderedSet()
             label_to_token_groups[label][index].add(token)
-    print(label_to_token_groups['mgetty-voice'])
-    input("Enter to continue...")
     return label_to_token_groups
 
 def get_duplicates(label_to_tokens, token_to_labels, label_to_token_groups):
@@ -169,7 +231,7 @@ def get_duplicates(label_to_tokens, token_to_labels, label_to_token_groups):
                 continue
             if label_to_tokens[label] == label_to_tokens[other_label]:
                 duplicates.add(other_label)
-                print("Duplicates:". label, other_label)
+                print("Duplicates:", label, other_label)
         return duplicates
 
 def get_rules(label_to_tokens, token_to_labels, label_to_token_groups,
@@ -212,7 +274,8 @@ def get_rules_per_label(label, label_to_tokens, token_to_labels, label_to_token_
                     label_to_tokens[other_label]
                 minus_diff = label_to_tokens[other_label] - \
                     label_to_tokens[label]
-                assert(len(plus_diff)+len(minus_diff)) > 0
+
+                #assert(len(plus_diff)+len(minus_diff)) > 0
                 plus_diff -= used_tokens
                 minus_diff -= used_tokens
                 if len(plus_diff) > 0:
@@ -234,5 +297,5 @@ def get_rules_per_label(label, label_to_tokens, token_to_labels, label_to_token_
                 used_tokens.add(triplet[0])
             if len(rules) >= limit:
                 return rules
-    print(rules)
+    #print(rules)
     return rules

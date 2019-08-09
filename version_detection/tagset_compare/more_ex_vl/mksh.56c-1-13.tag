@@ -1,0 +1,22 @@
+id: 0
+label: mksh
+tags:
+- ksh.:7
+- lksh.:3
+- mksh-static.:3
+- mksh:66
+- dpkg:32
+- mksh.:25
+- check.:6
+- update:10
+- 000:7
+- mksh.pre:2
+- mksh.p:4
+- tmp.:9
+- status-:2
+- con:2
+- mksh.post:2
+- zh_:4
+- pre:2
+- mksh16:4
+version: 56c-1

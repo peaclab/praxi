@@ -1,0 +1,64 @@
+file exists
+file exists
+file exists
+file exists
+file exists
+file exists
+file exists
+file exists
+file exists
+file exists
+file exists
+file exists
+file exists
+no file
+file exists
+file exists
+file exists
+file exists
+file exists
+file exists
+file exists
+file exists
+file exists
+file exists
+file exists
+file exists
+file exists
+no file
+will create pickle file
+vw took this many seconds:  1.4225480556488037
+Starting predictions
+vw took this many seconds:  1.3924095630645752
+Starting predictions
+vw took this many seconds:  1.4706096649169922
+Starting predictions
+vw took this many seconds:  1.2946081161499023
+Starting predictions
+vw took this many seconds:  1.4258418083190918
+Starting predictions
+vw took this many seconds:  1.320521354675293
+Starting predictions
+vw took this many seconds:  1.434908151626587
+Starting predictions
+vw took this many seconds:  1.3984153270721436
+Starting predictions
+vw took this many seconds:  1.4294936656951904
+Starting predictions
+vw took this many seconds:  1.4249746799468994
+Starting predictions
+['virt-top', 'ipvsadm', 'lynx', 'subversion', 'paps', 'dwz', 'nasm', 'dstat', 'mc', 'mksh', 'iptraf-ng', 'marisa', 'mgetty-voice', 'ksh', 'mrtg', 'crash', 'logwatch', 'pax', 'powertop', 'units', 'mstflint', 'lftp', 'transfig', 'rrdtool', 'bind9', 'dovecot-core', 'memcached']
+file exists
+file exists
+file exists
+file exists
+file exists
+file exists
+file exists
+file exists
+file exists
+file exists
+file exists
+file exists
+file exists
+no file

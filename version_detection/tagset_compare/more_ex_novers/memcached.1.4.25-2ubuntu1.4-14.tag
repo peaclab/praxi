@@ -1,0 +1,26 @@
+id: 0
+label: memcached
+tags:
+- sys:16
+- update:15
+- dpkg:33
+- zh_:2
+- memcached:80
+- README.:10
+- memcached.:36
+- 001:2
+- tmp.:8
+- 000:10
+- sta:7
+- memcached.conf:4
+- protocol:6
+- damemtop.:5
+- .depend.:3
+- con:2
+- deb-systemd-helper-:5
+- memcached.post:2
+- memcached.p:3
+- .depend.st:2
+- status-:2
+- memcached.service.d:2
+- .state:2

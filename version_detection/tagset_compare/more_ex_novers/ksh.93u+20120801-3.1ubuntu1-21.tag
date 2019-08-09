@@ -1,0 +1,21 @@
+id: 0
+label: ksh
+tags:
+- ksh.:31
+- ksh:56
+- dpkg:29
+- update:9
+- 000:6
+- tmp.:8
+- con:2
+- status-:2
+- ksh.dpkg-:19
+- shcomp.:5
+- RELEASE:4
+- zh_:4
+- rksh.:3
+- rksh:8
+- ksh.post:2
+- ksh.p:3
+- ksh93.:3
+- rksh93.:3

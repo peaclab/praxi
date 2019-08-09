@@ -1,0 +1,24 @@
+id: 0
+label: memcached.1.5.6-0ubuntu1.1
+tags:
+- dpkg:32
+- update:14
+- 000:10
+- sys:13
+- memcached.post:2
+- memcached.p:3
+- memcached.:36
+- memcached:62
+- README.:8
+- system:12
+- deb-systemd-helper-:3
+- status-:2
+- sta:5
+- protocol:6
+- tmp.:8
+- tmp:10
+- zh_:4
+- con:2
+- memcached.conf.d:3
+- memcached.conf:5
+- memcached.service.d:2

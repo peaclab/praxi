@@ -1,0 +1,20 @@
+id: 0
+label: ipvsadm
+tags:
+- update:15
+- tmp.:8
+- dpkg:33
+- 001:2
+- 000:10
+- zh_:2
+- ipvsadm.:17
+- ipvsadm:26
+- .depend.st:2
+- .depend.:3
+- con:2
+- sys:3
+- ipvsadm.p:3
+- status-:2
+- ipvsadm-:4
+- ipvsadm.post:2
+version: 1:1.28-3ubuntu0.16.04.1

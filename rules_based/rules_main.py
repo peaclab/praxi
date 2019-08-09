@@ -52,8 +52,10 @@ from sklearn import metrics
 from sklearn.multiclass import OneVsRestClassifier
 from sklearn.preprocessing import MultiLabelBinarizer
 
-#from hybrid_tags import Hybrid
-from rules_based_class_tags import RuleBasedTags
+from hybrid_tags import Hybrid
+from rules_based_class_changes import RuleBasedTags
+from collections import OrderedDict
+from orderedset import OrderedSet
 
 
 LOCK = Lock()
@@ -66,23 +68,55 @@ def parse_ts(tagset_names, ts_dir):
     #            - ts_dir: the directory in which they are located
     # Returns: - tags: list of lists-- tags for each tagset name
     #          - labels: application name corresponding to each tagset
-    tags = []
-    labels = []
+    #tags = []
+    #labels = []
+    tagsets = []
     for ts_name in tqdm(tagset_names):
             ts_path = ts_dir + '/' + ts_name
             tagset = get_tagset(ts_path)
-            if 'labels' in tagset:
-                # Multilabel changeset
-                labels.append(tagset['labels'])
-            else:
-                labels.append(tagset['label'])
-            tags.append(tagset['tags'])
-    return tags, labels
+            tagsets.append(tagset)
+    return tagsets
 
-def get_tagset(ts_path): # combine with parse_ts
+def parse_ts_ct(names, ts_dir, cs_dir):
+    # Arguments: - tagset_names: a list of names of tagsets
+    #            - ts_dir: the directory in which they are located
+    # Returns: - tags: list of lists-- tags for each tagset name
+    #          - labels: application name corresponding to each tagset
+    tagsets = []
+    for name in tqdm(names):
+            ts_path = ts_dir + '/' + name + '.tag'
+            cs_path = cs_dir + '/' + name + '.yaml'
+            tagset = get_set(ts_path)
+            tagset['name'] = name
+            changeset = get_set(cs_path)
+            tagset['changes'] = changeset['changes']
+            tagsets.append(tagset)
+    return tagsets
+
+def parse_ts_nofreq(tagset_names, ts_dir):
+    # Arguments: - tagset_names: a list of names of tagsets
+    #            - ts_dir: the directory in which they are located
+    # Returns: - tags: list of lists-- tags for each tagset name
+    #          - labels: application name corresponding to each tagset
+    #tags = []
+    #labels = []
+    tagsets = []
+    for ts_name in tqdm(tagset_names):
+            ts_path = ts_dir + '/' + ts_name
+            tagset = get_tagset(ts_path)
+            cur_tags = tagset['tags']
+            new_tags = []
+            for tag in cur_tags:
+                just_tag = tag.split(':')[0]
+                new_tags.append(just_tag)
+            tagset['tags'] = new_tags
+            tagsets.append(tagset)
+    return tagsets
+
+def get_set(dat_path): # combine with parse_ts
     # Argument: - complete path to a tagset .yaml file
     # Returns:  - tagset dictionary contained in file (tags, labels)
-    with open(ts_path, 'r') as stream:
+    with open(dat_path, 'r') as stream:
         data_loaded = yaml.load(stream)
     return data_loaded
 
@@ -139,89 +173,130 @@ def fold_partitioning(ts_names, n=3):
 #################################
 #### SINGLE LABEL EXPERIMENT ####
 #################################
-def single_label_experiment(nfolds, tr_path, resfile_name, outdir, vwargs, result_type, ts_path=None, print_misses=False):
+def single_label_experiment(nfolds, tr_path, cs_path, resfile_name, outdir, vwargs, result_type, ts_path=None, print_misses=False):
     # instantiate hybrid object
     suffix = 'single'
-    clf = RuleBasedTags(num_rules=6)
-    #clf = Hybrid(freq_threshold=2, pass_freq_to_vw=True, probability=False,
-    #             vw_args=vwargs, suffix=suffix, iterative=False,
-    #             use_temp_files=True)
+    rules_clf = RuleBasedTags(num_rules=6)
+    praxi_clf = Hybrid(freq_threshold=2, pass_freq_to_vw=True, probability=False,
+                 vw_args=vwargs, suffix=suffix, iterative=False,
+                 use_temp_files=True)
     resfile = open(resfile_name, 'wb')
     results = []
     if(ts_path==None): # folds!
+        all_wrong = []
         tr_names = [f for f in listdir(tr_path) if (isfile(join(tr_path, f))and f[-3:]=='tag')]
+
+        names_no_ext = [name[:-4] for name in tr_names]
+
+        cs_names = [f for f in listdir(cs_path) if (isfile(join(cs_path, f))and f[-4:]=='yaml')]
+
         random.shuffle(tr_names)
-        logging.info("Partitioning into %d folds", nfolds)
-        folds = fold_partitioning(tr_names, n=nfolds)
-        logging.info("Starting cross validation folds: ")
-        #
-        tags = []
-        labels = []
-        for fold in folds:
-            curtags, curlabels = parse_ts(fold, tr_path)
-            tags.append(curtags)
-            labels.append(curlabels)
+        #logging.info("Partitioning into %d folds", nfolds)
+        folds = fold_partitioning(names_no_ext, n=nfolds)
+        #logging.info("Starting cross validation folds: ")
 
         for idx in range(len(folds)):
             # take current fold to be the "test", use the rest as training
             logging.info("Test fold is: %d", idx)
             #test_tagset_names = fold
-            test_tags = tags[idx]
-            test_labels = labels[idx]
-            train_idx_list = list(range(len(folds)))
-            train_idx_list.remove(idx)
-            logging.info("Training folds: %s", str(train_idx_list))
-            train_tags = []
-            train_labels = []
-            for i in train_idx_list:
-                train_tags += tags[i]
-                train_labels += labels[i]
+            test_names = folds[idx]
+            train_names_list = list(range(len(folds)))
+            train_names_list.remove(idx)
+            #logging.info("Training folds: %s", str(train_idx_list))
+            train_names = []
+            for i in train_names_list:
+                train_names += folds[i]
 
-            true_labels, preds = get_scores(clf, train_tags, train_labels, test_tags, test_labels)
-            results.append((true_labels, preds))
-            if print_misses:
-                print("Misclassified labels for fold:", idx)
-                for label, pred in zip(true_labels, preds):
-                    if label != pred:
-                        print('label:',label,'prediction:',pred)
+            train_dics = parse_ts_ct(train_names, tr_path, cs_path)
+            test_dics = parse_ts_ct(test_names, tr_path, cs_path)
+
+            labels, preds, wrong_labs = get_scores(rules_clf, praxi_clf, train_dics, test_dics, outdir)
+            all_wrong += wrong_labs
+            results.append((labels, preds))
+
 
     else: # no folds/crossvalidation
         # get traintags, trainlabels, etc from ts_path, tr_path
         ts_train_names = [f for f in listdir(tr_path) if (isfile(join(tr_path, f))and f[-3:]=='tag')]
         ts_test_names = [f for f in listdir(ts_path) if (isfile(join(ts_path, f)) and f[-3:]=='tag')]
 
-        train_tags, train_labels = parse_ts(ts_train_names, ts_train_path)
-        test_tags, test_labels = parse_ts(ts_test_names, ts_test_path)
+        train_dic = parse_ts(ts_train_names, ts_train_path)
+        test_dic = parse_ts(ts_test_names, ts_test_path)
 
-        logging.info("Getting single label scores:")
-        labels, preds = get_scores(clf, train_tags, train_labels, test_tags, test_labels)
+        labels, preds = get_scores(rules_clf, praxi_clf, train_dics, test_dics, outdir)
         results.append((labels, preds))
 
-        if print_misses:
-            print("Misclassified labels:")
-            for label, pred in zip(labels, preds):
-                if label != pred:
-                    print('label:',label,'prediction:',pred)
+        #logging.info("Getting single label scores:")
+        #labels, preds = get_scores(clf, train_tags, train_labels, test_tags, test_labels)
 
+        #results.append((labels, preds))
+
+    all_wrong = list(dict.fromkeys(all_wrong))
+    print(all_wrong)
     pickle.dump(results, resfile)
     # results is a list of tuples!!
     resfile.close()
     logging.info("Printing results:")
+
+    # Print results twice!!! One = just label accuracy, two = label and version
     print_results(resfile_name, outdir, result_type)
 
-def get_scores(clf, train_tags, train_labels, test_tags, test_labels,
-               binarize=False, store_true=False):
-    """ Gets two lists of changeset ids, does training+testing """
-    if binarize:
-        binarizer = MultiLabelBinarizer()
-        clf.fit(train_tags, binarizer.fit_transform(train_labels))
-        preds = binarizer.inverse_transform(clf.predict(test_labels))
-    else:
-        logging.info("Fitting model:")
-        clf.fit(train_tags, train_labels) # train model
-        logging.info("Generating predictions:")
-        preds = clf.predict(test_tags) # predict labels for test set
-    return copy.deepcopy(test_labels), preds
+def get_scores(rules_clf, praxi_clf, train_dics, test_dics, outdir):
+
+        # fit Praxi
+        train_labels = []
+        train_tags = []
+        test_tags = []
+        #test_labels = []
+
+        # separate into tags, labels lists
+        for dic in train_dics:
+            train_labels.append(dic['label'])
+            train_tags.append(dic['tags'])
+        for dic in test_dics:
+            test_tags.append(dic['tags'])
+
+        praxi_clf.fit(train_tags, train_labels)
+        lab_preds = praxi_clf.predict(test_tags)
+
+        for pred, dic in zip(lab_preds, test_dics):
+            dic['label_prediction'] = pred
+
+        # fit rule-based
+
+        # training set separated by CORRRECT label
+        # DICTIONARY: key = label, value = dic list
+        rule_training_set = sep_dics(train_dics)
+
+        rules_clf.fit_all(rule_training_set)
+
+        # test set separated by label PREDICTION from Praxi
+        separated_test_set = sep_dics(test_dics, guide='label_prediction')
+
+        preds = rules_clf.predict_all(separated_test_set)
+
+        # Now: evaluate performance!
+        # turn into two lists of labels, preds
+        full_labels = []
+        full_preds = []
+        apps = separated_test_set.keys()
+        for app in apps:
+            cur_dics = separated_test_set[app]
+            cur_preds = preds[app]
+            for cd, cp in zip (cur_dics, cur_preds):
+                full_labels.append(cd['label'] + '.' + cd['version'])
+                full_preds.append(app + '.' + cp)
+
+        wrong_labs = []
+        for l, p in zip (full_labels, full_preds):
+            if l != p:
+                just_lab = l.split('.')[0]
+                if just_lab not in wrong_labs:
+                    wrong_labs.append(just_lab)
+        #print(wrong_labs)
+
+        return full_labels, full_preds, wrong_labs
+
 
 def print_results(resfile, outdir, result_type='summary', n_strats=1, args=None, iterative=False):
     """ Calculate result statistics and print them to result file
@@ -336,11 +411,52 @@ def print_results(resfile, outdir, result_type='summary', n_strats=1, args=None,
             savetxt("{}".format(fname),
                     confuse, fmt='%d', header=file_header, delimiter=',',comments='')
 
+def sep_apps(tag_dics):
+    """ Returns a dictionary where the keys are label names and the values are
+        lists of tags and corresponding versions"""
+    app_names = OrderedDict()
+    # get all labels
+    for dic in tag_dics:
+        # do stuff
+        a_name = dic['label']
+        if a_name not in app_names:
+            app_namesa[a_name] = []
+    for dic in tag_dics:
+        a_name = dic['label']
+        app_names[a_name].append([dic['tags'], dic['version']])
+
+    return app_names
+
+def sep_dics(dic_list, guide='label'):
+    app_names = {}
+    # get all names
+    for dic in dic_list:
+        # do stuff
+        label = dic[guide]
+        if label not in app_names:
+            app_names[label] = []
+
+    for dic in dic_list:
+        label = dic[guide]
+        app_names[label].append(dic)
+
+    return app_names
+
+"""def remove_freq(tag_dics):
+    dics_again = copy.deepcopy(tag_dics)
+    for dic in dics_again:
+        cur_tags = dic['tags']
+        new_tags = []
+        for tag in cur_tags:
+            just_tag = tag.split(':')[0]
+            new_tags.append(just_tag)
+        dic['tags'] = new_tags"""
 
 if __name__ == '__main__':
     prog_start = time.time()
 
     parser = argparse.ArgumentParser(description='Arguments for Praxi software discovery algorithm.')
+    parser.add_argument('-c', '--changedir', help='Training changesets for generating rules', default=None)
     parser.add_argument('-t','--traindir', help='Path to training tagset directory.', default=None)
     parser.add_argument('-s', '--testdir', help='Path to testing tagset directoy.', default=None)
     parser.add_argument('-o', '--outdir', help='Path to desired result directory', default='.')
@@ -363,6 +479,8 @@ if __name__ == '__main__':
     outdir = os.path.abspath(args['outdir'])
     nfolds = int(args['nfolds'])
     ts_train_path = args['traindir']
+    cs_train_path = args['changedir']
+
     ts_test_path = args['testdir']
 
     # SET UP LOGGING
@@ -401,7 +519,7 @@ if __name__ == '__main__':
                 logging.info("Starting cross validation single label experiment with %s folds", str(nfolds))
                 logging.info("Tagset directory: %s", ts_train_path)
             resfile_name = get_free_filename('single_test', outdir, '.p') # add arg to set stub?
-            single_label_experiment(nfolds, ts_train_path, resfile_name, outdir, vwargs, result_type,
+            single_label_experiment(nfolds, ts_train_path, cs_train_path, resfile_name, outdir, vwargs, result_type,
                                     ts_path=ts_test_path, print_misses=print_misses) # no train directory
         else: # multi
             if(nfolds == 1):

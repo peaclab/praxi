@@ -1,0 +1,6 @@
+changes:
+- /var/log/auth.log
+close_time: 1564413748.8869274
+label: bacula-client
+open_time: 1564413741.3280954
+version: 5.2.6+dfsg-9.1ubuntu3

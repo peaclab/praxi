@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from collections import OrderedDict
-from ordered_set import OrderedSet
+from orderedset import OrderedSet
 import logging
 
 
@@ -35,7 +35,9 @@ class RuleBased:
         # Get the map from labels to categorized tokens
         label_to_token_groups = get_label_to_token_groups(token_to_labels)
         # Find duplicates
-        duplicates = get_duplicates(label_to_tokens, token_to_labels,
+        print(label_to_token_groups)
+        input("Enter to continue...")
+        """duplicates = get_duplicates(label_to_tokens, token_to_labels,
                                     label_to_token_groups)
         # Filter out duplicates from the corpus
         for k in label_to_tokens:
@@ -44,7 +46,7 @@ class RuleBased:
         # Again get the inverse map
         token_to_labels = get_token_to_labels(label_to_tokens)
         # Again get the map from labels to categorized tokens
-        label_to_token_groups = get_label_to_token_groups(token_to_labels)
+        label_to_token_groups = get_label_to_token_groups(token_to_labels)"""
         # Generate rules for all labels
         rules = get_rules(label_to_tokens, token_to_labels,
                           label_to_token_groups, limit=self.num_rules,
@@ -61,7 +63,7 @@ class RuleBased:
     def predict(self, X, csids=None, ntags=None):
         if ntags is None:
             unravel_result = True
-            ntags = [1 for _ in len(X)]
+            ntags = [1 for _ in range(len(X))]
         else:
             unravel_result = False
         predictions = []
@@ -151,6 +153,8 @@ class RuleBased:
         for label in res:
             newres[label] = OrderedSet()
             maxval = max(res[label].values())
+            print(maxval)
+            input("Enter to continue...")
             for token in sorted(res[label], key=res[label].get, reverse=True):
                 mystery_vlad_condition = (
                     (res[label][token] != maxval
@@ -319,3 +323,24 @@ def get_rules(label_to_tokens, token_to_labels, label_to_token_groups,
             label, label_to_tokens, token_to_labels,
             label_to_token_groups, limit, max_index, string_rules)
     return rules
+
+
+"""
+mystery_vlad_condition = (
+
+        (res[label][token] != maxval and len(newres[label]) > 50) or
+
+        (res[label][token] < 0.94 * maxval and len(newres[label]) >= 40) or
+
+        (res[label][token] < 0.88 * maxval and len(newres[label]) >= 26) or
+
+        (res[label][token] < 0.8 * maxval and len(newres[label]) >= 16) or
+
+        (res[label][token] < 0.7 * maxval and len(newres[label]) >= 10) or
+
+        (res[label][token] < 0.6 * maxval and len(newres[label]) >= 8) or
+
+        (res[label][token] < 0.5 * maxval and len(newres[label]) >= 6)
+
+        )
+"""

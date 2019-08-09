@@ -1,0 +1,22 @@
+id: 0
+label: ksh
+tags:
+- ksh.dpkg-:19
+- ksh.:31
+- ksh:66
+- ksh93.:3
+- RELEASE:6
+- update:9
+- tmp.:8
+- dpkg:29
+- 000:6
+- rksh:8
+- zh_:4
+- con:2
+- status-:2
+- rksh93.:3
+- shcomp.:5
+- rksh.:3
+- ksh.post:2
+- ksh.p:3
+version: 93u+20120801-3.1ubuntu1

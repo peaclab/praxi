@@ -1,0 +1,21 @@
+id: 0
+label: lftp
+tags:
+- man:61
+- dpkg:25
+- lftp.:25
+- lftp:58
+- update:13
+- tmp.:5
+- lftpget.:3
+- README.:9
+- 000:10
+- import-n:6
+- icon:5
+- lftp.d:16
+- lftp.conf.:3
+- lftp.conf:4
+- zh_:4
+- status-:2
+- app:4
+- con:5

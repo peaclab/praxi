@@ -1,0 +1,75 @@
+file exists
+file exists
+file exists
+file exists
+file exists
+file exists
+file exists
+file exists
+file exists
+file exists
+file exists
+file exists
+file exists
+file exists
+file exists
+file exists
+file exists
+no file
+file exists
+file exists
+file exists
+file exists
+file exists
+file exists
+file exists
+file exists
+file exists
+file exists
+file exists
+file exists
+file exists
+file exists
+file exists
+file exists
+file exists
+no file
+will create pickle file
+vw took this many seconds:  1.7094535827636719
+Starting predictions
+vw took this many seconds:  1.3432378768920898
+Starting predictions
+vw took this many seconds:  1.375901699066162
+Starting predictions
+vw took this many seconds:  1.419917106628418
+Starting predictions
+vw took this many seconds:  1.3996508121490479
+Starting predictions
+vw took this many seconds:  1.3747456073760986
+Starting predictions
+vw took this many seconds:  1.4320251941680908
+Starting predictions
+vw took this many seconds:  1.41780424118042
+Starting predictions
+vw took this many seconds:  1.3888838291168213
+Starting predictions
+vw took this many seconds:  1.344395637512207
+Starting predictions
+['virt-top', 'mrtg', 'iptraf-ng', 'lftp', 'telnetd', 'dovecot-core', 'lynx', 'bind9', 'transfig', 'mksh', 'memcached', 'mgetty-voice', 'logwatch', 'crash', 'marisa', 'powertop', 'paps', 'ipvsadm', 'dstat', 'nasm', 'samba', 'unbound', 'dwz', 'pax', 'subversion', 'units', 'mc', 'sane']
+file exists
+file exists
+file exists
+file exists
+file exists
+file exists
+file exists
+file exists
+file exists
+file exists
+file exists
+file exists
+file exists
+file exists
+file exists
+file exists
+no file

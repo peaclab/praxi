@@ -1,0 +1,27 @@
+id: 0
+label: smartmontools.6.5+svn4324-1
+tags:
+- man:65
+- dpkg:37
+- tmp.:9
+- pre:2
+- smartmontools.:34
+- smart:80
+- Example:12
+- system:14
+- sys:15
+- update:19
+- 000:10
+- smartd.service.d:2
+- smartd.:13
+- smartd:18
+- zh_:4
+- con:2
+- smartmontools.pre:2
+- smartmontools.p:4
+- smartctl.:3
+- smartmontools.post:2
+- 001:4
+- deb-systemd-helper-:3
+- smartd.conf.:5
+- status-:2

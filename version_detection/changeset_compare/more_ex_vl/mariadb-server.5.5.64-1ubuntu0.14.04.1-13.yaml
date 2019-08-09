@@ -1,0 +1,10 @@
+changes:
+- /var/log/auth.log
+- /var/log/apt/term.log
+- /var/log/apt/history.log
+- /var/lib/dpkg/lock
+- /var/log/syslog
+close_time: 1564424407.9194775
+label: mariadb-server
+open_time: 1564424400.3339643
+version: 5.5.64-1ubuntu0.14.04.1

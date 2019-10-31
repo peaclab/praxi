@@ -1,0 +1,35 @@
+changes:
+- /usr/share/doc/virt-top/changelog.Debian.gz
+- /usr/share/man/man1/virt-top.1.gz
+- /var/lib/dpkg/updates/0001
+- /var/log/apt/term.log
+- /usr/share/doc/virt-top/README
+- /var/lib/dpkg/info/virt-top.md5sums
+- /var/lib/dpkg/updates/0000
+- /usr/share/man/man1/virt-top.1.gz.dpkg-new
+- /var/log/dpkg.log
+- /usr/share/doc/virt-top.dpkg-new/TODO
+- /var/lib/dpkg/updates/tmp.i
+- /usr/bin/virt-top
+- /usr/share/doc/virt-top.dpkg-new/copyright
+- /var/lib/dpkg/updates/0003
+- /var/log/auth.log
+- /var/lib/dpkg/tmp.ci/control
+- /usr/share/doc/virt-top/TODO
+- /var/lib/dpkg/info/virt-top.list
+- /usr/share/doc/virt-top.dpkg-new/README
+- /usr/share/doc/virt-top.dpkg-new/changelog.Debian.gz
+- /var/lib/dpkg/updates/0002
+- /var/lib/dpkg/lock
+- /var/log/apt/history.log
+- /var/lib/dpkg/info/virt-top.list-new
+- /var/lib/dpkg/tmp.ci/md5sums
+- /usr/share/doc/virt-top/copyright
+- /usr/bin/virt-top.dpkg-new
+- /var/lib/dpkg/triggers/Lock
+label: virt-top
+tags:
+- virt-top.:10
+- 000:4
+- tmp.:3
+version: 1.0.7-1

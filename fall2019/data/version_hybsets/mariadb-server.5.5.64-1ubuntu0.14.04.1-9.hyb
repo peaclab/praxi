@@ -1,0 +1,34 @@
+changes:
+- /var/lib/dpkg/status-old
+- /var/lib/dpkg/info/mariadb-server.md5sums
+- /usr/share/doc/mariadb-server.dpkg-new/changelog.Debian.gz
+- /var/lib/dpkg/info/mariadb-server.list
+- /var/lib/dpkg/status-new
+- /var/log/apt/term.log
+- /var/lib/dpkg/tmp.ci/control
+- /var/lib/dpkg/available
+- /var/lib/dpkg/info/mariadb-server.list-new
+- /var/lib/dpkg/updates/0000
+- /var/log/apt/history.log
+- /var/lib/dpkg/updates/0001
+- /var/log/dpkg.log
+- /var/lib/dpkg/triggers/Lock
+- /usr/share/doc/mariadb-server/changelog.Debian.gz
+- /var/lib/dpkg/available-old
+- /var/lib/dpkg/updates/0002
+- /var/log/auth.log
+- /var/lib/dpkg/tmp.ci/md5sums
+- /var/lib/dpkg/available-new
+- /var/lib/dpkg/status
+- /usr/share/doc/mariadb-server/copyright
+- /usr/share/doc/mariadb-server.dpkg-new/copyright
+- /var/lib/dpkg/lock
+- /var/lib/dpkg/updates/tmp.i
+label: mariadb-server
+tags:
+- status-:2
+- mariadb-server.:5
+- tmp.:3
+- 000:3
+- available-:2
+version: 5.5.64-1ubuntu0.14.04.1

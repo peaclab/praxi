@@ -1,0 +1,27 @@
+changes:
+- /usr/sbin/powertop.dpkg-new
+- /var/lib/dpkg/updates/0001
+- /var/lib/dpkg/updates/tmp.i
+- /usr/share/doc/powertop/copyright
+- /usr/share/man/man8/powertop.8.gz.dpkg-new
+- /var/lib/dpkg/triggers/Lock
+- /var/lib/dpkg/tmp.ci/postrm
+- /var/lib/dpkg/updates/0000
+- /usr/share/doc/powertop/copyright.dpkg-new
+- /var/lib/dpkg/tmp.ci/control
+- /usr/share/doc/powertop/changelog.Debian.gz.dpkg-new
+- /var/log/apt/history.log
+- /var/log/apt/term.log
+- /var/lib/dpkg/lock
+- /usr/share/doc/powertop.dpkg-new/changelog.Debian.gz
+- /var/log/dpkg.log
+- /usr/share/doc/powertop.dpkg-new/copyright
+- /var/lib/dpkg/tmp.ci/md5sums
+- /usr/share/doc/powertop/changelog.Debian.gz
+- /var/log/auth.log
+label: powertop
+tags:
+- powertop.:4
+- 000:2
+- tmp.:4
+version: 2.5-1ubuntu1

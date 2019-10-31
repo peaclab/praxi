@@ -1,6 +1,0 @@
-changes:
-- /var/log/auth.log
-close_time: 1564424297.0758188
-label: mariadb-server
-open_time: 1564424289.5172856
-version: 5.5.64-1ubuntu0.14.04.1

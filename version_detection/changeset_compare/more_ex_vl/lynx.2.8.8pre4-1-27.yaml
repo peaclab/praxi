@@ -1,9 +1,0 @@
-changes:
-- /var/lib/dpkg/lock
-- /var/log/apt/history.log
-- /var/log/auth.log
-- /var/log/apt/term.log
-close_time: 1564427630.3381603
-label: lynx
-open_time: 1564427622.7505524
-version: 2.8.8pre4-1

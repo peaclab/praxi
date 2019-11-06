@@ -1,0 +1,61 @@
+will create pickle file
+vw took this many seconds:  1.2518043518066406
+Number of rules:  128
+Number of apps:  45
+Number of versions:  130
+Number of incorrect app names:  3
+Starting predictions
+vw took this many seconds:  1.857506275177002
+Number of rules:  256
+Number of apps:  90
+Number of versions:  260
+Number of incorrect app names:  5
+Starting predictions
+vw took this many seconds:  1.4658560752868652
+Number of rules:  386
+Number of apps:  135
+Number of versions:  390
+Number of incorrect app names:  0
+Starting predictions
+vw took this many seconds:  1.5852019786834717
+Number of rules:  514
+Number of apps:  180
+Number of versions:  520
+Number of incorrect app names:  1
+Starting predictions
+vw took this many seconds:  1.5131821632385254
+Number of rules:  642
+Number of apps:  225
+Number of versions:  650
+Number of incorrect app names:  4
+Starting predictions
+vw took this many seconds:  1.6507420539855957
+Number of rules:  770
+Number of apps:  270
+Number of versions:  780
+Number of incorrect app names:  1
+Starting predictions
+vw took this many seconds:  1.6531345844268799
+Number of rules:  898
+Number of apps:  315
+Number of versions:  910
+Number of incorrect app names:  4
+Starting predictions
+vw took this many seconds:  1.4235501289367676
+Number of rules:  1028
+Number of apps:  360
+Number of versions:  1040
+Number of incorrect app names:  3
+Starting predictions
+vw took this many seconds:  1.530428409576416
+Number of rules:  1156
+Number of apps:  405
+Number of versions:  1170
+Number of incorrect app names:  2
+Starting predictions
+vw took this many seconds:  1.2441802024841309
+Number of rules:  1284
+Number of apps:  450
+Number of versions:  1300
+Number of incorrect app names:  4
+Starting predictions

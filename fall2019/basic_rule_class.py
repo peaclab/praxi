@@ -11,8 +11,11 @@ class RuleBasedTags:
         self.string_rules = string_rules
         self.unknown_label = unknown_label
         self.num_rules = num_rules
+        self.total_rules = 0;
+        self.total_apps = 0;
+        self.total_versions = 0;
 
-    def fit_all(self, vers_dics):
+    def fit_all(self, vers_dics): # fit wrapper
         self.rules = {}
         list_dics = {}
         all_labels = vers_dics.keys()
@@ -23,6 +26,7 @@ class RuleBasedTags:
                 list_dics[label] = {}
                 list_dics[label]['X'] = []
                 list_dics[label]['y'] = []
+                self.total_apps += 1
             rel_dics = vers_dics[label]
             for dic in rel_dics:
                 changelist = dic['changes']
@@ -37,67 +41,56 @@ class RuleBasedTags:
             yaml.dump(self.rules, outfile, default_flow_style=False)
 
     #def fit(self, X, y): # X is list of lists, little lists have tags, y are VERSIONS
-    def fit(self,X,y):
+    def fit(self,X,y,max_num_rules=1):
         # find intersection of ALL changes
-        X_sets = []
-        for changes in X:
-            X_sets.append(set(changes))
-        #s.intersection_update(t)
-        intersection = set(X_sets[0])
-        for idx in range(1, len(X_sets)):
-            #intersection.insersection_update(all_changes[idx])
-            intersection &= X_sets[idx]
+        label_to_tokens = self.transform_tagsets(X, y)
+        labels = label_to_tokens.keys()
+        self.total_versions += len(labels)
 
-        # remove intersection from all sets
-        for l in X_sets:
-            l -= intersection
+        rules = {}
+        #for l in labels:
+        #    rules[l]=[]
+        token_to_labels = self.get_token_to_labels(label_to_tokens)
+        for token in token_to_labels.keys():
+            if len(token_to_labels[token]) == 1:
+                if token_to_labels[token][0] not in rules: # only take one rule
+                    rules[token_to_labels[token][0]] = token
+                    self.total_rules += 1
+        #print("Rules:", rules)
+        #input("Enter to continue");
+        return rules
 
-        # now separate by label
-        # find number of unique labels
-        y_set = set(y)
-        # convert the set to the list
-        unique_y = (list(y_set))
+    def transform_tagsets(self, tagsets, labels, take_max=False):  # Changesets as dictionaries
+        res = OrderedDict()
+        for data, label in zip(tagsets, labels):
+            for token in data:
+                if label not in res:
+                    res[label] = OrderedDict()
+                if token not in res[label]:
+                    res[label][token] = 1
+                else:
+                    res[label][token] += 1
+        newres = dict()
+        for label in res:
+            newres[label] = set()
+            maxval = max(res[label].values())
+            for token in sorted(res[label], key=res[label].get, reverse=True):
+                if res[label][token] < (maxval - 6):
+                    break
+                newres[label].add(token)
+        return newres
 
-        num_versions = len(unique_y)
+    def get_token_to_labels(self, label_to_tokens):
+        """ Returns inverse map: from tokens to sets of labels """
+        token_to_labels = OrderedDict()
+        for label in label_to_tokens:
+            for token in label_to_tokens[label]:
+                if token not in token_to_labels:
+                    token_to_labels[token] = OrderedSet()
+                token_to_labels[token].add(label)
+        return token_to_labels
 
-        # create a dictionary that will have the versions as the keys, rules as values
-        changes_dic = {}
-        rules_dic = {}
-        for lab in unique_y:
-            changes_dic[lab] = []
-            rules_dic[lab] = []
-
-        # separate changes by label
-        for label, changes in zip(y, X):
-            #print(label)
-            changes_dic[label].append(changes)
-
-        #find intersections within list
-        intersections = {}
-
-        for lab in unique_y:
-            cur_int = set(changes_dic[lab][0])
-            for i in range(1, len(changes_dic[lab])):
-                cur_int &= set(changes_dic[lab][i])
-            intersections[lab] = list(cur_int)
-
-        # create rules
-        for lab in unique_y:
-            cur_int = intersections[lab]
-            cur_other_lab = unique_y
-            cur_other_lab.remove(lab)
-            #print(indices)
-            for change in cur_int:
-                unique_rule = True
-                for y in cur_other_lab:
-                    if change in intersections[y]:
-                        unique_rule = False
-                        break
-                if unique_rule:
-                    rules_dic[lab].append(change)
-        return rules_dic
-
-    def predict_all(self, sep_test_dics):
+    def predict_all(self, sep_test_dics): # prediction wrapper
         print("Starting predictions")
         test_labels = sep_test_dics.keys()
 
@@ -112,24 +105,24 @@ class RuleBasedTags:
                     list_dics[label].append(changes)
         for label in list_dics.keys():
             rel_rules = self.rules[label]
-            print(label, rel_rules)
+            #print(label, rel_rules)
             preds_dic[label] = self.predict(list_dics[label], rel_rules)
         return preds_dic
 
     def predict(self, X, rel_rules):
         # create a list of predictions for the Xs
         #print("Number of changesets: ", len(X))
-        rule_keys = rel_rules.keys();
+        rule_keys = rel_rules.keys(); # only want rules for given app
         preds = []
         for changes in X:
             given_lab = False
-            for key in rule_keys:
-                if len(rel_rules[key]) != 0 and set(rel_rules[key]) <= set(changes):
+            for key in rule_keys: # relrules[key] will have only one element
+                if len(rel_rules[key]) != 0 and rel_rules[key] in changes:
                     preds.append(key)
                     given_lab = True
                     break
             if not given_lab:
                 preds.append("???")
-        print(preds)
+        #print("Predictions: ", preds)
         #input("Enter to continue...")
         return preds

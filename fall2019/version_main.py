@@ -81,10 +81,10 @@ def get_free_filename(stub, directory, suffix=''):
         file_candidate = '{}/{}-{}{}'.format(
             str(directory), stub, counter, suffix)
         if Path(file_candidate).exists():
-            print("file exists")
+            #print("file exists")
             counter += 1
         else:  # No match found
-            print("no file")
+            #print("no file")
             if suffix=='.p':
                 print("will create pickle file")
             elif suffix:
@@ -216,6 +216,10 @@ def get_scores(rules_clf, praxi_clf, train_dics, test_dics, outdir):
     rule_training_set = sep_dics(train_dics)
 
     rules_clf.fit_all(rule_training_set)
+
+    print("Number of rules: ", rules_clf.total_rules)
+    print("Number of apps: ", rules_clf.total_apps)
+    print("Number of versions: ", rules_clf.total_versions)
 
     lab_preds = praxi_clf.predict(test_tags)
 

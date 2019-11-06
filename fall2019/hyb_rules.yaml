@@ -1,2929 +1,861 @@
-amanda-server:
-  1:3.3.3-2ubuntu1:
-  - /usr/share/doc/amanda-server/examples/advanced.conf.gz
-  - /usr/share/doc/amanda-server.dpkg-new/examples/amanda-harddisk.conf
-  - /usr/share/doc/amanda-server.dpkg-new/examples/dumptypes.gz
-  - /usr/share/doc/amanda-server.dpkg-new/examples/README
-  - /usr/share/doc/amanda-server/examples/amanda-harddisk.conf
-  - /usr/share/doc/amanda-server.dpkg-new/examples/amanda-single-tape.conf
-  - /usr/share/doc/amanda-server.dpkg-new/examples/tapetypes.gz
-  - /usr/share/doc/amanda-server.dpkg-new/examples/amanda-S3.conf
-  - /usr/share/doc/amanda-server.dpkg-new/examples/amanda-tape-changer.conf
-  - /usr/share/doc/amanda-server/examples/README
-  - /usr/share/doc/amanda-server/examples/amanda-S3.conf
-  - /usr/share/doc/amanda-server/examples/chg-manual.conf
-  - /usr/share/doc/amanda-server.dpkg-new/examples/advanced.conf.gz
-  - /usr/share/doc/amanda-server/examples/amanda-tape-changer.conf
-  - /usr/share/doc/amanda-server/examples/amanda-single-tape.conf
-  - /usr/share/doc/amanda-server/examples/dumptypes.gz
-  - /usr/share/doc/amanda-server/examples/tapetypes.gz
-  - /usr/share/doc/amanda-server.dpkg-new/examples/chg-manual.conf
-  1:3.3.6-4.1: []
-  1:3.5.1-1build2:
-  - /usr/share/amanda/template.d/amanda-S3.conf
-  - /usr/sbin/amreindex
-  - /usr/share/amanda.dpkg-new/template.d/tapetypes
-  - /usr/lib/amanda/ambind
-  - /usr/share/amanda/template.d/amanda-CAStor.conf
-  - /var/log/apt/eipp.log.xz
-  - /usr/share/amanda/template.d/amanda-harddisk.conf
-  - /usr/share/amanda/template.d/chg-manual.conf
-  - /usr/sbin/amreindex.dpkg-new
-  - /usr/share/amanda/template.d/amanda-single-tape.conf
-  - /usr/share/amanda.dpkg-new/template.d/dumptypes
-  - /usr/share/amanda/template.d/tapetypes
-  - /usr/share/amanda.dpkg-new/template.d/amanda-CAStor.conf
-  - /usr/share/amanda/template.d/advanced.conf
-  - /usr/share/amanda.dpkg-new/template.d/chg-manual.conf
-  - /usr/share/amanda/template.d/amanda-tape-changer.conf
-  - /var/log/journal/90c213c3662a46589e220665c75c823f/system.journal
-  - /usr/sbin/ambackup.dpkg-new
-  - /usr/share/amanda.dpkg-new/template.d/README
-  - /usr/sbin/ambackup
-  - /usr/share/amanda.dpkg-new/template.d/amanda-S3.conf
-  - /usr/share/amanda.dpkg-new/template.d/amanda-harddisk.conf
-  - /usr/sbin/amssl.dpkg-new
-  - /usr/share/amanda.dpkg-new/template.d/advanced.conf
-  - /usr/sbin/amanda-rest-server
-  - /usr/share/amanda/template.d/README
-  - /usr/lib/amanda/ambind.dpkg-new
-  - /usr/share/amanda/template.d/dumptypes
-  - /usr/share/amanda.dpkg-new/template.d/amanda-single-tape.conf
-  - /usr/sbin/amssl
-  - /usr/sbin/amanda-rest-server.dpkg-new
-  - /usr/share/amanda.dpkg-new/template.d/amanda-tape-changer.conf
-bacula-client:
-  5.2.6+dfsg-9.1ubuntu3: []
-  7.0.5+dfsg-4ubuntu0.1:
-  - /usr/share/doc/bacula-client.dpkg-new/NEWS.Debian.gz
-  - /var/cache/apt/pkgcache.bin
-  - /usr/share/doc/bacula-client/copyright
-  - /var/lib/dpkg/triggers/Lock
-  - /var/lib/dpkg/status-old
-  - /var/lib/dpkg/status
-  - /var/lib/dpkg/tmp.ci/control
-  - /var/log/apt/history.log
-  - /usr/share/doc/bacula-client/changelog.Debian.gz
-  - /var/lib/dpkg/info/bacula-client.list
-  - /var/log/apt/term.log
-  - /var/lib/dpkg/lock
-  - /var/lib/dpkg/updates/0002
-  - /var/lib/apt/extended_states
-  - /var/lib/dpkg/info/bacula-client.md5sums
-  - /var/lib/dpkg/status-new
-  - /usr/share/doc/bacula-client/NEWS.Debian.gz
-  - /var/lib/update-notifier/dpkg-run-stamp
-  - /var/lib/dpkg/updates/tmp.i
-  - /usr/share/doc/bacula-client.dpkg-new/changelog.Debian.gz
-  - /var/lib/dpkg/tmp.ci/md5sums
-  - /var/lib/dpkg/updates/0001
-  - /var/log/dpkg.log
-  - /var/lib/dpkg/updates/0000
-  - /usr/share/doc/bacula-client.dpkg-new/copyright
-  - /var/lib/dpkg/info/bacula-client.list-new
-  9.0.6-1build1:
-  - /var/log/journal/90c213c3662a46589e220665c75c823f/system.journal
-  - /var/log/apt/eipp.log.xz
-bind9:
-  1:9.10.3.dfsg.P4-8ubuntu1.14:
-  - /usr/sbin/named-rrchecker.dpkg-new
-  - /usr/share/man/man1/delv.1.gz.dpkg-new
-  - /etc/init.d/.depend.stop
-  - /usr/bin/delv.dpkg-new
-  - /etc/init.d/.depend.boot
-  - /etc/init.d/.depend.start
-  - /var/lib/systemd/deb-systemd-helper-enabled/ureadahead.service.dsh-also
-  - /usr/share/man/man1/delv.1.gz
-  - /usr/sbin/named-rrchecker
-  - /usr/bin/delv
-  1:9.11.3+dfsg-1ubuntu1.8: []
-  1:9.9.5.dfsg-3ubuntu0.19:
-  - /etc/apparmor.d/local/usr.sbin.named.dpkg-new
-  - /var/lib/dpkg/available-new
-  - /usr/share/doc/bind9.dpkg-new/FAQ.gz
-  - /usr/sbin/arpaname
-  - /var/lib/dpkg/tmp.ci/preinst
-  - /usr/share/bind9.dpkg-new/named.conf.options
-  - /var/lib/dpkg/info/bind9.preinst
-  - /usr/share/apport/package-hooks/bind9.py
-  - /var/lib/dpkg/available
-  - /usr/share/apport/package-hooks/bind9.py.dpkg-new
-  - /usr/sbin/arpaname.dpkg-new
-  - /var/lib/dpkg/available-old
-  - /usr/share/doc/bind9/FAQ.gz
-  - /usr/share/bind9/named.conf.options
-chrony:
-  1.29-1ubuntu0.1: []
-  2.1.1-1ubuntu0.1:
-  - /usr/share/doc/chrony/NEWS.Debian.gz
-  - /var/lib/dpkg/updates/0010
-  - /var/lib/apt/extended_states
-  - /etc/init.d/.depend.stop
-  - /var/cache/apt/pkgcache.bin
-  - /etc/init.d/.depend.boot
-  - /var/log/chrony/statistics.log.1
-  - /etc/init.d/.depend.start
-  - /var/log/chrony/tracking.log.1
-  - /usr/share/doc/chrony.dpkg-new/NEWS.Debian.gz
-  - /var/lib/systemd/deb-systemd-helper-enabled/ureadahead.service.dsh-also
-  - /usr/share/doc/chrony/FAQ.gz
-  - /var/log/chrony/measurements.log.1
-  - /var/log/chrony/statistics.log
-  - /var/lib/update-notifier/dpkg-run-stamp
-  - /var/lib/dpkg/updates/0011
-  - /var/log/chrony/measurements.log
-  - /usr/share/doc/chrony.dpkg-new/FAQ.gz
-  - /etc/logrotate.d/chrony.dpkg-new
-  3.2-4ubuntu4.2:
-  - /lib/systemd/system/chrony.service.dpkg-new
-  - /usr/lib/chrony/chrony-helper
-  - /lib/systemd/system/chrony-dnssrv@.timer
-  - /usr/lib/systemd/scripts.dpkg-new/chronyd-starter.sh
-  - /var/log/apt/eipp.log.xz
-  - /var/cache/man/de/CACHEDIR.TAG
-  - /lib/systemd/system/chrony-dnssrv@.service.dpkg-new
-  - /usr/share/doc/chrony.dpkg-new/README.container
-  - /var/cache/man/tr/CACHEDIR.TAG
-  - /var/lib/dpkg/updates/0016
-  - /var/lib/dpkg/info/chrony.preinst
-  - /var/cache/man/pt/CACHEDIR.TAG
-  - /var/lib/dpkg/updates/0015
-  - /var/cache/man/sr/CACHEDIR.TAG
-  - /var/cache/man/id/CACHEDIR.TAG
-  - /usr/share/chrony/chrony.keys
-  - /var/cache/man/it/CACHEDIR.TAG
-  - /var/cache/man/zh_TW/CACHEDIR.TAG
-  - /usr/lib/networkd-dispatcher/off.d/chrony.dpkg-new
-  - /usr/lib/networkd-dispatcher/routable.d/chrony.dpkg-new
-  - /var/cache/man/ru/CACHEDIR.TAG
-  - /var/cache/man/sv/CACHEDIR.TAG
-  - /var/cache/man/pt_BR/CACHEDIR.TAG
-  - /var/lib/dpkg/updates/0014
-  - /var/log/kern.log
-  - /var/cache/man/es/CACHEDIR.TAG
-  - /var/cache/man/nl/CACHEDIR.TAG
-  - /var/lib/systemd/deb-systemd-helper-masked/chrony.service
-  - /var/cache/man/ko/CACHEDIR.TAG
-  - /usr/lib/networkd-dispatcher/routable.d/chrony
-  - /var/lib/dpkg/tmp.ci/preinst
-  - /lib/systemd/system/chrony-dnssrv@.service
-  - /var/lib/dpkg/updates/0018
-  - /var/lib/dpkg/updates/0017
-  - /var/log/journal/90c213c3662a46589e220665c75c823f/system.journal
-  - /var/lib/dpkg/updates/0012
-  - /var/cache/man/da/CACHEDIR.TAG
-  - /etc/dhcp/dhclient-exit-hooks.d/chrony.dpkg-new
-  - /usr/lib/systemd/scripts/chronyd-starter.sh
-  - /usr/share/lintian/overrides/chrony.dpkg-new
-  - /etc/network/if-up.d/chrony.dpkg-new
-  - /etc/default/chrony.dpkg-new
-  - /var/lib/systemd/deb-systemd-helper-enabled/chrony.service.dsh-also
-  - /var/cache/man/fr/CACHEDIR.TAG
-  - /etc/network/if-post-down.d/chrony.dpkg-new
-  - /var/cache/man/zh_CN/CACHEDIR.TAG
-  - /var/lib/dpkg/updates/0013
-  - /etc/NetworkManager/dispatcher.d/20-chrony.dpkg-new
-  - /lib/systemd/system/chrony-dnssrv@.timer.dpkg-new
-  - /usr/lib/chrony.dpkg-new/chrony-helper
-  - /etc/apparmor.d/cache/usr.sbin.chronyd
-  - /var/cache/man/uk/CACHEDIR.TAG
-  - /var/cache/man/hu/CACHEDIR.TAG
-  - /var/cache/man/fi/CACHEDIR.TAG
-  - /var/cache/man/CACHEDIR.TAG
-  - /usr/share/lintian/overrides/chrony
-  - /var/cache/man/sl/CACHEDIR.TAG
-  - /usr/share/doc/chrony/README.container
-  - /var/cache/man/cs/CACHEDIR.TAG
-  - /var/cache/man/ja/CACHEDIR.TAG
-  - /usr/lib/networkd-dispatcher/off.d/chrony
-  - /etc/apparmor.d/usr.sbin.chronyd.dpkg-new
-  - /usr/share/chrony.dpkg-new/chrony.keys
-  - /etc/systemd/system/chrony.service
-  - /var/cache/man/pl/CACHEDIR.TAG
-  - /lib/systemd/system/chrony.service
-crash:
-  7.0.3-3ubuntu4.5: []
-  7.2.1-1ubuntu2: []
-  7.2.3+real-1~16.04.1:
-  - /var/lib/dpkg/updates/0005
-cups:
-  1.7.2-0ubuntu1.11: []
-  2.1.3-4ubuntu0.9:
-  - /usr/share/man/man8/cups-lpd.8.gz.dpkg-new
-  - /usr/share/doc/cups/README.Debian.gz
-  - /usr/share/man/fr/man8/cupsd-helper.8.gz.dpkg-new
-  - /usr/share/man/man8/cups-exec.8.gz.dpkg-new
-  - /usr/share/man/de/man8/cupsd-helper.8.gz.dpkg-new
-  - /var/lib/apt/extended_states
-  - /usr/share/man/fr/man8/cups-exec.8.gz
-  - /var/log/cups/access_log
-  - /var/cache/cups/ppd-updates
-  - /usr/lib/cups/daemon/cups-lpd.dpkg-new
-  - /var/cache/apt/pkgcache.bin
-  - /usr/share/man/de/man1/cups.1.gz.dpkg-new
-  - /usr/share/man/fr/man8/cupsd-helper.8.gz
-  - /usr/share/man/de/man1/cups.1.gz
-  - /usr/share/man/fr/man1/cups.1.gz
-  - /usr/share/man/man8/cups-lpd.8.gz
-  - /usr/share/man/fr/man1/cups.1.gz.dpkg-new
-  - /usr/share/man/de/man8/cups-exec.8.gz
-  - /usr/share/man/de/man8/cups-exec.8.gz.dpkg-new
-  - /usr/share/man/man8/cupsd-helper.8.gz
-  - /usr/share/man/fr/man8/cups-exec.8.gz.dpkg-new
-  - /usr/share/man/de/man8/cupsd-helper.8.gz
-  - /var/lib/update-notifier/dpkg-run-stamp
-  - /usr/share/doc/cups/README.Debian.gz.dpkg-new
-  - /usr/share/man/man8/cups-exec.8.gz
-  - /usr/lib/cups/daemon/cups-driverd.dpkg-new
-  - /usr/share/man/man1/cups.1.gz.dpkg-new
-  - /usr/share/man/man1/cups.1.gz
-  - /usr/share/man/man8/cupsd-helper.8.gz.dpkg-new
-  - /usr/lib/cups/daemon/cups-deviced.dpkg-new
-  2.2.7-1ubuntu2.6:
-  - /usr/share/doc/cups/CREDITS.md.dpkg-new
-  - /var/log/apt/eipp.log.xz
-  - /var/cache/man/de/CACHEDIR.TAG
-  - /var/cache/man/tr/CACHEDIR.TAG
-  - /usr/share/doc/cups/README.md.gz
-  - /var/cache/man/pt/CACHEDIR.TAG
-  - /var/cache/man/sr/CACHEDIR.TAG
-  - /var/cache/man/id/CACHEDIR.TAG
-  - /usr/share/doc/cups/README.md.gz.dpkg-new
-  - /var/cache/man/it/CACHEDIR.TAG
-  - /var/cache/man/zh_TW/CACHEDIR.TAG
-  - /var/cache/man/ru/CACHEDIR.TAG
-  - /var/cache/man/sv/CACHEDIR.TAG
-  - /var/cache/man/pt_BR/CACHEDIR.TAG
-  - /var/cache/man/nl/CACHEDIR.TAG
-  - /var/cache/man/es/CACHEDIR.TAG
-  - /var/cache/man/ko/CACHEDIR.TAG
-  - /var/log/journal/90c213c3662a46589e220665c75c823f/system.journal
-  - /var/cache/man/da/CACHEDIR.TAG
-  - /var/cache/man/fr/CACHEDIR.TAG
-  - /var/cache/man/zh_CN/CACHEDIR.TAG
-  - /usr/lib/cups/driver/gutenprint.5.2.dpkg-new
-  - /usr/share/doc/cups/CREDITS.md
-  - /var/cache/man/uk/CACHEDIR.TAG
-  - /var/cache/man/hu/CACHEDIR.TAG
-  - /var/cache/man/fi/CACHEDIR.TAG
-  - /var/cache/man/CACHEDIR.TAG
-  - /var/cache/man/sl/CACHEDIR.TAG
-  - /var/cache/man/cs/CACHEDIR.TAG
-  - /var/cache/man/ja/CACHEDIR.TAG
-  - /var/cache/man/pl/CACHEDIR.TAG
-dovecot-core:
-  1:2.2.22-1ubuntu2.10:
-  - /usr/share/dovecot/mkcert.sh
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/MailboxFormat.Maildir.txt.gz
-  - /usr/lib/dovecot.dpkg-new/libdovecot.so.0
-  - /usr/share/dovecot.dpkg-new/conf.d/10-logging.conf
-  - /usr/lib/dovecot.dpkg-new/modules/lib01_acl_plugin.so
-  - /usr/share/bug/dovecot-core.dpkg-new/script
-  - /usr/lib/dovecot.dpkg-new/libdovecot-compression.so.0
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Timeouts.txt
-  - /usr/lib/dovecot.dpkg-new/libdovecot-sql.so.0.0.0
-  - /usr/share/dovecot/stopwords/stopwords_fr.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Plugins.QuotaClone.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/LDA.Qmail.txt
-  - /usr/lib/dovecot.dpkg-new/modules/lib20_mail_log_plugin.so
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/PasswordDatabase.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/SocketUnavailable.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/SharedMailboxes.Permissions.txt.gz
-  - /usr/share/dovecot/conf.d/10-ssl.conf
-  - /usr/share/dovecot.dpkg-new/stopwords/stopwords_fr.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/NFS.txt.gz
-  - /usr/lib/dovecot.dpkg-new/modules/stats/libstats_auth.so
-  - /usr/lib/dovecot.dpkg-new/dns-client
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Authentication.Penalty.txt
-  - /usr/share/dovecot/conf.d/90-quota.conf
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/FindMailLocation.txt
-  - /usr/lib/dovecot.dpkg-new/libdovecot-dsync.so.0
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/SharedMailboxes.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/uw2dovecot.sh.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Design.Storage.MailNamespace.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/PostLoginScripting.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/SharedMailboxes.Symlinks.txt
-  - /usr/lib/dovecot.dpkg-new/libdovecot-sql.so.0
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/LDA.Postfix.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/sieve/extensions/editheader.txt
-  - /usr/lib/dovecot.dpkg-new/modules/lib20_quota_clone_plugin.so
-  - /usr/share/dovecot.dpkg-new/conf.d/auth-vpopmail.conf.ext
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Design.AuthProtocol.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Plugins.MailLog.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/sieve/extensions/vacation.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Mountpoints.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Design.Storage.Mailbox.Search.txt.gz
-  - /usr/share/dovecot.dpkg-new/stopwords/stopwords_fi.txt
-  - /usr/lib/dovecot.dpkg-new/modules/lib10_quota_plugin.so
-  - /usr/lib/dovecot.dpkg-new/libdovecot-fts.so.0
-  - /usr/lib/dovecot.dpkg-new/modules/lib11_trash_plugin.so
-  - /usr/share/dovecot/conf.d/90-plugin.conf
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Pigeonhole.ManageSieve.Troubleshooting.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/HowTo.SimpleVirtualInstall.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/SSL.CertificateCreation.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/SharedMailboxes.Public.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/HowTo.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Authentication.Kerberos.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Chrooting.txt
-  - /usr/share/dovecot.dpkg-new/conf.d/auth-checkpassword.conf.ext
-  - /usr/share/dovecot.dpkg-new/conf.d/10-tcpwrapper.conf
-  - /usr/share/doc/dovecot-core.dpkg-new/TODO.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Plugins.Zlib.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Migration.Vm-pop3d.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/LDA.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/AuthDatabase.LDAP.AuthBinds.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/SecurityTuning.txt
-  - /usr/share/dovecot/conf.d/15-lda.conf
-  - /usr/lib/dovecot.dpkg-new/libdovecot-storage.so.0
-  - /usr/share/dovecot/conf.d/15-mailboxes.conf
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/LDA.Sendmail.txt.gz
-  - /usr/lib/dovecot.dpkg-new/dovecot-lda
-  - /usr/share/doc/dovecot-core.dpkg-new/pigeonhole.README.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/MailLocation.Maildir.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Plugins.Notify.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Pigeonhole.ManageSieve.txt
-  - /var/lib/dpkg/updates/0012
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Design.InputStreams.txt.gz
-  - /usr/share/dovecot/conf.d/10-mail.conf
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Plugins.Trash.txt
-  - /usr/lib/dovecot.dpkg-new/libdovecot.so.0.0.0
-  - /usr/lib/dovecot.dpkg-new/libdovecot-lda.so
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Design.Storage.Mailbox.Transaction.txt
-  - /usr/lib/dovecot.dpkg-new/modules/doveadm/lib20_doveadm_fts_plugin.so
-  - /usr/share/doc/dovecot-core.dpkg-new/sieve/extensions/include.txt
-  - /usr/share/doc/dovecot-core/wiki/PasswordDatabase.ExtraFields.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Variables.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/CompilingSource.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/documentation.txt.gz
-  - /usr/lib/dovecot.dpkg-new/modules/lib20_expire_plugin.so
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Authentication.MultipleDatabases.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Services.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Migration.UW.txt.gz
-  - /usr/lib/dovecot.dpkg-new/modules/doveadm/lib10_doveadm_quota_plugin.so
-  - /usr/lib/dovecot.dpkg-new/libdovecot.so
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/QuickConfiguration.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/MailLocation.dbox.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/HowTo.PopRelay.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/MailLocation.LocalDisk.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Plugins.MailboxAlias.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Namespaces.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Replication.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/LMTP.Exim.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/PasswordDatabase.ExtraFields.NoDelay.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Pigeonhole.Sieve.Configuration.Dict.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Upgrading.2.1.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/pigeonhole.NEWS.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Design.Indexes.Cache.txt.gz
-  - /usr/lib/dovecot.dpkg-new/libdovecot-compression.so
-  - /etc/ufw/applications.d/dovecot-core.dpkg-new
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/HowTo.Rootless.txt
-  - /usr/lib/dovecot.dpkg-new/script
-  - /usr/lib/dovecot.dpkg-new/checkpassword-reply
-  - /usr/share/doc/dovecot-core.dpkg-new/NEWS.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/AuthDatabase.Dict.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Errors.ChgrpNoPerm.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Design.Processes.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/UserDatabase.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Design.DoveadmProtocol.HTTP.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Design.Strings.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Debugging.Authentication.txt
-  - /usr/lib/dovecot.dpkg-new/tcpwrap
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Design.Storage.Mailbox.Save.txt
-  - /usr/share/doc/dovecot-core/wiki/Plugins.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Design.Storage.MailboxList.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Authentication.MasterUsers.txt.gz
-  - /usr/lib/dovecot.dpkg-new/modules/lib02_lazy_expunge_plugin.so
-  - /usr/lib/dovecot.dpkg-new/modules/lib20_push_notification_plugin.so
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Design.Storage.ErrorHandling.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Pigeonhole.Sieve.Extensions.Duplicate.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Migration.Courier.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/SharedMailboxes.Shared.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Pigeonhole.Sieve.Configuration.File.txt
-  - /usr/share/dovecot.dpkg-new/conf.d/10-master.conf
-  - /usr/share/doc/dovecot-core.dpkg-new/securecoding.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Design.OutputStreams.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Design.Code.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Upgrading.1.2.txt
-  - /usr/share/dovecot/conf.d/10-auth.conf
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Design.MailProcess.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Authentication.Mechanisms.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/LDA.Indexing.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Design.Dsync.txt.gz
-  - /usr/lib/dovecot.dpkg-new/libdovecot-fts.so.0.0.0
-  - /usr/share/dovecot/conf.d/auth-checkpassword.conf.ext
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Authentication.Caching.txt.gz
-  - /usr/lib/dovecot.dpkg-new/libdovecot-storage.so
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Pigeonhole.Sieve.Plugins.Extprograms.txt.gz
-  - /usr/lib/dovecot.dpkg-new/modules/lib21_fts_squat_plugin.so
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Migration.Gmail.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/BasicConfiguration.txt.gz
-  - /usr/share/dovecot.dpkg-new/conf.d/90-plugin.conf
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Design.Storage.Mailbox.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/HowTo.PostfixAndDovecotSASL.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Debugging.Rawlog.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/MDA.txt
-  - /usr/lib/dovecot.dpkg-new/modules/lib20_virtual_plugin.so
-  - /usr/lib/dovecot.dpkg-new/modules/auth/libauthdb_imap.so
-  - /usr/lib/dovecot.dpkg-new/libdovecot-dsync.so.0.0.0
-  - /usr/lib/dovecot.dpkg-new/modules/lib10_last_login_plugin.so
-  - /usr/share/dovecot.dpkg-new/dovecot-dict-sql.conf.ext
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/MailLocation.SharedDisk.txt
-  - /usr/lib/dovecot.dpkg-new/deliver
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Authentication.RestrictAccess.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/sieve/locations/dict.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/PasswordDatabase.ExtraFields.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Pigeonhole.Sieve.Plugins.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/sieve/locations/file.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/MailboxSettings.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/TestPop3Installation.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Design.Storage.Mailbox.Sync.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Plugins.Snarf.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/RunningDovecot.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Authentication.Mechanisms.Winbind.txt
-  - /usr/share/dovecot/stopwords/stopwords_fi.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Debugging.Thunderbird.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/FinishBasicConfiguration.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/UserDatabase.Static.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/MTA.txt
-  - /usr/lib/dovecot.dpkg-new/libdovecot-login.so.0
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Authentication.txt
-  - /usr/share/dovecot/dovecot.conf
-  - /usr/share/dovecot.dpkg-new/conf.d/10-mail.conf
-  - /usr/share/doc/dovecot-core.dpkg-new/README
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/PasswordDatabase.ExtraFields.NoLogin.txt
-  - /usr/share/dovecot/conf.d/auth-system.conf.ext
-  - /usr/share/dovecot/conf.d/auth-deny.conf.ext
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Pigeonhole.Sieve.Extensions.Include.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Authentication.Mechanisms.NTLM.txt
-  - /usr/lib/dovecot.dpkg-new/stats
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Design.Storage.Plugins.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Pigeonhole.Sieve.Extensions.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/README.Debian.gz
-  - /usr/share/dovecot/stopwords/stopwords_no.txt
-  - /usr/lib/dovecot.dpkg-new/libdovecot-lda.so.0.0.0
-  - /usr/lib/dovecot/decode2text.sh
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Plugins.FTS.Lucene.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/MailboxFormat.mbx.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Authentication.Mechanisms.DigestMD5.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Design.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Plugins.Lazyexpunge.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Pigeonhole.Sieve.Configuration.txt.gz
-  - /usr/share/dovecot/conf.d/10-director.conf
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Design.Memory.txt.gz
-  - /usr/lib/dovecot.dpkg-new/modules/lib90_stats_plugin.so
-  - /usr/share/dovecot.dpkg-new/dovecot-sql.conf.ext
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/PerformanceTuning.txt
-  - /usr/share/dovecot.dpkg-new/conf.d/90-acl.conf
-  - /usr/share/dovecot.dpkg-new/conf.d/auth-static.conf.ext
-  - /usr/lib/dovecot.dpkg-new/libdovecot-compression.so.0.0.0
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/LDA.Exim.txt.gz
-  - /usr/lib/dovecot.dpkg-new/libdovecot-login.so
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Quota.Dirsize.txt
-  - /usr/share/dovecot.dpkg-new/conf.d/auth-master.conf.ext
-  - /usr/lib/dovecot.dpkg-new/log
-  - /usr/share/dovecot/dovecot-dict-sql.conf.ext
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Upgrading.1.1.txt.gz
-  - /usr/share/dovecot.dpkg-new/dovecot-dict-auth.conf.ext
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Authentication.PasswordSchemes.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Migration.Teapop.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Design.Buffers.txt
-  - /usr/lib/dovecot/modules/drac_plugin.so
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/MissingMailboxes.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/AuthDatabase.CheckPassword.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/UserDatabase.NSS.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Pigeonhole.Sieve.Extensions.SpamtestVirustest.txt.gz
-  - /usr/share/dovecot.dpkg-new/conf.d/15-lda.conf
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/MailboxFormat.mbox.txt.gz
-  - /usr/share/dovecot/conf.d/10-master.conf
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/AuthDatabase.Passwd.txt
-  - /usr/lib/dovecot.dpkg-new/modules/settings/libpigeonhole_settings.so
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Plugins.FTS.Squat.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Upgrading.2.0.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Migration.Dsync.txt.gz
-  - /usr/lib/dovecot.dpkg-new/auth
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Quota.FS.txt
-  - /usr/lib/dovecot.dpkg-new/ssl-params
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/MboxChildFolders.txt.gz
-  - /usr/share/dovecot/conf.d/auth-sql.conf.ext
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Director.txt.gz
-  - /usr/share/doc/dovecot-core/README.Debian.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/HowTo.WriteConfiguration.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/TestInstallation.txt.gz
-  - /usr/share/doc/dovecot-core/wiki/Debugging.Rawlog.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Quota.txt.gz
-  - /usr/lib/dovecot.dpkg-new/modules/lib15_notify_plugin.so
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/MailboxFormat.txt.gz
-  - /usr/share/dovecot/dovecot-sql.conf.ext
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/AuthDatabase.VPopMail.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/PasswordDatabase.BSDAuth.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Dict.txt
-  - /usr/lib/dovecot.dpkg-new/modules/doveadm/lib10_doveadm_acl_plugin.so
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/MailboxFormat.MH.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/VirtualUsers.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/MboxLocking.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Plugins.Virtual.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/SSL.DovecotConfiguration.txt.gz
-  - /usr/lib/dovecot.dpkg-new/libdovecot-login.so.0.0.0
-  - /usr/share/aclocal/dovecot.m4.dpkg-new
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/OSCompatibility.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/WhyDoesItNotWork.txt.gz
-  - /usr/lib/dovecot.dpkg-new/maildirlock
-  - /usr/lib/dovecot.dpkg-new/director
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Plugins.LastLogin.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Plugins.Stats.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/AuthDatabase.LDAP.txt
-  - /usr/share/doc/dovecot-core/wiki/AuthDatabase.PasswdFile.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Pigeonhole.Sieve.Extensions.Editheader.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Plugins.FTS.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/AuthDatabase.LDAP.PasswordLookups.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Design.Storage.MailUser.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/sieve/extensions/spamtest-virustest.txt.gz
-  - /usr/lib/dovecot.dpkg-new/ipc
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Logging.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/MailboxFormat.dbox.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Debugging.ProcessTracing.txt
-  - /usr/lib/dovecot.dpkg-new/xml2text
-  - /usr/share/dovecot/conf.d/auth-vpopmail.conf.ext
-  - /usr/share/dovecot/dovecot-openssl.cnf
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/PasswordDatabase.Shadow.txt
-  - /usr/lib/dovecot.dpkg-new/rawlog
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/PasswordDatabase.ExtraFields.AllowNets.txt
-  - /usr/share/dovecot/conf.d/10-tcpwrapper.conf
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Migration.Cyrus.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Plugins.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/ImapMetadata.txt
-  - /usr/share/dovecot/dovecot-dict-auth.conf.ext
-  - /usr/lib/dovecot.dpkg-new/libdovecot-sql.so
-  - /usr/lib/dovecot.dpkg-new/modules/libfs_compress.so
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Dictionary.txt.gz
-  - /var/lib/systemd/deb-systemd-helper-enabled/ureadahead.service.dsh-also
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/AuthDatabase.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Migration.Online.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/MboxProblems.txt.gz
-  - /usr/share/dovecot.dpkg-new/stopwords/stopwords_en.txt
-  - /usr/share/dovecot/conf.d/auth-master.conf.ext
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Clients.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/HowTo.PopBSMTPAndDovecot.txt.gz
-  - /usr/share/dovecot/conf.d/auth-dict.conf.ext
-  - /usr/share/dovecot.dpkg-new/dovecot.conf
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Plugins.Compress.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/AuthDatabase.SQL.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/maildrop.txt
-  - /usr/lib/dovecot.dpkg-new/replicator
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/PasswordDatabase.ExtraFields.User.txt
-  - /usr/lib/dovecot.dpkg-new/gdbhelper
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Upgrading.2.2.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/AuthDatabase.PasswdFile.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Design.Plugins.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/sieve/extensions/duplicate.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Quota.Dict.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/IMAPServer.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Pigeonhole.Sieve.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/HAProxy.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Pigeonhole.Sieve.Troubleshooting.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/MailboxFormat.Cydir.txt
-  - /usr/share/dovecot.dpkg-new/conf.d/auth-deny.conf.ext
-  - /usr/lib/dovecot.dpkg-new/libdovecot-storage.so.0.0.0
-  - /usr/lib/dovecot.dpkg-new/indexer-worker
-  - /var/lib/dpkg/updates/0013
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Design.AuthProcess.txt.gz
-  - /usr/lib/dovecot.dpkg-new/modules/doveadm/lib10_doveadm_expire_plugin.so
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/PasswordDatabase.Static.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/sieve/locations/ldap.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/HowTo.EximAndDovecotSASL.txt
-  - /usr/share/dovecot/conf.d/10-logging.conf
-  - /usr/share/dovecot.dpkg-new/conf.d/auth-sql.conf.ext
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Pigeonhole.ManageSieve.Clients.txt
-  - /etc/init/dovecot.conf.dpkg-new
-  - /usr/share/aclocal/dovecot.m4
-  - /usr/share/dovecot.dpkg-new/conf.d/auth-dict.conf.ext
-  - /usr/lib/dovecot.dpkg-new/modules/lib20_autocreate_plugin.so
-  - /usr/share/aclocal/dovecot-pigeonhole.m4.dpkg-new
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/UserDatabase.ExtraFields.txt.gz
-  - /usr/lib/dovecot.dpkg-new/anvil
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/TimeMovedBackwards.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Plugins.MailFilter.txt
-  - /usr/lib/dovecot.dpkg-new/modules/stats/libstats_mail.so
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Upgrading.1.0.txt.gz
-  - /usr/lib/dovecot.dpkg-new/libdovecot-dsync.so
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/ConfigFile.txt.gz
-  - /usr/lib/dovecot.dpkg-new/config
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/MailLocation.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Quota.Maildir.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/SSL.CertificateClientImporting.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Design.Indexes.TransactionLog.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Plugins.Autocreate.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/UserDatabase.Prefetch.txt
-  - /usr/lib/dovecot.dpkg-new/doveadm-server
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Pigeonhole.ManageSieve.Configuration.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Migration.MailFormat.txt.gz
-  - /usr/share/bug/dovecot-core.dpkg-new/control
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Pigeonhole.Installation.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/PreAuth.txt
-  - /usr/lib/dovecot.dpkg-new/decode2text.sh
-  - /usr/share/dovecot/stopwords/stopwords_en.txt
-  - /usr/lib/dovecot.dpkg-new/aggregator
-  - /usr/share/doc/dovecot-core.dpkg-new/changelog.Debian.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/PasswordDatabase.IMAP.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/copyright
-  - /etc/dovecot/README.dpkg-new
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Plugins.Listescape.txt
-  - /usr/share/dovecot.dpkg-new/conf.d/auth-passwdfile.conf.ext
-  - /etc/init.d/.depend.stop
-  - /usr/share/dovecot/conf.d/auth-static.conf.ext
-  - /usr/share/dovecot.dpkg-new/stopwords/stopwords_no.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Design.Indexes.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Design.Indexes.MainIndex.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Design.DoveadmProtocol.txt
-  - /usr/lib/dovecot.dpkg-new/modules/lib20_replication_plugin.so
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/PasswordDatabase.ExtraFields.Proxy.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/mutt.txt
-  - /var/lib/dpkg/updates/0015
-  - /etc/init.d/.depend.boot
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Pigeonhole.Sieve.Examples.txt.gz
-  - /usr/lib/dovecot.dpkg-new/modules/lib10_mail_filter_plugin.so
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Migration.BincIMAP.txt.gz
-  - /usr/lib/dovecot.dpkg-new/modules/lib05_snarf_plugin.so
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Pigeonhole.Sieve.Plugins.Pipe.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/IndexFiles.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/MailboxFormat.mailstore.txt
-  - /etc/init.d/.depend.start
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/HowTo.ImapcProxy.txt.gz
-  - /usr/lib/dovecot.dpkg-new/modules/lib20_fts_plugin.so
-  - /usr/share/dovecot/stopwords/stopwords_sv.txt
-  - /usr/lib/dovecot.dpkg-new/modules/lib20_listescape_plugin.so
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Quota.Count.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Statistics.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Quota.Configuration.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/DomainLost.txt
-  - /var/lib/dpkg/updates/0014
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Pigeonhole.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Upgrading.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/LoginProcess.txt.gz
-  - /usr/share/dovecot.dpkg-new/conf.d/10-director.conf
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Pigeonhole.Sieve.Extensions.Vacation.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/UserIds.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/VirtualUsers.Home.txt
-  - /usr/lib/dovecot.dpkg-new/libdovecot-lda.so.0
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/PasswordDatabase.PAM.txt.gz
-  - /usr/share/aclocal/dovecot-pigeonhole.m4
-  - /usr/lib/dovecot.dpkg-new/script-login
-  - /usr/share/doc/dovecot-core.dpkg-new/sieve/plugins/sieve_extprograms.txt.gz
-  - /usr/share/dovecot.dpkg-new/conf.d/10-auth.conf
-  - /usr/lib/dovecot.dpkg-new/modules/drac_plugin.so
-  - /usr/share/dovecot.dpkg-new/conf.d/90-quota.conf
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/SSL.SNIClientSupport.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/NEWS.Debian.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/PasswordDatabase.ExtraFields.Host.txt
-  - /usr/lib/dovecot.dpkg-new/libdovecot-fts.so
-  - /usr/lib/dovecot.dpkg-new/modules/lib20_mailbox_alias_plugin.so
-  - /usr/share/doc/dovecot-core.dpkg-new/thread-refs.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Design.Storage.MailStorage.txt
-  - /usr/share/dovecot.dpkg-new/stopwords/stopwords_sv.txt
-  - /usr/share/dovecot.dpkg-new/conf.d/10-ssl.conf
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Migration.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Design.Indexes.MailIndexApi.txt
-  - /usr/lib/dovecot.dpkg-new/indexer
-  - /usr/lib/dovecot.dpkg-new/quota-status
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Design.Arrays.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/POP3Server.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/SSL.txt
-  - /usr/lib/dovecot.dpkg-new/modules/lib05_pop3_migration_plugin.so
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/MailLocation.mbox.txt.gz
-  - /usr/lib/dovecot.dpkg-new/modules/lib20_zlib_plugin.so
-  - /usr/share/dovecot.dpkg-new/mkcert.sh
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Pigeonhole.Sieve.Usage.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/SystemUsers.txt.gz
-  - /usr/lib/dovecot.dpkg-new/modules/libssl_iostream_openssl.so
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Sasl.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Pigeonhole.Sieve.Plugins.Extdata.txt.gz
-  - /usr/share/dovecot.dpkg-new/dovecot-openssl.cnf
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Migration.Linuxconf.txt
-  - /usr/share/dovecot/conf.d/90-acl.conf
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Pigeonhole.ManageSieve.Install.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/SharedMailboxes.ClusterSetup.txt
-  - /usr/share/dovecot.dpkg-new/conf.d/auth-system.conf.ext
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Clients.NegativeUIDs.txt
-  - /usr/share/dovecot.dpkg-new/conf.d/15-mailboxes.conf
-  - /usr/share/doc/dovecot-core.dpkg-new/pigeonhole.ChangeLog.gz
-  - /usr/share/dovecot/conf.d/auth-passwdfile.conf.ext
-  - /usr/lib/dovecot.dpkg-new/dict
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/LMTP.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/AuthDatabase.LDAP.Userdb.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Plugins.FTS.Solr.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Design.Storage.Mail.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/ACL.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Plugins.Expire.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/Pigeonhole.Sieve.Configuration.LDAP.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/wiki/AixPluginsSupport.txt.gz
-  1:2.2.33.2-1ubuntu4.3: []
-  1:2.2.9-1ubuntu2.6:
-  - /usr/share/doc/dovecot-core/dovecot/wiki/CompilingSource.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/LDA.Exim.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/MailboxFormat.Cydir.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Debugging.Authentication.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/SharedMailboxes.Permissions.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/FinishBasicConfiguration.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/PasswordDatabase.BSDAuth.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/VirtualUsers.Home.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/LDA.Qmail.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/MailLocation.LocalDisk.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Debugging.Rawlog.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/SharedMailboxes.Public.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/MDA.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Design.AuthProtocol.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Design.Storage.Mailbox.Search.txt.gz
-  - /usr/share/doc/dovecot-core/example-config/conf.d/10-logging.conf
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Design.Storage.Mailbox.Save.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Authentication.Caching.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/example-config/conf.d/auth-vpopmail.conf.ext
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/FindMailLocation.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Authentication.MultipleDatabases.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/example-config/dovecot-dict-sql.conf.ext
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Migration.Linuxconf.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Authentication.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/HowTo.PopRelay.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Namespaces.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/SSL.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/PasswordDatabase.ExtraFields.txt
-  - /usr/share/dovecot/conf.d/90-sieve-extprograms.conf
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Pigeonhole.Sieve.Usage.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/PasswordDatabase.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/PasswordDatabase.Shadow.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/example-config/conf.d/10-auth.conf.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Design.AuthProcess.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Pigeonhole.ManageSieve.Install.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/PerformanceTuning.txt
-  - /usr/share/doc/dovecot-core/example-config/conf.d/auth-master.conf.ext
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Design.Indexes.MainIndex.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/PasswordDatabase.ExtraFields.Proxy.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/MailLocation.LocalDisk.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Plugins.FTS.Solr.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Design.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Authentication.Mechanisms.Winbind.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Authentication.Mechanisms.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/ACL.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/example-config/dovecot.conf.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/AixPluginsSupport.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Plugins.MailboxAlias.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Design.Storage.MailNamespace.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/example-config/conf.d/15-mailboxes.conf
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Pigeonhole.ManageSieve.Troubleshooting.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Mountpoints.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/SystemUsers.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/UserDatabase.NSS.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/PasswordDatabase.ExtraFields.Host.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/PasswordDatabase.IMAP.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Debugging.ProcessTracing.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Plugins.Snarf.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Pigeonhole.ManageSieve.Configuration.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Migration.BincIMAP.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Authentication.MultipleDatabases.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Upgrading.1.2.txt
-  - /usr/share/doc/dovecot-core/example-config/conf.d/auth-vpopmail.conf.ext
-  - /usr/share/doc/dovecot-core/example-config/conf.d/10-mail.conf.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Migration.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Design.Storage.Mailbox.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Design.Strings.txt
-  - /var/cache/debconf/config.dat-old
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/MboxChildFolders.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/solr-schema.xml
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/HowTo.EximAndDovecotSASL.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/example-config/dovecot-ldap.conf.ext.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/NFS.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/example-config/conf.d/auth-master.conf.ext
-  - /usr/share/doc/dovecot-core.dpkg-new/example-config/conf.d/auth-system.conf.ext
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/HowTo.PopRelay.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Pigeonhole.ManageSieve.Clients.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/example-config/conf.d/90-quota.conf
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Design.Buffers.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Design.DoveadmProtocol.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Upgrading.2.0.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Upgrading.2.2.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/LDA.Qmail.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Sasl.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/AuthDatabase.Passwd.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Migration.Teapop.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Pigeonhole.Sieve.Plugins.Extprograms.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/example-config/conf.d/10-ssl.conf
-  - /usr/share/doc/dovecot-core/dovecot/wiki/AixPluginsSupport.txt.gz
-  - /var/cache/debconf/config.dat
-  - /usr/share/doc/dovecot-core/dovecot/wiki/POP3Server.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/example-config/conf.d/20-lmtp.conf
-  - /usr/share/doc/dovecot-core/dovecot/wiki/UserDatabase.Static.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/UserDatabase.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/MailboxFormat.mbox.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Pigeonhole.Sieve.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/RunningDovecot.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Plugins.Notify.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/MDA.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/sieve/script-location-dict.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/SSL.CertificateCreation.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/MailLocation.mbox.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/PreAuth.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Upgrading.1.0.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Upgrading.2.2.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Design.Storage.Mail.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/PostLoginScripting.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/FindMailLocation.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/QuickConfiguration.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/example-config/conf.d/10-master.conf
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/MailboxFormat.Maildir.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/NFS.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Quota.Dict.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Statistics.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Design.Storage.MailboxList.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/thread-refs.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/AuthDatabase.LDAP.Userdb.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Chrooting.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Design.Storage.Mailbox.Sync.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/LDA.Postfix.txt.gz
-  - /var/lib/dpkg/available-old
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Design.Arrays.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Quota.Maildir.txt
-  - /var/lib/dpkg/info/dovecot-core.templates
-  - /usr/share/doc/dovecot-core/dovecot/wiki/UserDatabase.NSS.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/AuthDatabase.Passwd.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/MailLocation.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/SharedMailboxes.Shared.txt.gz
-  - /usr/share/doc/dovecot-core/example-config/conf.d/auth-sql.conf.ext
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Namespaces.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/AuthDatabase.LDAP.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Authentication.Mechanisms.NTLM.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Migration.MailFormat.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Pigeonhole.Sieve.Extensions.SpamtestVirustest.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/MailboxFormat.dbox.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Design.Storage.MailStorage.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/AuthDatabase.CheckPassword.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Logging.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Migration.Vm-pop3d.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/HowTo.ImapcProxy.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/SSL.DovecotConfiguration.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Upgrading.1.0.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Design.Storage.MailNamespace.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Pigeonhole.Sieve.Plugins.txt
-  - /var/lib/dpkg/tmp.ci/templates
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Upgrading.2.1.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/example-config/conf.d/90-sieve.conf.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Design.Code.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Design.Indexes.TransactionLog.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/AuthDatabase.Dict.txt.gz
-  - /usr/share/doc/dovecot-core/example-config/conf.d/90-acl.conf
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Pigeonhole.Sieve.Examples.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/thread-refs.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/BasicConfiguration.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/HowTo.PostfixAndDovecotSASL.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Authentication.Kerberos.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Plugins.Listescape.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/uw2dovecot.sh.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Migration.Gmail.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/MboxLocking.txt
-  - /usr/share/doc/dovecot-core/dovecot/securecoding.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Design.Indexes.Cache.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/mkcert.sh
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Design.Indexes.MailIndexApi.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/MailLocation.Maildir.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Plugins.FTS.Squat.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/MailLocation.dbox.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/example-config/conf.d/15-lda.conf
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Design.Storage.Mailbox.Save.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Replication.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/MboxProblems.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/PasswordDatabase.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Upgrading.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/MailboxFormat.mbx.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/TestPop3Installation.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Debugging.Rawlog.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Migration.Courier.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/example-config/conf.d/90-plugin.conf
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/IndexFiles.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/AuthDatabase.VPopMail.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Migration.Vm-pop3d.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Clients.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/LMTP.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/LDA.Exim.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/PasswordDatabase.BSDAuth.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Plugins.Listescape.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Pigeonhole.Sieve.Troubleshooting.txt.gz
-  - /usr/share/doc/dovecot-core/example-config/dovecot-sql.conf.ext.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Design.MailProcess.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/MTA.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Errors.ChgrpNoPerm.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/SSL.SNIClientSupport.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Plugins.Compress.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/example-config/conf.d/auth-static.conf.ext
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/mkcert.sh
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Migration.Teapop.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Migration.MailFormat.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/TestInstallation.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/AuthDatabase.LDAP.PasswordLookups.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Design.Storage.Mailbox.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Plugins.MailFilter.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/HowTo.PostfixAndDovecotSASL.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/SharedMailboxes.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/MissingMailboxes.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/SSL.SNIClientSupport.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/AuthDatabase.LDAP.AuthBinds.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/MailboxFormat.MH.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Pigeonhole.Sieve.Extensions.Vacation.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Plugins.FTS.Solr.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Pigeonhole.Installation.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Mountpoints.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Debugging.Thunderbird.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/LDA.Indexing.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/UserDatabase.Prefetch.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Authentication.Mechanisms.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/DomainLost.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Services.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/SSL.CertificateCreation.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/LDA.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Authentication.Mechanisms.NTLM.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Upgrading.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/SocketUnavailable.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Plugins.Lazyexpunge.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Design.Storage.MailboxList.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/VirtualUsers.Home.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/MailLocation.dbox.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Upgrading.1.1.txt.gz
-  - /var/lib/dpkg/available
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/HowTo.SimpleVirtualInstall.txt.gz
-  - /usr/share/doc/dovecot-core/example-config/conf.d/10-master.conf
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Plugins.Expire.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Design.Storage.MailUser.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Debugging.Thunderbird.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/UserDatabase.ExtraFields.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/example-config/conf.d/auth-sql.conf.ext
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/SharedMailboxes.Shared.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Migration.BincIMAP.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Design.Indexes.TransactionLog.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Plugins.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/example-config/conf.d/auth-dict.conf.ext
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Authentication.Mechanisms.DigestMD5.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Design.Processes.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/MTA.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Plugins.Lazyexpunge.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/AuthDatabase.LDAP.PasswordLookups.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/MailboxFormat.Cydir.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Design.Indexes.MailIndexApi.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Plugins.Virtual.txt.gz
-  - /usr/share/doc/dovecot-core/example-config/dovecot-dict-auth.conf.ext
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Pigeonhole.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/PasswordDatabase.ExtraFields.Host.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Design.Strings.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Pigeonhole.Sieve.Extensions.SpamtestVirustest.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Design.OutputStreams.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/SSL.CertificateClientImporting.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Authentication.RestrictAccess.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Migration.Courier.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Pigeonhole.Sieve.Plugins.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Statistics.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/PasswordDatabase.ExtraFields.NoLogin.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Design.Storage.Plugins.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Migration.Cyrus.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/SharedMailboxes.Symlinks.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Migration.Dsync.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Authentication.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/PasswordDatabase.ExtraFields.User.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/TimeMovedBackwards.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/WhyDoesItNotWork.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/MailboxFormat.mailstore.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/LDA.Postfix.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Services.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Design.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Design.Storage.Mailbox.Transaction.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/example-config/conf.d/10-mail.conf.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Design.DoveadmProtocol.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Plugins.FTS.Squat.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Quota.Dirsize.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Chrooting.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/MailboxFormat.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/UserDatabase.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/securecoding.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Migration.Gmail.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Clients.NegativeUIDs.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Design.Indexes.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Design.Memory.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/UserIds.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Plugins.FTS.Lucene.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/dovecot-openssl.cnf
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Migration.UW.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Upgrading.2.0.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/example-config/conf.d/90-acl.conf
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Migration.Dsync.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/OSCompatibility.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Pigeonhole.Sieve.Examples.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/example-config/conf.d/20-managesieve.conf
-  - /usr/share/doc/dovecot-core/dovecot/wiki/PasswordDatabase.Static.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Pigeonhole.Sieve.Plugins.Extdata.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/maildrop.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Errors.ChgrpNoPerm.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/MailboxFormat.dbox.txt.gz
-  - /usr/share/doc/dovecot-core/example-config/conf.d/90-plugin.conf
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Plugins.FTS.Lucene.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/QuickConfiguration.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Authentication.MasterUsers.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Plugins.Trash.txt
-  - /var/lib/dpkg/available-new
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/UserDatabase.Prefetch.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/AuthDatabase.SQL.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/PasswordDatabase.PAM.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Director.txt.gz
-  - /usr/share/doc/dovecot-core/example-config/conf.d/15-lda.conf
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Plugins.MailLog.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Design.Storage.Plugins.txt.gz
-  - /usr/share/doc/dovecot-core/example-config/conf.d/auth-static.conf.ext
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/MailLocation.Maildir.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/VirtualUsers.txt.gz
-  - /var/cache/debconf/config.dat-new
-  - /usr/share/doc/dovecot-core/dovecot/wiki/HowTo.ImapcProxy.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Plugins.Notify.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Authentication.MasterUsers.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/PostLoginScripting.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/SocketUnavailable.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/PasswordDatabase.ExtraFields.AllowNets.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Authentication.Caching.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/SharedMailboxes.Public.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/sieve/script-location-dict.txt.gz
-  - /usr/share/doc/dovecot-core/example-config/conf.d/10-ssl.conf
-  - /usr/share/doc/dovecot-core/dovecot/documentation.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Plugins.Autocreate.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Plugins.Stats.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/MailboxFormat.mbox.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Plugins.Autocreate.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/SystemUsers.txt.gz
-  - /usr/share/doc/dovecot-core/example-config/dovecot-dict-sql.conf.ext
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/MailboxSettings.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/PasswordDatabase.ExtraFields.NoLogin.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Plugins.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Design.Dsync.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Migration.Online.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/AuthDatabase.PasswdFile.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/IndexFiles.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/RunningDovecot.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Upgrading.1.1.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/SecurityTuning.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/maildrop.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Design.InputStreams.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Pigeonhole.Sieve.Plugins.Extprograms.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/example-config/conf.d/20-pop3.conf
-  - /usr/share/doc/dovecot-core.dpkg-new/example-config/conf.d/10-logging.conf
-  - /usr/share/doc/dovecot-core/dovecot/wiki/AuthDatabase.CheckPassword.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/CompilingSource.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Plugins.FTS.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/AuthDatabase.VPopMail.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Quota.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/TestInstallation.txt.gz
-  - /usr/share/doc/dovecot-core/example-config/dovecot.conf.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/AuthDatabase.Dict.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/SSL.DovecotConfiguration.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Pigeonhole.ManageSieve.Clients.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Variables.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/UserIds.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/HowTo.PopBSMTPAndDovecot.txt.gz
-  - /usr/share/doc/dovecot-core/example-config/conf.d/auth-passwdfile.conf.ext
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Authentication.Kerberos.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/example-config/conf.d/auth-checkpassword.conf.ext
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Design.Dsync.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Design.Storage.Mailbox.Search.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Plugins.Stats.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/TimeMovedBackwards.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Pigeonhole.ManageSieve.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/mutt.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Variables.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/MailLocation.SharedDisk.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/AuthDatabase.LDAP.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Plugins.Snarf.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Plugins.MailFilter.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Upgrading.2.1.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Design.Buffers.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/PasswordDatabase.ExtraFields.Proxy.txt.gz
-  - /var/lib/dpkg/info/dovecot-core.config
-  - /usr/share/doc/dovecot-core/dovecot/wiki/AuthDatabase.PasswdFile.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Design.MailProcess.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/example-config/conf.d/90-sieve-extprograms.conf
-  - /usr/share/doc/dovecot-core/example-config/conf.d/auth-dict.conf.ext
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Quota.Dict.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Migration.UW.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Design.Code.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Design.Storage.ErrorHandling.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/AuthDatabase.SQL.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/AuthDatabase.LDAP.AuthBinds.txt
-  - /usr/share/dovecot.dpkg-new/conf.d/90-sieve-extprograms.conf
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/SharedMailboxes.Symlinks.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Dict.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Design.Storage.MailStorage.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Design.InputStreams.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/MailboxSettings.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/HowTo.Rootless.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/example-config/conf.d/auth-passwdfile.conf.ext
-  - /usr/share/doc/dovecot-core/dovecot/wiki/HowTo.SimpleVirtualInstall.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/MailLocation.mbox.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Plugins.Zlib.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/PasswordDatabase.PAM.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/LMTP.Exim.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/LDA.Sendmail.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Design.Indexes.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Migration.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Design.AuthProtocol.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Pigeonhole.Sieve.Configuration.txt.gz
-  - /usr/share/doc/dovecot-core/example-config/conf.d/auth-deny.conf.ext
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Pigeonhole.ManageSieve.Configuration.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Pigeonhole.Sieve.Extensions.txt
-  - /usr/share/doc/dovecot-core/example-config/conf.d/20-imap.conf
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Pigeonhole.Sieve.Plugins.Extdata.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Upgrading.1.2.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/MailboxFormat.mailstore.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Design.Storage.Mail.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Plugins.FTS.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/MailboxFormat.mbx.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Replication.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Debugging.Authentication.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/example-config/conf.d/20-imap.conf
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Design.Processes.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Migration.Linuxconf.txt
-  - /usr/share/doc/dovecot-core/example-config/conf.d/20-lmtp.conf
-  - /usr/share/doc/dovecot-core/dovecot/wiki/PasswordDatabase.IMAP.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Pigeonhole.Sieve.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/SharedMailboxes.Permissions.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Design.Indexes.MainIndex.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Quota.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/DomainLost.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Pigeonhole.Sieve.Plugins.Pipe.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Quota.Configuration.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Design.Plugins.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Quota.Configuration.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/PasswordDatabase.Shadow.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/BasicConfiguration.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/LDA.Sendmail.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Design.Storage.Mailbox.Sync.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Pigeonhole.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/MailboxFormat.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/SSL.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/LDA.Indexing.txt
-  - /var/lib/dpkg/tmp.ci/config
-  - /usr/share/doc/dovecot-core.dpkg-new/example-config/conf.d/10-director.conf
-  - /usr/share/doc/dovecot-core/example-config/conf.d/auth-ldap.conf.ext
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/UserDatabase.ExtraFields.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/PreAuth.txt
-  - /usr/share/doc/dovecot-core/example-config/conf.d/auth-system.conf.ext
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/example-config/conf.d/20-managesieve.conf
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/HowTo.Rootless.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Authentication.PasswordSchemes.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Design.Storage.Mailbox.Transaction.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Debugging.ProcessTracing.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/LoginProcess.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/POP3Server.txt.gz
-  - /usr/share/doc/dovecot-core/example-config/conf.d/10-director.conf
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Migration.Online.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/MailboxFormat.Maildir.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Pigeonhole.Sieve.Plugins.Pipe.txt.gz
-  - /usr/share/doc/dovecot-core/example-config/conf.d/90-quota.conf
-  - /usr/share/doc/dovecot-core/dovecot/wiki/SecurityTuning.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Authentication.Mechanisms.DigestMD5.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Clients.NegativeUIDs.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Logging.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/HowTo.EximAndDovecotSASL.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Plugins.MailLog.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/documentation.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Migration.Cyrus.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/MailLocation.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/example-config/conf.d/auth-ldap.conf.ext
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Pigeonhole.ManageSieve.Install.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/MailboxFormat.MH.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Dict.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Plugins.Trash.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Quota.FS.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/FinishBasicConfiguration.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Authentication.RestrictAccess.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/mutt.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/PasswordDatabase.Static.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/HowTo.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Pigeonhole.ManageSieve.Troubleshooting.txt.gz
-  - /usr/share/doc/dovecot-core/example-config/conf.d/15-mailboxes.conf
-  - /usr/share/doc/dovecot-core/dovecot/dovecot-openssl.cnf
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/WhyDoesItNotWork.txt
-  - /usr/share/doc/dovecot-core/example-config/conf.d/auth-checkpassword.conf.ext
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Pigeonhole.Sieve.Usage.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/MboxProblems.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/MissingMailboxes.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Plugins.Zlib.txt.gz
-  - /usr/share/doc/dovecot-core/example-config/conf.d/10-auth.conf.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Plugins.MailboxAlias.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/PasswordDatabase.ExtraFields.NoDelay.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Design.Storage.MailUser.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/PerformanceTuning.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/MboxChildFolders.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/AuthDatabase.LDAP.Userdb.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Quota.Dirsize.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Director.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/LMTP.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Pigeonhole.Sieve.Configuration.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Pigeonhole.Sieve.Extensions.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Design.Indexes.Cache.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Plugins.Expire.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/UserDatabase.Static.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Design.Arrays.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/PasswordDatabase.ExtraFields.User.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/AuthDatabase.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/LoginProcess.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/VirtualUsers.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/TestPop3Installation.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Design.Plugins.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/PasswordDatabase.ExtraFields.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/HowTo.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/MailLocation.SharedDisk.txt
-  - /usr/share/doc/dovecot-core/dovecot/example-config/conf.d/90-sieve.conf.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/PasswordDatabase.ExtraFields.AllowNets.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/HowTo.PopBSMTPAndDovecot.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/MboxLocking.txt
-  - /usr/share/doc/dovecot-core/dovecot/example-config/conf.d/90-sieve-extprograms.conf
-  - /usr/share/doc/dovecot-core/dovecot/wiki/SSL.CertificateClientImporting.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Pigeonhole.Installation.txt
-  - /usr/share/doc/dovecot-core/example-config/conf.d/20-pop3.conf
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Authentication.Mechanisms.Winbind.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Plugins.Compress.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/LMTP.Exim.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Design.OutputStreams.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/AuthDatabase.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Sasl.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Pigeonhole.ManageSieve.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/uw2dovecot.sh.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/OSCompatibility.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/example-config/conf.d/auth-deny.conf.ext
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Design.Storage.ErrorHandling.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Quota.FS.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/example-config/dovecot-sql.conf.ext.gz
-  - /usr/share/doc/dovecot-core/example-config/dovecot-ldap.conf.ext.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Plugins.Virtual.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/SharedMailboxes.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/ACL.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/PasswordDatabase.ExtraFields.NoDelay.txt
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/solr-schema.xml
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Quota.Maildir.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Design.Memory.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Pigeonhole.Sieve.Troubleshooting.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Pigeonhole.Sieve.Extensions.Vacation.txt
-  - /usr/share/doc/dovecot-core/dovecot/wiki/LDA.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Design.AuthProcess.txt.gz
-  - /usr/share/doc/dovecot-core.dpkg-new/example-config/dovecot-dict-auth.conf.ext
-  - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Clients.txt.gz
-  - /usr/share/doc/dovecot-core/dovecot/wiki/Authentication.PasswordSchemes.txt.gz
-dstat:
-  0.7.2-3build1:
-  - /usr/share/dstat/dstat_vm_memctl.py
-  - /usr/share/doc/dstat/TODO
-  - /usr/share/doc/dstat/README
-  - /usr/share/doc/dstat.dpkg-new/TODO
-  - /usr/share/doc/dstat.dpkg-new/README
-  - /usr/share/dstat.dpkg-new/dstat_vm_memctl.py
-  0.7.2-4:
-  - /var/lib/dpkg/updates/0005
-  0.7.3-1: []
-dwz:
-  0.11-1: []
-  0.12-1:
-  - /var/lib/dpkg/updates/0005
-  0.12-2: []
-gpm:
-  1.20.4-6.1:
-  - /etc/init.d/.depend.boot
-  - /etc/init.d/.depend.start
-  - /etc/init.d/.depend.stop
-  - /var/lib/dpkg/updates/0014
-  - /var/lib/dpkg/updates/0013
-  - /var/lib/systemd/deb-systemd-helper-enabled/ureadahead.service.dsh-also
-  1.20.7-5: []
-iptraf-ng:
-  1.1.4-1: []
-  1.1.4-2ubuntu0.16.04.1: []
-  1:1.1.4-6:
-  - /var/log/apt/eipp.log.xz
-  - /var/cache/man/de/CACHEDIR.TAG
-  - /var/cache/man/tr/CACHEDIR.TAG
-  - /var/cache/man/pt/CACHEDIR.TAG
-  - /var/cache/man/sr/CACHEDIR.TAG
-  - /var/cache/man/id/CACHEDIR.TAG
-  - /var/cache/man/it/CACHEDIR.TAG
-  - /var/cache/man/zh_TW/CACHEDIR.TAG
-  - /var/cache/man/ru/CACHEDIR.TAG
-  - /var/cache/man/sv/CACHEDIR.TAG
-  - /var/cache/man/pt_BR/CACHEDIR.TAG
-  - /var/cache/man/nl/CACHEDIR.TAG
-  - /var/cache/man/es/CACHEDIR.TAG
-  - /var/cache/man/ko/CACHEDIR.TAG
-  - /var/log/journal/90c213c3662a46589e220665c75c823f/system.journal
-  - /var/cache/man/da/CACHEDIR.TAG
-  - /var/cache/man/fr/CACHEDIR.TAG
-  - /var/cache/man/zh_CN/CACHEDIR.TAG
-  - /var/cache/man/uk/CACHEDIR.TAG
-  - /var/cache/man/hu/CACHEDIR.TAG
-  - /var/cache/man/fi/CACHEDIR.TAG
-  - /var/cache/man/CACHEDIR.TAG
-  - /var/cache/man/sl/CACHEDIR.TAG
-  - /var/cache/man/cs/CACHEDIR.TAG
-  - /var/cache/man/ja/CACHEDIR.TAG
-  - /var/cache/man/pl/CACHEDIR.TAG
-ipvsadm:
-  1:1.26-2ubuntu1: []
-  1:1.28-3ubuntu0.16.04.1:
-  - /etc/init.d/.depend.boot
-  - /etc/init.d/.depend.start
-  - /etc/init.d/.depend.stop
-  - /var/lib/systemd/deb-systemd-helper-enabled/ureadahead.service.dsh-also
-  1:1.28-3ubuntu0.18.04.1:
-  - /var/lib/dpkg/updates/0010
-  - /var/log/apt/eipp.log.xz
-  - /var/cache/man/de/CACHEDIR.TAG
-  - /var/lib/apt/extended_states
-  - /var/lib/dpkg/status-new
-  - /var/cache/man/tr/CACHEDIR.TAG
-  - /var/cache/man/pt/CACHEDIR.TAG
-  - /var/cache/apt/pkgcache.bin
-  - /var/cache/man/sr/CACHEDIR.TAG
-  - /var/cache/man/id/CACHEDIR.TAG
-  - /var/cache/man/it/CACHEDIR.TAG
-  - /var/cache/man/zh_TW/CACHEDIR.TAG
-  - /var/cache/man/ru/CACHEDIR.TAG
-  - /var/cache/man/sv/CACHEDIR.TAG
-  - /var/cache/man/pt_BR/CACHEDIR.TAG
-  - /var/cache/man/es/CACHEDIR.TAG
-  - /var/cache/man/nl/CACHEDIR.TAG
-  - /var/cache/man/ko/CACHEDIR.TAG
-  - /var/log/journal/90c213c3662a46589e220665c75c823f/system.journal
-  - /var/lib/dpkg/status-old
-  - /var/lib/dpkg/status
-  - /var/cache/man/da/CACHEDIR.TAG
-  - /var/cache/man/fr/CACHEDIR.TAG
-  - /var/cache/man/zh_CN/CACHEDIR.TAG
-  - /var/lib/dpkg/updates/0009
-  - /var/lib/update-notifier/dpkg-run-stamp
-  - /var/lib/dpkg/updates/0011
-  - /var/lib/dpkg/updates/0008
-  - /var/cache/man/uk/CACHEDIR.TAG
-  - /var/cache/man/hu/CACHEDIR.TAG
-  - /var/cache/man/fi/CACHEDIR.TAG
-  - /var/cache/man/CACHEDIR.TAG
-  - /var/cache/man/sl/CACHEDIR.TAG
-  - /var/cache/man/cs/CACHEDIR.TAG
-  - /var/lib/dpkg/updates/0007
-  - /var/cache/man/index.db
-  - /var/cache/man/ja/CACHEDIR.TAG
-  - /var/log/syslog
-  - /var/cache/man/pl/CACHEDIR.TAG
-ksh:
-  93u+20120801-1ubuntu0.14.04.1:
-  - /usr/share/doc/ksh.dpkg-new/example.kshrc
-  - /usr/share/doc/ksh.dpkg-new/PROMO.mm.gz
-  - /usr/share/doc/ksh/PROMO.mm.gz
-  - /usr/share/doc/ksh/RELEASE.gz
-  - /usr/share/doc/ksh.dpkg-new/RELEASE.gz
-  - /usr/share/doc/ksh/example.kshrc
-  93u+20120801-2ubuntu0.16.04.1:
-  - /etc/alternatives/usr.bin.ksh
-  - /usr/bin/ksh.dpkg-tmp
-  - /etc/alternatives/usr.bin.ksh.dpkg-tmp
-  93u+20120801-3.1ubuntu1: []
-lftp:
-  4.4.13-1ubuntu0.1: []
-  4.6.3a-1ubuntu0.1: []
-  4.8.1-1ubuntu0.1: []
-lm-sensors:
-  1:3.3.4-2ubuntu1:
-  - /usr/share/man/man1/sensors-conf-convert.1.gz.dpkg-new
-  - /usr/share/man/man1/sensors-conf-convert.1.gz
-  1:3.4.0-2: []
-  1:3.4.0-4:
-  - /usr/share/doc/lm-sensors/temperature-sensors
-  - /usr/share/doc/lm-sensors/README.Debian.gz
-  - /usr/share/doc/lm-sensors/donations.gz
-  - /usr/share/doc/lm-sensors/examples/tellerstats/README
-  - /var/log/apt/eipp.log.xz
-  - /var/cache/man/de/CACHEDIR.TAG
-  - /usr/share/doc/lm-sensors/examples/hotplug/unhide_ICH_SMBus
-  - /usr/share/doc/lm-sensors.dpkg-new/copyright
-  - /var/cache/man/tr/CACHEDIR.TAG
-  - /usr/share/doc/lm-sensors.dpkg-new/examples/tellerstats/gnuplotscript.tmpl
-  - /usr/share/doc/lm-sensors.dpkg-new/changelog.Debian.gz
-  - /usr/share/doc/lm-sensors.dpkg-new/fan-divisors.gz
-  - /var/cache/man/pt/CACHEDIR.TAG
-  - /usr/share/doc/lm-sensors/examples/tellerstats/tellerstats.conf
-  - /usr/share/doc/lm-sensors.dpkg-new/examples/hotplug/README.p4b
-  - /var/cache/man/sr/CACHEDIR.TAG
-  - /var/cache/man/id/CACHEDIR.TAG
-  - /usr/share/doc/lm-sensors/examples/tellerstats/gnuplotscript.tmpl
-  - /var/cache/man/it/CACHEDIR.TAG
-  - /var/cache/man/zh_TW/CACHEDIR.TAG
-  - /usr/share/doc/lm-sensors/examples/tellerstats/gather.sh
-  - /var/cache/man/ru/CACHEDIR.TAG
-  - /var/cache/man/sv/CACHEDIR.TAG
-  - /usr/share/doc/lm-sensors/applications
-  - /var/cache/man/pt_BR/CACHEDIR.TAG
-  - /var/cache/man/es/CACHEDIR.TAG
-  - /var/cache/man/nl/CACHEDIR.TAG
-  - /var/cache/man/ko/CACHEDIR.TAG
-  - /usr/share/doc/lm-sensors/fan-divisors.gz
-  - /usr/share/doc/lm-sensors/vid
-  - /usr/share/doc/lm-sensors/copyright
-  - /usr/share/doc/lm-sensors/examples/hotplug/README.p4b
-  - /var/log/journal/90c213c3662a46589e220665c75c823f/system.journal
-  - /var/cache/man/da/CACHEDIR.TAG
-  - /usr/share/doc/lm-sensors/changelog.Debian.gz
-  - /usr/share/doc/lm-sensors.dpkg-new/examples/tellerstats/tellerstats.conf
-  - /usr/share/doc/lm-sensors.dpkg-new/README.Debian.gz
-  - /usr/share/doc/lm-sensors/examples/daemon/healthd.sh
-  - /usr/share/doc/lm-sensors.dpkg-new/vid
-  - /usr/share/doc/lm-sensors.dpkg-new/examples/daemon/healthd.sh
-  - /var/cache/man/fr/CACHEDIR.TAG
-  - /var/cache/man/zh_CN/CACHEDIR.TAG
-  - /usr/share/doc/lm-sensors.dpkg-new/donations.gz
-  - /var/cache/man/uk/CACHEDIR.TAG
-  - /var/cache/man/hu/CACHEDIR.TAG
-  - /usr/share/doc/lm-sensors.dpkg-new/examples/tellerstats/README
-  - /var/cache/man/fi/CACHEDIR.TAG
-  - /var/cache/man/CACHEDIR.TAG
-  - /usr/share/doc/lm-sensors.dpkg-new/examples/tellerstats/gather.sh
-  - /usr/share/doc/lm-sensors.dpkg-new/applications
-  - /var/cache/man/sl/CACHEDIR.TAG
-  - /usr/share/doc/lm-sensors/examples/tellerstats/tellerstats.sh
-  - /var/cache/man/cs/CACHEDIR.TAG
-  - /usr/share/doc/lm-sensors.dpkg-new/examples/tellerstats/index.shtml
-  - /var/cache/man/ja/CACHEDIR.TAG
-  - /usr/share/doc/lm-sensors.dpkg-new/examples/tellerstats/tellerstats.sh
-  - /usr/share/doc/lm-sensors.dpkg-new/examples/hotplug/unhide_ICH_SMBus
-  - /usr/share/doc/lm-sensors.dpkg-new/temperature-sensors
-  - /var/cache/man/pl/CACHEDIR.TAG
-  - /usr/share/doc/lm-sensors/examples/tellerstats/index.shtml
-logwatch:
-  7.4.0+svn20130529rev144-1ubuntu1.1: []
-  7.4.2-1ubuntu1:
-  - /var/lib/dpkg/updates/0005
-  - /usr/share/logwatch.dpkg-new/default.conf/services/systemd.conf
-  - /usr/share/logwatch/scripts/services/sssd
-  - /var/lib/apt/extended_states
-  - /usr/share/logwatch.dpkg-new/scripts/services/sssd
-  - /usr/share/logwatch/default.conf/services/omsa.conf
-  - /usr/share/logwatch/default.conf/services/dirsrv.conf
-  - /usr/share/logwatch.dpkg-new/default.conf/services/dirsrv.conf
-  - /usr/share/logwatch.dpkg-new/scripts/services/lvm
-  - /usr/share/logwatch.dpkg-new/scripts/services/knockd
-  - /usr/share/logwatch/scripts/services/dirsrv
-  - /usr/share/logwatch.dpkg-new/scripts/services/systemd
-  - /usr/share/logwatch.dpkg-new/scripts/services/zz-lm_sensors
-  - /usr/share/logwatch.dpkg-new/default.conf/services/zz-lm_sensors.conf
-  - /usr/share/logwatch/scripts/services/tivoli-smc
-  - /usr/share/logwatch/default.conf/services/zz-lm_sensors.conf
-  - /usr/share/logwatch/default.conf/logfiles/dirsrv.conf
-  - /usr/share/logwatch/scripts/services/systemd
-  - /usr/share/logwatch/default.conf/logfiles/tivoli-smc.conf
-  - /usr/share/logwatch/default.conf/services/rsyslogd.conf
-  - /var/lib/dpkg/status-new
-  - /usr/share/logwatch/scripts/services/rsyslogd
-  - /usr/share/logwatch.dpkg-new/default.conf/services/omsa.conf
-  - /usr/share/logwatch/scripts/services/knockd
-  - /usr/share/logwatch/scripts/services/lvm
-  - /var/cache/man/index.db
-  - /usr/share/logwatch.dpkg-new/scripts/services/dirsrv
-  - /usr/share/logwatch/default.conf/services/systemd.conf
-  - /usr/share/logwatch.dpkg-new/scripts/services/tivoli-smc
-  - /var/cache/apt/pkgcache.bin
-  - /usr/share/logwatch/default.conf/services/sssd.conf
-  - /usr/share/logwatch.dpkg-new/default.conf/services/sssd.conf
-  - /var/lib/dpkg/status-old
-  - /var/lib/dpkg/status
-  - /usr/share/logwatch/default.conf/services/tivoli-smc.conf
-  - /usr/share/logwatch.dpkg-new/default.conf/services/tivoli-smc.conf
-  - /usr/share/logwatch/scripts/services/omsa
-  - /usr/share/logwatch/default.conf/services/lvm.conf
-  - /usr/share/logwatch.dpkg-new/default.conf/logfiles/tivoli-smc.conf
-  - /usr/share/logwatch.dpkg-new/scripts/services/omsa
-  - /usr/share/logwatch.dpkg-new/default.conf/services/rsyslogd.conf
-  - /usr/share/logwatch.dpkg-new/default.conf/services/knockd.conf
-  - /usr/share/logwatch.dpkg-new/scripts/services/rsyslogd
-  - /var/lib/update-notifier/dpkg-run-stamp
-  - /usr/share/logwatch/scripts/services/zz-lm_sensors
-  - /usr/share/logwatch/default.conf/services/knockd.conf
-  - /usr/share/logwatch.dpkg-new/default.conf/logfiles/dirsrv.conf
-  - /usr/share/logwatch.dpkg-new/default.conf/services/lvm.conf
-  7.4.3+git20161207-2ubuntu1:
-  - /var/log/apt/eipp.log.xz
-  - /var/cache/man/sr/CACHEDIR.TAG
-  - /var/cache/man/ru/CACHEDIR.TAG
-  - /var/log/journal/90c213c3662a46589e220665c75c823f/system.journal
-  - /var/cache/man/uk/CACHEDIR.TAG
-  - /usr/share/logwatch/scripts/shared/journalctl
-  - /var/cache/man/ja/CACHEDIR.TAG
-  - /usr/share/logwatch.dpkg-new/scripts/services/rsnapshot
-  - /usr/share/logwatch/default.conf/logfiles/rsnapshot.conf
-  - /var/cache/man/de/CACHEDIR.TAG
-  - /usr/share/logwatch/default.conf/logfiles/dovecot.conf
-  - /var/cache/man/id/CACHEDIR.TAG
-  - /var/cache/man/nl/CACHEDIR.TAG
-  - /usr/share/logwatch/scripts/services/rsnapshot
-  - /var/cache/man/fr/CACHEDIR.TAG
-  - /var/cache/man/zh_CN/CACHEDIR.TAG
-  - /usr/share/logwatch.dpkg-new/default.conf/services/rsnapshot.conf
-  - /var/cache/man/pl/CACHEDIR.TAG
-  - /usr/share/logwatch.dpkg-new/default.conf/logfiles/dovecot.conf
-  - /var/cache/man/pt/CACHEDIR.TAG
-  - /var/cache/man/zh_TW/CACHEDIR.TAG
-  - /var/cache/man/da/CACHEDIR.TAG
-  - /var/cache/man/fi/CACHEDIR.TAG
-  - /usr/share/logwatch.dpkg-new/default.conf/logfiles/rsnapshot.conf
-  - /var/cache/man/CACHEDIR.TAG
-  - /var/cache/man/sl/CACHEDIR.TAG
-  - /usr/share/logwatch.dpkg-new/scripts/shared/journalctl
-  - /usr/share/logwatch/default.conf/services/rsnapshot.conf
-  - /var/cache/man/tr/CACHEDIR.TAG
-  - /var/cache/man/it/CACHEDIR.TAG
-  - /var/cache/man/sv/CACHEDIR.TAG
-  - /var/cache/man/pt_BR/CACHEDIR.TAG
-  - /var/cache/man/es/CACHEDIR.TAG
-  - /var/cache/man/ko/CACHEDIR.TAG
-  - /var/cache/man/hu/CACHEDIR.TAG
-  - /var/cache/man/cs/CACHEDIR.TAG
-lynx:
-  2.8.8pre4-1: []
-  2.8.9dev16-3:
-  - /var/log/journal/90c213c3662a46589e220665c75c823f/system.journal
-  - /var/log/apt/eipp.log.xz
-  2.8.9dev8-4ubuntu1:
-  - /var/lib/dpkg/tmp.ci/preinst
-  - /var/lib/dpkg/info/lynx.prerm
-  - /usr/share/doc/lynx.dpkg-new/copyright
-  - /var/lib/dpkg/alternatives/www-browser
-  - /usr/share/man/man1/www-browser.1.gz.dpkg-tmp
-  - /usr/share/menu/lynx.dpkg-new
-  - /usr/share/doc/lynx/changelog.gz
-  - /var/cache/apt/pkgcache.bin
-  - /var/lib/dpkg/info/lynx.preinst
-  - /usr/bin/lynx.dpkg-new
-  - /var/lib/dpkg/triggers/Lock
-  - /etc/alternatives/www-browser.dpkg-tmp
-  - /var/lib/dpkg/info/lynx.list-new
-  - /var/lib/dpkg/info/lynx.md5sums
-  - /var/lib/dpkg/status-old
-  - /var/lib/dpkg/status
-  - /usr/share/doc/lynx/PROBLEMS.gz
-  - /usr/share/doc/lynx.dpkg-new/README.gz
-  - /var/lib/dpkg/info/lynx.list
-  - /usr/bin/www-browser.dpkg-tmp
-  - /var/lib/dpkg/tmp.ci/control
-  - /var/log/apt/history.log
-  - /var/lib/dpkg/tmp.ci/prerm
-  - /usr/share/doc/lynx/README.Debian
-  - /var/lib/dpkg/tmp.ci/postrm
-  - /usr/share/doc/lynx.dpkg-new/changelog.gz
-  - /etc/alternatives/www-browser
-  - /usr/share/doc/lynx.dpkg-new/README.Debian
-  - /usr/share/man/man1/www-browser.1.gz
-  - /var/lib/dpkg/info/lynx.postrm
-  - /var/log/apt/term.log
-  - /var/lib/dpkg/lock
-  - /etc/alternatives/www-browser.1.gz
-  - /var/lib/dpkg/updates/0002
-  - /var/lib/apt/extended_states
-  - /usr/share/doc/lynx.dpkg-new/COPYHEADER
-  - /usr/share/doc/lynx/copyright
-  - /var/lib/dpkg/tmp.ci/postinst
-  - /usr/bin/www-browser
-  - /usr/share/lintian/overrides/lynx.dpkg-new
-  - /var/lib/dpkg/alternatives/www-browser.dpkg-tmp
-  - /usr/share/doc/lynx/changelog.Debian.gz
-  - /usr/share/doc/lynx.dpkg-new/changelog.Debian.gz
-  - /usr/share/menu/lynx
-  - /etc/alternatives/www-browser.1.gz.dpkg-tmp
-  - /usr/share/doc/lynx/COPYHEADER
-  - /var/lib/dpkg/status-new
-  - /usr/share/doc/lynx.dpkg-new/PROBLEMS.gz
-  - /usr/share/lintian/overrides/lynx
-  - /var/lib/update-notifier/dpkg-run-stamp
-  - /usr/bin/lynx
-  - /var/lib/dpkg/updates/tmp.i
-  - /var/lib/dpkg/tmp.ci/md5sums
-  - /var/log/alternatives.log
-  - /var/lib/dpkg/updates/0001
-  - /usr/share/doc/lynx/README.gz
-  - /var/log/dpkg.log
-  - /var/lib/dpkg/updates/0000
-  - /var/lib/dpkg/info/lynx.postinst
-mailman:
-  1:2.1.20-1ubuntu0.3:
-  - /usr/share/doc/mailman/examples/pl/admindbdetails.html.dpkg-new
-  - /etc/init.d/.depend.stop
-  - /var/lib/mailman/messages.dpkg-new/ja/README.ja.dpkg-new
-  - /etc/init.d/.depend.boot
-  - /usr/share/doc/mailman.dpkg-new/examples/pl/convert.txt.dpkg-new
-  - /usr/share/doc/mailman.dpkg-new/examples/pl/admindbdetails.html.dpkg-new
-  - /usr/share/doc/mailman/examples/pl/headfoot.html.dpkg-new
-  - /var/lib/dpkg/updates/0009
-  - /usr/share/doc/mailman.dpkg-new/examples/pl/headfoot.html.dpkg-new
-  - /usr/share/doc/mailman/examples/pl/convert.txt.dpkg-new
-  - /var/lib/systemd/deb-systemd-helper-enabled/ureadahead.service.dsh-also
-  - /usr/share/doc/mailman.dpkg-new/examples/pl/admindbpreamble.html.dpkg-new
-  - /var/lib/dpkg/updates/0008
-  - /usr/share/doc/mailman.dpkg-new/examples/pl/admindbsummary.html.dpkg-new
-  - /etc/init.d/mailman.dpkg-new
-  - /var/lib/mailman/messages/ja/README.ja.dpkg-new
-  - /usr/share/doc/mailman/examples/pl/admindbsummary.html.dpkg-new
-  - /var/lib/dpkg/updates/0011
-  - /var/lib/dpkg/updates/0010
-  - /usr/share/doc/mailman/examples/pl/admindbpreamble.html.dpkg-new
-  - /etc/init.d/.depend.start
-  1:2.1.26-1: []
-mariadb-server:
-  10.0.38-0ubuntu0.16.04.1: []
-  5.5.64-1ubuntu0.14.04.1:
-  - /var/log/auth.log
-marisa:
-  0.2.4-5build1: []
-  0.2.4-8build12:
-  - /var/log/apt/eipp.log.xz
-  - /var/cache/man/de/CACHEDIR.TAG
-  - /var/cache/man/tr/CACHEDIR.TAG
-  - /var/cache/man/pt/CACHEDIR.TAG
-  - /var/cache/man/sr/CACHEDIR.TAG
-  - /var/cache/man/id/CACHEDIR.TAG
-  - /var/cache/man/it/CACHEDIR.TAG
-  - /var/cache/man/zh_TW/CACHEDIR.TAG
-  - /var/cache/man/ru/CACHEDIR.TAG
-  - /var/cache/man/sv/CACHEDIR.TAG
-  - /var/cache/man/pt_BR/CACHEDIR.TAG
-  - /var/cache/man/es/CACHEDIR.TAG
-  - /var/cache/man/nl/CACHEDIR.TAG
-  - /var/cache/man/ko/CACHEDIR.TAG
-  - /var/log/journal/90c213c3662a46589e220665c75c823f/system.journal
-  - /var/cache/man/da/CACHEDIR.TAG
-  - /var/cache/man/fr/CACHEDIR.TAG
-  - /var/cache/man/zh_CN/CACHEDIR.TAG
-  - /var/cache/man/uk/CACHEDIR.TAG
-  - /var/cache/man/hu/CACHEDIR.TAG
-  - /var/cache/man/fi/CACHEDIR.TAG
-  - /var/cache/man/CACHEDIR.TAG
-  - /var/cache/man/sl/CACHEDIR.TAG
-  - /var/cache/man/cs/CACHEDIR.TAG
-  - /var/cache/man/ja/CACHEDIR.TAG
-  - /var/cache/man/pl/CACHEDIR.TAG
-  0.2.4-8build6: []
-mc:
-  3:4.8.11-1:
-  - /usr/share/menu/mc.dpkg-new
-  - /usr/share/menu/mc
-  3:4.8.15-2:
-  - /etc/mc/mc.menu.sr.dpkg-new
-  3:4.8.19-1: []
-memcached:
-  1.4.14-0ubuntu9.3: []
-  1.4.25-2ubuntu1.4:
-  - /usr/share/memcached.dpkg-new/scripts/mc_slab_mover
-  - /etc/init.d/.depend.stop
-  - /etc/init.d/.depend.boot
-  - /etc/init.d/.depend.start
-  - /usr/share/memcached/scripts/mc_slab_mover
-  - /var/lib/systemd/deb-systemd-helper-enabled/ureadahead.service.dsh-also
-  - /var/lib/dpkg/updates/0011
-  1.5.6-0ubuntu1.1: []
-mgetty-voice:
-  1.1.36-2.1+deb8u1build0.16.04.1:
-  - /var/lib/dpkg/updates/0005
-  1.1.36-2ubuntu1: []
-  1.1.36-3.1: []
-mksh:
-  46-2ubuntu3: []
-  52c-2: []
-  56c-1: []
-mrtg:
-  2.17.4-2ubuntu2: []
-  2.17.4-3ubuntu1: []
-  2.17.4-4.1ubuntu1:
-  - /var/log/apt/eipp.log.xz
-  - /var/cache/man/de/CACHEDIR.TAG
-  - /var/lib/apt/extended_states
-  - /var/cache/man/tr/CACHEDIR.TAG
-  - /var/cache/man/pt/CACHEDIR.TAG
-  - /var/cache/apt/pkgcache.bin
-  - /var/cache/man/sr/CACHEDIR.TAG
-  - /var/cache/man/id/CACHEDIR.TAG
-  - /var/cache/man/it/CACHEDIR.TAG
-  - /var/cache/man/zh_TW/CACHEDIR.TAG
-  - /var/cache/man/ru/CACHEDIR.TAG
-  - /var/cache/man/sv/CACHEDIR.TAG
-  - /var/cache/man/pt_BR/CACHEDIR.TAG
-  - /var/cache/man/nl/CACHEDIR.TAG
-  - /var/cache/man/es/CACHEDIR.TAG
-  - /var/cache/man/ko/CACHEDIR.TAG
-  - /etc/mrtg.cfg
-  - /var/log/journal/90c213c3662a46589e220665c75c823f/system.journal
-  - /var/cache/man/da/CACHEDIR.TAG
-  - /var/cache/man/fr/CACHEDIR.TAG
-  - /var/cache/man/zh_CN/CACHEDIR.TAG
-  - /var/lib/update-notifier/dpkg-run-stamp
-  - /var/cache/man/uk/CACHEDIR.TAG
-  - /var/cache/man/hu/CACHEDIR.TAG
-  - /var/cache/man/fi/CACHEDIR.TAG
-  - /var/cache/man/CACHEDIR.TAG
-  - /var/cache/man/sl/CACHEDIR.TAG
-  - /var/cache/man/cs/CACHEDIR.TAG
-  - /var/lib/dpkg/updates/0007
-  - /var/cache/man/ja/CACHEDIR.TAG
-  - /var/lib/dpkg/updates/0006
-  - /var/cache/man/pl/CACHEDIR.TAG
-mstflint:
-  1.4-OFED-1.4.2-1ubuntu1:
-  - /usr/share/man/man1/hca_self_test.ofed.1.gz.dpkg-new
-  - /usr/share/man/man1/hca_self_test.ofed.1.gz
-  4.1.0+1.46.gb1cdaf7-1ubuntu3.1: []
-  4.8.0-2:
-  - /usr/include/mstflint/mtcr.h
-  - /usr/share/mstflint.dpkg-new/ConnectX5.csv
-  - /usr/lib/x86_64-linux-gnu/mstflint/python_tools/dev_mgt.py
-  - /usr/lib/x86_64-linux-gnu/mstflint.dpkg-new/python_tools/mtcr.py
-  - /usr/share/man/man1/mstconfig.1.gz
-  - /var/log/apt/eipp.log.xz
-  - /usr/share/man/man1/mstmtserver.1.gz.dpkg-new
-  - /var/cache/man/de/CACHEDIR.TAG
-  - /usr/lib/x86_64-linux-gnu/mstflint.dpkg-new/python_tools/c_dev_mgt.so
-  - /usr/lib/x86_64-linux-gnu/mstflint/python_tools/mtcr.py
-  - /var/cache/man/tr/CACHEDIR.TAG
-  - /usr/share/man/man1/mstmtserver.1.gz
-  - /var/cache/man/pt/CACHEDIR.TAG
-  - /usr/share/man/man1/mstmcra.1.gz.dpkg-new
-  - /var/cache/man/sr/CACHEDIR.TAG
-  - /var/cache/man/id/CACHEDIR.TAG
-  - /usr/lib/x86_64-linux-gnu/mstflint/python_tools/rreg_access.so
-  - /usr/share/mstflint.dpkg-new/mlxconfig_dbs/mlxconfig_switch.db
-  - /var/cache/man/it/CACHEDIR.TAG
-  - /usr/include/mstflint.dpkg-new/mtcr_com_defs.h
-  - /var/cache/man/zh_TW/CACHEDIR.TAG
-  - /usr/share/mstflint.dpkg-new/mlxconfig_dbs/mlxconfig_host.db
-  - /usr/bin/mstfwreset.dpkg-new
-  - /var/cache/man/ru/CACHEDIR.TAG
-  - /var/cache/man/sv/CACHEDIR.TAG
-  - /usr/lib/x86_64-linux-gnu/mstflint/python_tools/tools_version.py
-  - /usr/lib/x86_64-linux-gnu/mstflint/python_tools/regaccess.py
-  - /var/cache/man/pt_BR/CACHEDIR.TAG
-  - /usr/share/man/man1/mstmcra.1.gz
-  - /var/cache/man/es/CACHEDIR.TAG
-  - /var/cache/man/nl/CACHEDIR.TAG
-  - /var/cache/man/ko/CACHEDIR.TAG
-  - /usr/lib/x86_64-linux-gnu/mstflint.dpkg-new/python_tools/cmtcr.so
-  - /usr/lib/x86_64-linux-gnu/mstflint.dpkg-new/python_tools/dev_mgt.py
-  - /var/log/journal/90c213c3662a46589e220665c75c823f/system.journal
-  - /var/cache/man/da/CACHEDIR.TAG
-  - /usr/share/man/man1/mstconfig.1.gz.dpkg-new
-  - /usr/include/mstflint.dpkg-new/mtcr.h
-  - /usr/lib/x86_64-linux-gnu/mstflint.dpkg-new/python_tools/ccmdif.so
-  - /usr/share/man/man1/mstmread.1.gz
-  - /usr/share/man/man1/mstregdump.1.gz
-  - /usr/share/man/man1/mstmread.1.gz.dpkg-new
-  - /var/cache/man/fr/CACHEDIR.TAG
-  - /var/cache/man/zh_CN/CACHEDIR.TAG
-  - /usr/lib/x86_64-linux-gnu/mstflint.dpkg-new/python_tools/cmdif.py
-  - /usr/bin/mstfwreset
-  - /usr/lib/x86_64-linux-gnu/mstflint.dpkg-new/python_tools/mstfwreset/mstfwreset.py
-  - /usr/lib/x86_64-linux-gnu/mstflint/python_tools/mstfwreset/mstfwreset.py
-  - /usr/share/mstflint/SwitchIB2.csv
-  - /usr/lib/x86_64-linux-gnu/mstflint/python_tools/c_dev_mgt.so
-  - /var/cache/man/uk/CACHEDIR.TAG
-  - /var/cache/man/hu/CACHEDIR.TAG
-  - /var/cache/man/fi/CACHEDIR.TAG
-  - /usr/lib/x86_64-linux-gnu/mstflint/python_tools/ccmdif.so
-  - /usr/share/mstflint.dpkg-new/SwitchIB2.csv
-  - /var/cache/man/CACHEDIR.TAG
-  - /usr/share/man/man1/mstmwrite.1.gz.dpkg-new
-  - /usr/share/man/man1/mstregdump.1.gz.dpkg-new
-  - /var/cache/man/sl/CACHEDIR.TAG
-  - /usr/share/mstflint/mlxconfig_dbs/mlxconfig_switch.db
-  - /usr/lib/x86_64-linux-gnu/mstflint/python_tools/cmtcr.so
-  - /var/cache/man/cs/CACHEDIR.TAG
-  - /usr/lib/x86_64-linux-gnu/mstflint/python_tools/cmdif.py
-  - /usr/lib/x86_64-linux-gnu/mstflint.dpkg-new/python_tools/rreg_access.so
-  - /usr/lib/x86_64-linux-gnu/mstflint.dpkg-new/python_tools/regaccess.py
-  - /usr/lib/x86_64-linux-gnu/mstflint.dpkg-new/python_tools/tools_version.py
-  - /usr/share/man/man1/mstvpd.1.gz
-  - /var/cache/man/ja/CACHEDIR.TAG
-  - /usr/share/mstflint/mlxconfig_dbs/mlxconfig_host.db
-  - /usr/share/mstflint/ConnectX5.csv
-  - /usr/share/man/man1/mstmwrite.1.gz
-  - /usr/include/mstflint/mtcr_com_defs.h
-  - /usr/share/man/man1/mstvpd.1.gz.dpkg-new
-  - /var/cache/man/pl/CACHEDIR.TAG
-nasm:
-  2.10.09-1ubuntu0.1: []
-  2.11.08-1ubuntu0.1:
-  - /usr/share/doc/nasm/examples/popcnt.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/invlpga.asm
-  - /usr/share/doc/nasm/examples/bisect.sh
-  - /usr/share/doc/nasm/examples/imacro.asm
-  - /usr/share/doc/nasm/html/nasmdoc8.html
-  - /usr/share/doc/nasm/html/nasmdoc9.html
-  - /usr/share/doc/nasm/examples/pushseg.asm
-  - /var/lib/dpkg/updates/0005
-  - /usr/share/doc/nasm/examples/alonesym-obj.asm.gz
-  - /usr/share/doc/nasm.dpkg-new/examples/br978756.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/jmp64.asm
-  - /usr/share/doc/nasm/examples/prefix66.asm
-  - /usr/share/doc/nasm/examples/mmxsize.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/crc32.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/addr64x.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/perf/label.pl
-  - /usr/share/doc/nasm.dpkg-new/examples/uscore.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/tmap.nas.gz
-  - /usr/share/doc/nasm/examples/br3187743.asm
-  - /usr/share/doc/nasm/examples/br2148476.asm.gz
-  - /usr/share/doc/nasm/nasmdoc.pdf.gz
-  - /usr/share/doc/nasm.dpkg-new/examples/utf.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/paste.asm
-  - /usr/share/doc/nasm.dpkg-new/html/nasmdoc1.html
-  - /usr/share/doc/nasm.dpkg-new/examples/gather.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/movimm.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/pinsr64.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/zerobyte.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/movd64.asm
-  - /usr/share/doc/nasm/examples/br3041451.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/xcrypt.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/floatx.asm.gz
-  - /usr/share/info/nasm.info-2.gz
-  - /usr/share/doc/nasm.dpkg-new/examples/br890790.asm
-  - /usr/share/doc/nasm/html/nasmdoc0.html
-  - /usr/share/doc/nasm/examples/inc1.asm
-  - /usr/share/doc/nasm/examples/avx2.asm.gz
-  - /usr/share/doc/nasm.dpkg-new/examples/br3174983.asm
-  - /usr/share/doc/nasm.dpkg-new/html/nasmdocb.html
-  - /usr/share/doc/nasm.dpkg-new/examples/_version.asm
-  - /usr/share/doc/nasm/examples/elf64so.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/xchg.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/alonesym-obj.asm.gz
-  - /usr/share/doc/nasm.dpkg-new/examples/imacro.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/performtest.pl.gz
-  - /usr/share/doc/nasm/examples/xcrypt.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/relocs.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/objlink.c
-  - /usr/share/doc/nasm.dpkg-new/examples/immwarn.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/sha.asm
-  - /usr/share/doc/nasm/examples/hle.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/bintest.asm
-  - /usr/share/info/dir.old
-  - /usr/share/doc/nasm/examples/ifmacro.asm.gz
-  - /usr/share/doc/nasm.dpkg-new/examples/mpx-64.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/bisect.sh
-  - /usr/share/doc/nasm.dpkg-new/examples/avx512er.asm.gz
-  - /usr/share/doc/nasm.dpkg-new/examples/expimp.asm
-  - /usr/share/doc/nasm/examples/performtest.pl.gz
-  - /usr/share/doc/nasm.dpkg-new/examples/ppindirect.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/imm64.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/testdos.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/far64.asm
-  - /usr/share/doc/nasm/html/nasmdocc.html
-  - /usr/share/doc/nasm.dpkg-new/examples/struc.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/macro-defaults.asm
-  - /usr/share/doc/nasm.dpkg-new/html/nasmdoc8.html
-  - /usr/share/doc/nasm.dpkg-new/examples/iftoken.pl
-  - /usr/share/doc/nasm/examples/br3174983.asm
-  - /usr/share/doc/nasm/html/nasmdo11.html
-  - /usr/share/doc/nasm.dpkg-new/nasmdoc.pdf.gz
-  - /usr/share/doc/nasm/examples/zerobyte.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/avx512cd.asm.gz
-  - /usr/share/doc/nasm.dpkg-new/examples/br2496848.asm
-  - /usr/share/doc/nasm/html/nasmdoc7.html
-  - /usr/share/doc/nasm/nasmdoc.txt.gz
-  - /usr/share/doc/nasm.dpkg-new/examples/ilog2.asm.gz
-  - /usr/share/doc/nasm/examples/smartalign32.asm
-  - /usr/share/info/nasm.info.gz
-  - /usr/share/doc/nasm/examples/br3092924.asm
-  - /usr/share/doc/nasm/examples/andbyte.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/a32offs.asm
-  - /usr/share/doc/nasm/examples/changed.asm.gz
-  - /usr/share/doc/nasm/examples/multisection.asm
-  - /usr/share/doc/nasm/examples/movnti.asm
-  - /usr/share/doc/nasm/html/nasmdoc3.html
-  - /usr/share/doc/nasm/examples/radix.asm
-  - /usr/share/doc/nasm/examples/imm64.asm
-  - /usr/share/doc/nasm/examples/nullfile.asm
-  - /usr/share/doc/nasm.dpkg-new/TODO.gz
-  - /usr/share/doc/nasm/examples/splitea.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/_file_.asm
-  - /usr/share/doc/nasm/examples/br3109604.asm
-  - /usr/share/doc/nasm.dpkg-new/html/nasmdoc6.html
-  - /usr/share/doc/nasm.dpkg-new/examples/dtbcd.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/ifelse.asm
-  - /usr/share/doc/nasm.dpkg-new/html/nasmdoc9.html
-  - /usr/share/doc/nasm/examples/br3200749.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/gas2nasm.py
-  - /usr/share/doc/nasm/examples/sha-64.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/br3109604.asm
-  - /usr/share/doc/nasm/examples/br3104312.asm
-  - /usr/share/doc/nasm/examples/pinsr16.asm
-  - /usr/share/doc/nasm/examples/smartalign16.asm
-  - /usr/share/doc/nasm/examples/expimp.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/nullfile.asm
-  - /usr/share/doc/nasm.dpkg-new/nasmdoc.ps.gz
-  - /usr/share/doc/nasm.dpkg-new/examples/splitea.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/avx005.asm.gz
-  - /usr/share/doc/nasm.dpkg-new/examples/align13.asm
-  - /usr/share/doc/nasm/examples/vgather.asm
-  - /usr/share/doc/nasm/examples/objlink.c
-  - /usr/share/doc/nasm/examples/aouttest.c
-  - /usr/share/doc/nasm.dpkg-new/examples/br3074517.asm
-  - /usr/share/doc/nasm/examples/avx512pf.asm.gz
-  - /usr/share/doc/nasm/examples/br3392259.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/nasmformat.asm
-  - /usr/share/doc/nasm/examples/riprel.asm.gz
-  - /usr/share/info/dir
-  - /usr/share/doc/nasm/examples/br3392252.asm
-  - /usr/share/doc/nasm/examples/sreg.asm
-  - /usr/share/doc/nasm/examples/gas2nasm.py
-  - /usr/share/doc/nasm/examples/crc32.asm
-  - /usr/share/doc/nasm/examples/perf/macro.pl
-  - /usr/share/doc/nasm.dpkg-new/examples/aoutso.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/iftoken.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/elftest64.c
-  - /usr/share/doc/nasm.dpkg-new/examples/br560873.asm
-  - /usr/share/doc/nasm/examples/br890790_i.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/new
-  - /usr/share/doc/nasm/examples/immwarn.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/pinsr32.asm
-  - /usr/share/doc/nasm/examples/binexe.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/popcnt.asm
-  - /usr/share/doc/nasm/examples/float.asm
-  - /usr/share/doc/nasm.dpkg-new/nasmdoc.txt.gz
-  - /usr/share/doc/nasm/examples/fwdopt.asm
-  - /usr/share/doc/nasm/examples/struc.asm
-  - /usr/share/info/nasm.info-1.gz
-  - /usr/share/doc/nasm/examples/uscore.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/inc1.asm
-  - /usr/share/doc/nasm/TODO.gz
-  - /usr/share/doc/nasm.dpkg-new/examples/r13.asm
-  - /usr/share/doc/nasm/examples/relocs.asm
-  - /usr/share/doc/nasm/examples/ilog2.asm.gz
-  - /usr/share/doc/nasm/examples/addr64x.asm
-  - /usr/share/doc/nasm/examples/elif.asm
-  - /usr/share/doc/nasm/examples/nop.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/riprel.asm.gz
-  - /usr/share/doc/nasm.dpkg-new/examples/test67.asm
-  - /usr/share/doc/nasm/examples/br3005117.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/objexe.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/avx.asm
-  - /usr/share/doc/nasm/examples/absolute.asm
-  - /usr/share/doc/nasm/examples/testdos.asm
-  - /usr/share/doc/nasm/html/nasmdoc4.html
-  - /usr/share/doc/nasm.dpkg-new/examples/perf/macro.pl
-  - /usr/share/doc/nasm/examples/jmp64.asm
-  - /usr/share/doc/nasm/examples/ifelse.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/br3187743.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/vex.asm
-  - /usr/share/doc/nasm/examples/perf/token.pl
-  - /usr/share/doc/nasm.dpkg-new/examples/br3026808.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/cofftest.c
-  - /usr/share/doc/nasm.dpkg-new/examples/avx512pf.asm.gz
-  - /usr/share/doc/nasm/examples/imul.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/br890790_i.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/perf/token.pl
-  - /usr/share/doc/nasm.dpkg-new/examples/br3066383.asm
-  - /usr/share/doc/nasm/html/nasmdoca.html
-  - /usr/share/doc/nasm.dpkg-new/html/nasmdoc4.html
-  - /usr/share/doc/nasm/examples/ifenv.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/radix.asm
-  - /usr/share/doc/nasm/examples/strlen.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/org.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/lnxhello.asm
-  - /usr/share/doc/nasm/examples/aouttest.asm
-  - /usr/share/doc/nasm/examples/a32offs.asm
-  - /usr/share/doc/nasm/html/nasmdo10.html
-  - /usr/share/doc/nasm/examples/xmm0.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/avx512f.asm.gz
-  - /usr/share/doc/nasm.dpkg-new/examples/fwdopt.asm
-  - /usr/share/doc/nasm/html/nasmdocb.html
-  - /usr/share/doc/nasm/html/nasmdoc6.html
-  - /usr/share/doc/nasm.dpkg-new/examples/binexe.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/larlsl.asm
-  - /usr/share/doc/nasm/examples/pinsr64.asm
-  - /usr/share/doc/nasm/examples/cofftest.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/local.asm
-  - /usr/share/doc/nasm/examples/optimization.asm
-  - /usr/share/doc/nasm/examples/ppindirect.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/fwdoptpp.asm
-  - /usr/share/doc/nasm/examples/br890790.asm
-  - /var/lib/dpkg/updates/0007
-  - /usr/share/doc/nasm.dpkg-new/examples/br3104312.asm
-  - /usr/share/doc/nasm/examples/test67.asm
-  - /usr/share/doc/nasm.dpkg-new/html/nasmdo12.html
-  - /usr/share/doc/nasm/examples/testnos3.asm.gz
-  - /usr/share/doc/nasm.dpkg-new/examples/br2222615.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/newrdwr.asm
-  - /usr/share/doc/nasm/examples/perf/label.pl
-  - /usr/share/doc/nasm/examples/mpx.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/movd.asm
-  - /usr/share/doc/nasm/examples/sha.asm
-  - /usr/share/doc/nasm/examples/lar_lsl.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/multisection.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/insnlbl.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/testnos3.asm.gz
-  - /usr/share/doc/nasm/examples/elftest.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/mmxsize.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/aouttest.c
-  - /usr/share/doc/nasm/examples/avx512cd.asm.gz
-  - /usr/share/info/nasm.info-3.gz
-  - /usr/share/doc/nasm.dpkg-new/examples/br560575.asm
-  - /usr/share/doc/nasm/examples/align13.asm
-  - /usr/share/doc/nasm/examples/vex.asm
-  - /usr/share/doc/nasm/examples/float8.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/ifenv.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/cofftest.asm
-  - /usr/share/doc/nasm.dpkg-new/html/nasmdoc3.html
-  - /usr/share/doc/nasm/examples/br560873.asm
-  - /usr/share/doc/nasm.dpkg-new/html/nasmdo10.html
-  - /usr/share/doc/nasm/examples/nasmformat.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/float.asm
-  - /usr/share/doc/nasm/examples/inctest.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/ifmacro.asm.gz
-  - /usr/share/doc/nasm/examples/nasm.sl.gz
-  - /usr/share/doc/nasm/examples/elftest.c
-  - /usr/share/doc/nasm.dpkg-new/examples/vgather.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/floatize.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/aouttest.asm
-  - /usr/share/doc/nasm/README
-  - /usr/share/doc/nasm/examples/floattest.asm
-  - /usr/share/doc/nasm.dpkg-new/html/nasmdoc0.html
-  - /usr/share/doc/nasm/examples/org.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/objtest.asm
-  - /usr/share/doc/nasm/examples/_version.asm
-  - /usr/share/doc/nasm/examples/objtest.asm
-  - /usr/share/doc/nasm/html/nasmdoc5.html
-  - /usr/share/doc/nasm/examples/paste.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/lar_lsl.asm
-  - /usr/share/doc/nasm/examples/br3028880.asm
-  - /usr/share/doc/nasm/examples/br3058845.asm
-  - /usr/share/doc/nasm/examples/movd.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/strlen.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/time.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/riprel2.asm
-  - /usr/share/doc/nasm/examples/r13.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/br3392252.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/floatb.asm
-  - /usr/share/doc/nasm.dpkg-new/html/nasmdo11.html
-  - /usr/share/doc/nasm.dpkg-new/examples/pushseg.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/br1879590.asm
-  - /usr/share/doc/nasm/examples/bintest.asm
-  - /usr/share/doc/nasm/examples/avx512er.asm.gz
-  - /usr/share/doc/nasm.dpkg-new/examples/avx2.asm.gz
-  - /usr/share/doc/nasm.dpkg-new/README
-  - /usr/share/doc/nasm/examples/movimm.asm
-  - /usr/share/doc/nasm/examples/riprel2.asm
-  - /usr/share/doc/nasm/examples/newrdwr.asm
-  - /usr/share/doc/nasm/examples/avx.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/mpx.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/br2003451.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/nop.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/sreg.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/br2030823.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/xmm0.asm
-  - /usr/share/doc/nasm.dpkg-new/html/nasmdocc.html
-  - /usr/share/doc/nasm/AUTHORS
-  - /usr/share/doc/nasm/examples/floatize.asm
-  - /usr/share/doc/nasm/examples/iftoken.pl
-  - /usr/share/info/nasm.info.gz.dpkg-new
-  - /usr/share/doc/nasm/examples/br1879590.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/nasm.sl.gz
-  - /usr/share/doc/nasm.dpkg-new/examples/imul.asm
-  - /usr/share/doc/nasm/examples/floatexp.asm.gz
-  - /var/lib/dpkg/updates/0008
-  - /usr/share/doc/nasm.dpkg-new/examples/br3385573.asm
-  - /usr/share/doc/nasm/examples/smartalign64.asm
-  - /usr/share/doc/nasm/examples/lnxhello.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/elfso.asm
-  - /usr/share/doc/nasm/html/nasmdoci.html
-  - /usr/share/doc/nasm/examples/floatx.asm.gz
-  - /usr/share/doc/nasm/examples/xchg.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/align13s.asm
-  - /usr/share/doc/nasm/examples/time.asm
-  - /usr/share/info/nasm.info-1.gz.dpkg-new
-  - /usr/share/doc/nasm.dpkg-new/examples/bcd.asm
-  - /usr/share/doc/nasm/examples/align13s.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/br3092924.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/br3189064.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/inc2.asm
-  - /usr/share/doc/nasm.dpkg-new/html/nasmdoc2.html
-  - /usr/share/info/nasm.info-3.gz.dpkg-new
-  - /usr/share/doc/nasm/examples/pinsr32.asm
-  - /usr/share/doc/nasm.dpkg-new/html/nasmdoca.html
-  - /usr/share/doc/nasm.dpkg-new/examples/elftest.c
-  - /usr/share/doc/nasm/examples/gotoff64.asm
-  - /usr/share/doc/nasm/examples/objexe.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/br3392259.asm
-  - /usr/share/doc/nasm/examples/dtbcd.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/smartalign16.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/smartalign32.asm
-  - /usr/share/doc/nasm/examples/tmap.nas.gz
-  - /usr/share/doc/nasm.dpkg-new/examples/inctest.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/elf64so.asm
-  - /usr/share/doc/nasm/examples/cofftest.c
-  - /usr/share/doc/nasm.dpkg-new/html/nasmdoc7.html
-  - /usr/share/doc/nasm.dpkg-new/examples/times.asm
-  - /usr/share/doc/nasm/examples/insnlbl.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/riprel.pl
-  - /usr/share/doc/nasm.dpkg-new/examples/movnti.asm
-  - /usr/share/doc/nasm/examples/br3385573.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/optimization.asm
-  - /usr/share/doc/nasm/examples/br2003451.asm
-  - /usr/share/doc/nasm/examples/iftoken.asm
-  - /usr/share/info/nasm.info-2.gz.dpkg-new
-  - /usr/share/doc/nasm.dpkg-new/examples/gotoff64.asm
-  - /usr/share/doc/nasm/examples/br3074517.asm
-  - /usr/share/doc/nasm/nasmdoc.ps.gz
-  - /usr/share/doc/nasm/examples/mpx-64.asm
-  - /usr/share/doc/nasm/examples/macro-defaults.asm
-  - /usr/share/doc/nasm/examples/times.asm
-  - /usr/share/doc/nasm/examples/local.asm
-  - /usr/share/doc/nasm/examples/br2496848.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/loopoffs.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/smartalign64.asm
-  - /usr/share/doc/nasm/examples/aoutso.asm
-  - /usr/share/doc/nasm/examples/elftest64.c
-  - /usr/share/doc/nasm/examples/fwdoptpp.asm
-  - /usr/share/doc/nasm/examples/fpu.asm
-  - /usr/share/doc/nasm/html/nasmdoc2.html
-  - /usr/share/doc/nasm.dpkg-new/examples/vmread.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/sha-64.asm
-  - /usr/share/doc/nasm/examples/avx512f.asm.gz
-  - /usr/share/doc/nasm/examples/vmread.asm
-  - /usr/share/doc/nasm/examples/gather.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/absolute.asm
-  - /usr/share/doc/nasm/examples/br560575.asm
-  - /usr/share/doc/nasm/examples/_file_.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/fpu.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/lwp.asm.gz
-  - /usr/share/doc/nasm/html/nasmdo12.html
-  - /usr/share/doc/nasm/examples/invlpga.asm
-  - /usr/share/doc/nasm.dpkg-new/AUTHORS
-  - /usr/share/doc/nasm.dpkg-new/examples/hle.asm
-  - /usr/share/doc/nasm/examples/movd64.asm
-  - /usr/share/doc/nasm.dpkg-new/html/nasmdoc5.html
-  - /usr/share/doc/nasm.dpkg-new/examples/floatexp.asm.gz
-  - /usr/share/doc/nasm.dpkg-new/examples/pinsr16.asm
-  - /usr/share/doc/nasm/html/nasmdoc1.html
-  - /usr/share/doc/nasm/examples/br978756.asm
-  - /usr/share/doc/nasm/examples/bcd.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/br3005117.asm
-  - /usr/share/doc/nasm/examples/far64.asm
-  - /usr/share/doc/nasm/examples/new
-  - /usr/share/doc/nasm.dpkg-new/examples/andbyte.asm
-  - /usr/share/doc/nasm/examples/weirdpaste.asm
-  - /usr/share/doc/nasm/examples/utf.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/weirdpaste.asm
-  - /usr/share/doc/nasm/examples/loopoffs.asm
-  - /usr/share/doc/nasm/examples/br3066383.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/float8.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/changed.asm.gz
-  - /usr/share/doc/nasm/examples/elfso.asm
-  - /usr/share/doc/nasm/examples/avx005.asm.gz
-  - /usr/share/doc/nasm/examples/br3189064.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/floattest.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/br3200749.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/elif.asm
-  - /usr/share/doc/nasm/examples/br2222615.asm
-  - /usr/share/doc/nasm/examples/br3026808.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/br3041451.asm
-  - /usr/share/doc/nasm/examples/inc2.asm
-  - /usr/share/doc/nasm/examples/riprel.pl
-  - /usr/share/doc/nasm.dpkg-new/examples/prefix66.asm
-  - /usr/share/doc/nasm/examples/br2030823.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/br2148476.asm.gz
-  - /usr/share/doc/nasm.dpkg-new/examples/elftest.asm
-  - /usr/share/doc/nasm/examples/floatb.asm
-  - /usr/share/doc/nasm.dpkg-new/examples/br3028880.asm
-  - /usr/share/doc/nasm.dpkg-new/html/nasmdoci.html
-  - /usr/share/doc/nasm/examples/lwp.asm.gz
-  - /var/lib/dpkg/updates/0006
-  - /usr/share/doc/nasm.dpkg-new/examples/br3058845.asm
-  - /usr/share/doc/nasm/examples/larlsl.asm
-  2.13.02-0.1: []
-paps:
-  0.6.8-7: []
-  0.6.8-7.1: []
-  0.6.8-7ubuntu1:
-  - /var/lib/dpkg/updates/0005
-pax:
-  1:20120606-2+deb7u1: []
-  1:20151013-1:
-  - /var/lib/dpkg/updates/0005
-  1:20171021-2:
-  - /var/cache/man/pt/CACHEDIR.TAG
-  - /var/cache/apt/pkgcache.bin
-  - /var/log/journal/90c213c3662a46589e220665c75c823f/system.journal
-  - /var/cache/man/sr/CACHEDIR.TAG
-  - /var/cache/man/id/CACHEDIR.TAG
-  - /var/lib/dpkg/status-old
-  - /var/cache/man/da/CACHEDIR.TAG
-  - /var/lib/dpkg/status
-  - /var/cache/man/uk/CACHEDIR.TAG
-  - /var/cache/man/hu/CACHEDIR.TAG
-  - /var/cache/man/fi/CACHEDIR.TAG
-  - /var/cache/man/CACHEDIR.TAG
-  - /var/cache/man/it/CACHEDIR.TAG
-  - /var/cache/man/zh_TW/CACHEDIR.TAG
-  - /var/cache/man/sl/CACHEDIR.TAG
-  - /var/cache/man/ru/CACHEDIR.TAG
-  - /var/cache/man/sv/CACHEDIR.TAG
-  - /var/cache/man/cs/CACHEDIR.TAG
-  - /var/log/apt/eipp.log.xz
-  - /var/cache/man/de/CACHEDIR.TAG
-  - /var/cache/man/pt_BR/CACHEDIR.TAG
-  - /var/lib/apt/extended_states
-  - /usr/share/lintian/overrides/pax.dpkg-new
-  - /var/cache/man/index.db
-  - /var/cache/man/ja/CACHEDIR.TAG
-  - /var/cache/man/fr/CACHEDIR.TAG
-  - /var/lib/dpkg/status-new
-  - /var/cache/man/zh_CN/CACHEDIR.TAG
-  - /var/cache/man/nl/CACHEDIR.TAG
-  - /var/cache/man/es/CACHEDIR.TAG
-  - /var/lib/update-notifier/dpkg-run-stamp
-  - /var/cache/man/tr/CACHEDIR.TAG
-  - /var/cache/man/ko/CACHEDIR.TAG
-  - /usr/share/lintian/overrides/pax
-  - /var/cache/man/pl/CACHEDIR.TAG
-powertop:
-  2.5-1ubuntu1: []
-  2.8-1build1:
-  - /var/cache/apt/pkgcache.bin
-  - /var/lib/dpkg/updates/0005
-  - /usr/share/man/man8/powertop.8.gz.dpkg-new
-  - /var/lib/dpkg/info/powertop.md5sums
-  - /var/lib/dpkg/status-old
-  - /var/lib/dpkg/status
-  - /var/lib/dpkg/info/powertop.list-new
-  - /usr/sbin/powertop.dpkg-new
-  - /var/lib/dpkg/updates/0003
-  - /var/cache/man/index.db
-  - /var/lib/dpkg/updates/0002
-  - /var/lib/apt/extended_states
-  - /var/lib/dpkg/info/powertop.postrm
-  - /usr/sbin/powertop
-  - /usr/share/doc/powertop.dpkg-new/changelog.Debian.gz
-  - /usr/share/doc/powertop/changelog.Debian.gz
-  - /var/lib/dpkg/updates/0004
-  - /var/lib/dpkg/status-new
-  - /usr/share/doc/powertop.dpkg-new/copyright
-  - /usr/share/man/man8/powertop.8.gz
-  - /usr/share/doc/powertop/copyright
-  - /var/lib/dpkg/info/powertop.list
-  - /var/lib/update-notifier/dpkg-run-stamp
-  - /var/lib/dpkg/updates/0001
-  - /var/lib/dpkg/updates/0000
-  2.9-0ubuntu1:
-  - /var/cache/man/pt/CACHEDIR.TAG
-  - /var/log/journal/90c213c3662a46589e220665c75c823f/system.journal
-  - /var/cache/man/sr/CACHEDIR.TAG
-  - /var/cache/man/id/CACHEDIR.TAG
-  - /var/cache/man/da/CACHEDIR.TAG
-  - /var/cache/man/uk/CACHEDIR.TAG
-  - /var/cache/man/hu/CACHEDIR.TAG
-  - /var/cache/man/fi/CACHEDIR.TAG
-  - /var/cache/man/CACHEDIR.TAG
-  - /var/cache/man/it/CACHEDIR.TAG
-  - /var/cache/man/zh_TW/CACHEDIR.TAG
-  - /var/cache/man/sl/CACHEDIR.TAG
-  - /var/cache/man/ru/CACHEDIR.TAG
-  - /var/cache/man/sv/CACHEDIR.TAG
-  - /var/cache/man/cs/CACHEDIR.TAG
-  - /var/log/apt/eipp.log.xz
-  - /var/cache/man/de/CACHEDIR.TAG
-  - /var/cache/man/pt_BR/CACHEDIR.TAG
-  - /var/cache/man/ja/CACHEDIR.TAG
-  - /var/cache/man/fr/CACHEDIR.TAG
-  - /var/cache/man/zh_CN/CACHEDIR.TAG
-  - /var/cache/man/nl/CACHEDIR.TAG
-  - /var/cache/man/es/CACHEDIR.TAG
-  - /var/cache/man/tr/CACHEDIR.TAG
-  - /var/cache/man/ko/CACHEDIR.TAG
-  - /var/cache/man/pl/CACHEDIR.TAG
-quagga:
-  0.99.22.4-3ubuntu1.5:
-  - /usr/share/doc/quagga/tools/mrlg.cgi.gz
-  - /var/lib/dpkg/available-new
-  - /var/lib/dpkg/available
-  - /var/lib/dpkg/available-old
-  0.99.24.1-2ubuntu1.4:
-  - /usr/share/doc/quagga/tools/zebra.el
-  - /var/lib/dpkg/tmp.ci/triggers
-  - /usr/lib/quagga.dpkg-new/zebra
-  - /usr/lib/libzebra.la
-  - /usr/lib/quagga.dpkg-new/bgpd
-  - /usr/lib/quagga/ospf6d
-  - /var/lib/dpkg/updates/0005
-  - /var/lib/dpkg/tmp.ci/templates
-  - /usr/lib/libospfapiclient.so.0.0.0.dpkg-new
-  - /usr/lib/quagga.dpkg-new/ospfd
-  - /usr/share/man/man8/isisd.8.gz.dpkg-new
-  - /usr/share/doc/quagga/examples/pimd.conf.sample
-  - /usr/lib/quagga/pimd
-  - /usr/lib/libospf.so.0.dpkg-new
-  - /etc/quagga/daemons.dpkg-new
-  - /usr/lib/quagga.dpkg-new/watchquagga
-  - /usr/lib/libzebra.a.dpkg-new
-  - /var/lib/dpkg/updates/0010
-  - /usr/lib/libospfapiclient.a
-  - /usr/lib/libospf.a.dpkg-new
-  - /var/lib/dpkg/tmp.ci/config
-  - /etc/quagga/daemons
-  - /usr/lib/libospf.so.0.0.0.dpkg-new
-  - /usr/lib/quagga/watchquagga
-  - /usr/lib/quagga.dpkg-new/ripngd
-  - /usr/lib/libospf.la.dpkg-new
-  - /usr/lib/quagga.dpkg-new/ospf6d
-  - /usr/lib/libospf.so.0
-  - /etc/init.d/.depend.stop
-  - /var/lib/dpkg/info/quagga.shlibs
-  - /usr/lib/quagga/ripngd
-  - /usr/share/man/man8/ripngd.8.gz
-  - /usr/lib/libospfapiclient.so.0
-  - /usr/lib/libospf.so.0.0.0
-  - /usr/share/doc/quagga.dpkg-new/examples/ospf6d.conf.sample
-  - /etc/ld.so.cache
-  - /usr/share/doc/quagga.dpkg-new/examples/zebra.conf.sample
-  - /usr/share/doc/quagga.dpkg-new/tools/multiple-bgpd.sh
-  - /usr/share/man/man8/quagga-babeld.8.gz.dpkg-new
-  - /usr/share/doc/quagga.dpkg-new/examples/bgpd.conf.sample
-  - /usr/share/doc/quagga/tools/rrcheck.pl
-  - /usr/lib/quagga.dpkg-new/ospfclient
-  - /usr/lib/libospfapiclient.la.dpkg-new
-  - /usr/share/lintian/overrides/quagga
-  - /usr/lib/libospf.so
-  - /var/cache/debconf/templates.dat-old
-  - /etc/init.d/.depend.boot
-  - /etc/quagga/debian.conf
-  - /var/cache/debconf/templates.dat
-  - /usr/share/doc/quagga.dpkg-new/README.Debian.gz
-  - /usr/lib/quagga/ospfclient
-  - /usr/share/man/man8/quagga-pimd.8.gz.dpkg-new
-  - /usr/lib/quagga/ripd
-  - /usr/lib/quagga.dpkg-new/isisd
-  - /etc/init.d/.depend.start
-  - /usr/share/man/man8/zebra.8.gz.dpkg-new
-  - /usr/share/man/man8/ripd.8.gz.dpkg-new
-  - /usr/share/doc/quagga.dpkg-new/examples/ripngd.conf.sample
-  - /var/lib/dpkg/updates/0003
-  - /usr/share/man/man8/quagga-babeld.8.gz
-  - /var/lib/dpkg/updates/0014
-  - /usr/lib/libospf.a
-  - /var/lib/dpkg/updates/0004
-  - /usr/share/doc/quagga.dpkg-new/examples/babeld.conf.sample
-  - /etc/logrotate.d/quagga.dpkg-new
-  - /usr/lib/libzebra.a
-  - /usr/share/doc/quagga/examples/ripd.conf.sample
-  - /usr/share/doc/quagga.dpkg-new/tools/rrcheck.pl
-  - /usr/lib/libospfapiclient.a.dpkg-new
-  - /usr/share/man/man1/vtysh.1.gz
-  - /etc/quagga/debian.conf.dpkg-new
-  - /usr/lib/libzebra.so.0.0.0.dpkg-new
-  - /var/cache/ldconfig/aux-cache~
-  - /usr/share/doc/quagga/examples/ripngd.conf.sample
-  - /usr/share/doc/quagga.dpkg-new/examples/isisd.conf.sample
-  - /usr/lib/quagga/babeld
-  - /usr/lib/quagga/zebra
-  - /var/lib/systemd/deb-systemd-helper-enabled/ureadahead.service.dsh-also
-  - /usr/lib/libospf.la
-  - /usr/share/doc/quagga.dpkg-new/examples/bgpd.conf.sample2
-  - /usr/share/man/man8/ospfd.8.gz
-  - /usr/share/man/man8/ripd.8.gz
-  - /usr/share/doc/quagga/examples/vtysh.conf.sample
-  - /usr/share/doc/quagga.dpkg-new/tools/rrlookup.pl
-  - /var/lib/dpkg/info/quagga.conffiles
-  - /usr/share/man/man1/vtysh.1.gz.dpkg-new
-  - /usr/lib/quagga/bgpd
-  - /var/lib/dpkg/tmp.ci/shlibs
-  - /usr/lib/libzebra.so.0.0.0
-  - /usr/share/snmp.dpkg-new/mibs/GNOME-PRODUCT-ZEBRA-MIB
-  - /var/lib/dpkg/updates/0012
-  - /usr/share/man/man8/ospfclient.8.gz.dpkg-new
-  - /var/cache/debconf/templates.dat-new
-  - /var/lib/dpkg/info/quagga.config
-  - /usr/lib/libospfapiclient.so
-  - /usr/share/doc/quagga/examples/babeld.conf.sample
-  - /usr/share/man/man8/isisd.8.gz
-  - /usr/lib/quagga.dpkg-new/babeld
-  - /usr/share/lintian/overrides/quagga.dpkg-new
-  - /usr/lib/libzebra.so.0
-  - /usr/lib/quagga/isisd
-  - /usr/share/man/man8/bgpd.8.gz.dpkg-new
-  - /usr/lib/quagga.dpkg-new/ripd
-  - /usr/share/doc/quagga.dpkg-new/examples/vtysh.conf.sample
-  - /var/lib/dpkg/info/quagga.templates
-  - /usr/share/doc/quagga/examples/isisd.conf.sample
-  - /usr/share/doc/quagga.dpkg-new/examples/ripd.conf.sample
-  - /usr/share/doc/quagga/examples/ospfd.conf.sample
-  - /var/lib/dpkg/updates/0009
-  - /usr/share/man/man8/ospf6d.8.gz
-  - /usr/share/doc/quagga.dpkg-new/examples/ospfd.conf.sample
-  - /usr/share/doc/quagga.dpkg-new/tools/zebra.el
-  - /usr/share/doc/quagga/tools/zc.pl
-  - /var/lib/dpkg/tmp.ci/conffiles
-  - /usr/share/doc/quagga/examples/bgpd.conf.sample
-  - /var/lib/dpkg/updates/0011
-  - /var/lib/dpkg/updates/0013
-  - /usr/share/man/man8/watchquagga.8.gz
-  - /usr/share/doc/quagga/examples/ospf6d.conf.sample
-  - /usr/lib/libospfapiclient.so.0.dpkg-new
-  - /var/lib/dpkg/info/quagga.triggers
-  - /etc/pam.d/quagga.dpkg-new
-  - /etc/init.d/quagga.dpkg-new
-  - /usr/share/man/man8/ripngd.8.gz.dpkg-new
-  - /usr/share/doc/quagga.dpkg-new/tools/zc.pl
-  - /var/lib/dpkg/updates/0008
-  - /usr/lib/libospfapiclient.so.dpkg-new
-  - /usr/lib/libzebra.la.dpkg-new
-  - /usr/lib/libzebra.so
-  - /usr/lib/libzebra.so.0.dpkg-new
-  - /usr/share/man/man8/ospfd.8.gz.dpkg-new
-  - /usr/share/man/man8/zebra.8.gz
-  - /usr/share/doc/quagga/examples/bgpd.conf.sample2
-  - /usr/share/man/man8/ospf6d.8.gz.dpkg-new
-  - /usr/share/doc/quagga.dpkg-new/examples/pimd.conf.sample
-  - /usr/lib/libospfapiclient.so.0.0.0
-  - /usr/share/doc/quagga/tools/rrlookup.pl
-  - /usr/bin/vtysh
-  - /usr/share/man/man8/watchquagga.8.gz.dpkg-new
-  - /var/lib/dpkg/updates/0007
-  - /var/cache/man/index.db
-  - /usr/share/man/man8/bgpd.8.gz
-  - /usr/lib/libzebra.so.dpkg-new
-  - /usr/lib/libospfapiclient.la
-  - /usr/share/snmp/mibs/GNOME-PRODUCT-ZEBRA-MIB
-  - /usr/lib/quagga/ospfd
-  - /usr/lib/libospf.so.dpkg-new
-  - /usr/share/doc/quagga/README.Debian.gz
-  - /var/cache/ldconfig/aux-cache
-  - /usr/lib/quagga.dpkg-new/pimd
-  - /usr/share/man/man8/quagga-pimd.8.gz
-  - /etc/ld.so.cache~
-  - /var/log/syslog
-  - /var/lib/dpkg/updates/0006
-  - /usr/share/doc/quagga/tools/multiple-bgpd.sh
-  - /usr/share/doc/quagga/examples/zebra.conf.sample
-  - /usr/share/man/man8/ospfclient.8.gz
-  - /usr/bin/vtysh.dpkg-new
-  1.2.4-1: []
-rrdtool:
-  1.4.7-2ubuntu5: []
-  1.5.5-4:
-  - /var/lib/dpkg/updates/0005
-  1.7.0-1build1:
-  - /usr/share/doc/rrdtool/html/rrdlist.html
-  - /usr/share/man/man1/rrdlist.1.gz
-  - /var/log/apt/eipp.log.xz
-  - /var/cache/man/de/CACHEDIR.TAG
-  - /var/lib/apt/extended_states
-  - /usr/bin/rrdinfo
-  - /var/lib/dpkg/status-new
-  - /var/cache/man/tr/CACHEDIR.TAG
-  - /var/cache/man/pt/CACHEDIR.TAG
-  - /var/cache/apt/pkgcache.bin
-  - /var/cache/man/sr/CACHEDIR.TAG
-  - /var/cache/man/id/CACHEDIR.TAG
-  - /usr/bin/rrdcreate.dpkg-new
-  - /var/cache/man/it/CACHEDIR.TAG
-  - /var/cache/man/zh_TW/CACHEDIR.TAG
-  - /var/cache/man/ru/CACHEDIR.TAG
-  - /var/cache/man/sv/CACHEDIR.TAG
-  - /var/cache/man/pt_BR/CACHEDIR.TAG
-  - /var/cache/man/es/CACHEDIR.TAG
-  - /var/cache/man/nl/CACHEDIR.TAG
-  - /var/cache/man/ko/CACHEDIR.TAG
-  - /var/log/journal/90c213c3662a46589e220665c75c823f/system.journal
-  - /var/lib/dpkg/status-old
-  - /var/lib/dpkg/status
-  - /var/cache/man/da/CACHEDIR.TAG
-  - /usr/share/doc/rrdtool.dpkg-new/html/rrdlist.html
-  - /usr/bin/rrdinfo.dpkg-new
-  - /usr/share/doc/rrdtool.dpkg-new/html/rrdcached.html
-  - /var/cache/man/fr/CACHEDIR.TAG
-  - /var/cache/man/zh_CN/CACHEDIR.TAG
-  - /var/lib/update-notifier/dpkg-run-stamp
-  - /usr/share/doc/rrdtool/html/rrdcached.html
-  - /usr/bin/rrdcreate
-  - /var/cache/man/uk/CACHEDIR.TAG
-  - /var/cache/man/hu/CACHEDIR.TAG
-  - /var/cache/man/fi/CACHEDIR.TAG
-  - /var/cache/man/CACHEDIR.TAG
-  - /var/cache/man/sl/CACHEDIR.TAG
-  - /var/cache/man/cs/CACHEDIR.TAG
-  - /var/cache/man/index.db
-  - /var/cache/man/ja/CACHEDIR.TAG
-  - /usr/share/man/man1/rrdlist.1.gz.dpkg-new
-  - /var/cache/man/pl/CACHEDIR.TAG
-samba:
-  2:4.3.11+dfsg-0ubuntu0.14.04.20: []
-  2:4.3.11+dfsg-0ubuntu0.16.04.21:
-  - /var/lib/dpkg/tmp.ci/triggers
-  - /var/lib/apt/extended_states
-  - /etc/init.d/.depend.stop
-  - /etc/ld.so.cache
-  - /var/lib/dpkg/updates/0016
-  - /var/lib/dpkg/updates/0015
-  - /var/cache/apt/pkgcache.bin
-  - /etc/init.d/.depend.boot
-  - /etc/init.d/.depend.start
-  - /var/lib/dpkg/info/samba.triggers
-  - /var/cache/ldconfig/aux-cache~
-  - /var/lib/systemd/deb-systemd-helper-enabled/ureadahead.service.dsh-also
-  - /var/lib/dpkg/updates/0018
-  - /var/lib/dpkg/updates/0017
-  - /var/lib/update-notifier/dpkg-run-stamp
-  - /var/cache/ldconfig/aux-cache
-  - /etc/ld.so.cache~
-  - /var/log/syslog
-  - /var/log/samba/log.nmbd
-  2:4.7.6+dfsg~ubuntu-0ubuntu2.11:
-  - /var/lib/systemd/deb-systemd-helper-masked/smbd.service
-  - /var/log/apt/eipp.log.xz
-  - /var/cache/man/de/CACHEDIR.TAG
-  - /var/cache/man/tr/CACHEDIR.TAG
-  - /var/lib/systemd/deb-systemd-helper-masked/nmbd.service
-  - /var/cache/man/pt/CACHEDIR.TAG
-  - /etc/systemd/system/smbd.service
-  - /var/cache/man/sr/CACHEDIR.TAG
-  - /var/cache/man/id/CACHEDIR.TAG
-  - /var/lib/systemd/deb-systemd-helper-enabled/smbd.service.dsh-also
-  - /var/cache/man/zh_TW/CACHEDIR.TAG
-  - /var/cache/man/it/CACHEDIR.TAG
-  - /var/cache/man/ru/CACHEDIR.TAG
-  - /var/cache/man/sv/CACHEDIR.TAG
-  - /var/cache/man/pt_BR/CACHEDIR.TAG
-  - /var/lib/dpkg/updates/0020
-  - /usr/share/man/man1/mvxattr.1.gz
-  - /var/cache/man/nl/CACHEDIR.TAG
-  - /var/cache/man/es/CACHEDIR.TAG
-  - /var/cache/man/ko/CACHEDIR.TAG
-  - /usr/share/man/man8/idmap_script.8.gz
-  - /lib/systemd/system/samba-ad-dc.service.dpkg-new
-  - /usr/share/bug/samba/script
-  - /var/log/journal/90c213c3662a46589e220665c75c823f/system.journal
-  - /var/cache/man/da/CACHEDIR.TAG
-  - /var/lib/systemd/deb-systemd-helper-enabled/nmbd.service.dsh-also
-  - /var/lib/dpkg/updates/0019
-  - /lib/systemd/system/smbd.service.dpkg-new
-  - /usr/bin/mvxattr.dpkg-new
-  - /var/lib/dpkg/updates/0021
-  - /lib/systemd/system/nmbd.service.dpkg-new
-  - /var/cache/man/fr/CACHEDIR.TAG
-  - /var/cache/man/zh_CN/CACHEDIR.TAG
-  - /usr/share/man/man1/mvxattr.1.gz.dpkg-new
-  - /usr/share/man/man8/idmap_script.8.gz.dpkg-new
-  - /lib/systemd/system/nmbd.service
-  - /lib/systemd/system/smbd.service
-  - /usr/share/bug/samba/presubj
-  - /var/cache/man/uk/CACHEDIR.TAG
-  - /var/cache/man/hu/CACHEDIR.TAG
-  - /var/cache/man/fi/CACHEDIR.TAG
-  - /var/cache/man/CACHEDIR.TAG
-  - /var/cache/man/sl/CACHEDIR.TAG
-  - /etc/systemd/system/nmbd.service
-  - /usr/lib/python2.7/dist-packages/samba/dckeytab.x86_64-linux-gnu.so.dpkg-new
-  - /lib/systemd/system/samba-ad-dc.service
-  - /var/cache/man/cs/CACHEDIR.TAG
-  - /usr/lib/python2.7/dist-packages/samba/dckeytab.x86_64-linux-gnu.so
-  - /var/cache/man/ja/CACHEDIR.TAG
-  - /var/cache/man/pl/CACHEDIR.TAG
-  - /usr/bin/mvxattr
-sane:
-  1.0.14-11:
-  - /var/lib/dpkg/updates/0005
-  1.0.14-12build1: []
-  1.0.14-9:
-  - /usr/share/doc/sane.dpkg-new/changelog.gz
-  - /usr/share/doc/sane/changelog.gz
-  - /usr/lib/gimp/2.0/plug-ins/xscanimage.dpkg-new
-smartmontools:
-  6.2+svn3841-1.2ubuntu0.1: []
-  6.4+svn4214-1:
-  - /var/lib/dpkg/updates/0010
-  - /usr/share/smartmontools/smartd_warning.sh
-  - /var/lib/systemd/deb-systemd-helper-enabled/smartd.service.dsh-also
-  - /var/lib/apt/extended_states
-  - /etc/init.d/.depend.stop
-  - /var/lib/dpkg/status-new
-  - /usr/share/doc/smartmontools.dpkg-new/examples/Example6
-  - /var/cache/apt/pkgcache.bin
-  - /etc/init.d/.depend.boot
-  - /etc/init.d/.depend.start
-  - /lib/systemd/system/smartd.service.dpkg-new
-  - /usr/share/doc/smartmontools/examples/Example6
-  - /var/lib/systemd/deb-systemd-helper-enabled/ureadahead.service.dsh-also
-  - /usr/share/doc/smartmontools.dpkg-new/examples/Example5
-  - /usr/share/smartmontools.dpkg-new/smartd_warning.sh
-  - /var/lib/dpkg/status-old
-  - /var/lib/dpkg/status
-  - /lib/systemd/system/smartmontools.service
-  - /lib/systemd/system/smartmontools.service.dpkg-new
-  - /var/lib/systemd/deb-systemd-helper-masked/smartd.service
-  - /var/lib/dpkg/updates/0009
-  - /var/lib/update-notifier/dpkg-run-stamp
-  - /var/lib/dpkg/updates/0011
-  - /var/lib/dpkg/updates/0008
-  - /lib/systemd/system/smartd.service
-  - /etc/systemd/system/smartd.service
-  - /var/lib/dpkg/updates/0007
-  - /var/cache/man/index.db
-  - /usr/share/doc/smartmontools/examples/Example5
-  - /var/log/syslog
-  6.5+svn4324-1:
-  - /var/log/apt/eipp.log.xz
-  - /var/cache/man/de/CACHEDIR.TAG
-  - /var/cache/man/tr/CACHEDIR.TAG
-  - /var/cache/man/pt/CACHEDIR.TAG
-  - /var/cache/man/sr/CACHEDIR.TAG
-  - /var/cache/man/id/CACHEDIR.TAG
-  - /var/cache/man/it/CACHEDIR.TAG
-  - /var/cache/man/zh_TW/CACHEDIR.TAG
-  - /var/cache/man/ru/CACHEDIR.TAG
-  - /var/cache/man/sv/CACHEDIR.TAG
-  - /var/cache/man/pt_BR/CACHEDIR.TAG
-  - /var/cache/man/nl/CACHEDIR.TAG
-  - /var/cache/man/es/CACHEDIR.TAG
-  - /var/cache/man/ko/CACHEDIR.TAG
-  - /var/log/journal/90c213c3662a46589e220665c75c823f/system.journal
-  - /var/lib/dpkg/updates/0012
-  - /var/cache/man/da/CACHEDIR.TAG
-  - /var/cache/man/fr/CACHEDIR.TAG
-  - /var/cache/man/zh_CN/CACHEDIR.TAG
-  - /var/lib/dpkg/updates/0013
-  - /var/cache/man/uk/CACHEDIR.TAG
-  - /var/cache/man/hu/CACHEDIR.TAG
-  - /var/cache/man/fi/CACHEDIR.TAG
-  - /var/cache/man/CACHEDIR.TAG
-  - /var/cache/man/sl/CACHEDIR.TAG
-  - /var/cache/man/cs/CACHEDIR.TAG
-  - /var/cache/man/ja/CACHEDIR.TAG
-  - /var/cache/man/pl/CACHEDIR.TAG
-subversion:
-  1.8.8-1ubuntu3.3:
-  - /usr/bin/svn-bench
-  - /usr/bin/svn-bench.dpkg-new
-  - /usr/bin/svnraisetreeconflict
-  - /usr/bin/svn-populate-node-origins-index
-  - /usr/bin/svn-rep-sharing-stats
-  - /usr/bin/svn-populate-node-origins-index.dpkg-new
-  - /usr/bin/svnraisetreeconflict.dpkg-new
-  - /usr/bin/svn-rep-sharing-stats.dpkg-new
-  - /etc/bash_completion.d/subversion.dpkg-new
-  1.9.3-2ubuntu1.1: []
-  1.9.7-4ubuntu1:
-  - /usr/share/locale/ja/LC_MESSAGES/subversion.mo.dpkg-new
-  - /usr/share/locale/pl/LC_MESSAGES/subversion.mo
-  - /usr/share/locale/sv/LC_MESSAGES/subversion.mo.dpkg-new
-  - /usr/share/locale/zh_CN/LC_MESSAGES/subversion.mo
-  - /var/log/apt/eipp.log.xz
-  - /var/cache/man/de/CACHEDIR.TAG
-  - /usr/share/locale/zh_TW/LC_MESSAGES/subversion.mo
-  - /usr/share/locale/es/LC_MESSAGES/subversion.mo
-  - /usr/share/locale/it/LC_MESSAGES/subversion.mo
-  - /usr/share/locale/ja/LC_MESSAGES/subversion.mo
-  - /var/cache/man/tr/CACHEDIR.TAG
-  - /var/cache/man/pt/CACHEDIR.TAG
-  - /usr/share/locale/pt_BR/LC_MESSAGES/subversion.mo
-  - /var/cache/man/sr/CACHEDIR.TAG
-  - /var/cache/man/id/CACHEDIR.TAG
-  - /usr/share/locale/sv/LC_MESSAGES/subversion.mo
-  - /var/cache/man/it/CACHEDIR.TAG
-  - /var/cache/man/zh_TW/CACHEDIR.TAG
-  - /var/cache/man/ru/CACHEDIR.TAG
-  - /var/cache/man/sv/CACHEDIR.TAG
-  - /usr/share/locale/ko/LC_MESSAGES/subversion.mo
-  - /var/cache/man/pt_BR/CACHEDIR.TAG
-  - /var/cache/man/es/CACHEDIR.TAG
-  - /var/cache/man/nl/CACHEDIR.TAG
-  - /var/cache/man/ko/CACHEDIR.TAG
-  - /usr/share/locale/es/LC_MESSAGES/subversion.mo.dpkg-new
-  - /usr/share/locale/it/LC_MESSAGES/subversion.mo.dpkg-new
-  - /var/log/journal/90c213c3662a46589e220665c75c823f/system.journal
-  - /var/cache/man/da/CACHEDIR.TAG
-  - /usr/share/locale/pt_BR/LC_MESSAGES/subversion.mo.dpkg-new
-  - /usr/share/locale/ko/LC_MESSAGES/subversion.mo.dpkg-new
-  - /usr/share/locale/zh_TW/LC_MESSAGES/subversion.mo.dpkg-new
-  - /usr/share/locale/fr/LC_MESSAGES/subversion.mo
-  - /usr/share/locale/nb/LC_MESSAGES/subversion.mo
-  - /usr/share/locale/nb/LC_MESSAGES/subversion.mo.dpkg-new
-  - /var/cache/man/fr/CACHEDIR.TAG
-  - /var/cache/man/zh_CN/CACHEDIR.TAG
-  - /usr/share/locale/zh_CN/LC_MESSAGES/subversion.mo.dpkg-new
-  - /usr/share/locale/de/LC_MESSAGES/subversion.mo.dpkg-new
-  - /usr/share/locale/fr/LC_MESSAGES/subversion.mo.dpkg-new
-  - /var/cache/man/uk/CACHEDIR.TAG
-  - /var/cache/man/hu/CACHEDIR.TAG
-  - /var/cache/man/fi/CACHEDIR.TAG
-  - /var/cache/man/CACHEDIR.TAG
-  - /usr/share/locale/pl/LC_MESSAGES/subversion.mo.dpkg-new
-  - /var/cache/man/sl/CACHEDIR.TAG
-  - /usr/share/locale/de/LC_MESSAGES/subversion.mo
-  - /var/cache/man/cs/CACHEDIR.TAG
-  - /var/cache/man/ja/CACHEDIR.TAG
-  - /var/lib/dpkg/updates/0006
-  - /var/cache/man/pl/CACHEDIR.TAG
-supermin:
-  4.1.6-1:
-  - /usr/share/man/man1/supermin-helper.1.gz
-  - /usr/bin/supermin-helper
-  - /usr/share/man/man1/supermin-helper.1.gz.dpkg-new
-  - /usr/bin/supermin-helper.dpkg-new
-  5.1.14-2ubuntu1.1:
-  - /usr/share/doc/supermin.dpkg-new/README
-  - /var/lib/dpkg/updates/0005
-  - /usr/share/doc/supermin/README
-  - /usr/share/doc/supermin.dpkg-new/NEWS.Debian.gz
-  - /usr/share/doc/supermin.dpkg-new/TODO.Debian
-  - /usr/share/doc/supermin/TODO.Debian
-  - /usr/share/doc/supermin/NEWS.Debian.gz
-  5.1.19-2ubuntu1: []
-sysstat:
-  10.2.0-1:
-  - /usr/share/doc/sysstat.dpkg-new/README
-  - /usr/share/doc/sysstat/xml/sysstat-2.17.dtd.gz
-  - /usr/share/man/man1/nfsiostat.1.gz
-  - /var/lib/dpkg/available-new
-  - /usr/bin/nfsiostat.dpkg-new
-  - /usr/share/doc/sysstat.dpkg-new/xml/sysstat-2.17.dtd.gz
-  - /usr/share/doc/sysstat/FAQ.gz
-  - /var/lib/dpkg/info/sysstat.preinst
-  - /usr/bin/nfsiostat
-  - /usr/share/doc/sysstat.dpkg-new/FAQ.gz
-  - /var/lib/dpkg/tmp.ci/preinst
-  - /usr/share/man/man1/nfsiostat.1.gz.dpkg-new
-  - /var/lib/dpkg/available
-  - /usr/share/doc/sysstat/README
-  - /var/lib/dpkg/available-old
-  11.2.0-1ubuntu0.2:
-  - /usr/share/doc/sysstat.dpkg-new/xml/sysstat-3.1.dtd.gz
-  - /etc/init.d/.depend.stop
-  - /etc/init.d/.depend.boot
-  - /etc/init.d/.depend.start
-  - /var/lib/systemd/deb-systemd-helper-enabled/ureadahead.service.dsh-also
-  - /usr/share/doc/sysstat/xml/sysstat-3.1.dtd.gz
-  - /usr/share/doc/sysstat/README.gz
-  - /usr/share/doc/sysstat.dpkg-new/README.gz
-  11.6.1-1: []
-telnetd:
-  0.17-36build2:
-  - /var/lib/dpkg/available-old
-  - /var/lib/dpkg/available-new
-  - /var/lib/dpkg/available
-  0.17-40:
-  - /var/lib/dpkg/updates/0005
-  0.17-41: []
-tftpd:
-  0.17-18ubuntu2: []
-  0.17-18ubuntu3:
-  - /var/cache/man/pt/CACHEDIR.TAG
-  - /var/log/journal/90c213c3662a46589e220665c75c823f/system.journal
-  - /var/cache/man/sr/CACHEDIR.TAG
-  - /var/cache/man/id/CACHEDIR.TAG
-  - /var/cache/man/da/CACHEDIR.TAG
-  - /var/cache/man/uk/CACHEDIR.TAG
-  - /var/cache/man/hu/CACHEDIR.TAG
-  - /var/cache/man/fi/CACHEDIR.TAG
-  - /var/cache/man/CACHEDIR.TAG
-  - /var/cache/man/it/CACHEDIR.TAG
-  - /var/cache/man/zh_TW/CACHEDIR.TAG
-  - /var/cache/man/sl/CACHEDIR.TAG
-  - /var/cache/man/ru/CACHEDIR.TAG
-  - /var/cache/man/sv/CACHEDIR.TAG
-  - /var/cache/man/cs/CACHEDIR.TAG
-  - /var/log/apt/eipp.log.xz
-  - /var/cache/man/de/CACHEDIR.TAG
-  - /var/cache/man/pt_BR/CACHEDIR.TAG
-  - /var/cache/man/ja/CACHEDIR.TAG
-  - /var/cache/man/fr/CACHEDIR.TAG
-  - /var/cache/man/zh_CN/CACHEDIR.TAG
-  - /var/cache/man/nl/CACHEDIR.TAG
-  - /var/cache/man/es/CACHEDIR.TAG
-  - /var/cache/man/tr/CACHEDIR.TAG
-  - /var/cache/man/ko/CACHEDIR.TAG
-  - /var/cache/man/pl/CACHEDIR.TAG
-transfig:
-  1:3.2.5.e-1ubuntu1.1: []
-  1:3.2.5.e-5ubuntu0.1: []
-  1:3.2.6a-6ubuntu1:
-  - /var/log/journal/90c213c3662a46589e220665c75c823f/system.journal
-  - /var/log/apt/eipp.log.xz
-tshark:
-  2.6.8-1~ubuntu16.04.0: []
-  2.6.8-1~ubuntu18.04.0:
-  - /var/cache/man/pt/CACHEDIR.TAG
-  - /var/log/journal/90c213c3662a46589e220665c75c823f/system.journal
-  - /var/cache/man/sr/CACHEDIR.TAG
-  - /var/cache/man/id/CACHEDIR.TAG
-  - /var/cache/man/da/CACHEDIR.TAG
-  - /var/cache/man/uk/CACHEDIR.TAG
-  - /var/cache/man/hu/CACHEDIR.TAG
-  - /var/cache/man/fi/CACHEDIR.TAG
-  - /var/cache/man/CACHEDIR.TAG
-  - /var/cache/man/it/CACHEDIR.TAG
-  - /var/cache/man/zh_TW/CACHEDIR.TAG
-  - /var/cache/man/sl/CACHEDIR.TAG
-  - /var/cache/man/ru/CACHEDIR.TAG
-  - /var/cache/man/sv/CACHEDIR.TAG
-  - /var/cache/man/cs/CACHEDIR.TAG
-  - /var/log/apt/eipp.log.xz
-  - /var/cache/man/de/CACHEDIR.TAG
-  - /var/cache/man/pt_BR/CACHEDIR.TAG
-  - /var/cache/man/ja/CACHEDIR.TAG
-  - /var/cache/man/fr/CACHEDIR.TAG
-  - /var/cache/man/zh_CN/CACHEDIR.TAG
-  - /var/cache/man/es/CACHEDIR.TAG
-  - /var/cache/man/nl/CACHEDIR.TAG
-  - /var/cache/man/tr/CACHEDIR.TAG
-  - /var/cache/man/ko/CACHEDIR.TAG
-  - /var/cache/man/pl/CACHEDIR.TAG
-unbound:
-  1.4.22-1ubuntu4.14.04.3:
-  - /etc/default/unbound.dpkg-new
-  - /var/lib/dpkg/available-new
-  - /var/lib/dpkg/available-old
-  - /var/lib/dpkg/available
-  1.5.8-1ubuntu1.1:
-  - /var/spool/postfix/etc/resolv.conf
-  - /etc/init.d/.depend.stop
-  - /etc/init.d/.depend.boot
-  - /etc/init.d/.depend.start
-  - /var/log/mail.log
-  - /var/lib/systemd/deb-systemd-helper-enabled/ureadahead.service.dsh-also
-  1.6.7-1ubuntu2.2: []
-units:
-  2.02-2:
-  - /usr/share/units/locale.map
-  - /usr/share/doc/units.dpkg-new/NEWS.gz
-  - /usr/share/units.dpkg-new/definitions.units
-  - /usr/share/units.dpkg-new/currency.units
-  - /usr/share/units/definitions.units
-  - /usr/share/doc/units.dpkg-new/copyright
-  - /usr/share/units/currency.units
-  - /usr/share/doc/units/README.gz
-  - /usr/share/units.dpkg-new/locale.map
-  - /usr/share/doc/units/NEWS.gz
-  - /usr/share/doc/units/changelog.Debian.gz
-  - /usr/share/doc/units.dpkg-new/README.gz
-  - /usr/share/doc/units.dpkg-new/changelog.Debian.gz
-  - /usr/share/doc/units/copyright
-  2.12-2: []
-  2.16-1:
-  - /var/cache/man/pt/CACHEDIR.TAG
-  - /usr/share/units.dpkg-new/locale_map.txt
-  - /var/log/journal/90c213c3662a46589e220665c75c823f/system.journal
-  - /var/cache/man/sr/CACHEDIR.TAG
-  - /usr/share/man/man1/units_cur.1.gz
-  - /var/cache/man/id/CACHEDIR.TAG
-  - /usr/share/man/man1/units_cur.1.gz.dpkg-new
-  - /var/cache/man/da/CACHEDIR.TAG
-  - /var/cache/man/uk/CACHEDIR.TAG
-  - /var/cache/man/hu/CACHEDIR.TAG
-  - /var/cache/man/fi/CACHEDIR.TAG
-  - /var/cache/man/CACHEDIR.TAG
-  - /var/cache/man/it/CACHEDIR.TAG
-  - /var/cache/man/zh_TW/CACHEDIR.TAG
-  - /var/cache/man/sl/CACHEDIR.TAG
-  - /usr/share/units/locale_map.txt
-  - /var/cache/man/ru/CACHEDIR.TAG
-  - /var/cache/man/sv/CACHEDIR.TAG
-  - /var/cache/man/cs/CACHEDIR.TAG
-  - /var/log/apt/eipp.log.xz
-  - /var/cache/man/de/CACHEDIR.TAG
-  - /var/cache/man/pt_BR/CACHEDIR.TAG
-  - /var/cache/man/ja/CACHEDIR.TAG
-  - /var/cache/man/fr/CACHEDIR.TAG
-  - /var/cache/man/zh_CN/CACHEDIR.TAG
-  - /var/cache/man/nl/CACHEDIR.TAG
-  - /var/cache/man/es/CACHEDIR.TAG
-  - /var/cache/man/tr/CACHEDIR.TAG
-  - /var/cache/man/ko/CACHEDIR.TAG
-  - /var/cache/man/pl/CACHEDIR.TAG
-virt-top:
-  1.0.7-1: []
-  1.0.7-1.1: []
-  1.0.8-1:
-  - /var/cache/man/pt/CACHEDIR.TAG
-  - /var/log/journal/90c213c3662a46589e220665c75c823f/system.journal
-  - /var/cache/man/sr/CACHEDIR.TAG
-  - /var/cache/man/id/CACHEDIR.TAG
-  - /var/cache/man/da/CACHEDIR.TAG
-  - /var/cache/man/uk/CACHEDIR.TAG
-  - /var/cache/man/hu/CACHEDIR.TAG
-  - /var/cache/man/fi/CACHEDIR.TAG
-  - /var/cache/man/CACHEDIR.TAG
-  - /var/cache/man/it/CACHEDIR.TAG
-  - /var/cache/man/zh_TW/CACHEDIR.TAG
-  - /var/cache/man/sl/CACHEDIR.TAG
-  - /usr/share/lintian/overrides/virt-top
-  - /var/cache/man/ru/CACHEDIR.TAG
-  - /var/cache/man/sv/CACHEDIR.TAG
-  - /var/cache/man/cs/CACHEDIR.TAG
-  - /var/log/apt/eipp.log.xz
-  - /var/cache/man/de/CACHEDIR.TAG
-  - /var/cache/man/pt_BR/CACHEDIR.TAG
-  - /usr/share/lintian/overrides/virt-top.dpkg-new
-  - /var/cache/man/fr/CACHEDIR.TAG
-  - /var/cache/man/ja/CACHEDIR.TAG
-  - /var/cache/man/zh_CN/CACHEDIR.TAG
-  - /var/cache/man/nl/CACHEDIR.TAG
-  - /var/cache/man/es/CACHEDIR.TAG
-  - /var/cache/man/tr/CACHEDIR.TAG
-  - /var/cache/man/ko/CACHEDIR.TAG
-  - /var/cache/man/pl/CACHEDIR.TAG
+amanda-server: !!python/object/apply:collections.OrderedDict
+- - - 1:3.3.6-4.1
+    - - - !!python/tuple
+          - /var/cache/man/index.db
+          - unique to
+          - '1'
+  - - 1:3.3.3-2ubuntu1
+    - - - !!python/tuple
+          - /usr/share/doc/amanda-server.dpkg-new/examples/tapetypes.gz
+          - unique to
+          - '1'
+  - - 1:3.5.1-1build2
+    - - - !!python/tuple
+          - /usr/share/amanda.dpkg-new/template.d/tapetypes
+          - unique to
+          - '1'
+bacula-client: !!python/object/apply:collections.OrderedDict
+- - - 5.2.6+dfsg-9.1ubuntu3
+    - - - !!python/tuple
+          - /var/log/auth.log
+          - unique to
+          - '3'
+        - !!python/tuple
+          - /usr/share/doc/bacula-client.dpkg-new/copyright
+          - outside vs
+          - 7.0.5+dfsg-4ubuntu0.1
+        - !!python/tuple
+          - /usr/share/doc/bacula-client.dpkg-new/copyright
+          - outside vs
+          - 9.0.6-1build1
+  - - 7.0.5+dfsg-4ubuntu0.1
+    - - - !!python/tuple
+          - /usr/share/doc/bacula-client.dpkg-new/copyright
+          - unique to
+          - '2'
+        - !!python/tuple
+          - /var/log/apt/eipp.log.xz
+          - outside vs
+          - 9.0.6-1build1
+  - - 9.0.6-1build1
+    - - - !!python/tuple
+          - /var/log/journal/90c213c3662a46589e220665c75c823f/system.journal
+          - unique to
+          - '1'
+bind9: !!python/object/apply:collections.OrderedDict
+- - - 1:9.11.3+dfsg-1ubuntu1.8
+    - - - !!python/tuple
+          - /var/cache/man/ru/CACHEDIR.TAG
+          - unique to
+          - '1'
+  - - 1:9.10.3.dfsg.P4-8ubuntu1.14
+    - - - !!python/tuple
+          - /usr/sbin/named-rrchecker
+          - unique to
+          - '1'
+  - - 1:9.9.5.dfsg-3ubuntu0.19
+    - - - !!python/tuple
+          - /var/lib/dpkg/available
+          - unique to
+          - '1'
+chrony: !!python/object/apply:collections.OrderedDict
+- - - 3.2-4ubuntu4.2
+    - - - !!python/tuple
+          - /var/lib/systemd/deb-systemd-helper-enabled/chrony.service.dsh-also
+          - unique to
+          - '1'
+  - - 2.1.1-1ubuntu0.1
+    - - - !!python/tuple
+          - /var/log/chrony/statistics.log
+          - unique to
+          - '1'
+  - - 1.29-1ubuntu0.1
+    - - - !!python/tuple
+          - /usr/share/man/man1/chrony.1.gz
+          - unique to
+          - '1'
+crash: !!python/object/apply:collections.OrderedDict
+- - - 7.2.3+real-1~16.04.1
+    - - - !!python/tuple
+          - /var/lib/dpkg/updates/0005
+          - unique to
+          - '1'
+  - - 7.2.1-1ubuntu2
+    - - - !!python/tuple
+          - /var/cache/man/CACHEDIR.TAG
+          - unique to
+          - '1'
+  - - 7.0.3-3ubuntu4.5
+    - - - !!python/tuple
+          - /var/lib/dpkg/updates/tmp.i
+          - unique to
+          - '3'
+        - !!python/tuple
+          - /usr/bin/crash
+          - outside vs
+          - 7.2.3+real-1~16.04.1
+        - !!python/tuple
+          - /var/lib/dpkg/updates/0004
+          - outside vs
+          - 7.2.1-1ubuntu2
+cups: !!python/object/apply:collections.OrderedDict
+- - - 1.7.2-0ubuntu1.11
+    - - - !!python/tuple
+          - /usr/lib/cups/daemon.dpkg-new/cups-exec
+          - unique to
+          - '1'
+  - - 2.1.3-4ubuntu0.9
+    - - - !!python/tuple
+          - /usr/share/doc/cups/CREDITS.txt
+          - unique to
+          - '2'
+        - !!python/tuple
+          - /usr/share/man/de/man8/cups-exec.8.gz
+          - inside vs
+          - 1.7.2-0ubuntu1.11
+  - - 2.2.7-1ubuntu2.6
+    - - - !!python/tuple
+          - /usr/share/doc/cups/README.md.gz.dpkg-new
+          - unique to
+          - '1'
+dovecot-core: !!python/object/apply:collections.OrderedDict
+- - - 1:2.2.33.2-1ubuntu4.3
+    - - - !!python/tuple
+          - /usr/share/man/man1/doveadm-fs.1.gz
+          - unique to
+          - '1'
+  - - 1:2.2.22-1ubuntu2.10
+    - - - !!python/tuple
+          - /usr/share/doc/dovecot-core.dpkg-new/wiki/AuthDatabase.LDAP.txt
+          - unique to
+          - '1'
+  - - 1:2.2.9-1ubuntu2.6
+    - - - !!python/tuple
+          - /usr/share/doc/dovecot-core.dpkg-new/dovecot/wiki/Migration.Cyrus.txt
+          - unique to
+          - '1'
+dstat: !!python/object/apply:collections.OrderedDict
+- - - 0.7.2-3build1
+    - - - !!python/tuple
+          - /usr/share/dstat/dstat_vm_memctl.py
+          - unique to
+          - '2'
+        - !!python/tuple
+          - /var/cache/man/index.db
+          - outside vs
+          - 0.7.2-4
+  - - 0.7.3-1
+    - - - !!python/tuple
+          - /usr/share/dstat.dpkg-new/dstat_zfs_zil.py
+          - unique to
+          - '1'
+  - - 0.7.2-4
+    - - - !!python/tuple
+          - /var/lib/dpkg/updates/0005
+          - unique to
+          - '1'
+dwz: !!python/object/apply:collections.OrderedDict
+- - - 0.12-2
+    - - - !!python/tuple
+          - /var/cache/man/fr/CACHEDIR.TAG
+          - unique to
+          - '1'
+  - - 0.11-1
+    - - - !!python/tuple
+          - /var/lib/dpkg/updates/0004
+          - unique to
+          - '3'
+        - !!python/tuple
+          - /var/cache/man/fr/CACHEDIR.TAG
+          - outside vs
+          - 0.12-2
+        - !!python/tuple
+          - /var/cache/man/index.db
+          - outside vs
+          - 0.12-1
+  - - 0.12-1
+    - - - !!python/tuple
+          - /var/lib/dpkg/updates/0005
+          - unique to
+          - '1'
+gpm: !!python/object/apply:collections.OrderedDict
+- - - 1.20.4-6.1
+    - - - !!python/tuple
+          - /etc/init.d/.depend.start
+          - unique to
+          - '1'
+  - - 1.20.7-5
+    - - - !!python/tuple
+          - /var/cache/man/ru/CACHEDIR.TAG
+          - unique to
+          - '1'
+iptraf-ng: !!python/object/apply:collections.OrderedDict
+- - - 1:1.1.4-6
+    - - - !!python/tuple
+          - /var/cache/man/ru/CACHEDIR.TAG
+          - unique to
+          - '1'
+  - - 1.1.4-1
+    - - - !!python/tuple
+          - /usr/share/doc/iptraf-ng.dpkg-new/Documentation/gfdl-1.html
+          - unique to
+          - '3'
+        - !!python/tuple
+          - /var/lib/dpkg/info/iptraf-ng.conffiles
+          - outside vs
+          - 1:1.1.4-6
+        - !!python/tuple
+          - /var/lib/dpkg/info/iptraf-ng.conffiles
+          - outside vs
+          - 1.1.4-2ubuntu0.16.04.1
+  - - 1.1.4-2ubuntu0.16.04.1
+    - - - !!python/tuple
+          - /usr/sbin/iptraf-ng.dpkg-new
+          - unique to
+          - '2'
+        - !!python/tuple
+          - /var/cache/man/fr/CACHEDIR.TAG
+          - outside vs
+          - 1:1.1.4-6
+ipvsadm: !!python/object/apply:collections.OrderedDict
+- - - 1:1.28-3ubuntu0.16.04.1
+    - - - !!python/tuple
+          - /etc/init.d/.depend.start
+          - unique to
+          - '1'
+  - - 1:1.28-3ubuntu0.18.04.1
+    - - - !!python/tuple
+          - /var/cache/man/ru/CACHEDIR.TAG
+          - unique to
+          - '1'
+  - - 1:1.26-2ubuntu1
+    - - - !!python/tuple
+          - /var/lib/dpkg/tmp.ci/templates
+          - unique to
+          - '1'
+ksh: !!python/object/apply:collections.OrderedDict
+- - - 93u+20120801-1ubuntu0.14.04.1
+    - - - !!python/tuple
+          - /usr/share/doc/ksh.dpkg-new/example.kshrc
+          - unique to
+          - '1'
+  - - 93u+20120801-3.1ubuntu1
+    - - - !!python/tuple
+          - /var/cache/man/ru/CACHEDIR.TAG
+          - unique to
+          - '1'
+  - - 93u+20120801-2ubuntu0.16.04.1
+    - - - !!python/tuple
+          - /usr/bin/ksh.dpkg-tmp
+          - unique to
+          - '1'
+lftp: !!python/object/apply:collections.OrderedDict
+- - - 4.4.13-1ubuntu0.1
+    - - - !!python/tuple
+          - /usr/share/lftp.dpkg-new/verify-file
+          - unique to
+          - '3'
+        - !!python/tuple
+          - /var/cache/man/index.db
+          - outside vs
+          - 4.6.3a-1ubuntu0.1
+        - !!python/tuple
+          - /var/cache/man/fr/CACHEDIR.TAG
+          - outside vs
+          - 4.8.1-1ubuntu0.1
+  - - 4.6.3a-1ubuntu0.1
+    - - - !!python/tuple
+          - /var/lib/apt/extended_states
+          - unique to
+          - '2'
+        - !!python/tuple
+          - /var/cache/man/fr/CACHEDIR.TAG
+          - outside vs
+          - 4.8.1-1ubuntu0.1
+  - - 4.8.1-1ubuntu0.1
+    - - - !!python/tuple
+          - /usr/share/applications/lftp.desktop
+          - unique to
+          - '1'
+lm-sensors: !!python/object/apply:collections.OrderedDict
+- - - 1:3.3.4-2ubuntu1
+    - - - !!python/tuple
+          - /usr/share/man/man1/sensors-conf-convert.1.gz.dpkg-new
+          - unique to
+          - '1'
+  - - 1:3.4.0-4
+    - - - !!python/tuple
+          - /var/cache/man/ru/CACHEDIR.TAG
+          - unique to
+          - '1'
+  - - 1:3.4.0-2
+    - - - !!python/tuple
+          - /etc/init.d/.depend.start
+          - unique to
+          - '1'
+logwatch: !!python/object/apply:collections.OrderedDict
+- - - 7.4.3+git20161207-2ubuntu1
+    - - - !!python/tuple
+          - /usr/share/logwatch/default.conf/logfiles/rsnapshot.conf
+          - unique to
+          - '1'
+  - - 7.4.2-1ubuntu1
+    - - - !!python/tuple
+          - /usr/share/logwatch/default.conf/logfiles/dirsrv.conf
+          - unique to
+          - '2'
+        - !!python/tuple
+          - /var/cache/man/fr/CACHEDIR.TAG
+          - outside vs
+          - 7.4.3+git20161207-2ubuntu1
+  - - 7.4.0+svn20130529rev144-1ubuntu1.1
+    - - - !!python/tuple
+          - /usr/share/logwatch/scripts/shared/onlycontains
+          - unique to
+          - '3'
+        - !!python/tuple
+          - /usr/share/logwatch.dpkg-new/default.conf/services/systemd.conf
+          - outside vs
+          - 7.4.3+git20161207-2ubuntu1
+        - !!python/tuple
+          - /usr/share/logwatch.dpkg-new/default.conf/services/systemd.conf
+          - outside vs
+          - 7.4.2-1ubuntu1
+lynx: !!python/object/apply:collections.OrderedDict
+- - - 2.8.9dev16-3
+    - - - !!python/tuple
+          - /var/log/journal/90c213c3662a46589e220665c75c823f/system.journal
+          - unique to
+          - '1'
+  - - 2.8.9dev8-4ubuntu1
+    - - - !!python/tuple
+          - /usr/share/doc/lynx.dpkg-new/copyright
+          - unique to
+          - '2'
+        - !!python/tuple
+          - /var/log/apt/eipp.log.xz
+          - outside vs
+          - 2.8.9dev16-3
+  - - 2.8.8pre4-1
+    - - - !!python/tuple
+          - /var/log/auth.log
+          - unique to
+          - '3'
+        - !!python/tuple
+          - /usr/share/doc/lynx.dpkg-new/copyright
+          - outside vs
+          - 2.8.9dev16-3
+        - !!python/tuple
+          - /usr/share/doc/lynx.dpkg-new/copyright
+          - outside vs
+          - 2.8.9dev8-4ubuntu1
+mailman: !!python/object/apply:collections.OrderedDict
+- - - 1:2.1.20-1ubuntu0.3
+    - - - !!python/tuple
+          - /etc/init.d/.depend.boot
+          - unique to
+          - '1'
+  - - 1:2.1.26-1
+    - - - !!python/tuple
+          - /usr/share/mailman.dpkg-new/uk/convert.txt.dpkg-new
+          - unique to
+          - '1'
+mariadb-server: !!python/object/apply:collections.OrderedDict
+- - - 5.5.64-1ubuntu0.14.04.1
+    - []
+  - - 10.0.38-0ubuntu0.16.04.1
+    - []
+marisa: !!python/object/apply:collections.OrderedDict
+- - - 0.2.4-8build6
+    - - - !!python/tuple
+          - /var/lib/dpkg/updates/0005
+          - unique to
+          - '1'
+  - - 0.2.4-8build12
+    - - - !!python/tuple
+          - /var/cache/man/ru/CACHEDIR.TAG
+          - unique to
+          - '1'
+  - - 0.2.4-5build1
+    - - - !!python/tuple
+          - /usr/share/doc/marisa.dpkg-new/copyright
+          - unique to
+          - '3'
+        - !!python/tuple
+          - /var/lib/dpkg/updates/0004
+          - outside vs
+          - 0.2.4-8build6
+        - !!python/tuple
+          - /var/lib/dpkg/updates/0004
+          - outside vs
+          - 0.2.4-8build12
+mc: !!python/object/apply:collections.OrderedDict
+- - - 3:4.8.19-1
+    - - - !!python/tuple
+          - /etc/mc/mc.keymap
+          - unique to
+          - '1'
+  - - 3:4.8.15-2
+    - - - !!python/tuple
+          - /var/lib/dpkg/alternatives/view
+          - unique to
+          - '2'
+        - !!python/tuple
+          - /etc/mc/mc.menu.sr.dpkg-new
+          - inside vs
+          - 3:4.8.19-1
+  - - 3:4.8.11-1
+    - - - !!python/tuple
+          - /usr/share/menu/mc
+          - unique to
+          - '1'
+memcached: !!python/object/apply:collections.OrderedDict
+- - - 1.5.6-0ubuntu1.1
+    - - - !!python/tuple
+          - /var/cache/man/ru/CACHEDIR.TAG
+          - unique to
+          - '1'
+  - - 1.4.14-0ubuntu9.3
+    - - - !!python/tuple
+          - /usr/include/memcached.dpkg-new/protocol_binary.h
+          - unique to
+          - '3'
+        - !!python/tuple
+          - /var/cache/man/fr/CACHEDIR.TAG
+          - outside vs
+          - 1.5.6-0ubuntu1.1
+        - !!python/tuple
+          - /etc/init.d/.depend.start
+          - outside vs
+          - 1.4.25-2ubuntu1.4
+  - - 1.4.25-2ubuntu1.4
+    - - - !!python/tuple
+          - /etc/init.d/.depend.boot
+          - unique to
+          - '1'
+mgetty-voice: !!python/object/apply:collections.OrderedDict
+- - - 1.1.36-2ubuntu1
+    - - - !!python/tuple
+          - /var/lib/dpkg/updates/0004
+          - unique to
+          - '3'
+        - !!python/tuple
+          - /var/cache/man/fr/CACHEDIR.TAG
+          - outside vs
+          - 1.1.36-3.1
+        - !!python/tuple
+          - /var/cache/man/index.db
+          - outside vs
+          - 1.1.36-2.1+deb8u1build0.16.04.1
+  - - 1.1.36-3.1
+    - - - !!python/tuple
+          - /var/cache/man/CACHEDIR.TAG
+          - unique to
+          - '1'
+  - - 1.1.36-2.1+deb8u1build0.16.04.1
+    - - - !!python/tuple
+          - /var/lib/dpkg/updates/0005
+          - unique to
+          - '1'
+mksh: !!python/object/apply:collections.OrderedDict
+- - - 56c-1
+    - - - !!python/tuple
+          - /usr/lib/x86_64-linux-musl.dpkg-new/bin/mksh
+          - unique to
+          - '1'
+  - - 46-2ubuntu3
+    - - - !!python/tuple
+          - /var/lib/dpkg/tmp.ci/postrm
+          - unique to
+          - '3'
+        - !!python/tuple
+          - /usr/lib/klibc/bin/mksh.dpkg-new
+          - outside vs
+          - 56c-1
+        - !!python/tuple
+          - /usr/lib/klibc/bin/mksh.dpkg-new
+          - outside vs
+          - 52c-2
+  - - 52c-2
+    - - - !!python/tuple
+          - /bin/ksh.dpkg-tmp
+          - unique to
+          - '2'
+        - !!python/tuple
+          - /var/cache/man/fr/CACHEDIR.TAG
+          - outside vs
+          - 56c-1
+mrtg: !!python/object/apply:collections.OrderedDict
+- - - 2.17.4-3ubuntu1
+    - - - !!python/tuple
+          - /usr/share/doc/mrtg.dpkg-new/README.Debian
+          - unique to
+          - '2'
+        - !!python/tuple
+          - /var/lib/apt/extended_states
+          - inside vs
+          - 2.17.4-2ubuntu2
+  - - 2.17.4-2ubuntu2
+    - - - !!python/tuple
+          - /var/lib/dpkg/available
+          - unique to
+          - '1'
+  - - 2.17.4-4.1ubuntu1
+    - - - !!python/tuple
+          - /var/cache/man/ru/CACHEDIR.TAG
+          - unique to
+          - '1'
+mstflint: !!python/object/apply:collections.OrderedDict
+- - - 1.4-OFED-1.4.2-1ubuntu1
+    - - - !!python/tuple
+          - /usr/share/man/man1/hca_self_test.ofed.1.gz.dpkg-new
+          - unique to
+          - '1'
+  - - 4.8.0-2
+    - - - !!python/tuple
+          - /usr/share/mstflint.dpkg-new/mlxconfig_dbs/mlxconfig_switch.db
+          - unique to
+          - '1'
+  - - 4.1.0+1.46.gb1cdaf7-1ubuntu3.1
+    - - - !!python/tuple
+          - /usr/share/mstflint.dpkg-new/BridgeX.csv
+          - unique to
+          - '1'
+nasm: !!python/object/apply:collections.OrderedDict
+- - - 2.13.02-0.1
+    - - - !!python/tuple
+          - /var/cache/man/ru/CACHEDIR.TAG
+          - unique to
+          - '1'
+  - - 2.11.08-1ubuntu0.1
+    - - - !!python/tuple
+          - /usr/share/doc/nasm.dpkg-new/examples/avx512pf.asm.gz
+          - unique to
+          - '1'
+  - - 2.10.09-1ubuntu0.1
+    - - - !!python/tuple
+          - /usr/share/doc/nasm.dpkg-new/examples/br3058845.asm
+          - unique to
+          - '2'
+        - !!python/tuple
+          - /usr/share/doc/nasm.dpkg-new/examples/avx512pf.asm.gz
+          - outside vs
+          - 2.11.08-1ubuntu0.1
+paps: !!python/object/apply:collections.OrderedDict
+- - - 0.6.8-7ubuntu1
+    - - - !!python/tuple
+          - /var/lib/dpkg/updates/0005
+          - unique to
+          - '1'
+  - - 0.6.8-7
+    - - - !!python/tuple
+          - /var/lib/dpkg/updates/tmp.i
+          - unique to
+          - '3'
+        - !!python/tuple
+          - /var/cache/man/index.db
+          - outside vs
+          - 0.6.8-7ubuntu1
+        - !!python/tuple
+          - /var/cache/man/fr/CACHEDIR.TAG
+          - outside vs
+          - 0.6.8-7.1
+  - - 0.6.8-7.1
+    - - - !!python/tuple
+          - /var/cache/man/CACHEDIR.TAG
+          - unique to
+          - '1'
+pax: !!python/object/apply:collections.OrderedDict
+- - - 1:20171021-2
+    - - - !!python/tuple
+          - /var/cache/man/CACHEDIR.TAG
+          - unique to
+          - '1'
+  - - 1:20120606-2+deb7u1
+    - - - !!python/tuple
+          - /var/lib/dpkg/updates/tmp.i
+          - unique to
+          - '3'
+        - !!python/tuple
+          - /usr/share/lintian/overrides/pax
+          - outside vs
+          - 1:20171021-2
+        - !!python/tuple
+          - /usr/share/lintian/overrides/pax.dpkg-new
+          - outside vs
+          - 1:20151013-1
+  - - 1:20151013-1
+    - - - !!python/tuple
+          - /var/lib/dpkg/updates/0005
+          - unique to
+          - '1'
+powertop: !!python/object/apply:collections.OrderedDict
+- - - 2.5-1ubuntu1
+    - - - !!python/tuple
+          - /var/lib/dpkg/updates/tmp.i
+          - unique to
+          - '3'
+        - !!python/tuple
+          - /var/lib/dpkg/info/powertop.postrm
+          - outside vs
+          - 2.8-1build1
+        - !!python/tuple
+          - /var/lib/dpkg/info/powertop.postrm
+          - outside vs
+          - 2.9-0ubuntu1
+  - - 2.8-1build1
+    - - - !!python/tuple
+          - /var/lib/dpkg/updates/0005
+          - unique to
+          - '1'
+  - - 2.9-0ubuntu1
+    - - - !!python/tuple
+          - /var/cache/man/fr/CACHEDIR.TAG
+          - unique to
+          - '1'
+quagga: !!python/object/apply:collections.OrderedDict
+- - - 0.99.24.1-2ubuntu1.4
+    - - - !!python/tuple
+          - /usr/lib/quagga/pimd
+          - unique to
+          - '1'
+  - - 0.99.22.4-3ubuntu1.5
+    - - - !!python/tuple
+          - /usr/share/doc/quagga/tools/mrlg.cgi.gz
+          - unique to
+          - '1'
+  - - 1.2.4-1
+    - - - !!python/tuple
+          - /usr/share/doc/quagga.dpkg-new/NEWS.Debian.gz
+          - unique to
+          - '1'
+rrdtool: !!python/object/apply:collections.OrderedDict
+- - - 1.4.7-2ubuntu5
+    - - - !!python/tuple
+          - /usr/share/doc/rrdtool.dpkg-new/html/rrdlua.html
+          - unique to
+          - '1'
+  - - 1.7.0-1build1
+    - - - !!python/tuple
+          - /var/cache/man/ru/CACHEDIR.TAG
+          - unique to
+          - '1'
+  - - 1.5.5-4
+    - - - !!python/tuple
+          - /var/lib/dpkg/updates/0005
+          - unique to
+          - '1'
+samba: !!python/object/apply:collections.OrderedDict
+- - - 2:4.3.11+dfsg-0ubuntu0.16.04.21
+    - - - !!python/tuple
+          - /etc/init.d/.depend.boot
+          - unique to
+          - '1'
+  - - 2:4.3.11+dfsg-0ubuntu0.14.04.20
+    - - - !!python/tuple
+          - /usr/share/samba/setup.dpkg-new/mmr_serverids.conf
+          - unique to
+          - '1'
+  - - 2:4.7.6+dfsg~ubuntu-0ubuntu2.11
+    - - - !!python/tuple
+          - /var/lib/dpkg/updates/0021
+          - unique to
+          - '1'
+sane: !!python/object/apply:collections.OrderedDict
+- - - 1.0.14-12build1
+    - - - !!python/tuple
+          - /var/cache/man/ru/CACHEDIR.TAG
+          - unique to
+          - '1'
+  - - 1.0.14-9
+    - - - !!python/tuple
+          - /usr/share/doc/sane.dpkg-new/changelog.gz
+          - unique to
+          - '1'
+  - - 1.0.14-11
+    - - - !!python/tuple
+          - /var/lib/dpkg/updates/0005
+          - unique to
+          - '1'
+smartmontools: !!python/object/apply:collections.OrderedDict
+- - - 6.5+svn4324-1
+    - - - !!python/tuple
+          - /var/cache/man/ru/CACHEDIR.TAG
+          - unique to
+          - '1'
+  - - 6.4+svn4214-1
+    - - - !!python/tuple
+          - /usr/share/doc/smartmontools/examples/Example6
+          - unique to
+          - '1'
+  - - 6.2+svn3841-1.2ubuntu0.1
+    - - - !!python/tuple
+          - /usr/share/doc/smartmontools/INSTALL.gz
+          - unique to
+          - '1'
+subversion: !!python/object/apply:collections.OrderedDict
+- - - 1.9.3-2ubuntu1.1
+    - - - !!python/tuple
+          - /var/lib/dpkg/tmp.ci/postrm
+          - unique to
+          - '2'
+        - !!python/tuple
+          - /usr/share/doc/subversion/svn_1.7_releasenotes.html
+          - inside vs
+          - 1.9.7-4ubuntu1
+  - - 1.9.7-4ubuntu1
+    - - - !!python/tuple
+          - /usr/share/locale/ko/LC_MESSAGES/subversion.mo.dpkg-new
+          - unique to
+          - '1'
+  - - 1.8.8-1ubuntu3.3
+    - - - !!python/tuple
+          - /usr/bin/svn-bench.dpkg-new
+          - unique to
+          - '1'
+supermin: !!python/object/apply:collections.OrderedDict
+- - - 5.1.19-2ubuntu1
+    - - - !!python/tuple
+          - /var/cache/man/CACHEDIR.TAG
+          - unique to
+          - '1'
+  - - 4.1.6-1
+    - - - !!python/tuple
+          - /usr/share/man/man1/supermin-helper.1.gz
+          - unique to
+          - '1'
+  - - 5.1.14-2ubuntu1.1
+    - - - !!python/tuple
+          - /var/lib/dpkg/updates/0005
+          - unique to
+          - '1'
+sysstat: !!python/object/apply:collections.OrderedDict
+- - - 11.6.1-1
+    - - - !!python/tuple
+          - /var/lib/dpkg/updates/0014
+          - unique to
+          - '1'
+  - - 11.2.0-1ubuntu0.2
+    - - - !!python/tuple
+          - /etc/init.d/.depend.boot
+          - unique to
+          - '1'
+  - - 10.2.0-1
+    - - - !!python/tuple
+          - /usr/share/doc/sysstat/README
+          - unique to
+          - '1'
+telnetd: !!python/object/apply:collections.OrderedDict
+- - - 0.17-40
+    - - - !!python/tuple
+          - /var/lib/apt/extended_states
+          - unique to
+          - '2'
+        - !!python/tuple
+          - /var/lib/dpkg/updates/0005
+          - inside vs
+          - 0.17-41
+  - - 0.17-36build2
+    - - - !!python/tuple
+          - /var/lib/dpkg/available-new
+          - unique to
+          - '1'
+  - - 0.17-41
+    - - - !!python/tuple
+          - /var/cache/man/ru/CACHEDIR.TAG
+          - unique to
+          - '1'
+tftpd: !!python/object/apply:collections.OrderedDict
+- - - 0.17-18ubuntu2
+    - - - !!python/tuple
+          - /var/lib/dpkg/updates/0005
+          - unique to
+          - '1'
+  - - 0.17-18ubuntu3
+    - - - !!python/tuple
+          - /var/cache/man/CACHEDIR.TAG
+          - unique to
+          - '1'
+transfig: !!python/object/apply:collections.OrderedDict
+- - - 1:3.2.5.e-1ubuntu1.1
+    - - - !!python/tuple
+          - /var/lib/dpkg/updates/0004
+          - unique to
+          - '2'
+        - !!python/tuple
+          - /usr/share/xfig/fig2dev/ja_JP.EUC.ps
+          - outside vs
+          - 1:3.2.5.e-5ubuntu0.1
+  - - 1:3.2.6a-6ubuntu1
+    - - - !!python/tuple
+          - /var/log/journal/90c213c3662a46589e220665c75c823f/system.journal
+          - unique to
+          - '1'
+  - - 1:3.2.5.e-5ubuntu0.1
+    - - - !!python/tuple
+          - /usr/share/xfig/fig2dev/ja_JP.EUC.ps
+          - unique to
+          - '1'
+tshark: !!python/object/apply:collections.OrderedDict
+- - - 2.6.8-1~ubuntu16.04.0
+    - - - !!python/tuple
+          - /var/lib/dpkg/updates/0005
+          - unique to
+          - '1'
+  - - 2.6.8-1~ubuntu18.04.0
+    - - - !!python/tuple
+          - /var/cache/man/CACHEDIR.TAG
+          - unique to
+          - '1'
+unbound: !!python/object/apply:collections.OrderedDict
+- - - 1.5.8-1ubuntu1.1
+    - - - !!python/tuple
+          - /etc/init.d/.depend.boot
+          - unique to
+          - '1'
+  - - 1.6.7-1ubuntu2.2
+    - - - !!python/tuple
+          - /var/lib/dpkg/updates/0014
+          - unique to
+          - '1'
+  - - 1.4.22-1ubuntu4.14.04.3
+    - - - !!python/tuple
+          - /var/lib/dpkg/available-new
+          - unique to
+          - '1'
+units: !!python/object/apply:collections.OrderedDict
+- - - 2.16-1
+    - - - !!python/tuple
+          - /usr/share/units/locale_map.txt
+          - unique to
+          - '1'
+  - - 2.02-2
+    - - - !!python/tuple
+          - /usr/share/doc/units.dpkg-new/copyright
+          - unique to
+          - '1'
+  - - 2.12-2
+    - - - !!python/tuple
+          - /var/lib/dpkg/updates/0007
+          - unique to
+          - '1'
+virt-top: !!python/object/apply:collections.OrderedDict
+- - - 1.0.8-1
+    - - - !!python/tuple
+          - /var/cache/man/fr/CACHEDIR.TAG
+          - unique to
+          - '1'
+  - - 1.0.7-1
+    - - - !!python/tuple
+          - /usr/share/doc/virt-top/README
+          - unique to
+          - '2'
+        - !!python/tuple
+          - /var/lib/dpkg/updates/0004
+          - outside vs
+          - 1.0.7-1.1
+  - - 1.0.7-1.1
+    - - - !!python/tuple
+          - /var/lib/dpkg/updates/0005
+          - unique to
+          - '1'

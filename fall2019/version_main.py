@@ -41,7 +41,7 @@ from sklearn.multiclass import OneVsRestClassifier
 from sklearn.preprocessing import MultiLabelBinarizer
 
 from hybrid_tags import Hybrid
-from combo_rule_class import RuleBasedTags
+from basic_rule_class import RuleBasedTags
 from collections import OrderedDict
 from orderedset import OrderedSet
 
@@ -255,9 +255,10 @@ def get_scores(rules_clf, praxi_clf, train_dics, test_dics, outdir):
     wrong_labs = []
     for l, p in zip (full_labels, full_preds):
         if l != p:
-            just_lab = l.split('.')[0]
-            if just_lab not in wrong_labs:
-                wrong_labs.append(just_lab)
+            print(l,p)
+            #just_lab = l.split('.')[0]
+            #if just_lab not in wrong_labs:
+            #    wrong_labs.append(just_lab)
     #print(wrong_labs)
 
     return full_labels, full_preds, wrong_labs

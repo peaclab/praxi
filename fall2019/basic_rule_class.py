@@ -56,8 +56,12 @@ class RuleBasedTags:
                 if token_to_labels[token][0] not in rules: # only take one rule
                     rules[token_to_labels[token][0]] = token
                     self.total_rules += 1
+
+        rule_tokens = rules.keys()
+        for label in labels:
+            if label not in rule_tokens:
+                rules[label] = "???"
         #print("Rules:", rules)
-        #input("Enter to continue");
         return rules
 
     def transform_tagsets(self, tagsets, labels, take_max=False):  # Changesets as dictionaries
@@ -75,7 +79,7 @@ class RuleBasedTags:
             newres[label] = set()
             maxval = max(res[label].values())
             for token in sorted(res[label], key=res[label].get, reverse=True):
-                if res[label][token] < (maxval - 6):
+                if res[label][token] < (maxval):
                     break
                 newres[label].add(token)
         return newres

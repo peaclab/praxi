@@ -1,61 +1,61 @@
 will create pickle file
-vw took this many seconds:  1.2518043518066406
-Number of rules:  128
-Number of apps:  45
-Number of versions:  130
-Number of incorrect app names:  3
-Starting predictions
-vw took this many seconds:  1.857506275177002
-Number of rules:  256
-Number of apps:  90
-Number of versions:  260
-Number of incorrect app names:  5
-Starting predictions
-vw took this many seconds:  1.4658560752868652
-Number of rules:  386
-Number of apps:  135
-Number of versions:  390
+vw took this many seconds:  0.677006721496582
+Number of rules:  56
+Number of apps:  20
+Number of versions:  56
 Number of incorrect app names:  0
 Starting predictions
-vw took this many seconds:  1.5852019786834717
-Number of rules:  514
+vw took this many seconds:  0.6786990165710449
+Number of rules:  112
+Number of apps:  40
+Number of versions:  112
+Number of incorrect app names:  0
+Starting predictions
+vw took this many seconds:  0.7566730976104736
+Number of rules:  168
+Number of apps:  60
+Number of versions:  168
+Number of incorrect app names:  0
+Starting predictions
+vw took this many seconds:  0.7916820049285889
+Number of rules:  224
+Number of apps:  80
+Number of versions:  224
+Number of incorrect app names:  0
+Starting predictions
+vw took this many seconds:  0.7671194076538086
+Number of rules:  280
+Number of apps:  100
+Number of versions:  280
+Number of incorrect app names:  0
+Starting predictions
+vw took this many seconds:  0.6608772277832031
+Number of rules:  336
+Number of apps:  120
+Number of versions:  336
+Number of incorrect app names:  0
+Starting predictions
+vw took this many seconds:  0.5434751510620117
+Number of rules:  392
+Number of apps:  140
+Number of versions:  392
+Number of incorrect app names:  0
+Starting predictions
+vw took this many seconds:  0.7490701675415039
+Number of rules:  448
+Number of apps:  160
+Number of versions:  448
+Number of incorrect app names:  0
+Starting predictions
+vw took this many seconds:  0.8973219394683838
+Number of rules:  504
 Number of apps:  180
-Number of versions:  520
-Number of incorrect app names:  1
+Number of versions:  504
+Number of incorrect app names:  0
 Starting predictions
-vw took this many seconds:  1.5131821632385254
-Number of rules:  642
-Number of apps:  225
-Number of versions:  650
-Number of incorrect app names:  4
-Starting predictions
-vw took this many seconds:  1.6507420539855957
-Number of rules:  770
-Number of apps:  270
-Number of versions:  780
-Number of incorrect app names:  1
-Starting predictions
-vw took this many seconds:  1.6531345844268799
-Number of rules:  898
-Number of apps:  315
-Number of versions:  910
-Number of incorrect app names:  4
-Starting predictions
-vw took this many seconds:  1.4235501289367676
-Number of rules:  1028
-Number of apps:  360
-Number of versions:  1040
-Number of incorrect app names:  3
-Starting predictions
-vw took this many seconds:  1.530428409576416
-Number of rules:  1156
-Number of apps:  405
-Number of versions:  1170
-Number of incorrect app names:  2
-Starting predictions
-vw took this many seconds:  1.2441802024841309
-Number of rules:  1284
-Number of apps:  450
-Number of versions:  1300
-Number of incorrect app names:  4
+vw took this many seconds:  0.6588466167449951
+Number of rules:  560
+Number of apps:  200
+Number of versions:  560
+Number of incorrect app names:  0
 Starting predictions

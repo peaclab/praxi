@@ -641,4 +641,4 @@ if __name__ == '__main__':
                                        result_type, ts_path=ts_test_path, print_misses=print_misses)
 
     logging.info("Program runtime: %s", str(time.time()-prog_start))
-    print("Program runtime: %s", str(time.time()-prog_start))
+    print("Program runtime: ", str(time.time()-prog_start))

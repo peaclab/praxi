@@ -20,7 +20,7 @@ def get_free_filename(stub, directory, suffix=''):
     """
     counter = 0
     while True:
-        file_candidate = '{}/{}-{}{}'.format(
+        file_candidate = '{}/{}.{}{}'.format(
             str(directory), stub, counter, suffix)
         if Path(file_candidate).exists():
             counter += 1

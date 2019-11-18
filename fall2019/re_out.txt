@@ -1,78 +1,61 @@
 will create pickle file
-vw took this many seconds:  0.8382306098937988
-Number of rules:  56
-Number of apps:  20
-Number of versions:  56
+vw took this many seconds:  0.6576671600341797
+Number of rules:  31
+Number of apps:  11
+Number of versions:  31
 Number of incorrect app names:  0
 Starting predictions
-mailman.1:2.1.20-1ubuntu0.3 mailman.1:2.1.26-1
-dovecot-core.1:2.2.33.2-1ubuntu4.3 dovecot-core.1:2.2.22-1ubuntu2.10
-vw took this many seconds:  0.7665066719055176
-Number of rules:  112
-Number of apps:  40
-Number of versions:  112
+vw took this many seconds:  0.568458080291748
+Number of rules:  62
+Number of apps:  22
+Number of versions:  62
 Number of incorrect app names:  0
 Starting predictions
-units.2.02-2 units.2.12-2
-sane.1.0.14-9 sane.1.0.14-11
-vw took this many seconds:  0.8535895347595215
-Number of rules:  168
-Number of apps:  60
-Number of versions:  168
+vw took this many seconds:  0.6816914081573486
+Number of rules:  93
+Number of apps:  33
+Number of versions:  93
 Number of incorrect app names:  0
 Starting predictions
-units.2.12-2 units.2.02-2
-sane.1.0.14-9 sane.1.0.14-11
-vw took this many seconds:  0.8239271640777588
-Number of rules:  224
-Number of apps:  80
-Number of versions:  224
+vw took this many seconds:  0.7681901454925537
+Number of rules:  124
+Number of apps:  44
+Number of versions:  124
 Number of incorrect app names:  0
 Starting predictions
-units.2.12-2 units.2.02-2
-units.2.12-2 units.2.02-2
-units.2.12-2 units.2.02-2
-vw took this many seconds:  0.8543994426727295
-Number of rules:  280
-Number of apps:  100
-Number of versions:  280
+vw took this many seconds:  0.5221798419952393
+Number of rules:  155
+Number of apps:  55
+Number of versions:  155
 Number of incorrect app names:  0
 Starting predictions
-units.2.12-2 units.2.02-2
-units.2.12-2 units.2.02-2
-vw took this many seconds:  0.8438351154327393
-Number of rules:  336
-Number of apps:  120
-Number of versions:  336
+vw took this many seconds:  0.7126035690307617
+Number of rules:  186
+Number of apps:  66
+Number of versions:  186
 Number of incorrect app names:  0
 Starting predictions
-rrdtool.1.4.7-2ubuntu5 rrdtool.1.5.5-4
-vw took this many seconds:  1.157364845275879
-Number of rules:  392
-Number of apps:  140
-Number of versions:  392
+vw took this many seconds:  0.5609638690948486
+Number of rules:  217
+Number of apps:  77
+Number of versions:  217
 Number of incorrect app names:  0
 Starting predictions
-units.2.12-2 units.2.02-2
-rrdtool.1.4.7-2ubuntu5 rrdtool.1.5.5-4
-vw took this many seconds:  0.8519134521484375
-Number of rules:  448
-Number of apps:  160
-Number of versions:  448
+vw took this many seconds:  0.690495491027832
+Number of rules:  248
+Number of apps:  88
+Number of versions:  248
 Number of incorrect app names:  0
 Starting predictions
-units.2.12-2 units.2.02-2
-quagga.0.99.24.1-2ubuntu1.4 quagga.???
-vw took this many seconds:  0.874542236328125
-Number of rules:  504
-Number of apps:  180
-Number of versions:  504
+vw took this many seconds:  0.5178430080413818
+Number of rules:  279
+Number of apps:  99
+Number of versions:  279
 Number of incorrect app names:  0
 Starting predictions
-units.2.12-2 units.2.02-2
-vw took this many seconds:  0.8355131149291992
-Number of rules:  560
-Number of apps:  200
-Number of versions:  560
+vw took this many seconds:  0.7450711727142334
+Number of rules:  310
+Number of apps:  110
+Number of versions:  310
 Number of incorrect app names:  0
 Starting predictions

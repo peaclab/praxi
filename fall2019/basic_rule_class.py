@@ -53,6 +53,7 @@ class RuleBasedTags:
         token_to_labels = self.get_token_to_labels(label_to_tokens)
         for token in token_to_labels.keys():
             if len(token_to_labels[token]) == 1:
+                #print(token_to_labels[token])
                 if token_to_labels[token][0] not in rules: # only take one rule
                     rules[token_to_labels[token][0]] = token
                     self.total_rules += 1

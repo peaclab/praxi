@@ -1,0 +1,24 @@
+#!/bin/bash
+sudo DEBIAN_FRONTEND=noninteractive apt -yq update
+sudo DEBIAN_FRONTEND=noninteractive apt -yq upgrade
+echo "Y" | sudo apt-get install libboost-dev libboost-program-options-dev libboost-system-dev libboost-thread-dev libboost-math-dev libboost-test-dev zlib1g-dev cmake rapidjson-dev
+echo "Y" | sudo apt-get install vowpal-wabbit
+echo "Y" | sudo apt install python3-pip && sudo pip3 install --upgrade pip
+echo "Y" | sudo pip3 install --upgrade watchdog numpy scipy sklearn tqdm envoy
+
+git clone https://github.com/deltasherlock/praxi.git
+sudo -H pip3 install pandas
+echo "y" | sudo -H pip3 uninstall pandas
+
+for i in {1..10..1}
+do
+    sudo adduser demo$i --gecos "demo $i,,," --disabled-password
+    echo "demo$i:d$i" | sudo chpasswd
+    sudo cp -r /home/ubuntu/praxi /home/demo$i
+    sudo chown -R demo$i:demo$i /home/demo$i
+    sudo runuser -l demo$i -c 'pip3 install pandas --user'
+    sudo runuser -l demo$i -c 'echo "y" | pip3 uninstall pandas'
+done
+
+sudo sed -i 's|[#]*PasswordAuthentication no|PasswordAuthentication yes|g' /etc/ssh/sshd_config
+sudo service ssh restart

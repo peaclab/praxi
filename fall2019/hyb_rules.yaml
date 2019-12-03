@@ -1,42 +1,42 @@
 amanda-server:
-  1:3.3.3-2ubuntu1: /usr/share/doc/amanda-server.dpkg-new/examples/amanda-harddisk.conf
-  1:3.3.6-4.1: /var/lib/dpkg/updates/0005
-  1:3.5.1-1build2: /var/log/apt/eipp.log.xz
+  1:3.3.3-2ubuntu1: /usr/share/doc/amanda-server/examples/README
+  1:3.3.6-4.1: /var/cache/man/index.db
+  1:3.5.1-1build2: /usr/sbin/amreindex.dpkg-new
 bind9:
-  1:9.10.3.dfsg.P4-8ubuntu1.14: /etc/init.d/.depend.boot
+  1:9.10.3.dfsg.P4-8ubuntu1.14: /usr/share/man/man1/delv.1.gz
   1:9.11.3+dfsg-1ubuntu1.8: /var/cache/man/cs/CACHEDIR.TAG
-  1:9.9.5.dfsg-3ubuntu0.19: /var/lib/dpkg/available-old
+  1:9.9.5.dfsg-3ubuntu0.19: /var/lib/dpkg/available
 chrony:
   1.29-1ubuntu0.1: /var/lib/dpkg/available-new
-  2.1.1-1ubuntu0.1: /etc/init.d/.depend.boot
-  3.2-4ubuntu4.2: /var/cache/man/cs/CACHEDIR.TAG
+  2.1.1-1ubuntu0.1: /var/log/chrony/statistics.log
+  3.2-4ubuntu4.2: /usr/share/chrony.dpkg-new/chrony.keys
 ipvsadm:
-  1:1.26-2ubuntu1: /var/lib/dpkg/tmp.ci/templates
+  1:1.26-2ubuntu1: /var/cache/debconf/templates.dat-new
   1:1.28-3ubuntu0.16.04.1: /etc/init.d/.depend.start
   1:1.28-3ubuntu0.18.04.1: /var/cache/man/cs/CACHEDIR.TAG
 lm-sensors:
   1:3.3.4-2ubuntu1: /usr/share/man/man1/sensors-conf-convert.1.gz
-  1:3.4.0-2: /etc/init.d/.depend.start
+  1:3.4.0-2: /var/lib/dpkg/updates/0010
   1:3.4.0-4: /var/cache/man/cs/CACHEDIR.TAG
 mstflint:
-  1.4-OFED-1.4.2-1ubuntu1: /usr/share/man/man1/hca_self_test.ofed.1.gz
-  4.1.0+1.46.gb1cdaf7-1ubuntu3.1: /usr/lib/x86_64-linux-gnu/libmtcr_ul.a.dpkg-new
-  4.8.0-2: /var/cache/man/cs/CACHEDIR.TAG
+  1.4-OFED-1.4.2-1ubuntu1: /usr/share/man/man1/hca_self_test.ofed.1.gz.dpkg-new
+  4.1.0+1.46.gb1cdaf7-1ubuntu3.1: /usr/share/mstflint/BridgeX.csv
+  4.8.0-2: /var/cache/man/sr/CACHEDIR.TAG
 supermin:
-  4.1.6-1: /usr/share/man/man1/supermin-helper.1.gz
+  4.1.6-1: /usr/bin/supermin-helper.dpkg-new
   5.1.14-2ubuntu1.1: /var/lib/dpkg/updates/0005
-  5.1.19-2ubuntu1: /var/log/journal/90c213c3662a46589e220665c75c823f/system.journal
+  5.1.19-2ubuntu1: /var/cache/man/cs/CACHEDIR.TAG
 sysstat:
-  10.2.0-1: /var/lib/dpkg/info/sysstat.preinst
-  11.2.0-1ubuntu0.2: /etc/init.d/.depend.boot
+  10.2.0-1: /usr/share/doc/sysstat.dpkg-new/README
+  11.2.0-1ubuntu0.2: /usr/share/doc/sysstat/README.gz
   11.6.1-1: /var/cache/man/cs/CACHEDIR.TAG
 tftpd:
   0.17-18ubuntu2: /var/lib/dpkg/updates/0005
-  0.17-18ubuntu3: /var/log/journal/90c213c3662a46589e220665c75c823f/system.journal
+  0.17-18ubuntu3: /var/cache/man/cs/CACHEDIR.TAG
 tshark:
   2.6.8-1~ubuntu16.04.0: /var/lib/dpkg/updates/0005
-  2.6.8-1~ubuntu18.04.0: /var/log/journal/90c213c3662a46589e220665c75c823f/system.journal
+  2.6.8-1~ubuntu18.04.0: /var/cache/man/cs/CACHEDIR.TAG
 unbound:
   1.4.22-1ubuntu4.14.04.3: /var/lib/dpkg/available-new
-  1.5.8-1ubuntu1.1: /var/spool/postfix/etc/resolv.conf
-  1.6.7-1ubuntu2.2: /var/cache/man/cs/CACHEDIR.TAG
+  1.5.8-1ubuntu1.1: /var/log/mail.log
+  1.6.7-1ubuntu2.2: /lib/systemd/system/unbound-resolvconf.service.dpkg-new

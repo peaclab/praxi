@@ -16,11 +16,13 @@ class RuleBasedTags:
         self.total_versions = 0;
 
     def fit_all(self, vers_dics): # fit wrapper
+        # takes a list of dictionaries w/ application, label, and changes
         self.rules = {}
         list_dics = {}
         all_labels = vers_dics.keys()
-        #print(all_labels)
-        #input("Press enter to continue...")
+
+        # Need a new dictionary separated by application
+        # for each application, have list of changes and versions
         for label in all_labels:
             if label not in list_dics:
                 list_dics[label] = {}
@@ -42,8 +44,24 @@ class RuleBasedTags:
 
     #def fit(self, X, y): # X is list of lists, little lists have tags, y are VERSIONS
     def fit(self,X,y,max_num_rules=1):
-        # find intersection of ALL changes
-        label_to_tokens = self.transform_tagsets(X, y)
+        # takes: list of changes, corresponding list of labels
+        # find intersection of ALL changes and remove?
+
+        intersection = set(X[0]) # SOMETHING LIKE THIS
+        for changes in X:
+            intersection &= set(changes)
+        intersection = list(intersection)
+        print("Intersection length:", len(intersection))
+        # remove intersection from each changeset
+        new_X = []
+        for changes in X:
+            if(len(changes)>len(intersection)):
+                cur_X = [x for x in changes if x not in intersection]
+                new_X.append(cur_X)
+            else:
+                print("Entire changeset in intersection!")
+
+        label_to_tokens = self.transform_tagsets(new_X, y)
         labels = label_to_tokens.keys()
         self.total_versions += len(labels)
 

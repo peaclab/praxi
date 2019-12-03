@@ -1,0 +1,12 @@
+MULTILABEL EXPERIMENT REPORT
+Generated Mon May 13 10:23:08 2019
+
+
+ Args: -b 26 --learning_rate 1.5 --passes 10 --csoaa 83 --kill_cache --cache_file a.cache
+
+4 FOLD CROSS VALIDATION WITH 1000 CHANGESETS
+F1 SCORE : 0.798 weighted
+PRECISION: 0.811 weighted
+RECALL   : 0.791 weighted
+
+

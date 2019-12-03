@@ -1,0 +1,172 @@
+will create pickle file
+vw took this many seconds:  0.5858449935913086
+Intersection length: 33
+Intersection length: 78
+Intersection length: 85
+Intersection length: 46
+Intersection length: 61
+Intersection length: 24
+Intersection length: 103
+Intersection length: 36
+Intersection length: 136
+Intersection length: 107
+Intersection length: 41
+Number of rules:  31
+Number of apps:  11
+Number of versions:  31
+Number of incorrect app names:  0
+Starting predictions
+vw took this many seconds:  0.6779210567474365
+Intersection length: 32
+Intersection length: 78
+Intersection length: 52
+Intersection length: 46
+Intersection length: 61
+Intersection length: 24
+Intersection length: 103
+Intersection length: 36
+Intersection length: 136
+Intersection length: 107
+Intersection length: 41
+Number of rules:  62
+Number of apps:  22
+Number of versions:  62
+Number of incorrect app names:  0
+Starting predictions
+vw took this many seconds:  0.6968321800231934
+Intersection length: 32
+Intersection length: 78
+Intersection length: 51
+Intersection length: 46
+Intersection length: 61
+Intersection length: 24
+Intersection length: 103
+Intersection length: 36
+Intersection length: 136
+Intersection length: 107
+Intersection length: 41
+Number of rules:  93
+Number of apps:  33
+Number of versions:  93
+Number of incorrect app names:  0
+Starting predictions
+vw took this many seconds:  0.8450939655303955
+Intersection length: 32
+Intersection length: 78
+Intersection length: 51
+Intersection length: 46
+Intersection length: 61
+Intersection length: 24
+Intersection length: 103
+Intersection length: 36
+Intersection length: 136
+Intersection length: 107
+Intersection length: 41
+Number of rules:  124
+Number of apps:  44
+Number of versions:  124
+Number of incorrect app names:  0
+Starting predictions
+vw took this many seconds:  0.5172839164733887
+Intersection length: 32
+Intersection length: 78
+Intersection length: 51
+Intersection length: 46
+Intersection length: 61
+Intersection length: 24
+Intersection length: 103
+Intersection length: 36
+Intersection length: 136
+Intersection length: 107
+Intersection length: 41
+Number of rules:  155
+Number of apps:  55
+Number of versions:  155
+Number of incorrect app names:  0
+Starting predictions
+vw took this many seconds:  0.6289725303649902
+Intersection length: 32
+Intersection length: 78
+Intersection length: 51
+Intersection length: 46
+Intersection length: 61
+Intersection length: 24
+Intersection length: 103
+Intersection length: 36
+Intersection length: 136
+Intersection length: 107
+Intersection length: 41
+Number of rules:  186
+Number of apps:  66
+Number of versions:  186
+Number of incorrect app names:  0
+Starting predictions
+vw took this many seconds:  0.6660239696502686
+Intersection length: 32
+Intersection length: 78
+Intersection length: 51
+Intersection length: 46
+Intersection length: 61
+Intersection length: 24
+Intersection length: 103
+Intersection length: 36
+Intersection length: 136
+Intersection length: 107
+Intersection length: 41
+Number of rules:  217
+Number of apps:  77
+Number of versions:  217
+Number of incorrect app names:  0
+Starting predictions
+vw took this many seconds:  0.7015736103057861
+Intersection length: 32
+Intersection length: 78
+Intersection length: 51
+Intersection length: 46
+Intersection length: 61
+Intersection length: 24
+Intersection length: 103
+Intersection length: 36
+Intersection length: 136
+Intersection length: 107
+Intersection length: 41
+Number of rules:  248
+Number of apps:  88
+Number of versions:  248
+Number of incorrect app names:  0
+Starting predictions
+vw took this many seconds:  0.6259040832519531
+Intersection length: 32
+Intersection length: 78
+Intersection length: 51
+Intersection length: 46
+Intersection length: 61
+Intersection length: 24
+Intersection length: 103
+Intersection length: 36
+Intersection length: 136
+Intersection length: 107
+Intersection length: 41
+Number of rules:  279
+Number of apps:  99
+Number of versions:  279
+Number of incorrect app names:  0
+Starting predictions
+supermin.4.1.6-1 supermin.5.1.14-2ubuntu1.1
+vw took this many seconds:  0.7096438407897949
+Intersection length: 32
+Intersection length: 78
+Intersection length: 51
+Intersection length: 46
+Intersection length: 61
+Intersection length: 24
+Intersection length: 103
+Intersection length: 36
+Intersection length: 136
+Intersection length: 107
+Intersection length: 41
+Number of rules:  310
+Number of apps:  110
+Number of versions:  310
+Number of incorrect app names:  0
+Starting predictions

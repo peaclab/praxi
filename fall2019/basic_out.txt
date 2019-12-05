@@ -1,1043 +1,495 @@
 will create pickle file
-vw took this many seconds:  1.751600742340088
-Intersection length: 670
-Intersection length: 25
-Intersection length: 32
-Intersection length: 36
-Intersection length: 28
-Intersection length: 46
-Intersection length: 32
-Intersection length: 10
-Entire changeset in intersection!
-Entire changeset in intersection!
-Intersection length: 61
-Intersection length: 55
-Intersection length: 75
-Intersection length: 1
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Intersection length: 226
-Intersection length: 103
-Intersection length: 39
-Intersection length: 22
-Intersection length: 67
-Intersection length: 27
-Intersection length: 15
-Intersection length: 33
-Entire changeset in intersection!
-Entire changeset in intersection!
-Intersection length: 41
-Intersection length: 19
-Intersection length: 95
-Intersection length: 52
-Intersection length: 4447
-Intersection length: 179
-Intersection length: 52
-Intersection length: 136
-Intersection length: 0
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Intersection length: 51
-Intersection length: 69
-Intersection length: 66
-Intersection length: 56
-Intersection length: 158
-Intersection length: 24
-Intersection length: 89
-Intersection length: 190
-Intersection length: 78
-Intersection length: 50
-Intersection length: 196
-Intersection length: 161
-Intersection length: 53
-Intersection length: 107
-Intersection length: 183
-Intersection length: 1
-Entire changeset in intersection!
-Number of rules:  103
+vw took this many seconds:  1.3577322959899902
+Number of rules:  0
 Number of apps:  45
-Number of versions:  130
+Number of versions:  0
 Number of incorrect app names:  3
 Starting predictions
-logwatch.7.4.0+svn20130529rev144-1ubuntu1.1 logwatch.???
-dwz.0.11-1 dwz.0.12-1
-units.2.02-2 units.2.12-2
-powertop.2.5-1ubuntu1 powertop.???
-powertop.2.8-1build1 powertop.???
-powertop.2.9-0ubuntu1 powertop.???
-memcached.1.4.14-0ubuntu9.3 memcached.???
-bacula-client.5.2.6+dfsg-9.1ubuntu3 mariadb-server.???
-mariadb-server.10.0.38-0ubuntu0.16.04.1 mariadb-server.???
-lynx.2.8.8pre4-1 mariadb-server.5.5.64-1ubuntu0.14.04.1
-lynx.2.8.8pre4-1 mariadb-server.5.5.64-1ubuntu0.14.04.1
-bacula-client.9.0.6-1build1 bacula-client.7.0.5+dfsg-4ubuntu0.1
-bacula-client.9.0.6-1build1 bacula-client.7.0.5+dfsg-4ubuntu0.1
-mgetty-voice.1.1.36-2ubuntu1 mgetty-voice.???
-virt-top.1.0.7-1 virt-top.???
-nasm.2.10.09-1ubuntu0.1 nasm.???
-paps.0.6.8-7ubuntu1 paps.???
-transfig.1:3.2.5.e-1ubuntu1.1 transfig.1:3.2.5.e-5ubuntu0.1
-pax.1:20151013-1 pax.???
-pax.1:20151013-1 pax.1:20120606-2+deb7u1
-pax.1:20120606-2+deb7u1 pax.???
-mrtg.2.17.4-3ubuntu1 mrtg.???
-mrtg.2.17.4-3ubuntu1 mrtg.???
-telnetd.0.17-40 telnetd.???
-lftp.4.6.3a-1ubuntu0.1 lftp.???
-lftp.4.8.1-1ubuntu0.1 lftp.4.4.13-1ubuntu0.1
-lftp.4.8.1-1ubuntu0.1 lftp.4.4.13-1ubuntu0.1
-samba.2:4.3.11+dfsg-0ubuntu0.16.04.21 samba.2:4.3.11+dfsg-0ubuntu0.14.04.20
-samba.2:4.3.11+dfsg-0ubuntu0.16.04.21 samba.2:4.3.11+dfsg-0ubuntu0.14.04.20
-subversion.1.9.3-2ubuntu1.1 subversion.???
-cups.2.1.3-4ubuntu0.9 cups.???
-marisa.0.2.4-5build1 marisa.0.2.4-8build6
-dstat.0.7.2-3build1 dstat.0.7.2-4
-dstat.0.7.2-3build1 dstat.???
-iptraf-ng.1.1.4-2ubuntu0.16.04.1 iptraf-ng.???
-iptraf-ng.1.1.4-1 iptraf-ng.???
-iptraf-ng.1.1.4-2ubuntu0.16.04.1 iptraf-ng.???
-vw took this many seconds:  1.2218291759490967
-Intersection length: 670
-Intersection length: 25
-Intersection length: 32
-Intersection length: 36
-Intersection length: 28
-Intersection length: 46
-Intersection length: 32
-Intersection length: 11
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Intersection length: 61
-Intersection length: 55
-Intersection length: 75
-Intersection length: 1
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Intersection length: 226
-Intersection length: 103
-Intersection length: 39
-Intersection length: 23
-Intersection length: 67
-Intersection length: 27
-Intersection length: 21
-Intersection length: 33
-Entire changeset in intersection!
-Entire changeset in intersection!
-Intersection length: 41
-Intersection length: 19
-Intersection length: 95
-Intersection length: 52
-Intersection length: 4447
-Intersection length: 179
-Intersection length: 52
-Intersection length: 136
-Intersection length: 0
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Intersection length: 51
-Intersection length: 69
-Intersection length: 66
-Intersection length: 56
-Intersection length: 158
-Intersection length: 24
-Intersection length: 89
-Intersection length: 190
-Intersection length: 78
-Intersection length: 50
-Intersection length: 196
-Intersection length: 161
-Intersection length: 53
-Intersection length: 107
-Intersection length: 183
-Intersection length: 1
-Entire changeset in intersection!
-Number of rules:  206
-Number of apps:  90
-Number of versions:  260
-Number of incorrect app names:  4
-Starting predictions
-logwatch.7.4.2-1ubuntu1 logwatch.???
-dwz.0.12-1 dwz.0.11-1
-dwz.0.11-1 dwz.???
-units.2.02-2 units.2.12-2
-powertop.2.5-1ubuntu1 mariadb-server.???
-powertop.2.5-1ubuntu1 mariadb-server.???
-bacula-client.5.2.6+dfsg-9.1ubuntu3 mariadb-server.???
+rrdtool.1.5.5-4 rrdtool.???
+lynx.2.8.9dev8-4ubuntu1 lynx.???
+lynx.2.8.8pre4-1 mariadb-server.???
 bacula-client.5.2.6+dfsg-9.1ubuntu3 mariadb-server.???
 mariadb-server.10.0.38-0ubuntu0.16.04.1 mariadb-server.???
 mariadb-server.5.5.64-1ubuntu0.14.04.1 mariadb-server.???
-powertop.2.5-1ubuntu1 powertop.2.8-1build1
-memcached.1.4.25-2ubuntu1.4 memcached.1.4.14-0ubuntu9.3
-bacula-client.9.0.6-1build1 bacula-client.7.0.5+dfsg-4ubuntu0.1
-mgetty-voice.1.1.36-2ubuntu1 mgetty-voice.???
-virt-top.1.0.7-1 virt-top.???
-virt-top.1.0.7-1 virt-top.???
-nasm.2.10.09-1ubuntu0.1 nasm.???
-paps.0.6.8-7 paps.???
-paps.0.6.8-7ubuntu1 paps.0.6.8-7
-transfig.1:3.2.5.e-1ubuntu1.1 transfig.1:3.2.5.e-5ubuntu0.1
-transfig.1:3.2.5.e-1ubuntu1.1 transfig.???
-pax.1:20171021-2 pax.???
-pax.1:20151013-1 pax.1:20120606-2+deb7u1
-pax.1:20171021-2 pax.???
-crash.7.0.3-3ubuntu4.5 crash.???
-mrtg.2.17.4-3ubuntu1 mrtg.???
-mailman.1:2.1.20-1ubuntu0.3 mailman.1:2.1.26-1
-mksh.52c-2 mksh.???
-mksh.56c-1 mksh.46-2ubuntu3
-mksh.46-2ubuntu3 mksh.???
+powertop.2.5-1ubuntu1 mariadb-server.???
 telnetd.0.17-40 telnetd.???
-lftp.4.6.3a-1ubuntu0.1 lftp.???
-samba.2:4.7.6+dfsg~ubuntu-0ubuntu2.11 samba.2:4.3.11+dfsg-0ubuntu0.14.04.20
-cups.2.1.3-4ubuntu0.9 cups.???
-cups.2.1.3-4ubuntu0.9 cups.???
-marisa.0.2.4-5build1 marisa.0.2.4-8build6
-marisa.0.2.4-5build1 marisa.0.2.4-8build6
-mc.3:4.8.15-2 mc.???
+dovecot-core.1:2.2.33.2-1ubuntu4.3 dovecot-core.???
+lftp.4.4.13-1ubuntu0.1 lftp.???
+lftp.4.4.13-1ubuntu0.1 lftp.???
 iptraf-ng.1.1.4-2ubuntu0.16.04.1 iptraf-ng.???
-lynx.2.8.9dev16-3 lynx.2.8.9dev8-4ubuntu1
-lynx.2.8.9dev16-3 lynx.2.8.9dev8-4ubuntu1
-vw took this many seconds:  1.2059385776519775
-Intersection length: 670
-Intersection length: 25
-Intersection length: 32
-Intersection length: 36
-Intersection length: 30
-Intersection length: 46
-Intersection length: 36
-Intersection length: 10
-Entire changeset in intersection!
-Entire changeset in intersection!
-Intersection length: 61
-Intersection length: 55
-Intersection length: 75
-Intersection length: 1
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Intersection length: 226
-Intersection length: 103
-Intersection length: 39
-Intersection length: 22
-Intersection length: 67
-Intersection length: 27
-Intersection length: 15
-Intersection length: 33
-Entire changeset in intersection!
-Entire changeset in intersection!
-Intersection length: 41
-Intersection length: 19
-Intersection length: 95
-Intersection length: 52
-Intersection length: 4447
-Intersection length: 179
-Intersection length: 52
-Intersection length: 136
-Intersection length: 0
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Intersection length: 51
-Intersection length: 69
-Intersection length: 66
-Intersection length: 56
-Intersection length: 158
-Intersection length: 24
-Intersection length: 89
-Intersection length: 190
-Intersection length: 78
-Intersection length: 51
-Intersection length: 197
-Intersection length: 161
-Intersection length: 53
-Intersection length: 107
-Intersection length: 183
-Intersection length: 1
-Entire changeset in intersection!
-Number of rules:  309
-Number of apps:  135
-Number of versions:  390
+iptraf-ng.1.1.4-2ubuntu0.16.04.1 iptraf-ng.???
+virt-top.1.0.7-1 virt-top.???
+virt-top.1.0.7-1 virt-top.???
+subversion.1.9.3-2ubuntu1.1 subversion.???
+mrtg.2.17.4-3ubuntu1 mrtg.???
+mgetty-voice.1.1.36-2ubuntu1 mgetty-voice.???
+mgetty-voice.1.1.36-2ubuntu1 mgetty-voice.???
+crash.7.0.3-3ubuntu4.5 crash.7.2.3+real-1~16.04.1
+transfig.1:3.2.5.e-5ubuntu0.1 transfig.???
+transfig.1:3.2.5.e-1ubuntu1.1 transfig.???
+logwatch.7.4.0+svn20130529rev144-1ubuntu1.1 logwatch.???
+logwatch.7.4.2-1ubuntu1 logwatch.???
+marisa.0.2.4-8build6 marisa.???
+marisa.0.2.4-8build6 marisa.???
+marisa.0.2.4-8build6 marisa.???
+mc.3:4.8.15-2 mc.???
+mc.3:4.8.15-2 mc.???
+memcached.1.4.14-0ubuntu9.3 memcached.???
+ksh.93u+20120801-2ubuntu0.16.04.1 ksh.???
+paps.0.6.8-7 paps.???
+dwz.0.11-1 dwz.???
+dwz.0.11-1 dwz.???
+powertop.2.5-1ubuntu1 powertop.???
+dstat.0.7.2-4 dstat.???
+dstat.0.7.2-4 dstat.???
+dstat.0.7.2-3build1 dstat.???
+mksh.46-2ubuntu3 mksh.???
+mksh.52c-2 mksh.???
+pax.1:20120606-2+deb7u1 pax.???
+pax.1:20151013-1 pax.???
+pax.1:20120606-2+deb7u1 pax.???
+vw took this many seconds:  1.5645806789398193
+Number of rules:  0
+Number of apps:  90
+Number of versions:  0
 Number of incorrect app names:  1
 Starting predictions
-logwatch.7.4.0+svn20130529rev144-1ubuntu1.1 logwatch.???
-powertop.2.9-0ubuntu1 powertop.2.8-1build1
+cups.2.1.3-4ubuntu0.9 cups.???
+cups.2.1.3-4ubuntu0.9 cups.???
+lynx.2.8.9dev8-4ubuntu1 lynx.???
+telnetd.0.17-40 telnetd.???
+telnetd.0.17-40 telnetd.???
+lftp.4.4.13-1ubuntu0.1 lftp.???
+lftp.4.4.13-1ubuntu0.1 lftp.???
+iptraf-ng.1.1.4-2ubuntu0.16.04.1 iptraf-ng.???
+iptraf-ng.1.1.4-2ubuntu0.16.04.1 iptraf-ng.???
+iptraf-ng.1.1.4-1 iptraf-ng.???
+virt-top.1.0.7-1 virt-top.???
+subversion.1.9.3-2ubuntu1.1 subversion.???
+mrtg.2.17.4-3ubuntu1 mrtg.???
 bacula-client.7.0.5+dfsg-4ubuntu0.1 bacula-client.???
+bacula-client.7.0.5+dfsg-4ubuntu0.1 bacula-client.???
+bacula-client.5.2.6+dfsg-9.1ubuntu3 mariadb-server.???
+mariadb-server.5.5.64-1ubuntu0.14.04.1 mariadb-server.???
+mariadb-server.10.0.38-0ubuntu0.16.04.1 mariadb-server.???
+mgetty-voice.1.1.36-2ubuntu1 mgetty-voice.???
+crash.7.2.3+real-1~16.04.1 crash.???
+crash.7.2.3+real-1~16.04.1 crash.???
+crash.7.0.3-3ubuntu4.5 crash.???
+transfig.1:3.2.5.e-5ubuntu0.1 transfig.???
+transfig.1:3.2.5.e-5ubuntu0.1 transfig.???
+transfig.1:3.2.5.e-5ubuntu0.1 transfig.???
+logwatch.7.4.0+svn20130529rev144-1ubuntu1.1 logwatch.???
+logwatch.7.4.2-1ubuntu1 logwatch.???
+marisa.0.2.4-8build6 marisa.???
+mc.3:4.8.15-2 mc.???
+memcached.1.4.14-0ubuntu9.3 memcached.???
+paps.0.6.8-7ubuntu1 paps.???
+supermin.5.1.14-2ubuntu1.1 supermin.???
+supermin.5.1.14-2ubuntu1.1 supermin.???
+supermin.5.1.14-2ubuntu1.1 supermin.???
+dwz.0.12-1 dwz.???
+dwz.0.12-1 dwz.???
+dwz.0.12-1 dwz.???
+sane.1.0.14-11 sane.???
+dstat.0.7.2-3build1 dstat.???
+dstat.0.7.2-3build1 dstat.???
+mksh.52c-2 mksh.???
+mksh.46-2ubuntu3 mksh.???
+mksh.46-2ubuntu3 mksh.???
+pax.1:20151013-1 pax.???
+pax.1:20151013-1 pax.???
+nasm.2.10.09-1ubuntu0.1 nasm.???
+vw took this many seconds:  2.104469060897827
+Number of rules:  0
+Number of apps:  135
+Number of versions:  0
+Number of incorrect app names:  4
+Starting predictions
+lynx.2.8.9dev8-4ubuntu1 lynx.???
+lynx.2.8.8pre4-1 mariadb-server.???
+bacula-client.5.2.6+dfsg-9.1ubuntu3 mariadb-server.???
+mariadb-server.10.0.38-0ubuntu0.16.04.1 mariadb-server.???
+mariadb-server.10.0.38-0ubuntu0.16.04.1 mariadb-server.???
+powertop.2.5-1ubuntu1 mariadb-server.???
+powertop.2.5-1ubuntu1 mariadb-server.???
+telnetd.0.17-40 telnetd.???
+lftp.4.6.3a-1ubuntu0.1 lftp.???
+lftp.4.6.3a-1ubuntu0.1 lftp.???
+lftp.4.6.3a-1ubuntu0.1 lftp.???
+virt-top.1.0.7-1 virt-top.???
+subversion.1.9.3-2ubuntu1.1 subversion.???
+bacula-client.7.0.5+dfsg-4ubuntu0.1 bacula-client.???
+bacula-client.7.0.5+dfsg-4ubuntu0.1 bacula-client.???
+mgetty-voice.1.1.36-2ubuntu1 mgetty-voice.???
+crash.7.0.3-3ubuntu4.5 crash.???
+crash.7.2.3+real-1~16.04.1 crash.???
+transfig.1:3.2.5.e-1ubuntu1.1 transfig.???
+transfig.1:3.2.5.e-5ubuntu0.1 transfig.???
+transfig.1:3.2.5.e-1ubuntu1.1 transfig.???
+logwatch.7.4.0+svn20130529rev144-1ubuntu1.1 logwatch.???
+logwatch.7.4.2-1ubuntu1 logwatch.???
+logwatch.7.4.0+svn20130529rev144-1ubuntu1.1 logwatch.???
+marisa.0.2.4-8build6 marisa.???
+marisa.0.2.4-5build1 marisa.???
+memcached.1.4.14-0ubuntu9.3 memcached.???
+ksh.93u+20120801-2ubuntu0.16.04.1 ksh.???
+ksh.93u+20120801-2ubuntu0.16.04.1 ksh.???
+paps.0.6.8-7ubuntu1 paps.???
+paps.0.6.8-7ubuntu1 paps.???
+paps.0.6.8-7 paps.???
+units.2.12-2 units.???
+dwz.0.12-1 dwz.???
+sane.1.0.14-11 sane.???
+sane.1.0.14-11 sane.???
+dstat.0.7.2-3build1 dstat.???
+dstat.0.7.2-3build1 dstat.???
+mksh.46-2ubuntu3 mksh.???
+mksh.52c-2 mksh.???
+mksh.46-2ubuntu3 mksh.???
+pax.1:20151013-1 pax.???
+pax.1:20120606-2+deb7u1 pax.???
+nasm.2.10.09-1ubuntu0.1 nasm.???
+vw took this many seconds:  2.143482208251953
+Number of rules:  0
+Number of apps:  180
+Number of versions:  0
+Number of incorrect app names:  3
+Starting predictions
+cups.2.1.3-4ubuntu0.9 cups.???
+rrdtool.1.5.5-4 rrdtool.???
+rrdtool.1.5.5-4 rrdtool.???
+lynx.2.8.8pre4-1 powertop.???
+lynx.2.8.8pre4-1 mariadb-server.???
+bacula-client.5.2.6+dfsg-9.1ubuntu3 mariadb-server.???
+mariadb-server.5.5.64-1ubuntu0.14.04.1 mariadb-server.???
+mariadb-server.5.5.64-1ubuntu0.14.04.1 mariadb-server.???
+lftp.4.6.3a-1ubuntu0.1 lftp.???
+iptraf-ng.1.1.4-1 iptraf-ng.???
+iptraf-ng.1.1.4-1 iptraf-ng.???
+virt-top.1.0.7-1 virt-top.???
+virt-top.1.0.7-1 virt-top.???
+subversion.1.9.3-2ubuntu1.1 subversion.???
+mrtg.2.17.4-3ubuntu1 mrtg.???
+mrtg.2.17.4-3ubuntu1 mrtg.???
 bacula-client.5.2.6+dfsg-9.1ubuntu3 bacula-client.???
 bacula-client.7.0.5+dfsg-4ubuntu0.1 bacula-client.???
-mgetty-voice.1.1.36-2ubuntu1 mgetty-voice.???
-mgetty-voice.1.1.36-2ubuntu1 mgetty-voice.???
-virt-top.1.0.7-1 virt-top.???
-nasm.2.10.09-1ubuntu0.1 nasm.???
-paps.0.6.8-7 paps.???
-transfig.1:3.2.5.e-1ubuntu1.1 transfig.1:3.2.5.e-5ubuntu0.1
-pax.1:20151013-1 pax.???
 crash.7.0.3-3ubuntu4.5 crash.???
-mrtg.2.17.4-3ubuntu1 mrtg.???
-mariadb-server.10.0.38-0ubuntu0.16.04.1 mariadb-server.???
-lynx.2.8.8pre4-1 mariadb-server.5.5.64-1ubuntu0.14.04.1
-mksh.52c-2 mksh.???
-mksh.56c-1 mksh.46-2ubuntu3
-lftp.4.6.3a-1ubuntu0.1 lftp.???
-samba.2:4.7.6+dfsg~ubuntu-0ubuntu2.11 samba.2:4.3.11+dfsg-0ubuntu0.14.04.20
-marisa.0.2.4-5build1 marisa.0.2.4-8build6
-marisa.0.2.4-5build1 marisa.???
-marisa.0.2.4-5build1 marisa.???
-dstat.0.7.2-3build1 dstat.0.7.2-4
-iptraf-ng.1.1.4-2ubuntu0.16.04.1 iptraf-ng.???
-iptraf-ng.1.1.4-2ubuntu0.16.04.1 iptraf-ng.???
-lynx.2.8.9dev16-3 lynx.2.8.9dev8-4ubuntu1
-vw took this many seconds:  1.8983981609344482
-Intersection length: 670
-Intersection length: 25
-Intersection length: 32
-Intersection length: 36
-Intersection length: 28
-Intersection length: 46
-Intersection length: 32
-Intersection length: 10
-Entire changeset in intersection!
-Entire changeset in intersection!
-Intersection length: 61
-Intersection length: 55
-Intersection length: 75
-Intersection length: 1
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Intersection length: 226
-Intersection length: 103
-Intersection length: 39
-Intersection length: 22
-Intersection length: 67
-Intersection length: 27
-Intersection length: 15
-Intersection length: 33
-Entire changeset in intersection!
-Entire changeset in intersection!
-Intersection length: 41
-Intersection length: 19
-Intersection length: 95
-Intersection length: 52
-Intersection length: 4567
-Intersection length: 179
-Intersection length: 52
-Intersection length: 136
-Intersection length: 0
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Intersection length: 51
-Intersection length: 69
-Intersection length: 66
-Intersection length: 56
-Intersection length: 158
-Intersection length: 24
-Intersection length: 89
-Intersection length: 190
-Intersection length: 78
-Intersection length: 50
-Intersection length: 196
-Intersection length: 161
-Intersection length: 53
-Intersection length: 107
-Intersection length: 183
-Intersection length: 1
-Entire changeset in intersection!
-Number of rules:  412
-Number of apps:  180
-Number of versions:  520
-Number of incorrect app names:  5
-Starting predictions
-logwatch.7.4.2-1ubuntu1 logwatch.7.4.0+svn20130529rev144-1ubuntu1.1
-logwatch.7.4.2-1ubuntu1 logwatch.7.4.0+svn20130529rev144-1ubuntu1.1
+crash.7.2.3+real-1~16.04.1 crash.???
+transfig.1:3.2.5.e-1ubuntu1.1 transfig.???
+transfig.1:3.2.5.e-5ubuntu0.1 transfig.???
 logwatch.7.4.0+svn20130529rev144-1ubuntu1.1 logwatch.???
-dwz.0.12-1 dwz.0.11-1
-units.2.16-1 units.2.02-2
-powertop.2.5-1ubuntu1 mariadb-server.???
-powertop.2.5-1ubuntu1 mariadb-server.???
-bacula-client.5.2.6+dfsg-9.1ubuntu3 mariadb-server.???
-mariadb-server.5.5.64-1ubuntu0.14.04.1 mariadb-server.???
-mariadb-server.10.0.38-0ubuntu0.16.04.1 mariadb-server.???
-lynx.2.8.8pre4-1 mariadb-server.???
-lynx.2.8.8pre4-1 mariadb-server.???
-powertop.2.5-1ubuntu1 powertop.2.8-1build1
-memcached.1.4.14-0ubuntu9.3 memcached.???
-memcached.1.4.14-0ubuntu9.3 memcached.???
-virt-top.1.0.7-1 virt-top.???
-nasm.2.10.09-1ubuntu0.1 nasm.???
-paps.0.6.8-7 paps.???
-transfig.1:3.2.5.e-1ubuntu1.1 transfig.1:3.2.5.e-5ubuntu0.1
-pax.1:20151013-1 pax.???
-pax.1:20120606-2+deb7u1 pax.???
-pax.1:20120606-2+deb7u1 pax.???
-crash.7.0.3-3ubuntu4.5 crash.???
-mrtg.2.17.4-3ubuntu1 mrtg.???
-mrtg.2.17.4-3ubuntu1 mrtg.???
-mksh.52c-2 mksh.46-2ubuntu3
-mksh.56c-1 mksh.46-2ubuntu3
-telnetd.0.17-40 telnetd.???
-lftp.4.6.3a-1ubuntu0.1 lftp.4.4.13-1ubuntu0.1
-subversion.1.9.3-2ubuntu1.1 subversion.???
-subversion.1.9.3-2ubuntu1.1 subversion.???
-cups.2.1.3-4ubuntu0.9 cups.???
-cups.2.1.3-4ubuntu0.9 cups.???
-cups.2.1.3-4ubuntu0.9 cups.???
-mc.3:4.8.15-2 mc.???
-mc.3:4.8.15-2 mc.???
-mc.3:4.8.15-2 mc.???
-dstat.0.7.2-3build1 dstat.???
-iptraf-ng.1.1.4-1 iptraf-ng.???
-vw took this many seconds:  1.3818106651306152
-Intersection length: 670
-Intersection length: 25
-Intersection length: 32
-Intersection length: 36
-Intersection length: 28
-Intersection length: 46
-Intersection length: 32
-Intersection length: 10
-Entire changeset in intersection!
-Entire changeset in intersection!
-Intersection length: 61
-Intersection length: 55
-Intersection length: 75
-Intersection length: 1
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Intersection length: 226
-Intersection length: 103
-Intersection length: 39
-Intersection length: 22
-Intersection length: 67
-Intersection length: 27
-Intersection length: 15
-Intersection length: 33
-Entire changeset in intersection!
-Intersection length: 41
-Intersection length: 29
-Entire changeset in intersection!
-Intersection length: 95
-Intersection length: 52
-Intersection length: 4447
-Intersection length: 179
-Intersection length: 52
-Intersection length: 136
-Intersection length: 0
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Intersection length: 51
-Intersection length: 69
-Intersection length: 66
-Intersection length: 56
-Intersection length: 158
-Intersection length: 24
-Intersection length: 89
-Intersection length: 190
-Intersection length: 78
-Intersection length: 50
-Intersection length: 196
-Intersection length: 161
-Intersection length: 53
-Intersection length: 107
-Intersection length: 194
-Entire changeset in intersection!
-Intersection length: 1
-Entire changeset in intersection!
-Number of rules:  514
-Number of apps:  225
-Number of versions:  650
-Number of incorrect app names:  2
-Starting predictions
-logwatch.7.4.0+svn20130529rev144-1ubuntu1.1 logwatch.???
-logwatch.7.4.2-1ubuntu1 logwatch.???
-units.2.16-1 units.2.02-2
-units.2.16-1 units.2.02-2
-powertop.2.9-0ubuntu1 powertop.???
-powertop.2.8-1build1 powertop.???
-powertop.2.9-0ubuntu1 powertop.???
-bacula-client.9.0.6-1build1 bacula-client.7.0.5+dfsg-4ubuntu0.1
-bacula-client.9.0.6-1build1 bacula-client.7.0.5+dfsg-4ubuntu0.1
-bacula-client.5.2.6+dfsg-9.1ubuntu3 mariadb-server.???
-mariadb-server.10.0.38-0ubuntu0.16.04.1 mariadb-server.???
-mariadb-server.10.0.38-0ubuntu0.16.04.1 mariadb-server.???
-lynx.2.8.8pre4-1 mariadb-server.???
-mgetty-voice.1.1.36-2ubuntu1 mgetty-voice.???
-virt-top.1.0.7-1 virt-top.???
-virt-top.1.0.7-1 virt-top.???
-virt-top.1.0.7-1 virt-top.???
-nasm.2.10.09-1ubuntu0.1 nasm.???
-paps.0.6.8-7ubuntu1 paps.???
-paps.0.6.8-7ubuntu1 paps.???
-pax.1:20120606-2+deb7u1 pax.???
-crash.7.0.3-3ubuntu4.5 crash.???
-mrtg.2.17.4-3ubuntu1 mrtg.???
-mksh.52c-2 mksh.46-2ubuntu3
-mksh.56c-1 mksh.46-2ubuntu3
-mksh.56c-1 mksh.46-2ubuntu3
-telnetd.0.17-40 telnetd.???
-lftp.4.6.3a-1ubuntu0.1 lftp.???
-samba.2:4.7.6+dfsg~ubuntu-0ubuntu2.11 samba.2:4.3.11+dfsg-0ubuntu0.14.04.20
-subversion.1.9.3-2ubuntu1.1 subversion.???
-subversion.1.9.3-2ubuntu1.1 subversion.???
-cups.2.1.3-4ubuntu0.9 cups.???
 marisa.0.2.4-5build1 marisa.???
+marisa.0.2.4-5build1 marisa.???
+marisa.0.2.4-8build6 marisa.???
 mc.3:4.8.15-2 mc.???
-dstat.0.7.2-4 dstat.???
-iptraf-ng.1.1.4-1 iptraf-ng.???
-iptraf-ng.1.1.4-1 iptraf-ng.1.1.4-2ubuntu0.16.04.1
-lynx.2.8.9dev16-3 lynx.2.8.9dev8-4ubuntu1
-vw took this many seconds:  1.4424877166748047
-Intersection length: 670
-Intersection length: 25
-Intersection length: 32
-Intersection length: 36
-Intersection length: 28
-Intersection length: 46
-Intersection length: 32
-Intersection length: 10
-Entire changeset in intersection!
-Entire changeset in intersection!
-Intersection length: 61
-Intersection length: 55
-Intersection length: 75
-Intersection length: 1
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Intersection length: 226
-Intersection length: 103
-Intersection length: 39
-Intersection length: 22
-Intersection length: 67
-Intersection length: 27
-Intersection length: 15
-Intersection length: 33
-Entire changeset in intersection!
-Entire changeset in intersection!
-Intersection length: 41
-Intersection length: 19
-Intersection length: 95
-Intersection length: 52
-Intersection length: 4447
-Intersection length: 179
-Intersection length: 52
-Intersection length: 136
-Intersection length: 0
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Intersection length: 51
-Intersection length: 69
-Intersection length: 66
-Intersection length: 56
-Intersection length: 158
-Intersection length: 24
-Intersection length: 89
-Intersection length: 190
-Intersection length: 78
-Intersection length: 50
-Intersection length: 196
-Intersection length: 161
-Intersection length: 53
-Intersection length: 107
-Intersection length: 183
-Intersection length: 1
-Entire changeset in intersection!
-Number of rules:  617
-Number of apps:  270
-Number of versions:  780
-Number of incorrect app names:  1
-Starting predictions
-logwatch.7.4.2-1ubuntu1 logwatch.7.4.0+svn20130529rev144-1ubuntu1.1
-powertop.2.9-0ubuntu1 powertop.???
-powertop.2.9-0ubuntu1 powertop.???
-powertop.2.5-1ubuntu1 powertop.???
 memcached.1.4.14-0ubuntu9.3 memcached.???
-bacula-client.9.0.6-1build1 bacula-client.7.0.5+dfsg-4ubuntu0.1
-mgetty-voice.1.1.36-2ubuntu1 mgetty-voice.???
-nasm.2.10.09-1ubuntu0.1 nasm.???
+ksh.93u+20120801-2ubuntu0.16.04.1 ksh.???
 paps.0.6.8-7ubuntu1 paps.???
 paps.0.6.8-7 paps.???
-mariadb-server.5.5.64-1ubuntu0.14.04.1 paps.0.6.8-7
-transfig.1:3.2.5.e-1ubuntu1.1 transfig.1:3.2.5.e-5ubuntu0.1
-pax.1:20151013-1 pax.???
-pax.1:20151013-1 pax.1:20120606-2+deb7u1
-pax.1:20171021-2 pax.???
-crash.7.0.3-3ubuntu4.5 crash.???
-mariadb-server.10.0.38-0ubuntu0.16.04.1 mariadb-server.???
-mksh.52c-2 mksh.???
-mksh.52c-2 mksh.???
-lftp.4.6.3a-1ubuntu0.1 lftp.???
-lftp.4.6.3a-1ubuntu0.1 lftp.???
-samba.2:4.7.6+dfsg~ubuntu-0ubuntu2.11 samba.2:4.3.11+dfsg-0ubuntu0.14.04.20
-samba.2:4.7.6+dfsg~ubuntu-0ubuntu2.11 samba.2:4.3.11+dfsg-0ubuntu0.14.04.20
-subversion.1.9.3-2ubuntu1.1 subversion.???
-cups.2.1.3-4ubuntu0.9 cups.???
-marisa.0.2.4-5build1 marisa.???
-dstat.0.7.2-3build1 dstat.0.7.2-4
-dstat.0.7.2-3build1 dstat.0.7.2-4
-dstat.0.7.2-3build1 dstat.0.7.2-4
-iptraf-ng.1.1.4-1 iptraf-ng.???
-iptraf-ng.1.1.4-2ubuntu0.16.04.1 iptraf-ng.1.1.4-1
-lynx.2.8.9dev16-3 lynx.2.8.9dev8-4ubuntu1
-vw took this many seconds:  1.659179925918579
-Intersection length: 670
-Intersection length: 25
-Intersection length: 32
-Intersection length: 36
-Intersection length: 28
-Intersection length: 46
-Intersection length: 32
-Intersection length: 10
-Entire changeset in intersection!
-Entire changeset in intersection!
-Intersection length: 61
-Intersection length: 55
-Intersection length: 75
-Intersection length: 1
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Intersection length: 356
-Intersection length: 103
-Intersection length: 39
-Intersection length: 22
-Intersection length: 67
-Intersection length: 27
-Intersection length: 15
-Intersection length: 33
-Entire changeset in intersection!
-Entire changeset in intersection!
-Intersection length: 41
-Intersection length: 19
-Intersection length: 95
-Intersection length: 52
-Intersection length: 4447
-Intersection length: 179
-Intersection length: 52
-Intersection length: 136
-Intersection length: 0
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Intersection length: 85
-Intersection length: 69
-Intersection length: 66
-Intersection length: 56
-Intersection length: 277
-Intersection length: 24
-Intersection length: 89
-Intersection length: 190
-Intersection length: 78
-Intersection length: 50
-Intersection length: 196
-Intersection length: 161
-Intersection length: 53
-Intersection length: 107
-Intersection length: 183
-Intersection length: 1
-Entire changeset in intersection!
-Number of rules:  720
-Number of apps:  315
-Number of versions:  910
-Number of incorrect app names:  1
-Starting predictions
-logwatch.7.4.2-1ubuntu1 logwatch.???
-logwatch.7.4.2-1ubuntu1 logwatch.7.4.0+svn20130529rev144-1ubuntu1.1
+supermin.5.1.14-2ubuntu1.1 supermin.???
+quagga.0.99.22.4-3ubuntu1.5 quagga.???
+units.2.12-2 units.???
 dwz.0.11-1 dwz.???
-units.2.02-2 units.2.12-2
-units.2.16-1 units.2.02-2
-powertop.2.8-1build1 powertop.2.5-1ubuntu1
-powertop.2.8-1build1 powertop.2.5-1ubuntu1
-bacula-client.5.2.6+dfsg-9.1ubuntu3 mariadb-server.???
-mariadb-server.5.5.64-1ubuntu0.14.04.1 mariadb-server.???
-mariadb-server.5.5.64-1ubuntu0.14.04.1 mariadb-server.???
-bacula-client.9.0.6-1build1 bacula-client.7.0.5+dfsg-4ubuntu0.1
-mgetty-voice.1.1.36-2ubuntu1 mgetty-voice.???
-virt-top.1.0.7-1 virt-top.???
-nasm.2.10.09-1ubuntu0.1 nasm.???
-nasm.2.10.09-1ubuntu0.1 nasm.???
-paps.0.6.8-7 paps.???
-paps.0.6.8-7ubuntu1 paps.???
-transfig.1:3.2.5.e-1ubuntu1.1 transfig.1:3.2.5.e-5ubuntu0.1
-pax.1:20171021-2 pax.???
-pax.1:20171021-2 pax.???
-pax.1:20171021-2 pax.???
-crash.7.0.3-3ubuntu4.5 crash.???
-crash.7.0.3-3ubuntu4.5 crash.???
-mksh.52c-2 mksh.???
-mksh.52c-2 mksh.46-2ubuntu3
-mksh.56c-1 mksh.46-2ubuntu3
-lftp.4.6.3a-1ubuntu0.1 lftp.???
-lftp.4.6.3a-1ubuntu0.1 lftp.???
-supermin.4.1.6-1 supermin.5.1.14-2ubuntu1.1
-cups.2.1.3-4ubuntu0.9 cups.???
-marisa.0.2.4-5build1 marisa.???
+dwz.0.12-1 dwz.???
+sane.1.0.14-11 sane.???
 dstat.0.7.2-3build1 dstat.???
-dstat.0.7.2-3build1 dstat.0.7.2-4
-iptraf-ng.1.1.4-1 iptraf-ng.???
-lynx.2.8.9dev16-3 lynx.2.8.9dev8-4ubuntu1
-lynx.2.8.9dev16-3 lynx.2.8.9dev8-4ubuntu1
-vw took this many seconds:  4.963769197463989
-Intersection length: 670
-Intersection length: 25
-Intersection length: 32
-Intersection length: 36
-Intersection length: 28
-Intersection length: 46
-Intersection length: 32
-Intersection length: 10
-Entire changeset in intersection!
-Entire changeset in intersection!
-Intersection length: 61
-Intersection length: 55
-Intersection length: 107
-Intersection length: 1
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Intersection length: 226
-Intersection length: 103
-Intersection length: 39
-Intersection length: 22
-Intersection length: 67
-Intersection length: 27
-Intersection length: 15
-Intersection length: 33
-Entire changeset in intersection!
-Entire changeset in intersection!
-Intersection length: 41
-Intersection length: 19
-Intersection length: 95
-Intersection length: 52
-Intersection length: 4447
-Intersection length: 179
-Intersection length: 52
-Intersection length: 136
-Intersection length: 0
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Intersection length: 52
-Intersection length: 69
-Intersection length: 66
-Intersection length: 56
-Intersection length: 158
-Intersection length: 24
-Intersection length: 89
-Intersection length: 190
-Intersection length: 78
-Intersection length: 50
-Intersection length: 196
-Intersection length: 161
-Intersection length: 53
-Intersection length: 107
-Intersection length: 183
-Intersection length: 1
-Entire changeset in intersection!
-Number of rules:  822
-Number of apps:  360
-Number of versions:  1040
+mksh.52c-2 mksh.???
+mksh.46-2ubuntu3 mksh.???
+pax.1:20151013-1 pax.???
+pax.1:20120606-2+deb7u1 pax.???
+pax.1:20151013-1 pax.???
+nasm.2.10.09-1ubuntu0.1 nasm.???
+nasm.2.10.09-1ubuntu0.1 nasm.???
+vw took this many seconds:  1.273986577987671
+Number of rules:  0
+Number of apps:  225
+Number of versions:  0
 Number of incorrect app names:  4
 Starting predictions
-logwatch.7.4.2-1ubuntu1 logwatch.7.4.0+svn20130529rev144-1ubuntu1.1
-logwatch.7.4.0+svn20130529rev144-1ubuntu1.1 logwatch.???
-logwatch.7.4.0+svn20130529rev144-1ubuntu1.1 logwatch.???
-dwz.0.11-1 dwz.0.12-1
-units.2.16-1 units.2.02-2
-powertop.2.5-1ubuntu1 mariadb-server.???
-bacula-client.5.2.6+dfsg-9.1ubuntu3 mariadb-server.???
-bacula-client.5.2.6+dfsg-9.1ubuntu3 mariadb-server.???
-mariadb-server.5.5.64-1ubuntu0.14.04.1 mariadb-server.???
-mariadb-server.5.5.64-1ubuntu0.14.04.1 mariadb-server.???
-powertop.2.8-1build1 powertop.2.5-1ubuntu1
-powertop.2.8-1build1 powertop.2.5-1ubuntu1
-memcached.1.5.6-0ubuntu1.1 memcached.1.4.14-0ubuntu9.3
-bacula-client.9.0.6-1build1 bacula-client.???
-nasm.2.10.09-1ubuntu0.1 nasm.???
-nasm.2.10.09-1ubuntu0.1 nasm.???
-paps.0.6.8-7ubuntu1 paps.???
-paps.0.6.8-7ubuntu1 paps.???
-lynx.2.8.8pre4-1 paps.0.6.8-7
-transfig.1:3.2.5.e-1ubuntu1.1 transfig.1:3.2.5.e-5ubuntu0.1
-pax.1:20171021-2 pax.???
-pax.1:20151013-1 pax.???
-mrtg.2.17.4-3ubuntu1 mrtg.???
-mksh.46-2ubuntu3 mksh.???
-telnetd.0.17-40 telnetd.???
-telnetd.0.17-40 telnetd.???
-lftp.4.4.13-1ubuntu0.1 lftp.???
-samba.2:4.7.6+dfsg~ubuntu-0ubuntu2.11 samba.2:4.3.11+dfsg-0ubuntu0.14.04.20
-subversion.1.9.3-2ubuntu1.1 subversion.???
 cups.2.1.3-4ubuntu0.9 cups.???
-mc.3:4.8.15-2 mc.???
-iptraf-ng.1.1.4-1 iptraf-ng.???
-iptraf-ng.1.1.4-2ubuntu0.16.04.1 iptraf-ng.???
-lynx.2.8.9dev16-3 lynx.2.8.9dev8-4ubuntu1
-lynx.2.8.9dev16-3 lynx.2.8.9dev8-4ubuntu1
-vw took this many seconds:  1.8761391639709473
-Intersection length: 670
-Intersection length: 25
-Intersection length: 33
-Intersection length: 36
-Intersection length: 28
-Intersection length: 46
-Intersection length: 32
-Intersection length: 10
-Entire changeset in intersection!
-Entire changeset in intersection!
-Intersection length: 61
-Intersection length: 55
-Intersection length: 75
-Intersection length: 1
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Intersection length: 226
-Intersection length: 103
-Intersection length: 39
-Intersection length: 22
-Intersection length: 67
-Intersection length: 27
-Intersection length: 15
-Intersection length: 33
-Entire changeset in intersection!
-Intersection length: 41
-Intersection length: 19
-Intersection length: 95
-Intersection length: 52
-Intersection length: 4447
-Intersection length: 179
-Intersection length: 52
-Intersection length: 136
-Intersection length: 0
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Intersection length: 51
-Intersection length: 69
-Intersection length: 66
-Intersection length: 56
-Intersection length: 158
-Intersection length: 24
-Intersection length: 89
-Intersection length: 190
-Intersection length: 78
-Intersection length: 50
-Intersection length: 196
-Intersection length: 161
-Intersection length: 53
-Intersection length: 107
-Intersection length: 183
-Intersection length: 3
-Entire changeset in intersection!
-Number of rules:  924
-Number of apps:  405
-Number of versions:  1170
-Number of incorrect app names:  1
-Starting predictions
-logwatch.7.4.2-1ubuntu1 logwatch.???
-units.2.16-1 units.2.02-2
-units.2.02-2 units.2.12-2
-units.2.16-1 units.2.02-2
-powertop.2.9-0ubuntu1 powertop.???
-powertop.2.9-0ubuntu1 powertop.???
-powertop.2.9-0ubuntu1 powertop.???
-memcached.1.5.6-0ubuntu1.1 memcached.1.4.14-0ubuntu9.3
-bacula-client.9.0.6-1build1 bacula-client.5.2.6+dfsg-9.1ubuntu3
-bacula-client.7.0.5+dfsg-4ubuntu0.1 bacula-client.5.2.6+dfsg-9.1ubuntu3
-bacula-client.9.0.6-1build1 bacula-client.5.2.6+dfsg-9.1ubuntu3
-mgetty-voice.1.1.36-2ubuntu1 mgetty-voice.???
-mgetty-voice.1.1.36-2ubuntu1 mgetty-voice.???
-paps.0.6.8-7ubuntu1 paps.???
-paps.0.6.8-7 paps.???
-pax.1:20171021-2 pax.???
-pax.1:20151013-1 pax.???
-pax.1:20120606-2+deb7u1 pax.???
-crash.7.0.3-3ubuntu4.5 crash.7.2.3+real-1~16.04.1
-mrtg.2.17.4-3ubuntu1 mrtg.???
-mrtg.2.17.4-3ubuntu1 mrtg.???
-mariadb-server.10.0.38-0ubuntu0.16.04.1 mariadb-server.???
-mariadb-server.10.0.38-0ubuntu0.16.04.1 mariadb-server.???
+cups.2.1.3-4ubuntu0.9 cups.???
+cups.2.1.3-4ubuntu0.9 cups.???
+rrdtool.1.5.5-4 rrdtool.???
+rrdtool.1.5.5-4 rrdtool.???
+rrdtool.1.5.5-4 rrdtool.???
 lynx.2.8.8pre4-1 mariadb-server.???
-mksh.52c-2 mksh.46-2ubuntu3
-mksh.46-2ubuntu3 mksh.???
+bacula-client.5.2.6+dfsg-9.1ubuntu3 mariadb-server.???
+bacula-client.5.2.6+dfsg-9.1ubuntu3 mariadb-server.???
+mariadb-server.5.5.64-1ubuntu0.14.04.1 mariadb-server.???
+mariadb-server.10.0.38-0ubuntu0.16.04.1 mariadb-server.???
+powertop.2.5-1ubuntu1 mariadb-server.???
+telnetd.0.17-40 telnetd.???
+telnetd.0.17-40 telnetd.???
 telnetd.0.17-40 telnetd.???
 lftp.4.6.3a-1ubuntu0.1 lftp.???
 lftp.4.4.13-1ubuntu0.1 lftp.???
-subversion.1.9.3-2ubuntu1.1 subversion.???
-subversion.1.9.3-2ubuntu1.1 subversion.???
-marisa.0.2.4-5build1 marisa.0.2.4-8build6
-mc.3:4.8.15-2 mc.???
-mc.3:4.8.15-2 mc.???
-ksh.93u+20120801-2ubuntu0.16.04.1 ksh.93u+20120801-1ubuntu0.14.04.1
-ksh.93u+20120801-3.1ubuntu1 ksh.93u+20120801-1ubuntu0.14.04.1
-ksh.93u+20120801-1ubuntu0.14.04.1 ksh.???
+lftp.4.6.3a-1ubuntu0.1 lftp.???
 iptraf-ng.1.1.4-1 iptraf-ng.???
 iptraf-ng.1.1.4-1 iptraf-ng.???
-vw took this many seconds:  1.466944932937622
-Intersection length: 670
-Intersection length: 25
-Intersection length: 32
-Intersection length: 36
-Intersection length: 28
-Intersection length: 46
-Intersection length: 32
-Intersection length: 10
-Entire changeset in intersection!
-Entire changeset in intersection!
-Intersection length: 61
-Intersection length: 55
-Intersection length: 75
-Intersection length: 1
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Intersection length: 226
-Intersection length: 103
-Intersection length: 39
-Intersection length: 22
-Intersection length: 67
-Intersection length: 27
-Intersection length: 15
-Intersection length: 33
-Entire changeset in intersection!
-Entire changeset in intersection!
-Intersection length: 41
-Intersection length: 23
-Intersection length: 139
-Intersection length: 52
-Intersection length: 4447
-Intersection length: 179
-Intersection length: 84
-Intersection length: 136
-Intersection length: 0
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Entire changeset in intersection!
-Intersection length: 51
-Intersection length: 69
-Intersection length: 66
-Intersection length: 56
-Intersection length: 158
-Intersection length: 24
-Intersection length: 89
-Intersection length: 190
-Intersection length: 78
-Intersection length: 50
-Intersection length: 196
-Intersection length: 161
-Intersection length: 53
-Intersection length: 107
-Intersection length: 183
-Intersection length: 1
-Entire changeset in intersection!
-Number of rules:  1025
-Number of apps:  450
-Number of versions:  1300
-Number of incorrect app names:  3
-Starting predictions
-logwatch.7.4.0+svn20130529rev144-1ubuntu1.1 logwatch.???
+iptraf-ng.1.1.4-2ubuntu0.16.04.1 iptraf-ng.???
+subversion.1.9.3-2ubuntu1.1 subversion.???
+bacula-client.7.0.5+dfsg-4ubuntu0.1 bacula-client.???
+crash.7.0.3-3ubuntu4.5 crash.???
+transfig.1:3.2.5.e-1ubuntu1.1 transfig.???
 logwatch.7.4.2-1ubuntu1 logwatch.???
-dwz.0.11-1 dwz.???
-dwz.0.11-1 dwz.???
-units.2.16-1 units.2.02-2
-powertop.2.9-0ubuntu1 powertop.???
-powertop.2.8-1build1 powertop.???
-powertop.2.8-1build1 powertop.???
-memcached.1.5.6-0ubuntu1.1 memcached.1.4.14-0ubuntu9.3
-memcached.1.4.25-2ubuntu1.4 memcached.1.4.14-0ubuntu9.3
-bacula-client.7.0.5+dfsg-4ubuntu0.1 bacula-client.5.2.6+dfsg-9.1ubuntu3
-bacula-client.7.0.5+dfsg-4ubuntu0.1 bacula-client.5.2.6+dfsg-9.1ubuntu3
-bacula-client.5.2.6+dfsg-9.1ubuntu3 mariadb-server.???
-mariadb-server.10.0.38-0ubuntu0.16.04.1 mariadb-server.???
-mariadb-server.5.5.64-1ubuntu0.14.04.1 mariadb-server.???
-lynx.2.8.8pre4-1 mariadb-server.???
-lynx.2.8.8pre4-1 mariadb-server.???
-mgetty-voice.1.1.36-2ubuntu1 mgetty-voice.???
-virt-top.1.0.7-1 virt-top.???
+logwatch.7.4.0+svn20130529rev144-1ubuntu1.1 logwatch.???
+marisa.0.2.4-5build1 marisa.???
+marisa.0.2.4-5build1 marisa.???
+marisa.0.2.4-8build6 marisa.???
 paps.0.6.8-7 paps.???
 paps.0.6.8-7ubuntu1 paps.???
-transfig.1:3.2.5.e-1ubuntu1.1 transfig.1:3.2.5.e-5ubuntu0.1
-transfig.1:3.2.5.e-1ubuntu1.1 transfig.1:3.2.5.e-5ubuntu0.1
-pax.1:20171021-2 pax.???
-pax.1:20151013-1 pax.???
-pax.1:20171021-2 pax.???
-crash.7.0.3-3ubuntu4.5 crash.???
-crash.7.0.3-3ubuntu4.5 crash.???
+supermin.5.1.14-2ubuntu1.1 supermin.???
+supermin.5.1.14-2ubuntu1.1 supermin.???
+units.2.12-2 units.???
+units.2.12-2 units.???
+units.2.12-2 units.???
+dwz.0.11-1 dwz.???
+sane.1.0.14-11 sane.???
+sane.1.0.14-11 sane.???
+dstat.0.7.2-3build1 dstat.???
+dstat.0.7.2-4 dstat.???
+mksh.46-2ubuntu3 mksh.???
 mksh.52c-2 mksh.???
-mksh.56c-1 mksh.46-2ubuntu3
+mksh.52c-2 mksh.???
+pax.1:20151013-1 pax.???
+pax.1:20151013-1 pax.???
+vw took this many seconds:  1.269603967666626
+Number of rules:  0
+Number of apps:  270
+Number of versions:  0
+Number of incorrect app names:  4
+Starting predictions
+lynx.2.8.9dev8-4ubuntu1 lynx.???
+lynx.2.8.9dev8-4ubuntu1 lynx.???
 telnetd.0.17-40 telnetd.???
-telnetd.0.17-40 telnetd.???
-telnetd.0.17-40 telnetd.???
-samba.2:4.7.6+dfsg~ubuntu-0ubuntu2.11 samba.2:4.3.11+dfsg-0ubuntu0.14.04.20
+lftp.4.4.13-1ubuntu0.1 lftp.???
+lftp.4.6.3a-1ubuntu0.1 lftp.???
+lftp.4.4.13-1ubuntu0.1 lftp.???
+iptraf-ng.1.1.4-2ubuntu0.16.04.1 iptraf-ng.???
+mrtg.2.17.4-3ubuntu1 mrtg.???
+bacula-client.5.2.6+dfsg-9.1ubuntu3 mariadb-server.5.5.64-1ubuntu0.14.04.1
+mariadb-server.5.5.64-1ubuntu0.14.04.1 mariadb-server.???
+mariadb-server.10.0.38-0ubuntu0.16.04.1 mariadb-server.???
+bacula-client.7.0.5+dfsg-4ubuntu0.1 bacula-client.???
+bacula-client.7.0.5+dfsg-4ubuntu0.1 bacula-client.???
+transfig.1:3.2.6a-6ubuntu1 bacula-client.9.0.6-1build1
+transfig.1:3.2.6a-6ubuntu1 bacula-client.9.0.6-1build1
+transfig.1:3.2.6a-6ubuntu1 bacula-client.9.0.6-1build1
+mgetty-voice.1.1.36-2ubuntu1 mgetty-voice.???
+crash.7.2.3+real-1~16.04.1 crash.???
+crash.7.0.3-3ubuntu4.5 crash.???
+crash.7.0.3-3ubuntu4.5 crash.???
+logwatch.7.4.0+svn20130529rev144-1ubuntu1.1 logwatch.???
+logwatch.7.4.2-1ubuntu1 logwatch.???
+logwatch.7.4.2-1ubuntu1 logwatch.???
+marisa.0.2.4-8build6 marisa.???
+marisa.0.2.4-8build6 marisa.???
+mc.3:4.8.15-2 mc.???
+memcached.1.4.14-0ubuntu9.3 memcached.???
+paps.0.6.8-7 paps.???
+supermin.5.1.14-2ubuntu1.1 supermin.???
+units.2.12-2 units.???
+units.2.12-2 units.???
+units.2.12-2 units.???
+dwz.0.11-1 dwz.???
+sane.1.0.14-11 sane.???
+dstat.0.7.2-3build1 dstat.???
+dstat.0.7.2-4 dstat.???
+pax.1:20151013-1 pax.???
+nasm.2.10.09-1ubuntu0.1 nasm.???
+nasm.2.10.09-1ubuntu0.1 nasm.???
+vw took this many seconds:  1.0574359893798828
+Number of rules:  0
+Number of apps:  315
+Number of versions:  0
+Number of incorrect app names:  4
+Starting predictions
+cups.2.1.3-4ubuntu0.9 cups.???
+rrdtool.1.5.5-4 rrdtool.???
+lynx.2.8.9dev8-4ubuntu1 lynx.???
+lynx.2.8.8pre4-1 mariadb-server.???
+lynx.2.8.8pre4-1 mariadb-server.???
+bacula-client.5.2.6+dfsg-9.1ubuntu3 mariadb-server.???
+mariadb-server.10.0.38-0ubuntu0.16.04.1 mariadb-server.???
+lftp.4.4.13-1ubuntu0.1 lftp.???
+lftp.4.6.3a-1ubuntu0.1 lftp.???
+iptraf-ng.1.1.4-1 iptraf-ng.???
+iptraf-ng.1.1.4-2ubuntu0.16.04.1 iptraf-ng.???
+virt-top.1.0.7-1 virt-top.???
 subversion.1.9.3-2ubuntu1.1 subversion.???
+mrtg.2.17.4-3ubuntu1 mrtg.???
+bacula-client.7.0.5+dfsg-4ubuntu0.1 bacula-client.???
+mgetty-voice.1.1.36-2ubuntu1 mgetty-voice.???
+mgetty-voice.1.1.36-2ubuntu1 mgetty-voice.???
+crash.7.0.3-3ubuntu4.5 crash.???
+mariadb-server.5.5.64-1ubuntu0.14.04.1 paps.???
+paps.0.6.8-7ubuntu1 paps.???
+paps.0.6.8-7ubuntu1 paps.???
+paps.0.6.8-7ubuntu1 paps.???
+transfig.1:3.2.5.e-5ubuntu0.1 transfig.???
+transfig.1:3.2.5.e-5ubuntu0.1 transfig.???
+logwatch.7.4.0+svn20130529rev144-1ubuntu1.1 logwatch.???
+logwatch.7.4.2-1ubuntu1 logwatch.???
+marisa.0.2.4-5build1 marisa.???
+marisa.0.2.4-5build1 marisa.???
 mc.3:4.8.15-2 mc.???
 mc.3:4.8.15-2 mc.???
-dstat.0.7.2-3build1 dstat.0.7.2-4
+memcached.1.4.14-0ubuntu9.3 memcached.???
+ksh.93u+20120801-2ubuntu0.16.04.1 ksh.???
+dwz.0.11-1 dwz.???
+dwz.0.12-1 dwz.???
+dwz.0.11-1 dwz.???
+powertop.2.5-1ubuntu1 powertop.???
+dstat.0.7.2-4 dstat.???
+dstat.0.7.2-4 dstat.???
+mksh.46-2ubuntu3 mksh.???
+pax.1:20120606-2+deb7u1 pax.???
+pax.1:20120606-2+deb7u1 pax.???
+pax.1:20151013-1 pax.???
+nasm.2.10.09-1ubuntu0.1 nasm.???
+vw took this many seconds:  1.73112154006958
+Number of rules:  0
+Number of apps:  360
+Number of versions:  0
+Number of incorrect app names:  2
+Starting predictions
+cups.2.1.3-4ubuntu0.9 cups.???
+cups.2.1.3-4ubuntu0.9 cups.???
+rrdtool.1.5.5-4 rrdtool.???
+lynx.2.8.8pre4-1 mariadb-server.???
+mariadb-server.5.5.64-1ubuntu0.14.04.1 mariadb-server.???
+mariadb-server.10.0.38-0ubuntu0.16.04.1 mariadb-server.???
+powertop.2.5-1ubuntu1 mariadb-server.???
+lynx.2.8.9dev8-4ubuntu1 lynx.???
+telnetd.0.17-40 telnetd.???
+lftp.4.4.13-1ubuntu0.1 lftp.???
+iptraf-ng.1.1.4-1 iptraf-ng.???
+iptraf-ng.1.1.4-1 iptraf-ng.???
+virt-top.1.0.7-1 virt-top.???
+subversion.1.9.3-2ubuntu1.1 subversion.???
+subversion.1.9.3-2ubuntu1.1 subversion.???
+mrtg.2.17.4-3ubuntu1 mrtg.???
+mrtg.2.17.4-3ubuntu1 mrtg.???
+bacula-client.7.0.5+dfsg-4ubuntu0.1 bacula-client.???
+crash.7.0.3-3ubuntu4.5 crash.???
+crash.7.2.3+real-1~16.04.1 crash.???
+transfig.1:3.2.5.e-1ubuntu1.1 transfig.???
+transfig.1:3.2.5.e-1ubuntu1.1 transfig.???
+transfig.1:3.2.5.e-1ubuntu1.1 transfig.???
+logwatch.7.4.2-1ubuntu1 logwatch.???
+logwatch.7.4.0+svn20130529rev144-1ubuntu1.1 logwatch.???
+marisa.0.2.4-8build6 marisa.???
+mc.3:4.8.15-2 mc.???
+memcached.1.4.14-0ubuntu9.3 memcached.???
+ksh.93u+20120801-2ubuntu0.16.04.1 ksh.???
+ksh.93u+20120801-2ubuntu0.16.04.1 ksh.???
+paps.0.6.8-7 paps.???
+paps.0.6.8-7 paps.???
+paps.0.6.8-7 paps.???
+dwz.0.11-1 dwz.???
+dwz.0.11-1 dwz.???
+sane.1.0.14-11 sane.???
+dstat.0.7.2-3build1 dstat.???
+dstat.0.7.2-4 dstat.???
+dstat.0.7.2-4 dstat.???
+mksh.52c-2 mksh.???
+mksh.46-2ubuntu3 mksh.???
+mksh.52c-2 mksh.???
+pax.1:20120606-2+deb7u1 pax.???
+pax.1:20120606-2+deb7u1 pax.???
+nasm.2.10.09-1ubuntu0.1 nasm.???
+nasm.2.10.09-1ubuntu0.1 nasm.???
+vw took this many seconds:  1.814229965209961
+Number of rules:  0
+Number of apps:  405
+Number of versions:  0
+Number of incorrect app names:  4
+Starting predictions
+cups.2.1.3-4ubuntu0.9 cups.???
+rrdtool.1.5.5-4 rrdtool.???
+lynx.2.8.9dev8-4ubuntu1 lynx.???
+lynx.2.8.9dev8-4ubuntu1 lynx.???
+lftp.4.6.3a-1ubuntu0.1 lftp.???
+lftp.4.6.3a-1ubuntu0.1 lftp.???
 iptraf-ng.1.1.4-2ubuntu0.16.04.1 iptraf-ng.???
+iptraf-ng.1.1.4-1 iptraf-ng.???
+virt-top.1.0.7-1 virt-top.???
+subversion.1.9.3-2ubuntu1.1 subversion.???
+mrtg.2.17.4-3ubuntu1 mrtg.???
+bacula-client.5.2.6+dfsg-9.1ubuntu3 mariadb-server.???
+mariadb-server.5.5.64-1ubuntu0.14.04.1 mariadb-server.???
+mariadb-server.10.0.38-0ubuntu0.16.04.1 mariadb-server.???
+transfig.1:3.2.6a-6ubuntu1 bacula-client.9.0.6-1build1
+transfig.1:3.2.6a-6ubuntu1 bacula-client.9.0.6-1build1
+powertop.2.5-1ubuntu1 bacula-client.???
+mgetty-voice.1.1.36-2ubuntu1 mgetty-voice.???
+mgetty-voice.1.1.36-2ubuntu1 mgetty-voice.???
+crash.7.0.3-3ubuntu4.5 crash.???
+transfig.1:3.2.5.e-1ubuntu1.1 transfig.???
+logwatch.7.4.2-1ubuntu1 logwatch.???
+marisa.0.2.4-5build1 marisa.???
+memcached.1.4.14-0ubuntu9.3 memcached.???
+memcached.1.4.14-0ubuntu9.3 memcached.???
+memcached.1.4.14-0ubuntu9.3 memcached.???
+ksh.93u+20120801-2ubuntu0.16.04.1 ksh.???
+paps.0.6.8-7 paps.???
+paps.0.6.8-7ubuntu1 paps.???
+supermin.5.1.14-2ubuntu1.1 supermin.???
+units.2.12-2 units.???
+dwz.0.12-1 dwz.???
+dwz.0.12-1 dwz.???
+sane.1.0.14-11 sane.???
+dstat.0.7.2-4 dstat.???
+mksh.52c-2 mksh.???
+mksh.52c-2 mksh.???
+mksh.46-2ubuntu3 mksh.???
+vw took this many seconds:  1.4002718925476074
+Number of rules:  0
+Number of apps:  450
+Number of versions:  0
+Number of incorrect app names:  2
+Starting predictions
+rrdtool.1.5.5-4 rrdtool.???
+lynx.2.8.8pre4-1 mariadb-server.???
+lynx.2.8.8pre4-1 mariadb-server.???
+mariadb-server.10.0.38-0ubuntu0.16.04.1 mariadb-server.???
+mariadb-server.5.5.64-1ubuntu0.14.04.1 mariadb-server.???
+lynx.2.8.9dev8-4ubuntu1 lynx.???
+telnetd.0.17-40 telnetd.???
+mailman.1:2.1.20-1ubuntu0.3 mailman.1:2.1.26-1
+lftp.4.4.13-1ubuntu0.1 lftp.???
 iptraf-ng.1.1.4-2ubuntu0.16.04.1 iptraf-ng.???
+iptraf-ng.1.1.4-1 iptraf-ng.???
+iptraf-ng.1.1.4-2ubuntu0.16.04.1 iptraf-ng.???
+virt-top.1.0.7-1 virt-top.???
+subversion.1.9.3-2ubuntu1.1 subversion.???
+mrtg.2.17.4-3ubuntu1 mrtg.???
+mgetty-voice.1.1.36-2ubuntu1 mgetty-voice.???
+crash.7.2.3+real-1~16.04.1 crash.???
+crash.7.2.3+real-1~16.04.1 crash.???
+transfig.1:3.2.5.e-1ubuntu1.1 transfig.???
+transfig.1:3.2.5.e-5ubuntu0.1 transfig.???
+transfig.1:3.2.5.e-5ubuntu0.1 transfig.???
+logwatch.7.4.2-1ubuntu1 logwatch.???
+logwatch.7.4.0+svn20130529rev144-1ubuntu1.1 logwatch.???
+marisa.0.2.4-5build1 marisa.???
+marisa.0.2.4-5build1 marisa.???
+mc.3:4.8.15-2 mc.???
+mc.3:4.8.15-2 mc.???
+ksh.93u+20120801-2ubuntu0.16.04.1 ksh.???
+paps.0.6.8-7ubuntu1 paps.???
+paps.0.6.8-7 paps.???
+supermin.5.1.14-2ubuntu1.1 supermin.???
+units.2.12-2 units.???
+dwz.0.12-1 dwz.???
+dwz.0.11-1 dwz.???
+dwz.0.12-1 dwz.???
+sane.1.0.14-11 sane.???
+powertop.2.5-1ubuntu1 powertop.???
+powertop.2.5-1ubuntu1 powertop.???
+dstat.0.7.2-4 dstat.???
+dstat.0.7.2-3build1 dstat.???
+pax.1:20120606-2+deb7u1 pax.???
+pax.1:20120606-2+deb7u1 pax.???
+nasm.2.10.09-1ubuntu0.1 nasm.???

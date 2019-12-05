@@ -1,5 +1,6 @@
 from collections import OrderedDict
 from orderedset import OrderedSet
+from itertools import combinations
 import yaml
 
 class RuleBasedTags:
@@ -46,72 +47,38 @@ class RuleBasedTags:
     def fit(self,X,y,max_num_rules=1):
         # takes: list of changes, corresponding list of labels
         # find intersection of ALL changes and remove?
+        labels = list(set(y))
+        partitioned_X = [ [] for i in range(len(labels)) ]
+        unions = []
 
-        intersection = set(X[0]) # SOMETHING LIKE THIS
-        for changes in X:
-            intersection &= set(changes)
-        intersection = list(intersection)
-        print("Intersection length:", len(intersection))
-        # remove intersection from each changeset
-        new_X = []
-        for changes in X:
-            if(len(changes)>len(intersection)):
-                cur_X = [x for x in changes if x not in intersection]
-                new_X.append(cur_X)
-            else:
-                print("Entire changeset in intersection!")
+        for cur_changes, cur_label in zip(X,y):
+            idx = labels.index(cur_label)
+            partitioned_X[idx].append(cur_changes)
 
-        label_to_tokens = self.transform_tagsets(new_X, y)
-        labels = label_to_tokens.keys()
-        self.total_versions += len(labels)
+        for partition in partitioned_X:
+            cur_union = set(partition[0])
+            for cur_changes in partition:
+                cur_union |= set(cur_changes)
+            unions.append(list(cur_union))
+
+        overlap = get_overlap(unions)
+        new_partitioned_X = [ [] for i in range(len(labels)) ]
+        for cur_changes, cur_label in zip(X,y):
+            idx = labels.index(cur_label)
+            changes_no_overlap = [x for x in cur_changes if x not in overlap]
+            new_partitioned_X[idx].append(changes_no_overlap)
 
         rules = {}
-        #for l in labels:
-        #    rules[l]=[]
-        token_to_labels = self.get_token_to_labels(label_to_tokens)
-        for token in token_to_labels.keys():
-            if len(token_to_labels[token]) == 1:
-                #print(token_to_labels[token])
-                if token_to_labels[token][0] not in rules: # only take one rule
-                    rules[token_to_labels[token][0]] = token
-                    self.total_rules += 1
-
-        rule_tokens = rules.keys()
-        for label in labels:
-            if label not in rule_tokens:
+        for changesets, label in zip(new_partitioned_X, labels):
+            label_intersection = set(changesets[0])
+            for c in changesets:
+                label_intersection &= set(c)
+            label_intersection = list(label_intersection)
+            if len(label_intersection)==0:
                 rules[label] = "???"
-        #print("Rules:", rules)
+            else:
+                rules[label] = label_intersection[0]
         return rules
-
-    def transform_tagsets(self, tagsets, labels, take_max=False):  # Changesets as dictionaries
-        res = OrderedDict()
-        for data, label in zip(tagsets, labels):
-            for token in data:
-                if label not in res:
-                    res[label] = OrderedDict()
-                if token not in res[label]:
-                    res[label][token] = 1
-                else:
-                    res[label][token] += 1
-        newres = dict()
-        for label in res:
-            newres[label] = set()
-            maxval = max(res[label].values())
-            for token in sorted(res[label], key=res[label].get, reverse=True):
-                if res[label][token] < (maxval):
-                    break
-                newres[label].add(token)
-        return newres
-
-    def get_token_to_labels(self, label_to_tokens):
-        """ Returns inverse map: from tokens to sets of labels """
-        token_to_labels = OrderedDict()
-        for label in label_to_tokens:
-            for token in label_to_tokens[label]:
-                if token not in token_to_labels:
-                    token_to_labels[token] = OrderedSet()
-                token_to_labels[token].add(label)
-        return token_to_labels
 
     def predict_all(self, sep_test_dics): # prediction wrapper
         print("Starting predictions")
@@ -149,3 +116,15 @@ class RuleBasedTags:
         #print("Predictions: ", preds)
         #input("Enter to continue...")
         return preds
+
+
+def get_overlap(unions):
+    combos = list(combinations(unions, 2))
+    intersections = []
+    for combo in combos:
+        intersections.append(list(set(combo[0]) & set(combo[1])))
+    overlap = set(intersections[0])
+    for i in intersections:
+        overlap |= set(i)
+    overlap = list(overlap)
+    return overlap

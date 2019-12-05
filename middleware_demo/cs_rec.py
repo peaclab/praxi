@@ -76,8 +76,8 @@ if __name__ == '__main__':
     watch_paths = [watch_path]
     dswd = ds_watchdog.DeltaSherlockWatchdog(watch_paths, "*", ".")
     # Recording begins immediately after instantiation.
-    print("Recording started")
-    input("Press Enter to continue...")
+    #print("Recording started")
+    input("")
     print("Recording stopped")
 
     # Save changeset

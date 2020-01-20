@@ -1,7 +1,0 @@
-changes:
-- /var/log/apt/history.log
-- /var/log/auth.log
-- /var/log/apt/term.log
-label: mariadb-server
-tags: []
-version: 5.5.64-1ubuntu0.14.04.1

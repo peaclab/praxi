@@ -41,7 +41,7 @@ from sklearn.multiclass import OneVsRestClassifier
 from sklearn.preprocessing import MultiLabelBinarizer
 
 from hybrid_tags import Hybrid
-from basic_rule_class import RuleBasedTags
+from combo_rule_class import RuleBasedTags
 from collections import OrderedDict
 from orderedset import OrderedSet
 

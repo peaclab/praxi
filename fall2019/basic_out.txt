@@ -1,495 +1,443 @@
 will create pickle file
-vw took this many seconds:  1.3577322959899902
+vw took this many seconds:  1.8131861686706543
 Number of rules:  0
-Number of apps:  45
+Number of apps:  44
 Number of versions:  0
-Number of incorrect app names:  3
+Number of incorrect app names:  0
 Starting predictions
-rrdtool.1.5.5-4 rrdtool.???
-lynx.2.8.9dev8-4ubuntu1 lynx.???
-lynx.2.8.8pre4-1 mariadb-server.???
-bacula-client.5.2.6+dfsg-9.1ubuntu3 mariadb-server.???
-mariadb-server.10.0.38-0ubuntu0.16.04.1 mariadb-server.???
-mariadb-server.5.5.64-1ubuntu0.14.04.1 mariadb-server.???
-powertop.2.5-1ubuntu1 mariadb-server.???
+bacula-client.7.0.5+dfsg-4ubuntu0.1 bacula-client.???
+iptraf-ng.1.1.4-1 iptraf-ng.???
+iptraf-ng.1.1.4-2ubuntu0.16.04.1 iptraf-ng.???
+iptraf-ng.1.1.4-2ubuntu0.16.04.1 iptraf-ng.???
 telnetd.0.17-40 telnetd.???
-dovecot-core.1:2.2.33.2-1ubuntu4.3 dovecot-core.???
-lftp.4.4.13-1ubuntu0.1 lftp.???
-lftp.4.4.13-1ubuntu0.1 lftp.???
-iptraf-ng.1.1.4-2ubuntu0.16.04.1 iptraf-ng.???
-iptraf-ng.1.1.4-2ubuntu0.16.04.1 iptraf-ng.???
-virt-top.1.0.7-1 virt-top.???
-virt-top.1.0.7-1 virt-top.???
+dwz.0.11-1 dwz.???
+dwz.0.11-1 dwz.???
+transfig.1:3.2.5.e-5ubuntu0.1 transfig.???
+rrdtool.1.5.5-4 rrdtool.???
+mgetty-voice.1.1.36-2ubuntu1 mgetty-voice.???
+mgetty-voice.1.1.36-2ubuntu1 mgetty-voice.???
+units.2.12-2 units.???
+pax.1:20151013-1 pax.???
+pax.1:20120606-2+deb7u1 pax.???
+pax.1:20120606-2+deb7u1 pax.???
+memcached.1.4.14-0ubuntu9.3 memcached.???
+memcached.1.4.14-0ubuntu9.3 memcached.???
+sane.1.0.14-11 sane.???
+sane.1.0.14-11 sane.???
+lynx.2.8.9dev8-4ubuntu1 lynx.???
+lynx.2.8.9dev8-4ubuntu1 lynx.???
+marisa.0.2.4-5build1 marisa.???
+paps.0.6.8-7ubuntu1 paps.???
+paps.0.6.8-7ubuntu1 paps.???
+ksh.93u+20120801-2ubuntu0.16.04.1 ksh.???
+ksh.93u+20120801-2ubuntu0.16.04.1 ksh.???
 subversion.1.9.3-2ubuntu1.1 subversion.???
+subversion.1.9.3-2ubuntu1.1 subversion.???
+mksh.46-2ubuntu3 mksh.???
+mksh.46-2ubuntu3 mksh.???
+dstat.0.7.3-1 dstat.???
+dstat.0.7.2-3build1 dstat.???
+crash.7.2.3+real-1~16.04.1 crash.???
+lftp.4.6.3a-1ubuntu0.1 lftp.???
+lftp.4.6.3a-1ubuntu0.1 lftp.???
+logwatch.7.4.0+svn20130529rev144-1ubuntu1.1 logwatch.???
+supermin.5.1.14-2ubuntu1.1 supermin.???
+virt-top.1.0.7-1 virt-top.???
+mc.3:4.8.15-2 mc.???
+nasm.2.10.09-1ubuntu0.1 nasm.???
+vw took this many seconds:  1.3204047679901123
+Number of rules:  0
+Number of apps:  88
+Number of versions:  0
+Number of incorrect app names:  0
+Starting predictions
+bacula-client.7.0.5+dfsg-4ubuntu0.1 bacula-client.???
+bacula-client.7.0.5+dfsg-4ubuntu0.1 bacula-client.???
+iptraf-ng.1.1.4-1 iptraf-ng.???
+iptraf-ng.1.1.4-2ubuntu0.16.04.1 iptraf-ng.???
+dwz.0.11-1 dwz.???
+cups.2.1.3-4ubuntu0.9 cups.???
+cups.2.1.3-4ubuntu0.9 cups.???
+transfig.1:3.2.5.e-1ubuntu1.1 transfig.???
+mrtg.2.17.4-3ubuntu1 mrtg.???
+mrtg.2.17.4-3ubuntu1 mrtg.???
+rrdtool.1.5.5-4 rrdtool.???
+mgetty-voice.1.1.36-2ubuntu1 mgetty-voice.???
+units.2.12-2 units.???
+pax.1:20120606-2+deb7u1 pax.???
+pax.1:20120606-2+deb7u1 pax.???
+sane.1.0.14-11 sane.???
+lynx.2.8.9dev8-4ubuntu1 lynx.???
+marisa.0.2.4-8build6 marisa.???
+marisa.0.2.4-8build6 marisa.???
+paps.0.6.8-7ubuntu1 paps.???
+paps.0.6.8-7ubuntu1 paps.???
+paps.0.6.8-7ubuntu1 paps.???
+subversion.1.9.3-2ubuntu1.1 subversion.???
+mksh.46-2ubuntu3 mksh.???
+mksh.52c-2 mksh.???
+dstat.0.7.2-3build1 dstat.???
+dstat.0.7.2-3build1 dstat.???
+crash.7.0.3-3ubuntu4.5 crash.???
+crash.7.0.3-3ubuntu4.5 crash.???
+lftp.4.4.13-1ubuntu0.1 lftp.???
+logwatch.7.4.2-1ubuntu1 logwatch.???
+logwatch.7.4.0+svn20130529rev144-1ubuntu1.1 logwatch.???
+virt-top.1.0.7-1 virt-top.???
+mc.3:4.8.15-2 mc.???
+vw took this many seconds:  1.7322826385498047
+Number of rules:  0
+Number of apps:  132
+Number of versions:  0
+Number of incorrect app names:  0
+Starting predictions
+iptraf-ng.1.1.4-1 iptraf-ng.???
+iptraf-ng.1.1.4-1 iptraf-ng.???
+telnetd.0.17-40 telnetd.???
+telnetd.0.17-40 telnetd.???
+dwz.0.12-1 dwz.???
+dwz.0.12-1 dwz.???
+dwz.0.12-1 dwz.???
+cups.2.1.3-4ubuntu0.9 cups.???
+transfig.1:3.2.5.e-1ubuntu1.1 transfig.???
+mrtg.2.17.4-3ubuntu1 mrtg.???
 mrtg.2.17.4-3ubuntu1 mrtg.???
 mgetty-voice.1.1.36-2ubuntu1 mgetty-voice.???
+units.2.12-2 units.???
+units.2.12-2 units.???
+lynx.2.8.9dev8-4ubuntu1 lynx.???
+lynx.2.8.9dev8-4ubuntu1 lynx.???
+marisa.0.2.4-5build1 marisa.???
+marisa.0.2.4-5build1 marisa.???
+marisa.0.2.4-5build1 marisa.???
+mksh.52c-2 mksh.???
+mksh.46-2ubuntu3 mksh.???
+dstat.0.7.2-3build1 dstat.???
+dstat.0.7.2-4 dstat.???
+dstat.0.7.2-4 dstat.???
+crash.7.0.3-3ubuntu4.5 crash.???
+crash.7.2.3+real-1~16.04.1 crash.???
+crash.7.0.3-3ubuntu4.5 crash.???
+lftp.4.6.3a-1ubuntu0.1 lftp.???
+lftp.4.6.3a-1ubuntu0.1 lftp.???
+lftp.4.4.13-1ubuntu0.1 lftp.???
+logwatch.7.4.2-1ubuntu1 logwatch.???
+logwatch.7.4.2-1ubuntu1 logwatch.???
+logwatch.7.4.0+svn20130529rev144-1ubuntu1.1 logwatch.???
+supermin.5.1.14-2ubuntu1.1 supermin.???
+supermin.5.1.14-2ubuntu1.1 supermin.???
+virt-top.1.0.7-1 virt-top.???
+mc.3:4.8.15-2 mc.???
+nasm.2.10.09-1ubuntu0.1 nasm.???
+vw took this many seconds:  1.4137184619903564
+Number of rules:  0
+Number of apps:  176
+Number of versions:  0
+Number of incorrect app names:  0
+Starting predictions
+bacula-client.7.0.5+dfsg-4ubuntu0.1 bacula-client.???
+bacula-client.7.0.5+dfsg-4ubuntu0.1 bacula-client.???
+iptraf-ng.1.1.4-2ubuntu0.16.04.1 iptraf-ng.???
+telnetd.0.17-40 telnetd.???
+telnetd.0.17-40 telnetd.???
+dwz.0.12-1 dwz.???
+dwz.0.12-1 dwz.???
+cups.2.1.3-4ubuntu0.9 cups.???
+transfig.1:3.2.5.e-5ubuntu0.1 transfig.???
+transfig.1:3.2.5.e-1ubuntu1.1 transfig.???
+mrtg.2.17.4-3ubuntu1 mrtg.???
 mgetty-voice.1.1.36-2ubuntu1 mgetty-voice.???
+pax.1:20120606-2+deb7u1 pax.???
+pax.1:20120606-2+deb7u1 pax.???
+pax.1:20151013-1 pax.???
+memcached.1.4.14-0ubuntu9.3 memcached.???
+memcached.1.4.14-0ubuntu9.3 memcached.???
+lynx.2.8.9dev8-4ubuntu1 lynx.???
+marisa.0.2.4-5build1 marisa.???
+marisa.0.2.4-5build1 marisa.???
+paps.0.6.8-7 paps.???
+paps.0.6.8-7 paps.???
+paps.0.6.8-7 paps.???
+ksh.93u+20120801-2ubuntu0.16.04.1 ksh.???
+subversion.1.9.3-2ubuntu1.1 subversion.???
+subversion.1.9.3-2ubuntu1.1 subversion.???
+mksh.46-2ubuntu3 mksh.???
+mksh.52c-2 mksh.???
+dstat.0.7.2-4 dstat.???
+dstat.0.7.2-4 dstat.???
+crash.7.0.3-3ubuntu4.5 crash.???
+crash.7.2.3+real-1~16.04.1 crash.???
+lftp.4.4.13-1ubuntu0.1 lftp.???
+lftp.4.6.3a-1ubuntu0.1 lftp.???
+logwatch.7.4.2-1ubuntu1 logwatch.???
+logwatch.7.4.0+svn20130529rev144-1ubuntu1.1 logwatch.???
+logwatch.7.4.2-1ubuntu1 logwatch.???
+supermin.5.1.14-2ubuntu1.1 supermin.???
+virt-top.1.0.7-1 virt-top.???
+virt-top.1.0.7-1 virt-top.???
+mc.3:4.8.15-2 mc.???
+nasm.2.10.09-1ubuntu0.1 nasm.???
+nasm.2.10.09-1ubuntu0.1 nasm.???
+vw took this many seconds:  1.1774954795837402
+Number of rules:  0
+Number of apps:  220
+Number of versions:  0
+Number of incorrect app names:  0
+Starting predictions
+bacula-client.7.0.5+dfsg-4ubuntu0.1 bacula-client.???
+bacula-client.7.0.5+dfsg-4ubuntu0.1 bacula-client.???
+dwz.0.11-1 dwz.???
+dwz.0.11-1 dwz.???
+cups.2.1.3-4ubuntu0.9 cups.???
+transfig.1:3.2.5.e-5ubuntu0.1 transfig.???
+transfig.1:3.2.5.e-5ubuntu0.1 transfig.???
+transfig.1:3.2.5.e-1ubuntu1.1 transfig.???
+mrtg.2.17.4-3ubuntu1 mrtg.???
+rrdtool.1.5.5-4 rrdtool.???
+mgetty-voice.1.1.36-2ubuntu1 mgetty-voice.???
+pax.1:20120606-2+deb7u1 pax.???
+pax.1:20151013-1 pax.???
+sane.1.0.14-11 sane.???
+sane.1.0.14-11 sane.???
+marisa.0.2.4-5build1 marisa.???
+marisa.0.2.4-8build6 marisa.???
+paps.0.6.8-7 paps.???
+paps.0.6.8-7ubuntu1 paps.???
+paps.0.6.8-7 paps.???
+ksh.93u+20120801-2ubuntu0.16.04.1 ksh.???
+subversion.1.9.3-2ubuntu1.1 subversion.???
+subversion.1.9.3-2ubuntu1.1 subversion.???
+mksh.46-2ubuntu3 mksh.???
+dstat.0.7.2-3build1 dstat.???
+crash.7.0.3-3ubuntu4.5 crash.???
+lftp.4.4.13-1ubuntu0.1 lftp.???
+lftp.4.4.13-1ubuntu0.1 lftp.???
+gpm.1.20.4-6.1 gpm.???
+logwatch.7.4.0+svn20130529rev144-1ubuntu1.1 logwatch.???
+logwatch.7.4.0+svn20130529rev144-1ubuntu1.1 logwatch.???
+supermin.5.1.14-2ubuntu1.1 supermin.???
+virt-top.1.0.7-1 virt-top.???
+virt-top.1.0.7-1 virt-top.???
+mc.3:4.8.15-2 mc.???
+nasm.2.10.09-1ubuntu0.1 nasm.???
+nasm.2.10.09-1ubuntu0.1 nasm.???
+vw took this many seconds:  1.3733303546905518
+Number of rules:  0
+Number of apps:  264
+Number of versions:  0
+Number of incorrect app names:  0
+Starting predictions
+bacula-client.7.0.5+dfsg-4ubuntu0.1 bacula-client.???
+iptraf-ng.1.1.4-2ubuntu0.16.04.1 iptraf-ng.???
+iptraf-ng.1.1.4-2ubuntu0.16.04.1 iptraf-ng.???
+dwz.0.11-1 dwz.???
+cups.2.1.3-4ubuntu0.9 cups.???
+transfig.1:3.2.5.e-1ubuntu1.1 transfig.???
+transfig.1:3.2.5.e-5ubuntu0.1 transfig.???
+transfig.1:3.2.5.e-5ubuntu0.1 transfig.???
+mrtg.2.17.4-3ubuntu1 mrtg.???
+rrdtool.1.5.5-4 rrdtool.???
+units.2.12-2 units.???
+units.2.12-2 units.???
+pax.1:20151013-1 pax.???
+memcached.1.4.14-0ubuntu9.3 memcached.???
+sane.1.0.14-11 sane.???
+lynx.2.8.9dev8-4ubuntu1 lynx.???
+marisa.0.2.4-8build6 marisa.???
+marisa.0.2.4-8build6 marisa.???
+marisa.0.2.4-8build6 marisa.???
+paps.0.6.8-7 paps.???
+ksh.93u+20120801-2ubuntu0.16.04.1 ksh.???
+subversion.1.9.3-2ubuntu1.1 subversion.???
+mksh.52c-2 mksh.???
+mksh.46-2ubuntu3 mksh.???
+crash.7.2.3+real-1~16.04.1 crash.???
+crash.7.2.3+real-1~16.04.1 crash.???
+lftp.4.6.3a-1ubuntu0.1 lftp.???
+lftp.4.4.13-1ubuntu0.1 lftp.???
+lftp.4.6.3a-1ubuntu0.1 lftp.???
+logwatch.7.4.0+svn20130529rev144-1ubuntu1.1 logwatch.???
+logwatch.7.4.0+svn20130529rev144-1ubuntu1.1 logwatch.???
+supermin.5.1.14-2ubuntu1.1 supermin.???
+virt-top.1.0.7-1 virt-top.???
+vw took this many seconds:  1.4488849639892578
+Number of rules:  0
+Number of apps:  308
+Number of versions:  0
+Number of incorrect app names:  0
+Starting predictions
+bacula-client.7.0.5+dfsg-4ubuntu0.1 bacula-client.???
+iptraf-ng.1.1.4-1 iptraf-ng.???
+iptraf-ng.1.1.4-2ubuntu0.16.04.1 iptraf-ng.???
+telnetd.0.17-40 telnetd.???
+telnetd.0.17-40 telnetd.???
+dwz.0.11-1 dwz.???
+dwz.0.12-1 dwz.???
+cups.2.1.3-4ubuntu0.9 cups.???
+transfig.1:3.2.5.e-5ubuntu0.1 transfig.???
+transfig.1:3.2.5.e-5ubuntu0.1 transfig.???
+mrtg.2.17.4-3ubuntu1 mrtg.???
+units.2.12-2 units.???
+units.2.12-2 units.???
+pax.1:20120606-2+deb7u1 pax.???
+pax.1:20151013-1 pax.???
+pax.1:20151013-1 pax.???
+memcached.1.4.14-0ubuntu9.3 memcached.???
+memcached.1.4.14-0ubuntu9.3 memcached.???
+marisa.0.2.4-5build1 marisa.???
+marisa.0.2.4-5build1 marisa.???
+paps.0.6.8-7 paps.???
+paps.0.6.8-7 paps.???
+ksh.93u+20120801-2ubuntu0.16.04.1 ksh.???
+mksh.46-2ubuntu3 mksh.???
+mksh.52c-2 mksh.???
+mksh.52c-2 mksh.???
+dstat.0.7.2-4 dstat.???
+dstat.0.7.2-4 dstat.???
+dstat.0.7.2-3build1 dstat.???
 crash.7.0.3-3ubuntu4.5 crash.7.2.3+real-1~16.04.1
-transfig.1:3.2.5.e-5ubuntu0.1 transfig.???
-transfig.1:3.2.5.e-1ubuntu1.1 transfig.???
-logwatch.7.4.0+svn20130529rev144-1ubuntu1.1 logwatch.???
-logwatch.7.4.2-1ubuntu1 logwatch.???
-marisa.0.2.4-8build6 marisa.???
-marisa.0.2.4-8build6 marisa.???
-marisa.0.2.4-8build6 marisa.???
-mc.3:4.8.15-2 mc.???
-mc.3:4.8.15-2 mc.???
-memcached.1.4.14-0ubuntu9.3 memcached.???
-ksh.93u+20120801-2ubuntu0.16.04.1 ksh.???
-paps.0.6.8-7 paps.???
-dwz.0.11-1 dwz.???
-dwz.0.11-1 dwz.???
-powertop.2.5-1ubuntu1 powertop.???
-dstat.0.7.2-4 dstat.???
-dstat.0.7.2-4 dstat.???
-dstat.0.7.2-3build1 dstat.???
-mksh.46-2ubuntu3 mksh.???
-mksh.52c-2 mksh.???
-pax.1:20120606-2+deb7u1 pax.???
-pax.1:20151013-1 pax.???
-pax.1:20120606-2+deb7u1 pax.???
-vw took this many seconds:  1.5645806789398193
-Number of rules:  0
-Number of apps:  90
-Number of versions:  0
-Number of incorrect app names:  1
-Starting predictions
-cups.2.1.3-4ubuntu0.9 cups.???
-cups.2.1.3-4ubuntu0.9 cups.???
-lynx.2.8.9dev8-4ubuntu1 lynx.???
-telnetd.0.17-40 telnetd.???
-telnetd.0.17-40 telnetd.???
-lftp.4.4.13-1ubuntu0.1 lftp.???
-lftp.4.4.13-1ubuntu0.1 lftp.???
-iptraf-ng.1.1.4-2ubuntu0.16.04.1 iptraf-ng.???
-iptraf-ng.1.1.4-2ubuntu0.16.04.1 iptraf-ng.???
-iptraf-ng.1.1.4-1 iptraf-ng.???
-virt-top.1.0.7-1 virt-top.???
-subversion.1.9.3-2ubuntu1.1 subversion.???
-mrtg.2.17.4-3ubuntu1 mrtg.???
-bacula-client.7.0.5+dfsg-4ubuntu0.1 bacula-client.???
-bacula-client.7.0.5+dfsg-4ubuntu0.1 bacula-client.???
-bacula-client.5.2.6+dfsg-9.1ubuntu3 mariadb-server.???
-mariadb-server.5.5.64-1ubuntu0.14.04.1 mariadb-server.???
-mariadb-server.10.0.38-0ubuntu0.16.04.1 mariadb-server.???
-mgetty-voice.1.1.36-2ubuntu1 mgetty-voice.???
-crash.7.2.3+real-1~16.04.1 crash.???
-crash.7.2.3+real-1~16.04.1 crash.???
 crash.7.0.3-3ubuntu4.5 crash.???
-transfig.1:3.2.5.e-5ubuntu0.1 transfig.???
-transfig.1:3.2.5.e-5ubuntu0.1 transfig.???
-transfig.1:3.2.5.e-5ubuntu0.1 transfig.???
-logwatch.7.4.0+svn20130529rev144-1ubuntu1.1 logwatch.???
-logwatch.7.4.2-1ubuntu1 logwatch.???
-marisa.0.2.4-8build6 marisa.???
-mc.3:4.8.15-2 mc.???
-memcached.1.4.14-0ubuntu9.3 memcached.???
-paps.0.6.8-7ubuntu1 paps.???
-supermin.5.1.14-2ubuntu1.1 supermin.???
-supermin.5.1.14-2ubuntu1.1 supermin.???
-supermin.5.1.14-2ubuntu1.1 supermin.???
-dwz.0.12-1 dwz.???
-dwz.0.12-1 dwz.???
-dwz.0.12-1 dwz.???
-sane.1.0.14-11 sane.???
-dstat.0.7.2-3build1 dstat.???
-dstat.0.7.2-3build1 dstat.???
-mksh.52c-2 mksh.???
-mksh.46-2ubuntu3 mksh.???
-mksh.46-2ubuntu3 mksh.???
-pax.1:20151013-1 pax.???
-pax.1:20151013-1 pax.???
-nasm.2.10.09-1ubuntu0.1 nasm.???
-vw took this many seconds:  2.104469060897827
-Number of rules:  0
-Number of apps:  135
-Number of versions:  0
-Number of incorrect app names:  4
-Starting predictions
-lynx.2.8.9dev8-4ubuntu1 lynx.???
-lynx.2.8.8pre4-1 mariadb-server.???
-bacula-client.5.2.6+dfsg-9.1ubuntu3 mariadb-server.???
-mariadb-server.10.0.38-0ubuntu0.16.04.1 mariadb-server.???
-mariadb-server.10.0.38-0ubuntu0.16.04.1 mariadb-server.???
-powertop.2.5-1ubuntu1 mariadb-server.???
-powertop.2.5-1ubuntu1 mariadb-server.???
-telnetd.0.17-40 telnetd.???
-lftp.4.6.3a-1ubuntu0.1 lftp.???
-lftp.4.6.3a-1ubuntu0.1 lftp.???
-lftp.4.6.3a-1ubuntu0.1 lftp.???
-virt-top.1.0.7-1 virt-top.???
-subversion.1.9.3-2ubuntu1.1 subversion.???
-bacula-client.7.0.5+dfsg-4ubuntu0.1 bacula-client.???
-bacula-client.7.0.5+dfsg-4ubuntu0.1 bacula-client.???
-mgetty-voice.1.1.36-2ubuntu1 mgetty-voice.???
-crash.7.0.3-3ubuntu4.5 crash.???
-crash.7.2.3+real-1~16.04.1 crash.???
-transfig.1:3.2.5.e-1ubuntu1.1 transfig.???
-transfig.1:3.2.5.e-5ubuntu0.1 transfig.???
-transfig.1:3.2.5.e-1ubuntu1.1 transfig.???
-logwatch.7.4.0+svn20130529rev144-1ubuntu1.1 logwatch.???
-logwatch.7.4.2-1ubuntu1 logwatch.???
-logwatch.7.4.0+svn20130529rev144-1ubuntu1.1 logwatch.???
-marisa.0.2.4-8build6 marisa.???
-marisa.0.2.4-5build1 marisa.???
-memcached.1.4.14-0ubuntu9.3 memcached.???
-ksh.93u+20120801-2ubuntu0.16.04.1 ksh.???
-ksh.93u+20120801-2ubuntu0.16.04.1 ksh.???
-paps.0.6.8-7ubuntu1 paps.???
-paps.0.6.8-7ubuntu1 paps.???
-paps.0.6.8-7 paps.???
-units.2.12-2 units.???
-dwz.0.12-1 dwz.???
-sane.1.0.14-11 sane.???
-sane.1.0.14-11 sane.???
-dstat.0.7.2-3build1 dstat.???
-dstat.0.7.2-3build1 dstat.???
-mksh.46-2ubuntu3 mksh.???
-mksh.52c-2 mksh.???
-mksh.46-2ubuntu3 mksh.???
-pax.1:20151013-1 pax.???
-pax.1:20120606-2+deb7u1 pax.???
-nasm.2.10.09-1ubuntu0.1 nasm.???
-vw took this many seconds:  2.143482208251953
-Number of rules:  0
-Number of apps:  180
-Number of versions:  0
-Number of incorrect app names:  3
-Starting predictions
-cups.2.1.3-4ubuntu0.9 cups.???
-rrdtool.1.5.5-4 rrdtool.???
-rrdtool.1.5.5-4 rrdtool.???
-lynx.2.8.8pre4-1 powertop.???
-lynx.2.8.8pre4-1 mariadb-server.???
-bacula-client.5.2.6+dfsg-9.1ubuntu3 mariadb-server.???
-mariadb-server.5.5.64-1ubuntu0.14.04.1 mariadb-server.???
-mariadb-server.5.5.64-1ubuntu0.14.04.1 mariadb-server.???
-lftp.4.6.3a-1ubuntu0.1 lftp.???
-iptraf-ng.1.1.4-1 iptraf-ng.???
-iptraf-ng.1.1.4-1 iptraf-ng.???
-virt-top.1.0.7-1 virt-top.???
-virt-top.1.0.7-1 virt-top.???
-subversion.1.9.3-2ubuntu1.1 subversion.???
-mrtg.2.17.4-3ubuntu1 mrtg.???
-mrtg.2.17.4-3ubuntu1 mrtg.???
-bacula-client.5.2.6+dfsg-9.1ubuntu3 bacula-client.???
-bacula-client.7.0.5+dfsg-4ubuntu0.1 bacula-client.???
-crash.7.0.3-3ubuntu4.5 crash.???
-crash.7.2.3+real-1~16.04.1 crash.???
-transfig.1:3.2.5.e-1ubuntu1.1 transfig.???
-transfig.1:3.2.5.e-5ubuntu0.1 transfig.???
-logwatch.7.4.0+svn20130529rev144-1ubuntu1.1 logwatch.???
-marisa.0.2.4-5build1 marisa.???
-marisa.0.2.4-5build1 marisa.???
-marisa.0.2.4-8build6 marisa.???
-mc.3:4.8.15-2 mc.???
-memcached.1.4.14-0ubuntu9.3 memcached.???
-ksh.93u+20120801-2ubuntu0.16.04.1 ksh.???
-paps.0.6.8-7ubuntu1 paps.???
-paps.0.6.8-7 paps.???
-supermin.5.1.14-2ubuntu1.1 supermin.???
-quagga.0.99.22.4-3ubuntu1.5 quagga.???
-units.2.12-2 units.???
-dwz.0.11-1 dwz.???
-dwz.0.12-1 dwz.???
-sane.1.0.14-11 sane.???
-dstat.0.7.2-3build1 dstat.???
-mksh.52c-2 mksh.???
-mksh.46-2ubuntu3 mksh.???
-pax.1:20151013-1 pax.???
-pax.1:20120606-2+deb7u1 pax.???
-pax.1:20151013-1 pax.???
-nasm.2.10.09-1ubuntu0.1 nasm.???
-nasm.2.10.09-1ubuntu0.1 nasm.???
-vw took this many seconds:  1.273986577987671
-Number of rules:  0
-Number of apps:  225
-Number of versions:  0
-Number of incorrect app names:  4
-Starting predictions
-cups.2.1.3-4ubuntu0.9 cups.???
-cups.2.1.3-4ubuntu0.9 cups.???
-cups.2.1.3-4ubuntu0.9 cups.???
-rrdtool.1.5.5-4 rrdtool.???
-rrdtool.1.5.5-4 rrdtool.???
-rrdtool.1.5.5-4 rrdtool.???
-lynx.2.8.8pre4-1 mariadb-server.???
-bacula-client.5.2.6+dfsg-9.1ubuntu3 mariadb-server.???
-bacula-client.5.2.6+dfsg-9.1ubuntu3 mariadb-server.???
-mariadb-server.5.5.64-1ubuntu0.14.04.1 mariadb-server.???
-mariadb-server.10.0.38-0ubuntu0.16.04.1 mariadb-server.???
-powertop.2.5-1ubuntu1 mariadb-server.???
-telnetd.0.17-40 telnetd.???
-telnetd.0.17-40 telnetd.???
-telnetd.0.17-40 telnetd.???
 lftp.4.6.3a-1ubuntu0.1 lftp.???
 lftp.4.4.13-1ubuntu0.1 lftp.???
 lftp.4.6.3a-1ubuntu0.1 lftp.???
-iptraf-ng.1.1.4-1 iptraf-ng.???
+logwatch.7.4.2-1ubuntu1 logwatch.???
+supermin.5.1.14-2ubuntu1.1 supermin.???
+virt-top.1.0.7-1 virt-top.???
+mc.3:4.8.15-2 mc.???
+vw took this many seconds:  1.5393307209014893
+Number of rules:  0
+Number of apps:  352
+Number of versions:  0
+Number of incorrect app names:  0
+Starting predictions
+mailman.1:2.1.20-1ubuntu0.3 mailman.???
 iptraf-ng.1.1.4-1 iptraf-ng.???
 iptraf-ng.1.1.4-2ubuntu0.16.04.1 iptraf-ng.???
-subversion.1.9.3-2ubuntu1.1 subversion.???
-bacula-client.7.0.5+dfsg-4ubuntu0.1 bacula-client.???
-crash.7.0.3-3ubuntu4.5 crash.???
-transfig.1:3.2.5.e-1ubuntu1.1 transfig.???
-logwatch.7.4.2-1ubuntu1 logwatch.???
-logwatch.7.4.0+svn20130529rev144-1ubuntu1.1 logwatch.???
-marisa.0.2.4-5build1 marisa.???
-marisa.0.2.4-5build1 marisa.???
-marisa.0.2.4-8build6 marisa.???
-paps.0.6.8-7 paps.???
-paps.0.6.8-7ubuntu1 paps.???
-supermin.5.1.14-2ubuntu1.1 supermin.???
-supermin.5.1.14-2ubuntu1.1 supermin.???
-units.2.12-2 units.???
-units.2.12-2 units.???
-units.2.12-2 units.???
-dwz.0.11-1 dwz.???
-sane.1.0.14-11 sane.???
-sane.1.0.14-11 sane.???
-dstat.0.7.2-3build1 dstat.???
-dstat.0.7.2-4 dstat.???
-mksh.46-2ubuntu3 mksh.???
-mksh.52c-2 mksh.???
-mksh.52c-2 mksh.???
-pax.1:20151013-1 pax.???
-pax.1:20151013-1 pax.???
-vw took this many seconds:  1.269603967666626
-Number of rules:  0
-Number of apps:  270
-Number of versions:  0
-Number of incorrect app names:  4
-Starting predictions
-lynx.2.8.9dev8-4ubuntu1 lynx.???
-lynx.2.8.9dev8-4ubuntu1 lynx.???
+iptraf-ng.1.1.4-2ubuntu0.16.04.1 iptraf-ng.???
 telnetd.0.17-40 telnetd.???
-lftp.4.4.13-1ubuntu0.1 lftp.???
-lftp.4.6.3a-1ubuntu0.1 lftp.???
-lftp.4.4.13-1ubuntu0.1 lftp.???
-iptraf-ng.1.1.4-2ubuntu0.16.04.1 iptraf-ng.???
-mrtg.2.17.4-3ubuntu1 mrtg.???
-bacula-client.5.2.6+dfsg-9.1ubuntu3 mariadb-server.5.5.64-1ubuntu0.14.04.1
-mariadb-server.5.5.64-1ubuntu0.14.04.1 mariadb-server.???
-mariadb-server.10.0.38-0ubuntu0.16.04.1 mariadb-server.???
-bacula-client.7.0.5+dfsg-4ubuntu0.1 bacula-client.???
-bacula-client.7.0.5+dfsg-4ubuntu0.1 bacula-client.???
-transfig.1:3.2.6a-6ubuntu1 bacula-client.9.0.6-1build1
-transfig.1:3.2.6a-6ubuntu1 bacula-client.9.0.6-1build1
-transfig.1:3.2.6a-6ubuntu1 bacula-client.9.0.6-1build1
+dwz.0.12-1 dwz.???
+dwz.0.12-1 dwz.???
+dwz.0.11-1 dwz.???
+cups.2.1.3-4ubuntu0.9 cups.???
+cups.2.1.3-4ubuntu0.9 cups.???
+transfig.1:3.2.5.e-1ubuntu1.1 transfig.???
+transfig.1:3.2.5.e-1ubuntu1.1 transfig.???
+transfig.1:3.2.5.e-5ubuntu0.1 transfig.???
+rrdtool.1.5.5-4 rrdtool.???
 mgetty-voice.1.1.36-2ubuntu1 mgetty-voice.???
+units.2.12-2 units.???
+pax.1:20151013-1 pax.???
+pax.1:20151013-1 pax.???
+pax.1:20120606-2+deb7u1 pax.???
+memcached.1.4.14-0ubuntu9.3 memcached.???
+memcached.1.4.14-0ubuntu9.3 memcached.???
+sane.1.0.14-11 sane.???
+lynx.2.8.9dev8-4ubuntu1 lynx.???
+lynx.2.8.9dev8-4ubuntu1 lynx.???
+marisa.0.2.4-8build6 marisa.???
+marisa.0.2.4-8build6 marisa.???
+paps.0.6.8-7ubuntu1 paps.???
+ksh.93u+20120801-2ubuntu0.16.04.1 ksh.???
+ksh.93u+20120801-2ubuntu0.16.04.1 ksh.???
+subversion.1.9.3-2ubuntu1.1 subversion.???
+mksh.46-2ubuntu3 mksh.???
+dstat.0.7.2-3build1 dstat.???
+dstat.0.7.2-3build1 dstat.???
 crash.7.2.3+real-1~16.04.1 crash.???
 crash.7.0.3-3ubuntu4.5 crash.???
-crash.7.0.3-3ubuntu4.5 crash.???
-logwatch.7.4.0+svn20130529rev144-1ubuntu1.1 logwatch.???
-logwatch.7.4.2-1ubuntu1 logwatch.???
-logwatch.7.4.2-1ubuntu1 logwatch.???
-marisa.0.2.4-8build6 marisa.???
-marisa.0.2.4-8build6 marisa.???
-mc.3:4.8.15-2 mc.???
-memcached.1.4.14-0ubuntu9.3 memcached.???
-paps.0.6.8-7 paps.???
-supermin.5.1.14-2ubuntu1.1 supermin.???
-units.2.12-2 units.???
-units.2.12-2 units.???
-units.2.12-2 units.???
-dwz.0.11-1 dwz.???
-sane.1.0.14-11 sane.???
-dstat.0.7.2-3build1 dstat.???
-dstat.0.7.2-4 dstat.???
-pax.1:20151013-1 pax.???
-nasm.2.10.09-1ubuntu0.1 nasm.???
-nasm.2.10.09-1ubuntu0.1 nasm.???
-vw took this many seconds:  1.0574359893798828
-Number of rules:  0
-Number of apps:  315
-Number of versions:  0
-Number of incorrect app names:  4
-Starting predictions
-cups.2.1.3-4ubuntu0.9 cups.???
-rrdtool.1.5.5-4 rrdtool.???
-lynx.2.8.9dev8-4ubuntu1 lynx.???
-lynx.2.8.8pre4-1 mariadb-server.???
-lynx.2.8.8pre4-1 mariadb-server.???
-bacula-client.5.2.6+dfsg-9.1ubuntu3 mariadb-server.???
-mariadb-server.10.0.38-0ubuntu0.16.04.1 mariadb-server.???
-lftp.4.4.13-1ubuntu0.1 lftp.???
+crash.7.2.3+real-1~16.04.1 crash.???
 lftp.4.6.3a-1ubuntu0.1 lftp.???
-iptraf-ng.1.1.4-1 iptraf-ng.???
-iptraf-ng.1.1.4-2ubuntu0.16.04.1 iptraf-ng.???
-virt-top.1.0.7-1 virt-top.???
-subversion.1.9.3-2ubuntu1.1 subversion.???
-mrtg.2.17.4-3ubuntu1 mrtg.???
-bacula-client.7.0.5+dfsg-4ubuntu0.1 bacula-client.???
-mgetty-voice.1.1.36-2ubuntu1 mgetty-voice.???
-mgetty-voice.1.1.36-2ubuntu1 mgetty-voice.???
-crash.7.0.3-3ubuntu4.5 crash.???
-mariadb-server.5.5.64-1ubuntu0.14.04.1 paps.???
-paps.0.6.8-7ubuntu1 paps.???
-paps.0.6.8-7ubuntu1 paps.???
-paps.0.6.8-7ubuntu1 paps.???
-transfig.1:3.2.5.e-5ubuntu0.1 transfig.???
-transfig.1:3.2.5.e-5ubuntu0.1 transfig.???
-logwatch.7.4.0+svn20130529rev144-1ubuntu1.1 logwatch.???
+lftp.4.4.13-1ubuntu0.1 lftp.???
+lftp.4.4.13-1ubuntu0.1 lftp.???
 logwatch.7.4.2-1ubuntu1 logwatch.???
-marisa.0.2.4-5build1 marisa.???
-marisa.0.2.4-5build1 marisa.???
+logwatch.7.4.2-1ubuntu1 logwatch.???
+supermin.5.1.14-2ubuntu1.1 supermin.???
 mc.3:4.8.15-2 mc.???
 mc.3:4.8.15-2 mc.???
-memcached.1.4.14-0ubuntu9.3 memcached.???
-ksh.93u+20120801-2ubuntu0.16.04.1 ksh.???
+nasm.2.10.09-1ubuntu0.1 nasm.???
+vw took this many seconds:  1.953934907913208
+Number of rules:  0
+Number of apps:  396
+Number of versions:  0
+Number of incorrect app names:  0
+Starting predictions
+iptraf-ng.1.1.4-1 iptraf-ng.???
+iptraf-ng.1.1.4-1 iptraf-ng.???
+telnetd.0.17-40 telnetd.???
 dwz.0.11-1 dwz.???
 dwz.0.12-1 dwz.???
 dwz.0.11-1 dwz.???
-powertop.2.5-1ubuntu1 powertop.???
-dstat.0.7.2-4 dstat.???
-dstat.0.7.2-4 dstat.???
-mksh.46-2ubuntu3 mksh.???
-pax.1:20120606-2+deb7u1 pax.???
+transfig.1:3.2.5.e-1ubuntu1.1 transfig.???
+transfig.1:3.2.5.e-1ubuntu1.1 transfig.???
+mrtg.2.17.4-3ubuntu1 mrtg.???
+rrdtool.1.5.5-4 rrdtool.???
+rrdtool.1.5.5-4 rrdtool.???
+rrdtool.1.5.5-4 rrdtool.???
+mgetty-voice.1.1.36-2ubuntu1 mgetty-voice.???
+units.2.12-2 units.???
 pax.1:20120606-2+deb7u1 pax.???
 pax.1:20151013-1 pax.???
-nasm.2.10.09-1ubuntu0.1 nasm.???
-vw took this many seconds:  1.73112154006958
-Number of rules:  0
-Number of apps:  360
-Number of versions:  0
-Number of incorrect app names:  2
-Starting predictions
-cups.2.1.3-4ubuntu0.9 cups.???
-cups.2.1.3-4ubuntu0.9 cups.???
-rrdtool.1.5.5-4 rrdtool.???
-lynx.2.8.8pre4-1 mariadb-server.???
-mariadb-server.5.5.64-1ubuntu0.14.04.1 mariadb-server.???
-mariadb-server.10.0.38-0ubuntu0.16.04.1 mariadb-server.???
-powertop.2.5-1ubuntu1 mariadb-server.???
-lynx.2.8.9dev8-4ubuntu1 lynx.???
-telnetd.0.17-40 telnetd.???
-lftp.4.4.13-1ubuntu0.1 lftp.???
-iptraf-ng.1.1.4-1 iptraf-ng.???
-iptraf-ng.1.1.4-1 iptraf-ng.???
-virt-top.1.0.7-1 virt-top.???
-subversion.1.9.3-2ubuntu1.1 subversion.???
-subversion.1.9.3-2ubuntu1.1 subversion.???
-mrtg.2.17.4-3ubuntu1 mrtg.???
-mrtg.2.17.4-3ubuntu1 mrtg.???
-bacula-client.7.0.5+dfsg-4ubuntu0.1 bacula-client.???
-crash.7.0.3-3ubuntu4.5 crash.???
-crash.7.2.3+real-1~16.04.1 crash.???
-transfig.1:3.2.5.e-1ubuntu1.1 transfig.???
-transfig.1:3.2.5.e-1ubuntu1.1 transfig.???
-transfig.1:3.2.5.e-1ubuntu1.1 transfig.???
-logwatch.7.4.2-1ubuntu1 logwatch.???
-logwatch.7.4.0+svn20130529rev144-1ubuntu1.1 logwatch.???
+memcached.1.4.14-0ubuntu9.3 memcached.???
+sane.1.0.14-11 sane.???
+sane.1.0.14-11 sane.???
 marisa.0.2.4-8build6 marisa.???
-mc.3:4.8.15-2 mc.???
-memcached.1.4.14-0ubuntu9.3 memcached.???
+marisa.0.2.4-5build1 marisa.???
+paps.0.6.8-7 paps.???
+paps.0.6.8-7 paps.???
 ksh.93u+20120801-2ubuntu0.16.04.1 ksh.???
-ksh.93u+20120801-2ubuntu0.16.04.1 ksh.???
-paps.0.6.8-7 paps.???
-paps.0.6.8-7 paps.???
-paps.0.6.8-7 paps.???
-dwz.0.11-1 dwz.???
-dwz.0.11-1 dwz.???
-sane.1.0.14-11 sane.???
+subversion.1.9.3-2ubuntu1.1 subversion.???
+mksh.46-2ubuntu3 mksh.???
+mksh.52c-2 mksh.???
 dstat.0.7.2-3build1 dstat.???
 dstat.0.7.2-4 dstat.???
 dstat.0.7.2-4 dstat.???
-mksh.52c-2 mksh.???
-mksh.46-2ubuntu3 mksh.???
-mksh.52c-2 mksh.???
-pax.1:20120606-2+deb7u1 pax.???
-pax.1:20120606-2+deb7u1 pax.???
-nasm.2.10.09-1ubuntu0.1 nasm.???
-nasm.2.10.09-1ubuntu0.1 nasm.???
-vw took this many seconds:  1.814229965209961
-Number of rules:  0
-Number of apps:  405
-Number of versions:  0
-Number of incorrect app names:  4
-Starting predictions
-cups.2.1.3-4ubuntu0.9 cups.???
-rrdtool.1.5.5-4 rrdtool.???
-lynx.2.8.9dev8-4ubuntu1 lynx.???
-lynx.2.8.9dev8-4ubuntu1 lynx.???
-lftp.4.6.3a-1ubuntu0.1 lftp.???
-lftp.4.6.3a-1ubuntu0.1 lftp.???
-iptraf-ng.1.1.4-2ubuntu0.16.04.1 iptraf-ng.???
-iptraf-ng.1.1.4-1 iptraf-ng.???
-virt-top.1.0.7-1 virt-top.???
-subversion.1.9.3-2ubuntu1.1 subversion.???
-mrtg.2.17.4-3ubuntu1 mrtg.???
-bacula-client.5.2.6+dfsg-9.1ubuntu3 mariadb-server.???
-mariadb-server.5.5.64-1ubuntu0.14.04.1 mariadb-server.???
-mariadb-server.10.0.38-0ubuntu0.16.04.1 mariadb-server.???
-transfig.1:3.2.6a-6ubuntu1 bacula-client.9.0.6-1build1
-transfig.1:3.2.6a-6ubuntu1 bacula-client.9.0.6-1build1
-powertop.2.5-1ubuntu1 bacula-client.???
-mgetty-voice.1.1.36-2ubuntu1 mgetty-voice.???
-mgetty-voice.1.1.36-2ubuntu1 mgetty-voice.???
+crash.7.2.3+real-1~16.04.1 crash.???
 crash.7.0.3-3ubuntu4.5 crash.???
-transfig.1:3.2.5.e-1ubuntu1.1 transfig.???
-logwatch.7.4.2-1ubuntu1 logwatch.???
-marisa.0.2.4-5build1 marisa.???
-memcached.1.4.14-0ubuntu9.3 memcached.???
-memcached.1.4.14-0ubuntu9.3 memcached.???
-memcached.1.4.14-0ubuntu9.3 memcached.???
-ksh.93u+20120801-2ubuntu0.16.04.1 ksh.???
-paps.0.6.8-7 paps.???
-paps.0.6.8-7ubuntu1 paps.???
-supermin.5.1.14-2ubuntu1.1 supermin.???
-units.2.12-2 units.???
-dwz.0.12-1 dwz.???
-dwz.0.12-1 dwz.???
-sane.1.0.14-11 sane.???
-dstat.0.7.2-4 dstat.???
-mksh.52c-2 mksh.???
-mksh.52c-2 mksh.???
-mksh.46-2ubuntu3 mksh.???
-vw took this many seconds:  1.4002718925476074
+logwatch.7.4.0+svn20130529rev144-1ubuntu1.1 logwatch.???
+logwatch.7.4.0+svn20130529rev144-1ubuntu1.1 logwatch.???
+virt-top.1.0.7-1 virt-top.???
+nasm.2.10.09-1ubuntu0.1 nasm.???
+nasm.2.10.09-1ubuntu0.1 nasm.???
+vw took this many seconds:  1.3091089725494385
 Number of rules:  0
-Number of apps:  450
+Number of apps:  440
 Number of versions:  0
-Number of incorrect app names:  2
+Number of incorrect app names:  0
 Starting predictions
-rrdtool.1.5.5-4 rrdtool.???
-lynx.2.8.8pre4-1 mariadb-server.???
-lynx.2.8.8pre4-1 mariadb-server.???
-mariadb-server.10.0.38-0ubuntu0.16.04.1 mariadb-server.???
-mariadb-server.5.5.64-1ubuntu0.14.04.1 mariadb-server.???
-lynx.2.8.9dev8-4ubuntu1 lynx.???
-telnetd.0.17-40 telnetd.???
-mailman.1:2.1.20-1ubuntu0.3 mailman.1:2.1.26-1
-lftp.4.4.13-1ubuntu0.1 lftp.???
-iptraf-ng.1.1.4-2ubuntu0.16.04.1 iptraf-ng.???
+bacula-client.7.0.5+dfsg-4ubuntu0.1 bacula-client.???
+iptraf-ng.1.1.4-1 iptraf-ng.???
 iptraf-ng.1.1.4-1 iptraf-ng.???
 iptraf-ng.1.1.4-2ubuntu0.16.04.1 iptraf-ng.???
-virt-top.1.0.7-1 virt-top.???
-subversion.1.9.3-2ubuntu1.1 subversion.???
-mrtg.2.17.4-3ubuntu1 mrtg.???
-mgetty-voice.1.1.36-2ubuntu1 mgetty-voice.???
-crash.7.2.3+real-1~16.04.1 crash.???
-crash.7.2.3+real-1~16.04.1 crash.???
+telnetd.0.17-40 telnetd.???
+dwz.0.12-1 dwz.???
+cups.2.1.3-4ubuntu0.9 cups.???
+transfig.1:3.2.5.e-5ubuntu0.1 transfig.???
 transfig.1:3.2.5.e-1ubuntu1.1 transfig.???
-transfig.1:3.2.5.e-5ubuntu0.1 transfig.???
-transfig.1:3.2.5.e-5ubuntu0.1 transfig.???
-logwatch.7.4.2-1ubuntu1 logwatch.???
-logwatch.7.4.0+svn20130529rev144-1ubuntu1.1 logwatch.???
-marisa.0.2.4-5build1 marisa.???
-marisa.0.2.4-5build1 marisa.???
-mc.3:4.8.15-2 mc.???
-mc.3:4.8.15-2 mc.???
-ksh.93u+20120801-2ubuntu0.16.04.1 ksh.???
-paps.0.6.8-7ubuntu1 paps.???
-paps.0.6.8-7 paps.???
-supermin.5.1.14-2ubuntu1.1 supermin.???
-units.2.12-2 units.???
-dwz.0.12-1 dwz.???
-dwz.0.11-1 dwz.???
-dwz.0.12-1 dwz.???
+mrtg.2.17.4-3ubuntu1 mrtg.???
+rrdtool.1.5.5-4 rrdtool.???
+rrdtool.1.5.5-4 rrdtool.???
+mgetty-voice.1.1.36-2ubuntu1 mgetty-voice.???
+mgetty-voice.1.1.36-2ubuntu1 mgetty-voice.???
+pax.1:20151013-1 pax.???
 sane.1.0.14-11 sane.???
-powertop.2.5-1ubuntu1 powertop.???
-powertop.2.5-1ubuntu1 powertop.???
-dstat.0.7.2-4 dstat.???
+lynx.2.8.9dev8-4ubuntu1 lynx.???
+marisa.0.2.4-8build6 marisa.???
+paps.0.6.8-7ubuntu1 paps.???
+paps.0.6.8-7ubuntu1 paps.???
+paps.0.6.8-7ubuntu1 paps.???
+ksh.93u+20120801-2ubuntu0.16.04.1 ksh.???
+mksh.52c-2 mksh.???
+mksh.52c-2 mksh.???
+mksh.52c-2 mksh.???
 dstat.0.7.2-3build1 dstat.???
-pax.1:20120606-2+deb7u1 pax.???
-pax.1:20120606-2+deb7u1 pax.???
+dstat.0.7.2-4 dstat.???
+dstat.0.7.2-4 dstat.???
+crash.7.2.3+real-1~16.04.1 crash.???
+crash.7.2.3+real-1~16.04.1 crash.???
+lftp.4.4.13-1ubuntu0.1 lftp.???
+logwatch.7.4.2-1ubuntu1 logwatch.???
+logwatch.7.4.2-1ubuntu1 logwatch.???
+supermin.4.1.6-1 supermin.5.1.14-2ubuntu1.1
+mc.3:4.8.15-2 mc.???
+mc.3:4.8.15-2 mc.???
 nasm.2.10.09-1ubuntu0.1 nasm.???

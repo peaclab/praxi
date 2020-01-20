@@ -1,6 +1,0 @@
-changes:
-- /var/log/auth.log
-- /var/log/syslog
-label: bacula-client
-tags: []
-version: 5.2.6+dfsg-9.1ubuntu3

@@ -1,0 +1,173 @@
+will create pickle file
+vw took this many seconds:  1.875579833984375
+Number of rules:  125
+Number of apps:  44
+Number of versions:  125
+Number of incorrect app names:  0
+Starting predictions
+samba.2:4.3.11+dfsg-0ubuntu0.16.04.21 samba.2:4.3.11+dfsg-0ubuntu0.14.04.20
+samba.2:4.7.6+dfsg~ubuntu-0ubuntu2.11 samba.2:4.3.11+dfsg-0ubuntu0.14.04.20
+dstat.0.7.2-4 dstat.0.7.2-3build1
+smartmontools.6.5+svn4324-1 smartmontools.6.4+svn4214-1
+smartmontools.6.5+svn4324-1 smartmontools.6.4+svn4214-1
+quagga.0.99.22.4-3ubuntu1.5 quagga.0.99.24.1-2ubuntu1.4
+crash.7.0.3-3ubuntu4.5 crash.7.2.3+real-1~16.04.1
+transfig.1:3.2.5.e-1ubuntu1.1 transfig.1:3.2.5.e-5ubuntu0.1
+vw took this many seconds:  1.6907787322998047
+Number of rules:  250
+Number of apps:  88
+Number of versions:  250
+Number of incorrect app names:  0
+Starting predictions
+samba.2:4.7.6+dfsg~ubuntu-0ubuntu2.11 samba.2:4.3.11+dfsg-0ubuntu0.14.04.20
+dstat.0.7.2-3build1 dstat.0.7.2-4
+mrtg.2.17.4-4.1ubuntu1 mrtg.2.17.4-3ubuntu1
+mrtg.2.17.4-4.1ubuntu1 mrtg.2.17.4-3ubuntu1
+mrtg.2.17.4-4.1ubuntu1 mrtg.2.17.4-3ubuntu1
+iptraf-ng.1.1.4-1 iptraf-ng.1.1.4-2ubuntu0.16.04.1
+iptraf-ng.1.1.4-1 iptraf-ng.1.1.4-2ubuntu0.16.04.1
+mc.3:4.8.11-1 mc.3:4.8.15-2
+mailman.1:2.1.20-1ubuntu0.3 mailman.1:2.1.26-1
+pax.1:20120606-2+deb7u1 pax.1:20151013-1
+crash.7.2.3+real-1~16.04.1 crash.7.0.3-3ubuntu4.5
+transfig.1:3.2.5.e-1ubuntu1.1 transfig.1:3.2.5.e-5ubuntu0.1
+transfig.1:3.2.5.e-1ubuntu1.1 transfig.1:3.2.5.e-5ubuntu0.1
+vw took this many seconds:  1.306370496749878
+Number of rules:  375
+Number of apps:  132
+Number of versions:  375
+Number of incorrect app names:  0
+Starting predictions
+samba.2:4.3.11+dfsg-0ubuntu0.14.04.20 samba.2:4.3.11+dfsg-0ubuntu0.16.04.21
+samba.2:4.7.6+dfsg~ubuntu-0ubuntu2.11 samba.2:4.3.11+dfsg-0ubuntu0.14.04.20
+mrtg.2.17.4-4.1ubuntu1 mrtg.2.17.4-3ubuntu1
+mrtg.2.17.4-4.1ubuntu1 mrtg.2.17.4-3ubuntu1
+iptraf-ng.1.1.4-1 iptraf-ng.1.1.4-2ubuntu0.16.04.1
+mc.3:4.8.11-1 mc.3:4.8.15-2
+dovecot-core.1:2.2.33.2-1ubuntu4.3 dovecot-core.1:2.2.22-1ubuntu2.10
+crash.7.2.3+real-1~16.04.1 crash.7.0.3-3ubuntu4.5
+crash.7.2.3+real-1~16.04.1 crash.7.0.3-3ubuntu4.5
+dwz.0.11-1 dwz.0.12-1
+transfig.1:3.2.5.e-1ubuntu1.1 transfig.1:3.2.5.e-5ubuntu0.1
+vw took this many seconds:  1.2491064071655273
+Number of rules:  500
+Number of apps:  176
+Number of versions:  500
+Number of incorrect app names:  0
+Starting predictions
+gpm.1.20.4-6.1 gpm.???
+dstat.0.7.3-1 dstat.???
+mrtg.2.17.4-4.1ubuntu1 mrtg.2.17.4-3ubuntu1
+smartmontools.6.5+svn4324-1 smartmontools.6.4+svn4214-1
+sane.1.0.14-9 sane.1.0.14-11
+iptraf-ng.1.1.4-1 iptraf-ng.1.1.4-2ubuntu0.16.04.1
+quagga.0.99.22.4-3ubuntu1.5 quagga.0.99.24.1-2ubuntu1.4
+mc.3:4.8.11-1 mc.3:4.8.15-2
+dovecot-core.1:2.2.33.2-1ubuntu4.3 dovecot-core.1:2.2.22-1ubuntu2.10
+virt-top.1.0.7-1 virt-top.???
+crash.7.2.3+real-1~16.04.1 crash.7.0.3-3ubuntu4.5
+marisa.0.2.4-5build1 marisa.0.2.4-8build6
+paps.0.6.8-7 paps.0.6.8-7ubuntu1
+dwz.0.11-1 dwz.0.12-1
+dwz.0.11-1 dwz.0.12-1
+vw took this many seconds:  1.2708005905151367
+Number of rules:  625
+Number of apps:  220
+Number of versions:  625
+Number of incorrect app names:  0
+Starting predictions
+samba.2:4.7.6+dfsg~ubuntu-0ubuntu2.11 samba.2:4.3.11+dfsg-0ubuntu0.14.04.20
+samba.2:4.3.11+dfsg-0ubuntu0.14.04.20 samba.2:4.3.11+dfsg-0ubuntu0.16.04.21
+dovecot-core.1:2.2.33.2-1ubuntu4.3 dovecot-core.1:2.2.22-1ubuntu2.10
+dovecot-core.1:2.2.33.2-1ubuntu4.3 dovecot-core.1:2.2.22-1ubuntu2.10
+dovecot-core.1:2.2.33.2-1ubuntu4.3 dovecot-core.1:2.2.22-1ubuntu2.10
+virt-top.1.0.7-1 virt-top.???
+crash.7.2.3+real-1~16.04.1 crash.7.0.3-3ubuntu4.5
+vw took this many seconds:  1.659074306488037
+Number of rules:  750
+Number of apps:  264
+Number of versions:  750
+Number of incorrect app names:  0
+Starting predictions
+samba.2:4.7.6+dfsg~ubuntu-0ubuntu2.11 samba.2:4.3.11+dfsg-0ubuntu0.14.04.20
+dstat.0.7.2-3build1 dstat.0.7.2-4
+smartmontools.6.5+svn4324-1 smartmontools.6.4+svn4214-1
+smartmontools.6.5+svn4324-1 smartmontools.6.4+svn4214-1
+iptraf-ng.1.1.4-1 iptraf-ng.1.1.4-2ubuntu0.16.04.1
+mailman.1:2.1.20-1ubuntu0.3 mailman.1:2.1.26-1
+dovecot-core.1:2.2.33.2-1ubuntu4.3 dovecot-core.1:2.2.22-1ubuntu2.10
+virt-top.1.0.7-1 virt-top.???
+crash.7.2.3+real-1~16.04.1 crash.7.0.3-3ubuntu4.5
+crash.7.2.3+real-1~16.04.1 crash.7.0.3-3ubuntu4.5
+paps.0.6.8-7 paps.0.6.8-7ubuntu1
+transfig.1:3.2.5.e-1ubuntu1.1 transfig.1:3.2.5.e-5ubuntu0.1
+vw took this many seconds:  1.5484542846679688
+Number of rules:  875
+Number of apps:  308
+Number of versions:  875
+Number of incorrect app names:  0
+Starting predictions
+samba.2:4.7.6+dfsg~ubuntu-0ubuntu2.11 samba.???
+dstat.0.7.2-3build1 dstat.0.7.2-4
+dstat.0.7.2-3build1 dstat.0.7.2-4
+supermin.4.1.6-1 supermin.5.1.14-2ubuntu1.1
+mc.3:4.8.11-1 mc.3:4.8.15-2
+dovecot-core.1:2.2.33.2-1ubuntu4.3 dovecot-core.1:2.2.22-1ubuntu2.10
+lftp.4.4.13-1ubuntu0.1 lftp.???
+virt-top.1.0.7-1 virt-top.???
+pax.1:20120606-2+deb7u1 pax.1:20151013-1
+crash.7.2.3+real-1~16.04.1 crash.7.0.3-3ubuntu4.5
+paps.0.6.8-7 paps.0.6.8-7ubuntu1
+paps.0.6.8-7 paps.0.6.8-7ubuntu1
+transfig.1:3.2.5.e-1ubuntu1.1 transfig.1:3.2.5.e-5ubuntu0.1
+vw took this many seconds:  1.2581923007965088
+Number of rules:  1000
+Number of apps:  352
+Number of versions:  1000
+Number of incorrect app names:  0
+Starting predictions
+samba.2:4.7.6+dfsg~ubuntu-0ubuntu2.11 samba.2:4.3.11+dfsg-0ubuntu0.14.04.20
+samba.2:4.3.11+dfsg-0ubuntu0.14.04.20 samba.2:4.3.11+dfsg-0ubuntu0.16.04.21
+dstat.0.7.2-3build1 dstat.0.7.2-4
+mrtg.2.17.4-4.1ubuntu1 mrtg.2.17.4-3ubuntu1
+smartmontools.6.5+svn4324-1 smartmontools.6.4+svn4214-1
+smartmontools.6.5+svn4324-1 smartmontools.6.4+svn4214-1
+iptraf-ng.1.1.4-1 iptraf-ng.1.1.4-2ubuntu0.16.04.1
+mc.3:4.8.11-1 mc.3:4.8.15-2
+mc.3:4.8.11-1 mc.3:4.8.15-2
+virt-top.1.0.7-1 virt-top.???
+virt-top.1.0.7-1 virt-top.???
+marisa.0.2.4-5build1 marisa.0.2.4-8build6
+paps.0.6.8-7 paps.0.6.8-7ubuntu1
+dwz.0.11-1 dwz.0.12-1
+transfig.1:3.2.5.e-1ubuntu1.1 transfig.1:3.2.5.e-5ubuntu0.1
+vw took this many seconds:  1.3262677192687988
+Number of rules:  1125
+Number of apps:  396
+Number of versions:  1125
+Number of incorrect app names:  0
+Starting predictions
+smartmontools.6.5+svn4324-1 smartmontools.6.4+svn4214-1
+mc.3:4.8.11-1 mc.3:4.8.15-2
+mc.3:4.8.11-1 mc.3:4.8.15-2
+dovecot-core.1:2.2.33.2-1ubuntu4.3 dovecot-core.1:2.2.22-1ubuntu2.10
+virt-top.1.0.7-1 virt-top.???
+transfig.1:3.2.5.e-1ubuntu1.1 transfig.1:3.2.5.e-5ubuntu0.1
+vw took this many seconds:  1.4590861797332764
+Number of rules:  1250
+Number of apps:  440
+Number of versions:  1250
+Number of incorrect app names:  0
+Starting predictions
+samba.2:4.7.6+dfsg~ubuntu-0ubuntu2.11 samba.2:4.3.11+dfsg-0ubuntu0.14.04.20
+dstat.0.7.2-3build1 dstat.0.7.2-4
+mrtg.2.17.4-4.1ubuntu1 mrtg.2.17.4-3ubuntu1
+sane.1.0.14-9 sane.1.0.14-11
+iptraf-ng.1.1.4-1 iptraf-ng.1.1.4-2ubuntu0.16.04.1
+iptraf-ng.1.1.4-1 iptraf-ng.1.1.4-2ubuntu0.16.04.1
+iptraf-ng.1.1.4-1 iptraf-ng.1.1.4-2ubuntu0.16.04.1
+quagga.0.99.24.1-2ubuntu1.4 quagga.???
+dovecot-core.1:2.2.33.2-1ubuntu4.3 dovecot-core.1:2.2.22-1ubuntu2.10
+virt-top.1.0.7-1 virt-top.???
+marisa.0.2.4-5build1 marisa.0.2.4-8build6
+transfig.1:3.2.5.e-1ubuntu1.1 transfig.1:3.2.5.e-5ubuntu0.1

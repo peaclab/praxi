@@ -42,26 +42,12 @@ class RuleBasedTags:
             yaml.dump(self.rules, outfile, default_flow_style=False)
 
     #def fit(self, X, y): # X is list of lists, little lists have tags, y are VERSIONS
-    def fit(self,X,y,max_num_rules=1):
+    def fit(self,X,y,max_num_rules=3):
         # find intersection of ALL changes
-        """inter = set(X[0])
-        for idx in range(1,len(X)):
-            inter &= set(X[idx])
-        inter = list(inter)
-        if len(inter) != 0:
-            newX = []
-            for changes in X:
-                 new_changes = [x for x in changes if x not in inter]
-                 newX.append(new_changes)
-            X = newX"""
-
         label_to_tokens = self.transform_tagsets(X, y)
         labels = label_to_tokens.keys()
         self.total_versions += len(labels)
 
-        #self.rules = {}
-        #for l in labels:
-        #    rules[l]=[]
         token_to_labels = self.get_token_to_labels(label_to_tokens)
         label_to_token_groups = get_label_to_token_groups(token_to_labels)
 
@@ -69,11 +55,7 @@ class RuleBasedTags:
                                limit=1, max_index=5, string_rules=False)
         self.total_rules += numrules
 
-        """for token in token_to_labels.keys():
-            if len(token_to_labels[token]) == 1:
-                if token_to_labels[token][0] not in rules: # only take one rule
-                    self.rules[token_to_labels[token][0]] = token
-                    self.total_rules += 1"""
+
         #print("Rules:", rules)
         #input("Enter to continue");
         #print(rules)

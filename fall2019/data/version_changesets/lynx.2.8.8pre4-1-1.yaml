@@ -1,7 +1,0 @@
-changes:
-- /var/log/apt/term.log
-- /var/log/auth.log
-- /var/log/apt/history.log
-close_time: 1563999895.400809
-label: lynx.2.8.8pre4-1
-open_time: 1563999892.8690746

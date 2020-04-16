@@ -113,5 +113,5 @@ columbus/
 old_scripts/
 __pycache__
 a.cache
-
+version_detection/
 # user requested caches/

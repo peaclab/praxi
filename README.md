@@ -1,7 +1,6 @@
 # Praxi
 A combination of DeltaSherlock, Columbus, and the Rule-Based method
 
-**NOTE**: This repository is considered pre-release and should not be used for production purposes until the official release.
 
 ## Requirements
 * Linux

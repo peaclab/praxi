@@ -1,0 +1,19 @@
+id: 0
+label: hdparm
+tags:
+- hdparm:50
+- clearsigned.message.:40
+- status-:4
+- tmp.:16
+- con:4
+- system:8
+- hdparm.:32
+- pre:4
+- 000:8
+- clearsigned.message.O:4
+- hdparm.post:4
+- hdparm.p:8
+- hdparm.conf:4
+- hdparm.pre:4
+- '#27:2'
+- clearsigned.message.R9:4

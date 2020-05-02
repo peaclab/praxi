@@ -1,0 +1,22 @@
+id: 0
+label: anacron
+tags:
+- 000:20
+- clearsigned.message.:40
+- anacron:64
+- cron.:8
+- '#2d:2'
+- clearsigned.message.Y:4
+- tmp.:16
+- pre:4
+- deb-systemd-helper-:12
+- anacron.:48
+- anacron.timer.d:4
+- anacron.service.d:4
+- clearsigned.message.R:4
+- anacron.post:4
+- anacron.p:8
+- .state:4
+- con:4
+- status-:4
+- anacron.pre:4

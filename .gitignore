@@ -105,13 +105,14 @@ ENV/
 
 # Miscellaneous
 week*/
-#results/
+results/
 caches/
 a.cache
 changeset_sets/
 columbus/
 old_scripts/
 __pycache__
+container*/
 a.cache
 version_detection/
 # user requested caches/

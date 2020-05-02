@@ -1,0 +1,26 @@
+id: 0
+label: locales
+tags:
+- cha:24
+- locales.conf:4
+- locales.:26
+- locales:42
+- locale:58
+- loc:60
+- clearsigned.message.E:6
+- clearsigned.message.:40
+- update:14
+- tmp.:18
+- ANSI_X3.:8
+- sed:4
+- con:12
+- templates.dat-:4
+- 000:8
+- locale.:8
+- clearsigned.message.D:4
+- locales.post:4
+- locales.p:6
+- '#23:2'
+- clearsigned.message.X:4
+- status-:4
+- config.dat-:4
